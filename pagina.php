@@ -12,9 +12,7 @@
                 </div>
                 <!--BEGIN MENU-->
                 <div id="menu">
-                <?php 
-                include 'menu.php';
-                ?>
+                <?php include 'menu.php'; ?>
                 </div>
                 <!--EINDE MENU-->
             </header>
@@ -26,7 +24,7 @@
             </div>
             <!--EINDE CONTENT-->
             <footer>
-                <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>
+                <?php include 'footer.php';?>
             </footer>
         </div>
     </body>
