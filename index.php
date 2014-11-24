@@ -11,9 +11,7 @@
                     <img src="afbeeldingen/logo-bens.png" alt="Bens Development"/>
                 </div>
                 <div id="menu">
-                    <?php
-                    include 'menu.php';
-                    ?>
+                    <?php include 'menu.php';?>
                 </div>
             </header>
             <div id="slider">
@@ -113,7 +111,7 @@
                 </div>
             </div>
             <footer>
-                <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>
+                <?php include 'footer.php';?>
             </footer>
         </div>
     </body>
