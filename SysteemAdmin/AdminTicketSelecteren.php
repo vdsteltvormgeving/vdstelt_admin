@@ -107,7 +107,7 @@
                                 <?php
                                 $i = 0;
                                 if (isset($_POST["sortcat"])) { // Elke if en elseif die hier volgen zijn verschillende clausules voor omhoog en omlaag gesorteerde categorien.
-                                    $stmt4 = mysqli_prepare($link, " SELECT ticket_ID, category, creation_date, completed_status FROM ticket ORDER BY Category");
+                                    $stmt4 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY Category");
                                     mysqli_stmt_execute($stmt4);
                                     mysqli_stmt_bind_result($stmt4, $ticketname, $category, $creation, $completed);
                                     while (mysqli_stmt_fetch($stmt4)) {
@@ -119,7 +119,7 @@
                                         print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
                                     }
                                 } elseif (isset($_POST["sortcatDESC"])) {
-                                    $stmt5 = mysqli_prepare($link, " SELECT ticket_ID, category, creation_date, completed_status FROM ticket ORDER BY Category DESC ");
+                                    $stmt5 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY Category DESC ");
                                     mysqli_stmt_execute($stmt5);
                                     mysqli_stmt_bind_result($stmt5, $ticketname, $category, $creation, $completed);
                                     while (mysqli_stmt_fetch($stmt5)) {
@@ -131,7 +131,7 @@
                                         print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
                                     }
                                 } elseif (isset($_POST["sortct"])) {
-                                    $stmt6 = mysqli_prepare($link, " SELECT ticket_ID, category, creation_date, completed_status FROM ticket ORDER BY creation_date ");
+                                    $stmt6 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY creation_date ");
                                     mysqli_stmt_execute($stmt6);
                                     mysqli_stmt_bind_result($stmt6, $ticketname, $category, $creation, $completed);
                                     while (mysqli_stmt_fetch($stmt6)) {
@@ -143,7 +143,7 @@
                                         print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
                                     }
                                 } elseif (isset($_POST["sortctDESC"])) {
-                                    $stmt7 = mysqli_prepare($link, " SELECT ticket_ID, category, creation_date, completed_status FROM ticket ORDER BY creation_date DESC ");
+                                    $stmt7 = mysqli_prepare($link, " SELECT SELECT category, creation_date, completed_status FROM ticket ORDER BY creation_date DESC ");
                                     mysqli_stmt_execute($stmt7);
                                     mysqli_stmt_bind_result($stmt7, $ticketname, $category, $creation, $completed);
                                     while (mysqli_stmt_fetch($stmt7)) {
@@ -155,7 +155,7 @@
                                         print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
                                     }
                                 } elseif (isset($_POST["sortstat"])) {
-                                    $stmt8 = mysqli_prepare($link, " SELECT ticket_ID, category, creation_date, completed_status FROM ticket ORDER BY completed_status ");
+                                    $stmt8 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY completed_status ");
                                     mysqli_stmt_execute($stmt8);
                                     mysqli_stmt_bind_result($stmt8, $ticketname, $category, $creation, $completed);
                                     while (mysqli_stmt_fetch($stmt8)) {
@@ -167,7 +167,7 @@
                                         print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
                                     }
                                 } elseif (isset($_POST["sortstatDESC"])) {
-                                    $stmt9 = mysqli_prepare($link, " SELECT ticket_ID, category, creation_date, completed_status FROM ticket ORDER BY completed_status DESC ");
+                                    $stmt9 = mysqli_prepare($link, " SELECT SELECT category, creation_date, completed_status FROM ticket ORDER BY completed_status DESC ");
                                     mysqli_stmt_execute($stmt9);
                                     mysqli_stmt_bind_result($stmt9, $ticketname, $category, $creation, $completed);
                                     while (mysqli_stmt_fetch($stmt9)) {
@@ -179,7 +179,7 @@
                                         print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
                                     }
                                 } else {
-                                    $stmt10 = mysqli_prepare($link, " SELECT ticket_ID, category, creation_date, completed_status FROM ticket ");
+                                    $stmt10 = mysqli_prepare($link, " SELECT SELECT category, creation_date, completed_status FROM ticket ");
                                     mysqli_stmt_execute($stmt10);
                                     mysqli_stmt_bind_result($stmt10, $ticketname, $category, $creation, $completed);
                                     while (mysqli_stmt_fetch($stmt10)) {
