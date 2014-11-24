@@ -61,8 +61,7 @@
                     <br>
                     <p>Tickets:</p>
                     <table>
-                        <tr>
-                            <th></th>
+                        <tr>                            
                             <th>
                                 <?php
                                 // Met de volgende rijen code wordt bepaald welke sorteerknop we willen hebben. Of we een DESC of een ASC knop hebben.
@@ -109,86 +108,126 @@
                                 if (isset($_POST["sortcat"])) { // Elke if en elseif die hier volgen zijn verschillende clausules voor omhoog en omlaag gesorteerde categorien.
                                     $stmt4 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY Category");
                                     mysqli_stmt_execute($stmt4);
-                                    mysqli_stmt_bind_result($stmt4, $ticketname, $category, $creation, $completed);
-                                    while (mysqli_stmt_fetch($stmt4)) {
-                                        if ($completed == 1) {
+                                    mysqli_stmt_bind_result($stmt4, $category, $creation, $completed);
+                                    while (mysqli_stmt_fetch($stmt4)) 
+                                    {
+                                        if ($completed == 1) 
+                                        {
                                             $completed = "Betaald";
-                                        } else {
+                                        } 
+                                        else 
+                                        {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
                                     }
-                                } elseif (isset($_POST["sortcatDESC"])) {
+                                } 
+                                elseif (isset($_POST["sortcatDESC"])) 
+                                {
                                     $stmt5 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY Category DESC ");
                                     mysqli_stmt_execute($stmt5);
-                                    mysqli_stmt_bind_result($stmt5, $ticketname, $category, $creation, $completed);
-                                    while (mysqli_stmt_fetch($stmt5)) {
-                                        if ($completed == 1) {
+                                    mysqli_stmt_bind_result($stmt5, $category, $creation, $completed);
+                                    while (mysqli_stmt_fetch($stmt5)) 
+                                    {
+                                        if ($completed == 1) 
+                                        {
                                             $completed = "Betaald";
-                                        } else {
+                                        } 
+                                        else 
+                                        {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
                                     }
-                                } elseif (isset($_POST["sortct"])) {
+                                } 
+                                elseif (isset($_POST["sortct"])) 
+                                {
                                     $stmt6 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY creation_date ");
                                     mysqli_stmt_execute($stmt6);
-                                    mysqli_stmt_bind_result($stmt6, $ticketname, $category, $creation, $completed);
-                                    while (mysqli_stmt_fetch($stmt6)) {
-                                        if ($completed == 1) {
+                                    mysqli_stmt_bind_result($stmt6, $category, $creation, $completed);
+                                    while (mysqli_stmt_fetch($stmt6)) 
+                                    {
+                                        if ($completed == 1) 
+                                        {
                                             $completed = "Betaald";
-                                        } else {
+                                        } 
+                                        else 
+                                        {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
                                     }
-                                } elseif (isset($_POST["sortctDESC"])) {
-                                    $stmt7 = mysqli_prepare($link, " SELECT SELECT category, creation_date, completed_status FROM ticket ORDER BY creation_date DESC ");
+                                } 
+                                elseif (isset($_POST["sortctDESC"])) 
+                                {
+                                    $stmt7 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY creation_date DESC ");
                                     mysqli_stmt_execute($stmt7);
-                                    mysqli_stmt_bind_result($stmt7, $ticketname, $category, $creation, $completed);
-                                    while (mysqli_stmt_fetch($stmt7)) {
-                                        if ($completed == 1) {
+                                    mysqli_stmt_bind_result($stmt7, $category, $creation, $completed);
+                                    while (mysqli_stmt_fetch($stmt7)) 
+                                    {
+                                        if ($completed == 1) 
+                                        {
                                             $completed = "Betaald";
-                                        } else {
+                                        } 
+                                        else 
+                                        {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
                                     }
-                                } elseif (isset($_POST["sortstat"])) {
+                                } 
+                                elseif (isset($_POST["sortstat"])) 
+                                {
                                     $stmt8 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY completed_status ");
                                     mysqli_stmt_execute($stmt8);
-                                    mysqli_stmt_bind_result($stmt8, $ticketname, $category, $creation, $completed);
-                                    while (mysqli_stmt_fetch($stmt8)) {
-                                        if ($completed == 1) {
+                                    mysqli_stmt_bind_result($stmt8, $category, $creation, $completed);
+                                    while (mysqli_stmt_fetch($stmt8)) 
+                                    {
+                                        if ($completed == 1) 
+                                        {
                                             $completed = "Betaald";
-                                        } else {
+                                        } 
+                                        else 
+                                        {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
                                     }
-                                } elseif (isset($_POST["sortstatDESC"])) {
-                                    $stmt9 = mysqli_prepare($link, " SELECT SELECT category, creation_date, completed_status FROM ticket ORDER BY completed_status DESC ");
+                                } 
+                                elseif (isset($_POST["sortstatDESC"])) 
+                                {
+                                    $stmt9 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ORDER BY completed_status DESC ");
                                     mysqli_stmt_execute($stmt9);
-                                    mysqli_stmt_bind_result($stmt9, $ticketname, $category, $creation, $completed);
-                                    while (mysqli_stmt_fetch($stmt9)) {
-                                        if ($completed == 1) {
+                                    mysqli_stmt_bind_result($stmt9, $category, $creation, $completed);
+                                    while (mysqli_stmt_fetch($stmt9)) 
+                                    {
+                                        if ($completed == 1) 
+                                        {
                                             $completed = "Betaald";
-                                        } else {
+                                        } 
+                                        else 
+                                        {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
                                     }
-                                } else {
-                                    $stmt10 = mysqli_prepare($link, " SELECT SELECT category, creation_date, completed_status FROM ticket ");
+                                } 
+                                else 
+                                {
+                                    $stmt10 = mysqli_prepare($link, " SELECT category, creation_date, completed_status FROM ticket ");
                                     mysqli_stmt_execute($stmt10);
-                                    mysqli_stmt_bind_result($stmt10, $ticketname, $category, $creation, $completed);
-                                    while (mysqli_stmt_fetch($stmt10)) {
-                                        if ($completed == 1) {
+                                    mysqli_stmt_bind_result($stmt10, $category, $creation, $completed);
+                                    while (mysqli_stmt_fetch($stmt10)) 
+                                    {
+                                        if ($completed == 1) 
+                                        {
                                             $completed = "Betaald";
-                                        } else {
+                                        } 
+                                        else 
+                                        {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$ticketname</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID[$ticketname]' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name=TicketID value='Bekijken'></form></td></tr>");
                                     }
                                 }
                                 ?>
