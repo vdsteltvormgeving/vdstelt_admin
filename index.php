@@ -3,20 +3,6 @@
         <meta charset="UTF-8">
         <title>Bens Developement</title>
         <link href="stijl.css" rel="stylesheet" type="text/css"/>
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript">
-            function validate() {
-                var domein = $('#domein').val();
-
-                $.ajax({
-                    type: "GET",
-                    url: "domeincheck.php",
-                    data: 'domein=' + domein
-                }).done(function(data) {
-                    $('#status').html(data);
-                });
-            }
-        </script>
     </head>
     <body>
         <div id="container">
