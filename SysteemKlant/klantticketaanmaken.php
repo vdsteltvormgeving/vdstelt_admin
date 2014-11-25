@@ -82,10 +82,10 @@
                         print("Beschrijving = ".$description . "<br>");
                         print("Categorie = ".$category . "<br>");
                     }                    
-                    $stat = mysqli_prepare($link, "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?,?, ?)");
-                    mysqli_stmt_bind_param($stat, "sssssssss", $TicketID, $category, $datetime, $datetime, $description, $datetime, $customerID, 0, 0, NUll);
-                    mysqli_stmt_execute($stat);
-                    mysqli_close($link);
+                    //$stat = mysqli_prepare($link, "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?,?, ?)");
+                    //mysqli_stmt_bind_param($stat, "sssssssss", $TicketID, $category, $datetime, $datetime, $description, $datetime, $customerID, 0, 0, NUll);
+                    //mysqli_stmt_execute($stat);
+                    //mysqli_close($link);
                 }
                 ?>
             </div>
