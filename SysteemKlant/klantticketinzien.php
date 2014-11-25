@@ -19,7 +19,7 @@
                 </div>
             </header>
         </div>
-        <div>
+        <div id="content">
             
         </div>
         <?php        
