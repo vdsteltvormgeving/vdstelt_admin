@@ -52,6 +52,7 @@
                             $password = $_POST["password"];
                             $result=  mysqli_query($link, "SELECT username, password FROM User WHERE username='$username' AND password='$password'");
                             $login1 = mysqli_prepare($link, "SELECT username, password FROM User WHERE username='$username' AND password='$password'");
+                            mysqli_stmt_bind_param($login1, 'ss', $username, $password);
                             mysqli_stmt_execute($login1);
                             $rows = mysqli_num_rows($result);
                             if($rows==1)
