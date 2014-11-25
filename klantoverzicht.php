@@ -17,6 +17,17 @@
                     include 'link.php';
                     ?>
                 </div>
+                <div id="content">
+                    <form method="POST" action="klantticketaanmaken.php">
+                        <input type="submit" name="ticketmaken" value="Ticket aanmaken">
+                    </form>
+                    <form method="POST" action="klantticketinzien.php">
+                        <input type="submit" name="ticketinzien" value="Ticket inzien">
+                    </form> 
+                    <form>
+                        <input type="submit" name="loguit" value="Uitloggen">
+                    </form>
+                </div>
             </header>            
         </div>
     </body>
