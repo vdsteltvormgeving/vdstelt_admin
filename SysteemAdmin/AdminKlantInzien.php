@@ -23,7 +23,7 @@
                 <h1>Klant Inzien</h1>
                 <?php
             include "link.php";
-            
+            Link('localhost', "root", "usbw", "bensdevelopment", "3306");
             $customerIDarray = $_POST["CID"];
             foreach ($customerIDarray as $customer => $troep) 
             {

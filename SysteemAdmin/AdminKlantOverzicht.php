@@ -30,6 +30,8 @@
                 <?php
                 include "link.php";
 
+
+
                 $stat = mysqli_prepare($link, "SELECT Company_name, Email, Customer_id FROM customer ORDER BY Customer_id");
                 mysqli_stmt_execute($stat);
                 mysqli_stmt_bind_result($stat, $comname, $mail, $CID);
