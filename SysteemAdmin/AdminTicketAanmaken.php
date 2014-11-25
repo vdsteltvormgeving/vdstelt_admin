@@ -29,16 +29,17 @@
 
                 $stat = mysqli_prepare($link, "SELECT * FROM customer WHERE customer_id = $customerID");
                 mysqli_stmt_execute($stat);
-                mysqli_stmt_bind_result($stat, $comname, $adres, $Res, $IBAN, $KVK, $BTW, $Fname, $lname, $mail, $In, $username);
+                mysqli_stmt_bind_result($stat, $comname, $adres, $Res, $IBAN, $KVK, $BTW, $Fname, $lname, $mail, $Customer_ID);
                 mysqli_stmt_fetch($stat); //Get information out of the database
+                
+                $stam = mysqli_prepare($link, "SELECT COUNT(ticket_ID) FROM Ticket");
+                mysqli_stmt_execute($stam);
+                mysqli_stmt_bind_result($stam, $TicketIDcount);
+                mysqli_stmt_fetch($stam); //Get information out of the database
+                $TicketID = $TicketIDcount + 1; //Counting the number of tickets in the database and gives the ticket a uniek ID
                 ?>
                 <form method="GET" action="AdminTicketAanmaken.php">
                     <p> Naam Klant: <?php print ($Fname . " " . $lname); ?> </p>
-
-
-                    <?php
-                    // $categoriearray = array("Selecteer Categorie", "Webapplication", "Internetsite", "Hosting" );
-                    ?>
                     <br>
                     Klant ID: <?php print ($customerID); ?>
                     <br><!-- dropdown menu -->         
@@ -47,7 +48,7 @@
                     </p>
                     <!--<form method="POST" action="">
                         <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
-                    </form> -->               
+                    </form> -->                  
                     <p> 
                         Datum: <?php print($datetime); ?> 
                     </p>
@@ -57,7 +58,7 @@
                         <option value="Internetsite">Internetsite</option>
                         <option value="Hosting">Hosting</option>
                     </select>
-                    <p> Beschrijving:</p>
+                    <p> Beschrijving:</p><p>TicketID: <?php print($TicketID); ?></p>
                     <textarea name="Beschrijving"></textarea><br>
                     <input type="submit" name="Verzenden" value="Verzenden">
                 </form>
@@ -74,9 +75,9 @@
                         print("Beschrijving = ".$description . "<br>");
                         print("Categorie = ".$category . "<br>");
                     }
-                    // $stat = mysqli_prepare($link, "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?,?)");
-                    // mysqli_stmt_bind_param($stat, "sssssssss", $TickedID, $category, $datetime, $datetime, $description, $datetime, $customerID, 0, 0);
-                    // mysqli_stmt_execute($stat);            
+                     //$stat = mysqli_prepare($link, "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?,?, ?)");
+                     //mysqli_stmt_bind_param($stat, "sssssssss", $TicketID, $category, $datetime, $datetime, $description, $datetime, $customerID, 0, 0, Nill);
+                     //mysqli_stmt_execute($stat);            
                 }
                 ?>
             </div>
