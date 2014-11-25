@@ -1,5 +1,6 @@
 <?php
-$link = mysqli_connect("localhost","root","usbw","bensdevelopment",3306);
+Function($localhost,$username,$password,$database,$port){
+$link = mysqli_connect("$localhost","$username","$password" ,"$database","$port");
         if($link)   
         {
             
@@ -9,4 +10,5 @@ $link = mysqli_connect("localhost","root","usbw","bensdevelopment",3306);
             print("Kan helaas geen verbinding maken");
             print(mysqli_connect_error());
         }
+}
 ?>
