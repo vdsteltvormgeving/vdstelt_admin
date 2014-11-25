@@ -56,36 +56,39 @@
                         <option value="Hosting">Hosting</option>
                     </select>
                     <?php
-                    include "link.php";
-                    $result=  mysqli_query($link, "SELECT COUNT(ticket_ID) FROM ticket");
+                    include "link.php";                    
                     $stam = mysqli_prepare($link, "SELECT COUNT(ticket_ID) FROM ticket");
                     mysqli_stmt_execute($stam);
                     mysqli_stmt_bind_result($stam, $TicketIDcount);
                     mysqli_stmt_fetch($stam); //Get information out of the database
                     $TicketID = $TicketIDcount + 1; //Counting the number of tickets in the database and gives the ticket a uniek ID
                     ?>
-                    <p> Beschrijving:</p><p>TicketID: <?php print($TicketID); ?></p>
+                    <p> Beschrijving:</p><p>TicketID: <?php print($TicketID); mysqli_close($link); ?></p>
                     <textarea name="Beschrijving"></textarea><br>
                     <input type="submit" name="Verzenden" value="Verzenden">
                 </form>
-                <form method="GET" action="AdminKlantOverzicht.php">
+                <form method="POST" action="AdminKlantOverzicht.php">
                     <input type="submit" name="Annuleren" value="Annuleren">
                 </form><!-- text field and button to send text field and cancel button to go back -->            
                 <?php
                 include"link.php";
-                if (isset($_GET["Verzenden"])) {
-                    $description = $_GET["Beschrijving"];
-                    $category = $_GET["Categorie"];
-                    if ($description == "" || $category == "") {
+                if (isset($_POST["Verzenden"])) 
+                {
+                    $description = $_POST["Beschrijving"];
+                    $category = $_POST["Categorie"];
+                    if ($description == "" || $category == "") 
+                    {
                         print ("Er is geen categorie en/of beschrijving gegeven.");
-                    } else {
+                    } 
+                    else 
+                    {
                         print("Beschrijving = ".$description . "<br>");
                         print("Categorie = ".$category . "<br>");
                     }                    
-                    //$stat = mysqli_prepare($link, "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?,?, ?)");
-                    //mysqli_stmt_bind_param($stat, "sssssssss", $TicketID, $category, $datetime, $datetime, $description, $datetime, $customerID, 0, 0, NUll);
-                    //mysqli_stmt_execute($stat);
-                    //mysqli_close($link);
+                    $stat = mysqli_prepare($link, "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?,?,?)");
+                    mysqli_stmt_bind_param($stat, "sssssssss", $TicketID, $category, $datetime, $datetime, $description, $datetime, $customerID, 0, 0, NUll);
+                    mysqli_stmt_execute($stat);
+                    mysqli_close($link);
                 }
                 ?>
             </div>
