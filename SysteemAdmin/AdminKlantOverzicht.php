@@ -37,10 +37,13 @@
                 mysqli_stmt_bind_result($stat, $comname, $mail, $CID);
                 print("<table><tr><th>Bedrijfs naam</th><th>E-mail</th><th></th></tr>");
                 while (mysqli_stmt_fetch($stat)) {
-                    print("<tr>" . "<td>" .$comname. "</td>" . "<td>" . $mail . "</td>" . "<td>" . "<form method='POST' action='AdminKlantInzien.php' >" . "<input type='submit' name='CID[$CID]' value='Bekijken'>" . "</form>" . "</td>" . "</tr>");
+                    print("<tr>" . "<td>" . $comname . "</td>" . "<td>" . $mail . "</td>" . "<td>" . "<form method='POST' action='AdminKlantInzien.php' >" . "<input type='submit' name='CID[$CID]' value='Bekijken'>" . "</form>" . "</td>" . "</tr>");
                 } // Door de name te veranderen naar CID[$CID] kan je hem aanvragen op andere pagina's
                 print ("</table>");
                 ?>
+                <form class="knop_link" method="post" action="AdminOverzicht.php">
+                    <input type="submit" name="back" value="Terug">
+                </form>
             </div>
             <!--EINDE CONTENT-->
             <footer>

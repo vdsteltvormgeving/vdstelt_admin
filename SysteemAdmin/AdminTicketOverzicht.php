@@ -182,7 +182,7 @@
                         ?>
                     </table>
                     <br>
-                    <form class="knop_link" method="post" action="AdminOverzicht.php.php">
+                    <form class="knop_link" method="post" action="AdminOverzicht.php">
                         <input type="submit" name="back" value="Terug">
                     </form>
                     <form class="knop_link" method="post" action="editticket.php">
