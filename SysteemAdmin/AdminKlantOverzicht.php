@@ -30,11 +30,7 @@
                 <?php
                 include "link.php";
 
-                
-familyName("Hege","1975");
-familyName("Stale","1978");
-familyName("Kai Jim","1983");
-?>
+
 
                 $stat = mysqli_prepare($link, "SELECT Company_name, Email, Customer_id FROM customer ORDER BY Customer_id");
                 mysqli_stmt_execute($stat);
