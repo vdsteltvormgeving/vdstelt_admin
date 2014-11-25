@@ -12,7 +12,7 @@
                 </div>
                 <div id="menu">
                     <?php
-                    include 'menu.php';
+                    //include 'menu.php';
                     include 'link.php';
                     ?>
                 </div>
@@ -50,7 +50,7 @@
                         { 
                             $username = $_POST["username"];
                             $password = $_POST["password"];
-                            $login1 = mysqli_stmt_prepare($link, "SELECT username, password FROM user WHERE username=$username AND password=$password");
+                            $login1 = mysqli_prepare($link, "SELECT username, password FROM User WHERE username='$username' AND password='$password'");
                             mysqli_stmt_execute($login1);
                             $rows = mysqli_num_rows($login1);
                             if($rows==1)
