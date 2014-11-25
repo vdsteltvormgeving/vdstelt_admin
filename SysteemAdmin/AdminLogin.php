@@ -13,7 +13,7 @@
                 </div>
                 <div id="menu">
                     <?php
-                    //include 'menu.php';
+                    include 'menu.php';
                     include 'link.php';
                     ?>
                 </div>
@@ -59,7 +59,7 @@
                             if($rows==1)
                             {
                                 $_SESSION['login_user'];
-                                header("location: overzicht.php");
+                                header("location: AdminOverzicht.php");
                             }
                             else
                             {
