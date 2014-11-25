@@ -25,7 +25,7 @@
                 <?php include "link.php" ?> <!-- Dit maakt connectie met de database -->
                 <div id="ticket">
                     <p>Klant I.D.: 00<?php
-                        $stmt1 = mysqli_prepare($link, "SELECT user_ID FROM User WHERE user_ID=1"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
+                        $stmt1 = mysqli_prepare($link, "SELECT user_ID FROM user WHERE user_ID=1"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
                         mysqli_stmt_execute($stmt1);
                         mysqli_stmt_bind_result($stmt1, $userid);
                         while (mysqli_stmt_fetch($stmt1)) 
@@ -119,7 +119,7 @@
                                         {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='TicketID['TicketID']' value='Bekijken'></form></td></tr>");
                                     }
                                 } 
                                 elseif (isset($_POST["sortcatDESC"])) 
@@ -137,7 +137,7 @@
                                         {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='TicketID['TicketID']' value='Bekijken'></form></td></tr>");
                                     }
                                 } 
                                 elseif (isset($_POST["sortct"])) 
@@ -155,7 +155,7 @@
                                         {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='TicketID['TicketID']' value='Bekijken'></form></td></tr>");
                                     }
                                 } 
                                 elseif (isset($_POST["sortctDESC"])) 
@@ -173,7 +173,7 @@
                                         {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='TicketID['TicketID']' value='Bekijken'></form></td></tr>");
                                     }
                                 } 
                                 elseif (isset($_POST["sortstat"])) 
@@ -191,7 +191,7 @@
                                         {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='TicketID['TicketID']' value='Bekijken'></form></td></tr>");
                                     }
                                 } 
                                 elseif (isset($_POST["sortstatDESC"])) 
@@ -209,7 +209,7 @@
                                         {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name='TicketID' value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='TicketID['TicketID']' value='Bekijken'></form></td></tr>");
                                     }
                                 } 
                                 else 
@@ -227,7 +227,7 @@
                                         {
                                             $completed = "Niet Betaald";
                                         }
-                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=ticket.php><input type='submit' name=TicketID value='Bekijken'></form></td></tr>");
+                                        print("<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name=TicketID['TicketID'] value='Bekijken'></form></td></tr>");
                                     }
                                 }
                                 ?>
