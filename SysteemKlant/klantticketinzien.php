@@ -1,17 +1,28 @@
 <!DOCTYPE html>
-<!--
-Joshua van Gelder
-S1078092
-ICTM1J
---> 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Tickets inzien</title>
+        <link rel="stylesheet" href="stijl.css" type="text/css"/>
     </head>
     <body>
-        <?php
-        // put your code here
+        <div id="container">
+            <header>
+                <div id="logo">
+                    <img src="afbeeldingen/logo-bens.png" alt="Bens Development"/>
+                </div>
+                <div id="menu">
+                    <?php
+                    include 'menu.php';
+                    include 'link.php';
+                    ?>
+                </div>
+            </header>
+        </div>
+        <div>
+            
+        </div>
+        <?php        
         ?>
     </body>
 </html>
