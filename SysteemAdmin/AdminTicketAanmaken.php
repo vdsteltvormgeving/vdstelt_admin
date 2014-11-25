@@ -31,11 +31,12 @@
                 mysqli_stmt_execute($stat);
                 mysqli_stmt_bind_result($stat, $comname, $adres, $Res, $IBAN, $KVK, $BTW, $Fname, $lname, $mail, $Customer_ID);
                 mysqli_stmt_fetch($stat); //Get information out of the database
+                mysqli_free_result($stat); 
                 
-                $stam = mysqli_prepare($link, "SELECT COUNT(ticket_ID) FROM Ticket");
-                mysqli_stmt_execute($stam);
-                mysqli_stmt_bind_result($stam, $TicketIDcount);
-                mysqli_stmt_fetch($stam); //Get information out of the database
+                $stam = mysqli_query($link, "SELECT count(*) FROM Ticket");
+                if(!$stam){
+                    echo 'error';
+                }
                 $TicketID = $TicketIDcount + 1; //Counting the number of tickets in the database and gives the ticket a uniek ID
                 ?>
                 <form method="GET" action="AdminTicketAanmaken.php">
