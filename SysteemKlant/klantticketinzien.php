@@ -29,7 +29,7 @@
                     {
                         $TicketID = $Ticket;
                     }
-                    $query1 = mysqli_prepare($link, "SELECT C.first_name, C.last_name FROM Customer C JOIN Ticket T ON T.ticket_ID=C.customer_ID WHERE T.ticket_ID=$TicketID");
+                    $query1 = mysqli_prepare($link, "SELECT C.first_name, C.last_name FROM Customer C JOIN User U ON T.user_ID = U.user_ID JOIN Ticket T ON U.user_ID=T.customer_ID WHERE T.ticket_ID=$ticketID");
                     mysqli_stmt_execute($query1);
                     mysqli_stmt_bind_result($query1, $fname, $lname);
                     while (mysqli_stmt_fetch($query1)) 
