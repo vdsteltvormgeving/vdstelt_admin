@@ -1,5 +1,5 @@
 <?php
-Function($localhost,$username,$password,$database,$port){
+Function Link($localhost,$username,$password,$database,$port){
 $link = mysqli_connect("$localhost","$username","$password" ,"$database","$port");
         if($link)   
         {

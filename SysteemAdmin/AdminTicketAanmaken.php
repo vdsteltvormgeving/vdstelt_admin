@@ -25,18 +25,7 @@
                 include "link.php";
                 $customerID = 1; //name or Id of the customer
                 date_default_timezone_set('CET');
-                $datetime = date("F j, Y");  //function to get date and time
-
-                $stat = mysqli_prepare($link, "SELECT * FROM customer WHERE customer_id = $customerID");
-                mysqli_stmt_execute($stat);
-                mysqli_stmt_bind_result($stat, $comname, $adres, $Res, $IBAN, $KVK, $BTW, $Fname, $lname, $mail, $Customer_ID);
-                mysqli_stmt_fetch($stat); //Get information out of the database
-                mysqli_free_result($stat); 
-                
-                $stam = mysqli_query($link, "SELECT count(*) FROM Ticket");
-                if(!$stam){
-                    echo 'error';
-                }
+                $datetime = date("F j, Y");  //function to get date and ti
                 $TicketID = $TicketIDcount + 1; //Counting the number of tickets in the database and gives the ticket a uniek ID
                 ?>
                 <form method="GET" action="AdminTicketAanmaken.php">
