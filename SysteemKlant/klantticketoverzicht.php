@@ -233,7 +233,7 @@
                                 ?>
                     </table>
                     <br>
-                    <form class="knop_link" method="post" action="login.php">
+                    <form class="knop_link" method="post" action="klantoverzicht.php">
                         <input type="submit" name="back" value="Terug">
                     </form>
                     <form class="knop_link" method="post" action="editticket.php">
