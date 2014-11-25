@@ -50,9 +50,10 @@
                         { 
                             $username = $_POST["username"];
                             $password = $_POST["password"];
+                            $result=  mysqli_query($link, "SELECT username, password FROM User WHERE username='$username' AND password='$password'");
                             $login1 = mysqli_prepare($link, "SELECT username, password FROM User WHERE username='$username' AND password='$password'");
                             mysqli_stmt_execute($login1);
-                            $rows = mysqli_num_rows($login1);
+                            $rows = mysqli_num_rows($result);
                             if($rows==1)
                             {
                                 $_SESSION['login_user'];
