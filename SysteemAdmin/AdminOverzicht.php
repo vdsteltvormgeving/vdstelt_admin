@@ -21,7 +21,12 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                
+                <form method="POST" action="AdminKlantOverzicht.php">
+                    <input type="submit" name="Klanten Overzicht" value="Klanten Overzicht">
+                </form>
+                <form method="POST" action="AdminTicketOverzicht.php">
+                    <input type="submit" name="Ticket Overzicht" value="Ticket Overzicht">
+                </form>
             </div>
             <!--EINDE CONTENT-->
             <footer>
