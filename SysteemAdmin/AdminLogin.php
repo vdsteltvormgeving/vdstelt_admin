@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -19,8 +18,8 @@
                 </div>
             </header>
             <div id="content">
-                <h1>login</h1>                
-                <div class="login">                        
+                <h1>login</h1>
+                <div class="login">
                     <form action="AdminLogin.php" method="POST">
                         <label>Gebruikersnaam:</label><br>
                         <input type="text" name="username">
@@ -35,40 +34,36 @@
                 </div>
                 <?php
                 session_start(); //start sessie
-                if (isset($_POST["login"])) 
-                {
+                if (isset($_POST["login"])) {
                     $username = $_POST["username"];
                     $password = $_POST["password"];
                     $login = $_POST["login"];
-                    if (empty($username) || empty($password) || empty($username) && empty($password)) 
-                    {
+                    if (empty($username) || empty($password) || empty($username) && empty($password)) {
                         $error = "Gebruikersnaam of Wachtwoord verkeerd.";
-                        print($error);                    
-                    }                        
-                    else 
-                    {
-                        if(isset($login)) 
-                        { 
+                        print($error);
+                    } else {
+                        if (isset($login)) {
                             $username = $_POST["username"];
                             $password = $_POST["password"];
-                            $result =  mysqli_query($link, "SELECT username, password FROM User WHERE username='$username' AND password='$password'");
+                            $result = mysqli_query($link, "SELECT username, password FROM User WHERE username='$username' AND password='$password'");
                             $login1 = mysqli_prepare($link, "SELECT username, password FROM User WHERE username=? AND password=?");
                             mysqli_stmt_bind_param($login1, 'ss', $username, $password);
                             mysqli_stmt_execute($login1);
                             $rows = mysqli_num_rows($result);
-                            if($rows==1)
-                            {
-                                $_SESSION['login_user'];
+
+                            print($_SESSION['username']);
+                            if ($rows == 1) {
+                                $_SESSION['username'] = $_POST['username'];
+                                $_SESSION['password'] = $_POST['password'];
+                                $_SESSION["Login"] = 1;
                                 header("location: AdminOverzicht.php");
-                            }
-                            else
-                            {
+                            } else {
                                 $error = "Gebruikersnaam of Wachtwoord verkeerd.";
                                 print($error);
                             }
                         }
-                    }                        
-                }                                                        
+                    }
+                }
                 ?>
             </div>
             <footer>
