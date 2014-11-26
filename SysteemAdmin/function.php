@@ -10,7 +10,7 @@ function connect () {
    $link = mysqli_connect("localhost", "root", "usbw", "bensdevelopment", 3306); 
  if ($link) {
 } else {
-    print("Kan helaas geen verbinding maken");
+    print("Shit is on fire Bro!");
 print(mysqli_connect_error());} 
 return $link;
 }
