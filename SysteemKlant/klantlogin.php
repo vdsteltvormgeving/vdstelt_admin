@@ -12,15 +12,14 @@
                 </div>
                 <div id="menu">
                     <?php
-                    //include 'menu.php';
-                    include 'link.php';
+                    include 'menu.php';                    
                     ?>
                 </div>
             </header>
             <div id="content">
                 <h1>login</h1>                
                 <div class="login">                        
-                    <form action="login.php" method="POST">
+                    <form action="klantlogin.php" method="POST">
                         <label>Gebruikersnaam:</label><br>
                         <input type="text" name="username">
                         <br>
@@ -34,6 +33,7 @@
                 </div>
                 <?php
                 session_start(); //start sessie
+                include "link.php"; //Database connectie
                 if (isset($_POST["login"])) 
                 {
                     $username = $_POST["username"];
@@ -56,7 +56,8 @@
                             $rows = mysqli_num_rows($result);
                             if($rows==1)
                             {
-                                $_SESSION['login_user'];
+                                $_SESSION['username']=$_POST['username'];
+                                $_SESSION['password']=$_POST['password'];
                                 header("location: klantoverzicht.php");
                             }
                             else
