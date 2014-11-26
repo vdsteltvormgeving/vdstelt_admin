@@ -1,7 +1,7 @@
 <html>
             <head>
                 <title>CMS Systeem</title>
-                <link href='css/style.css' rel='stylesheet' type='text/css'/>
+                <link href="stijl.css" rel="stylesheet" type="text/css"/>
             </head>
             
             <body>
@@ -38,7 +38,7 @@
                 
                 <div id='content'>
                 
-    
+                    <p>Hier komt de inhoud</p>
                 </div>
                 
                 <div class='push'></div>
