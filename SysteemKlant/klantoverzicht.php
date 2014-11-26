@@ -13,8 +13,9 @@
                 </div>
                 <div id="menu">
                     <?php
+                    session_start();
                     include 'menu.php';
-                    include 'link.php';
+                    include 'link.php';                    
                     ?>
                 </div>
                 <div id="content">
@@ -27,6 +28,7 @@
                     <form>
                         <input type="submit" name="loguit" value="Uitloggen">
                     </form>
+                    <?php print($_SESSION['username']."<br>".$_SESSION['password']) ?>
                 </div>
             </header>            
         </div>
