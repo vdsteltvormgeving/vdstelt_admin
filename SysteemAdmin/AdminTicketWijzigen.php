@@ -4,25 +4,26 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html> 
-    <head> 
-        <meta charset="UTF-8"> 
-        <title>Bens Developement</title> 
-        <link href="stijl.css" rel="stylesheet" type="text/css"/> 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Bens Developement</title>
+        <link href="stijl.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div id="container"> 
-            <header> 
-                <div id="logo"> 
-                    <img src="afbeeldingen/logo-bens.png" alt="Bens Development"/> 
-                </div> 
-                <!--BEGIN MENU--> 
-                <div id="menu"> 
+        <div id="container">
+            <header>
+                <div id="logo">
+                    <img src="afbeeldingen/logo-bens.png" alt="Bens Development"/>
+                </div>
+                <!--BEGIN MENU-->
+                <div id="menu">
                     <?php
                     include 'menu.php';
-                    ?> 
-                </div> 
-                <!--EINDE MENU--> 
+                    session_start();
+                    ?>
+                </div>
+                <!--EINDE MENU-->
             </header>
             <div id="content">
                 <h1>Ticket wijzigen</h1>
@@ -35,10 +36,10 @@ and open the template in the editor.
                         print($Username);
                     }
                     ?> </p>
-                <p>Categorie: <form METHOD="post" ACTION ="Category"> 
-                    <SELECT NAME="Categorie"> 
+                <p>Categorie: <form METHOD="post" ACTION ="Category">
+                    <SELECT NAME="Categorie">
                         <option value="Select Category">Select categorie</option>
-                        <option value="Category1">Category1</option>   
+                        <option value="Category1">Category1</option>
                         <option value="Category2">Category2</option>
                         <option value="Category3">Category3</option>
                         <option value="Category4">Category4</option>
@@ -54,10 +55,10 @@ and open the template in the editor.
                     }
                     ?> </p>
 
-                <p> Categorie wijzigen:  <form METHOD="post" ACTION ="Ticketwijzigingen"> 
+                <p> Categorie wijzigen:  <form METHOD="post" ACTION ="Ticketwijzigingen">
                     <SELECT NAME="Categorie wijzigen">
                         <option value="Select Category">Categorie</option>
-                        <option value="Category1">Category1</option>   
+                        <option value="Category1">Category1</option>
                         <option value="Category2">Category2</option>
                         <option value="Category3">Category3</option>
                         <option value="Category4">Category4</option>
@@ -108,9 +109,9 @@ and open the template in the editor.
                         ?>
                     </form>
             </div>
-            <footer> 
-                <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p> 
-            </footer> 
-        </div> 
-    </body> 
-</html> 
+            <footer>
+                <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>
+            </footer>
+        </div>
+    </body>
+</html>

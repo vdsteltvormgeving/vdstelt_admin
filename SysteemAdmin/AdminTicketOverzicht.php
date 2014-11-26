@@ -14,6 +14,7 @@
                 <div id="menu">
                     <?php
                     include 'menu.php';
+                    session_start();
                     ?>
                 </div>
                 <!--EINDE MENU-->
@@ -26,7 +27,7 @@
                 <div id="ticket">
                     <p>Tickets:</p>
                     <table>
-                        <tr>                            
+                        <tr>
                             <th>
                                 <?php
                                 // Met de volgende rijen code wordt bepaald welke sorteerknop we willen hebben. Of we een DESC of een ASC knop hebben.
@@ -37,7 +38,7 @@
                                 }
                                 ?>
                             </th>
-                            <th>    
+                            <th>
                                 <?php
                                 if (isset($_POST["sortcat"])) {
                                     print ("<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortcatDESC' value='Categorie'></form>");

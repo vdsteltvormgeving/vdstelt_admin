@@ -14,6 +14,7 @@
                 <!--BEGIN MENU-->
                 <div id="menu">
                     <?php
+                    ;
                     include 'menu.php';
                     ?>
                 </div>
@@ -28,6 +29,9 @@
                     <input type="submit" name="Ticket Overzicht" value="Ticket Overzicht">
                 </form>
             </div>
+            <?php
+            session_start();
+            ?>
             <!--EINDE CONTENT-->
             <footer>
                 <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>

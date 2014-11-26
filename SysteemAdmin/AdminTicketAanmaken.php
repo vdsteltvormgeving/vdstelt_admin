@@ -14,6 +14,7 @@
                 <div id="menu">
                     <?php
                     include 'menu.php';
+                    session_start();
                     ?>
                 </div>
                 <!--EINDE MENU-->
@@ -31,23 +32,23 @@
                 mysqli_stmt_execute($stat);
                 mysqli_stmt_bind_result($stat, $comname, $adres, $Res, $IBAN, $KVK, $BTW, $Fname, $lname, $mail, $Customer_ID);
                 mysqli_stmt_fetch($stat); //Get information out of the database
-                               
                 ?>
                 <form method="GET" action="AdminTicketAanmaken.php">
                     <p> Naam Klant: <?php print ($Fname . " " . $lname); ?> </p>
                     <br>
                     Klant ID: <?php print ($customerID); ?>
-                    <br><!-- dropdown menu -->         
-                    <p> 
-                        E-mail klant: <?php print ($mail); ?> 
+                    <br><!-- dropdown menu -->
+                    <p>
+                        E-mail klant: <?php print ($mail); ?>
                     </p>
                     <!--<form method="POST" action="">
                         <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
-                    </form> -->                  
-                    <p> 
-                        Datum: <?php print($datetime);
-                        mysqli_close($link);
-                        ?> 
+                    </form> -->
+                    <p>
+                        Datum: <?php
+                print($datetime);
+                mysqli_close($link);
+                ?>
                     </p>
                     <select id="Categorie" name="Categorie">
                         <option value="">Selecteer Categorie</option>
@@ -57,7 +58,7 @@
                     </select>
                     <?php
                     include "link.php";
-                    $result=  mysqli_query($link, "SELECT COUNT(ticket_ID) FROM ticket");
+                    $result = mysqli_query($link, "SELECT COUNT(ticket_ID) FROM ticket");
                     $stam = mysqli_prepare($link, "SELECT COUNT(ticket_ID) FROM ticket");
                     mysqli_stmt_execute($stam);
                     mysqli_stmt_bind_result($stam, $TicketIDcount);
@@ -70,7 +71,7 @@
                 </form>
                 <form method="GET" action="AdminKlantOverzicht.php">
                     <input type="submit" name="Annuleren" value="Annuleren">
-                </form><!-- text field and button to send text field and cancel button to go back -->            
+                </form><!-- text field and button to send text field and cancel button to go back -->
                 <?php
                 include"link.php";
                 if (isset($_GET["Verzenden"])) {
@@ -79,9 +80,9 @@
                     if ($description == "" || $category == "") {
                         print ("Er is geen categorie en/of beschrijving gegeven.");
                     } else {
-                        print("Beschrijving = ".$description . "<br>");
-                        print("Categorie = ".$category . "<br>");
-                    }                    
+                        print("Beschrijving = " . $description . "<br>");
+                        print("Categorie = " . $category . "<br>");
+                    }
                     //$stat = mysqli_prepare($link, "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?,?, ?)");
                     //mysqli_stmt_bind_param($stat, "sssssssss", $TicketID, $category, $datetime, $datetime, $description, $datetime, $customerID, 0, 0, NUll);
                     //mysqli_stmt_execute($stat);
