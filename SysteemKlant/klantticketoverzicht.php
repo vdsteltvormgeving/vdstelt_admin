@@ -22,10 +22,10 @@
             <div id="content">
                 <h1>Ticket Overzicht</h1>
                 <!-- NIEUW GEPLAATSTE CODE-->
-                <?php include "link.php" ?> <!-- Dit maakt connectie met de database -->
+                <?php include "link.php"; session_start(); $username=$_SESSION['username']; $password=$_SESSION['password']; ?> <!-- Dit maakt connectie met de database en zorgt voor de start van de inlogsessie -->
                 <div id="ticket">
-                    <p>Klant I.D.: 00<?php
-                        $stmt1 = mysqli_prepare($link, "SELECT user_ID FROM user WHERE user_ID=1"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
+                    <p>Klant I.D.: 00<?php                        
+                        $stmt1 = mysqli_prepare($link, "SELECT user_ID FROM user WHERE username='$username'"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
                         mysqli_stmt_execute($stmt1);
                         mysqli_stmt_bind_result($stmt1, $userid);
                         while (mysqli_stmt_fetch($stmt1)) 
@@ -36,8 +36,8 @@
                     </p>
                     <br>
                     <p>
-                        Bedrijfsnaam: <?php
-                        $stmt2 = mysqli_prepare($link, "SELECT company_name FROM Customer WHERE customer_ID=1"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
+                        Bedrijfsnaam: <?php                                                
+                        $stmt2 = mysqli_prepare($link, "SELECT C.company_name FROM Customer C JOIN User U ON U.user_ID=C.customer_ID WHERE U.username='$username' "); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
                         mysqli_stmt_execute($stmt2);
                         mysqli_stmt_bind_result($stmt2, $name);
                         while (mysqli_stmt_fetch($stmt2)) 
@@ -48,7 +48,7 @@
                     </p>
                     <p>
                         Datum: <?php
-                        $stmt3 = mysqli_prepare($link, "SELECT time FROM reaction WHERE user_ID='1'"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
+                        $stmt3 = mysqli_prepare($link, "SELECT R.time FROM reaction R JOIN User U ON U.user_ID=R.user_ID WHERE U.username='$username' "); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
                         mysqli_stmt_execute($stmt3);
                         mysqli_stmt_bind_result($stmt3, $time);
                         while (mysqli_stmt_fetch($stmt3)) 
