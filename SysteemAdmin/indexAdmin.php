@@ -1,9 +1,9 @@
 <html>
             <head>
-                <title>CMS Systeem</title>
+                <meta charset="UTF-8">
+                <title>Admin Systeem</title>
                 <link href="stijl.css" rel="stylesheet" type="text/css"/>
             </head>
-            
             <body>
                 <div id='bovenbalk'>
                         <div id='logo'>    
