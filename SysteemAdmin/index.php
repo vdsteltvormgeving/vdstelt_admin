@@ -7,17 +7,17 @@
             <body>
                 <div id='bovenbalk'>
                         <div id='logo'>    
-                            <img src='img/logo.png'>
+                            <img src="img/logo-bens.png" alt=""/>
                         </div>
                         <div id='gebruiker'>
                 <ul id='nav'>
-                    <li><a href='#'> <img src='img/gebruiker.png' style='margin-top: -5px;'> <div id='showname'>Admin</div> <img  src='img/pijltje.png' id='pijltje'></a>
+                    <li><a href='#'> <img src='img/gebruiker.png' style='margin-top: -5px;'> <div id='showname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Admin</div> <img  src='img/pijltje.png' id='pijltje'></a>
                         <ul>
                             
             <li><a href='#'>Klanten</a></li>
             <li><a href='#'>Tickets</a></li>
             <li><a href='#'>Facturen</a></li>
-            <li id='uitloggen'><a href='index.php?Logoff'>Uitloggen</a></li>
+            <li id='uitloggen'><a href='#'>Uitloggen</a></li>
                         </ul>
                     </li>
                 </ul>
