@@ -2,9 +2,9 @@
 session_start();
 if ($_SESSION["login"] != 1) {
     echo 'YOU DONT BELONG HERE';
-} else {
     session_unset();
     session_destroy();
+} else {
     ?>
     <html>
         <head>
@@ -32,27 +32,27 @@ if ($_SESSION["login"] != 1) {
                     <?php include "link.php" ?>
                     <p>
                         Klant: <?php
-                        $TicketIDarray = $_POST["ticket_ID"];
-                        foreach ($TicketIDarray as $Ticket => $notused) {
-                            $ticket_ID = $Ticket;
-                        }
-                        $query1 = mysqli_prepare($link, "SELECT username FROM User U JOIN Reaction R ON R.user_ID = U.user_ID WHERE r.ticket_ID='$ticket_ID'");
-                        mysqli_stmt_execute($query1);
-                        mysqli_stmt_bind_result($query1, $flname);
-                        while (mysqli_stmt_fetch($query1)) {
-                            print($flname);
-                        }
-                        ?>
+                    $TicketIDarray = $_POST["ticket_ID"];
+                    foreach ($TicketIDarray as $Ticket => $notused) {
+                        $ticket_ID = $Ticket;
+                    }
+                    $query1 = mysqli_prepare($link, "SELECT username FROM User U JOIN Reaction R ON R.user_ID = U.user_ID WHERE r.ticket_ID='$ticket_ID'");
+                    mysqli_stmt_execute($query1);
+                    mysqli_stmt_bind_result($query1, $flname);
+                    while (mysqli_stmt_fetch($query1)) {
+                        print($flname);
+                    }
+                    ?>
                     </p>
                     <p>
                         Beschrijving: <?php
-                        $query2 = mysqli_prepare($link, "SELECT description FROM Ticket T JOIN User U ON T.user_ID = U.user_ID WHERE T.ticket_ID='$ticket_ID'");
-                        mysqli_stmt_execute($query2);
-                        mysqli_stmt_bind_result($query2, $text);
-                        while (mysqli_stmt_fetch($query2)) {
-                            print($text);
-                        }
-                        ?>
+                    $query2 = mysqli_prepare($link, "SELECT description FROM Ticket T JOIN User U ON T.user_ID = U.user_ID WHERE T.ticket_ID='$ticket_ID'");
+                    mysqli_stmt_execute($query2);
+                    mysqli_stmt_bind_result($query2, $text);
+                    while (mysqli_stmt_fetch($query2)) {
+                        print($text);
+                    }
+                    ?>
                     </p>
                     <p> Categorie: </p>
                     <form method="post" action ="Category">

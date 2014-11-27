@@ -2,9 +2,9 @@
 session_start();
 if ($_SESSION["login"] != 1) {
     echo 'YOU DONT BELONG HERE';
-} else {
     session_unset();
     session_destroy();
+} else {
     ?>
     <html>
         <head>
@@ -34,34 +34,34 @@ if ($_SESSION["login"] != 1) {
                     <?php include "link.php" ?> <!-- Dit maakt connectie met de database -->
                     <div id="ticket">
                         <p>Klant I.D.: 00 <?php
-                            $stmt1 = mysqli_prepare($link, "SELECT user_ID FROM User WHERE user_ID=1"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
-                            mysqli_stmt_execute($stmt1);
-                            mysqli_stmt_bind_result($stmt1, $userid);
-                            while (mysqli_stmt_fetch($stmt1)) {
-                                print ($userid);
-                            }
-                            ?>
+                    $stmt1 = mysqli_prepare($link, "SELECT user_ID FROM User WHERE user_ID=1"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
+                    mysqli_stmt_execute($stmt1);
+                    mysqli_stmt_bind_result($stmt1, $userid);
+                    while (mysqli_stmt_fetch($stmt1)) {
+                        print ($userid);
+                    }
+                    ?>
                         </p>
                         <br>
                         <p>
                             Bedrijfsnaam:  <?php
-                            $stmt2 = mysqli_prepare($link, "SELECT company_name FROM Customer WHERE customer_ID=1"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
-                            mysqli_stmt_execute($stmt2);
-                            mysqli_stmt_bind_result($stmt2, $name);
-                            while (mysqli_stmt_fetch($stmt2)) {
-                                print ($name);
-                            }
-                            ?>
+                        $stmt2 = mysqli_prepare($link, "SELECT company_name FROM Customer WHERE customer_ID=1"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
+                        mysqli_stmt_execute($stmt2);
+                        mysqli_stmt_bind_result($stmt2, $name);
+                        while (mysqli_stmt_fetch($stmt2)) {
+                            print ($name);
+                        }
+                    ?>
                         </p>
                         <p>
                             Datum:  <?php
-                            $stmt3 = mysqli_prepare($link, "SELECT time FROM reaction WHERE user_ID='1'"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
-                            mysqli_stmt_execute($stmt3);
-                            mysqli_stmt_bind_result($stmt3, $time);
-                            while (mysqli_stmt_fetch($stmt3)) {
-                                print ($time);
-                            }
-                            ?>
+                        $stmt3 = mysqli_prepare($link, "SELECT time FROM reaction WHERE user_ID='1'"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
+                        mysqli_stmt_execute($stmt3);
+                        mysqli_stmt_bind_result($stmt3, $time);
+                        while (mysqli_stmt_fetch($stmt3)) {
+                            print ($time);
+                        }
+                    ?>
                         </p>
                         <br>
                         <br>

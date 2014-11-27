@@ -8,9 +8,9 @@ and open the template in the editor.
 session_start();
 if ($_SESSION["login"] != 1) {
     echo 'YOU DONT BELONG HERE';
-} else {
     session_unset();
     session_destroy();
+} else {
     ?>
     <html>
         <head>
@@ -37,13 +37,13 @@ if ($_SESSION["login"] != 1) {
                     <h1>Ticket wijzigen</h1>
                     <?php include "link.php" ?>
                     <p>Klant: <?php
-                        $query1 = mysqli_prepare($link, "SELECT username FROM User WHERE user_ID=1");
-                        mysqli_stmt_execute($query1);
-                        mysqli_stmt_bind_result($query1, $Username);
-                        while (mysqli_stmt_fetch($query1)) {
-                            print($Username);
-                        }
-                        ?> </p>
+                    $query1 = mysqli_prepare($link, "SELECT username FROM User WHERE user_ID=1");
+                    mysqli_stmt_execute($query1);
+                    mysqli_stmt_bind_result($query1, $Username);
+                    while (mysqli_stmt_fetch($query1)) {
+                        print($Username);
+                    }
+                    ?> </p>
                     <p>Categorie: <form METHOD="post" ACTION ="Category">
                         <SELECT NAME="Categorie">
                             <option value="Select Category">Select categorie</option>
@@ -55,13 +55,13 @@ if ($_SESSION["login"] != 1) {
                         </SELECT>
                     </form></p>
                     <p>Beschrijving:  <?php
-                        $query2 = mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_ID = 1");
-                        mysqli_execute($query2);
-                        mysqli_stmt_bind_result($query2, $Text);
-                        While (mysqli_stmt_fetch($query2)) {
-                            print($Text);
-                        }
-                        ?> </p>
+                    $query2 = mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_ID = 1");
+                    mysqli_execute($query2);
+                    mysqli_stmt_bind_result($query2, $Text);
+                    While (mysqli_stmt_fetch($query2)) {
+                        print($Text);
+                    }
+                    ?> </p>
 
                     <p> Categorie wijzigen:  <form METHOD="post" ACTION ="Ticketwijzigingen">
                         <SELECT NAME="Categorie wijzigen">
@@ -74,19 +74,19 @@ if ($_SESSION["login"] != 1) {
                         </SELECT></p>      <?php ?>
 
                         <p>Ticket geschreven op: <?php
-                            $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket WHERE user_ID=1");
-                            mysqli_execute($query3);
-                            mysqli_stmt_bind_result($query3, $creation_date);
-                            while (mysqli_stmt_fetch($query3)) {
-                                print($creation_date);
-                            }
-                            ?>
+                    $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket WHERE user_ID=1");
+                    mysqli_execute($query3);
+                    mysqli_stmt_bind_result($query3, $creation_date);
+                    while (mysqli_stmt_fetch($query3)) {
+                        print($creation_date);
+                    }
+                    ?>
                         </p>
                         <p>Datum: <?php
-                            date_default_timezone_set('CET');
-                            $today = date("F j, Y");
-                            print($today);
-                            ?>      </p>
+                        date_default_timezone_set('CET');
+                        $today = date("F j, Y");
+                        print($today);
+                    ?>      </p>
                         <p>Uw reactie: <textarea>  </textarea> </p>
 
                         <form method="POST" action="">
