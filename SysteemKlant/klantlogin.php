@@ -38,7 +38,7 @@
                 {
                     $username = $_POST["username"];
                     $password = $_POST["password"];
-                    $login = $_POST["login"];
+                    $login = $_POST["login"];                    
                     if (empty($username) || empty($password) || empty($username) && empty($password)) 
                     {
                         $error = "Gebruikersnaam of Wachtwoord verkeerd.";
@@ -58,6 +58,7 @@
                             {
                                 $_SESSION['username']=$_POST['username'];
                                 $_SESSION['password']=$_POST['password'];
+                                $_SESSION['logged_in']=1;
                                 header("location: klantoverzicht.php");
                             }
                             else
