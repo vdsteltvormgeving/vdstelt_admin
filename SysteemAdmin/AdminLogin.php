@@ -55,7 +55,7 @@
                             if ($rows == 1) {
                                 $_SESSION['username'] = $_POST['username'];
                                 $_SESSION['password'] = $_POST['password'];
-                                $_SESSION["Login"] = 1;
+                                $_SESSION["login"] = 1;
                                 header("location: AdminOverzicht.php");
                             } else {
                                 $error = "Gebruikersnaam of Wachtwoord verkeerd.";

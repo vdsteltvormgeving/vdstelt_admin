@@ -3,7 +3,8 @@ session_start();
 if ($_SESSION["login"] != 1) {
     echo 'YOU DONT BELONG HERE';
 } else {
-    session_close()
+    session_unset();
+    session_destroy();
     ?>
     <html>
         <head>
