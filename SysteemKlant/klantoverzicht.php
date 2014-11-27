@@ -28,7 +28,7 @@
                     <form>
                         <input type="submit" name="loguit" value="Uitloggen">
                     </form>
-                    <?php print($_SESSION['username']."<br>".$_SESSION['password']) ?>
+                    <?php //print($_SESSION['username']."<br>".$_SESSION['password']) ?>
                 </div>
             </header>            
         </div>
