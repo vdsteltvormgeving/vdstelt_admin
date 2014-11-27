@@ -15,7 +15,7 @@ if ($_SESSION["login"] != 1) {
         </head>
         <body>
             <div id='bovenbalk'>
-                <div id='logo'>    
+                <div id='logo'>
                     <img src="img/logo-bens.png" alt=""/>
                 </div>
                 <div id='gebruiker'>
@@ -65,15 +65,19 @@ if ($_SESSION["login"] != 1) {
                         print ("customer ID is niet geselecteerd");
                     }
                     mysqli_close($link);
-                    ?></p>
-            </div>
+                    ?>
+                <form action="AdminKlantOverzicht.php">
+                    <input type="submit" name="Terug" Value="Terug">
+                </form>
+            </p>
+        </div>
 
-            <div class='push'></div>
-            <div id='footer'>
-                <div id='footerleft'>Admin Systeem</div>
+        <div class='push'></div>
+        <div id='footer'>
+            <div id='footerleft'>Admin Systeem</div>
 
-                <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-            </div>
-        </body>
+            <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+        </div>
+    </body>
     </html>
 <?php } ?>
