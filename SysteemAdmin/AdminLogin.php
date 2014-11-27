@@ -1,57 +1,18 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Admin Systeem</title>
+        <title>Bens Developement</title>
         <link href="stijl.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div id='bovenbalk'>
+
             <div id='logo'>
                 <img src="img/logo-bens.png" alt=""/>
             </div>
-            <div id='gebruiker'>
-                <ul id='nav'>
-                    <li><a href='#'> <img src='img/gebruiker.png' style='margin-top: -5px;'> <div id='showname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Admin</div> <img  src='img/pijltje.png' id='pijltje'></a>
-                        <ul>
-
-                            <li><a href='#'>Klanten</a></li>
-                            <li><a href='#'>Tickets</a></li>
-                            <li><a href='#'>Facturen</a></li>
-                            <li id='uitloggen'><a href='#'>Uitloggen</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div id='menu'>
-
-            <div id='pagina'>
-                <a href='#'>Tickets</a>
-            </div>
-
-            <div id='module'>
-                <a href='#'>Facturen</a>
-            </div>
-
-        </div>
-
-        <div id='content'>
-
-            <p><h1>login</h1>
-            <div class="login">
-                <form action="AdminLogin.php" method="POST">
-                    <label>Gebruikersnaam:</label><br>
-                    <input type="text" name="username">
-                    <br>
-                    <label>Wachtwoord:</label><br>
-                    <input type="password" name="password">
-                    <br>
-                    <input type="submit" name="login" value="login">
-                    <br><br>
-                    <a href="#">wachtwoord vergeten</a>
-                </form>
-            </div>
+            <?php
+            include 'link.php';
+            ?>
             <?php
             session_start(); //start sessie
             if (isset($_POST["login"])) {
@@ -70,12 +31,10 @@
                         mysqli_stmt_bind_param($login1, 'ss', $username, $password);
                         mysqli_stmt_execute($login1);
                         $rows = mysqli_num_rows($result);
-
+                        $_SESSION['username'] = $_POST['username'];
+                        $_SESSION['password'] = $_POST['password'];
                         print($_SESSION['username']);
                         if ($rows == 1) {
-                            $_SESSION['username'] = $_POST['username'];
-                            $_SESSION['password'] = $_POST['password'];
-                            $_SESSION["login"] = 1;
                             header("location: AdminOverzicht.php");
                         } else {
                             $error = "Gebruikersnaam of Wachtwoord verkeerd.";
@@ -84,15 +43,56 @@
                     }
                 }
             }
+            if (!(isset($_SESSION['username']) && $_SESSION['password'] == '')) {
+                echo("<div id='gebruiker'></div><div id='menu'></div>");
+            } else {
+                echo ("<div id='gebruiker'>
+                <ul id='nav'>
+                    <li><a href='#'> <img src='img/gebruiker.png' style='margin-top: -5px;'> <div id='showname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Admin</div> <img  src='img/pijltje.png' id='pijltje'></a>
+                        <ul>
+                            <li><a href='#'>Klanten</a></li>
+                            <li><a href='#'>Tickets</a></li>
+                            <li><a href='#'>Facturen</a></li>
+                            <li id='uitloggen'><a href='#'>Uitloggen</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id='menu'>
+            <div id='pagina'>
+                <a href='#'>Tickets</a>
+            </div>
+            <div id='module'>
+                <a href='#'>Facturen</a>
+            </div>
+            </div>");
+            }
             ?>
-        </p>
-    </div>
+        </div>
+        <div id='content'>
+            <h1>login</h1>
+            <div class="login">
+                <form action="AdminLogin.php" method="POST">
+                    <label>Gebruikersnaam:</label><br>
+                    <input type="text" name="username">
+                    <br>
+                    <label>Wachtwoord:</label><br>
+                    <input type="password" name="password">
+                    <br>
+                    <input type="submit" name="login" value="login">
+                    <br><br>
+                    <a href="#">wachtwoord vergeten</a>
+                </form>
+            </div>
+        </div>
+        <div class='push'></div>
+        <div id='footer'>
+            <div id='footerleft'>Admin Systeem</div>
 
-    <div class='push'></div>
-    <div id='footer'>
-        <div id='footerleft'>Admin Systeem</div>
-
-        <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-    </div>
+            <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+        </div>
+    </body>
+</html>
 </body>
 </html>
