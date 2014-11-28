@@ -6,7 +6,6 @@ if ($_SESSION["login"] != 1) {
     session_destroy();
 } else {
     ?>
-    html>
     <head>
         <meta charset="UTF-8">
         <title>Admin Systeem</title>
