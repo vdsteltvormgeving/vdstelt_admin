@@ -207,11 +207,12 @@ if ($_SESSION["login"] != 1) {
                         ?>
                     </table>
                     <br>
-                    <form class="knop_link" method="post" action="AdminOverzicht.php">
-                        <input type="submit" name="back" value="Terug">
+                    <form class="knop_link" method="post" >
+                        <INPUT Type="button" VALUE="Terug" onClick="history.go(-1);
+                                return true;">
                     </form>
-                    <form class="knop_link" method="post" action="editticket.php">
-                        <input type="submit" name="edit" value="Ticket Wijzigen">
+                    <form class="knop_link" method="post" action="editticket.php" >
+
                     </form>
                     <form>
                         <input class="knop_link" type="submit" name="delete" value="Ticket Verwijderen">
