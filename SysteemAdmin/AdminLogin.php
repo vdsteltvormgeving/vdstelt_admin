@@ -1,4 +1,6 @@
+
 <html>
+    <--
     <head>
         <meta charset="UTF-8">
         <title>Bens Developement</title>
@@ -7,11 +9,11 @@
     <body>
         <div id='bovenbalk'>
 
-            <div id='logo'>    
+            <div id='logo'>
                 <img src="img/logo-bens.png" alt=""/>
             </div>
             <?php
-                    include 'link.php';
+            include 'link.php';
             ?>
             <?php
             session_start(); //start sessie
@@ -35,7 +37,6 @@
                         $_SESSION['password'] = $_POST['password'];
                         print($_SESSION['username']);
                         if ($rows == 1) {
-
                             header("location: AdminOverzicht.php");
                         } else {
                             $error = "Gebruikersnaam of Wachtwoord verkeerd.";
@@ -51,7 +52,6 @@
                 <ul id='nav'>
                     <li><a href='#'> <img src='img/gebruiker.png' style='margin-top: -5px;'> <div id='showname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Admin</div> <img  src='img/pijltje.png' id='pijltje'></a>
                         <ul>
-
                             <li><a href='#'>Klanten</a></li>
                             <li><a href='#'>Tickets</a></li>
                             <li><a href='#'>Facturen</a></li>
@@ -61,17 +61,13 @@
                 </ul>
             </div>
         </div>
-
         <div id='menu'>
-
             <div id='pagina'>
                 <a href='#'>Tickets</a>
             </div>
-
             <div id='module'>
                 <a href='#'>Facturen</a>
             </div>
-
             </div>");
             }
             ?>
