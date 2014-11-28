@@ -1,5 +1,6 @@
-<html>
-    <!-- Joshua van Gelder, Jeffrey Hamberg -->
+<!DOCTYPE html>
+<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
+<html>    
     <head>
         <meta charset="UTF-8">
         <title>Bens Developement</title>
@@ -14,7 +15,7 @@
                 <!--BEGIN MENU-->
                 <div id="menu">
                     <?php
-                    include 'menu.php';
+                    include 'menu.php';                    
                     ?>
                 </div>
                 <!--EINDE MENU-->
@@ -32,11 +33,11 @@
                 mysqli_stmt_bind_result($loginQuery, $Login);
                 while (mysqli_stmt_fetch($loginQuery))
                 {
-                    print($Login);
+                    $Login;
                 }
                 mysqli_close($link);
                 date_default_timezone_set('CET');
-                $datetime = date("F j, Y");  //function to get date and time
+                $datetime = date("d-m-Y H:i:s");  //function to get date and time
                 
                 include "link.php";
                 $stat = mysqli_prepare($link, "SELECT C.company_name, C.adres, C.residence, C.iban_nr, C.kvk_nr, C.btw_nummer, C.first_name, C.last_name, C.email, C.customer_ID FROM customer C JOIN user U ON U.user_ID=C.customer_ID WHERE U.user_ID = $Login");
@@ -86,7 +87,7 @@
                     mysqli_stmt_fetch($stam); //Get information out of the database
                     $TicketID = $TicketIDcount + 1; //Counting the number of tickets in the database and gives the ticket a uniek ID
                     ?>
-                    <p> Beschrijving:</p><p>TicketID: <?php print($TicketID); mysqli_close($link); ?></p>
+                    <p>TicketID: <?php print($TicketID); mysqli_close($link); ?></p>
                     <textarea name="Beschrijving"></textarea><br>
                     <input type="submit" name="Verzenden" value="Verzenden">
                 </form>
@@ -110,6 +111,16 @@
                         $insert = mysqli_prepare($link, "INSERT INTO ticket SET  ticket_ID=$TicketID, category='$category', creation_date='$creation_date', last_time_date='$creation_date', description='$description', user_ID=$Login, completed_status=0, archived_status=0");                                        
                         mysqli_stmt_execute($insert);
                         mysqli_close($link);
+                        //default headers
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                        //more headers
+                        $headers .= 'From: <ticketsysteem@bensdevelopment.nl>' . "\r\n";
+                        $headers .= 'Cc: admin@bensdevelopment.nl' . "\r\n";
+                        $to="jpjvangelder@gmail.com";
+                        $subject="Niewe ticket aangemaakt";
+                        $message="Beste, <br><br> er is een niewe ticket aangemaakt met category:$category";
+                        mail($to,$subject,$message,$headers);
                     }                                        
                 }
                 ?>

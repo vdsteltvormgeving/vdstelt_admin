@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<!-- Joshua van Gelder, Jeffrey Hamberg, Daan Hagemans, Sander van der Stelt -->
 <html>
     <head>
         <meta charset="UTF-8">

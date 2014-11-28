@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<!-- Joshua van Gelder, Jeffrey Hamberg, Sander van der Stelt -->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -24,8 +26,8 @@
                 <!-- NIEUW GEPLAATSTE CODE-->
                 <?php include "link.php"; session_start(); $username=$_SESSION['username']; $password=$_SESSION['password']; ?> <!-- Dit maakt connectie met de database en zorgt voor de start van de inlogsessie -->
                 <div id="ticket">
-                    <p>Klant I.D.: 00<?php                        
-                        $stmt1 = mysqli_prepare($link, "SELECT user_ID FROM user WHERE username='$username'"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
+                    <p>Klant I.D.:<?php                        
+                        $stmt1 = mysqli_prepare($link, "SELECT user_id FROM User WHERE username='$username'"); //Code nog niet af, er moet hier nog een login connectie komen die nog niet bestaad omdat we nog geen connectie hebben met de database van de opdrachtgever.
                         mysqli_stmt_execute($stmt1);
                         mysqli_stmt_bind_result($stmt1, $userid);
                         while (mysqli_stmt_fetch($stmt1)) 
@@ -106,7 +108,7 @@
                                 <?php //We moeten een manier vinden om de ticketID mee te sturen naar de volgende pagina zodat die weet met welke ticketID we bezig zijn.
                                 $i = 0;
                                 if (isset($_POST["sortcat"])) { // Elke if en elseif die hier volgen zijn verschillende clausules voor omhoog en omlaag gesorteerde categorien.
-                                    $stmt4 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY Category WHERE user_ID=1");
+                                    $stmt4 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY Category WHERE user_ID=$userid");
                                     mysqli_stmt_execute($stmt4);
                                     mysqli_stmt_bind_result($stmt4, $category, $creation, $completed, $ticketID);
                                     while (mysqli_stmt_fetch($stmt4)) 
@@ -124,7 +126,7 @@
                                 } 
                                 elseif (isset($_POST["sortcatDESC"])) 
                                 {
-                                    $stmt5 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY Category DESC WHERE user_ID=1 ");
+                                    $stmt5 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY Category DESC WHERE user_ID=$userid ");
                                     mysqli_stmt_execute($stmt5);
                                     mysqli_stmt_bind_result($stmt5, $category, $creation, $completed, $ticketID);
                                     while (mysqli_stmt_fetch($stmt5)) 
@@ -142,7 +144,7 @@
                                 } 
                                 elseif (isset($_POST["sortct"])) 
                                 {
-                                    $stmt6 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY creation_date WHERE user_ID=1 ");
+                                    $stmt6 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY creation_date WHERE user_ID=$userid ");
                                     mysqli_stmt_execute($stmt6);
                                     mysqli_stmt_bind_result($stmt6, $category, $creation, $completed, $ticketID);
                                     while (mysqli_stmt_fetch($stmt6)) 
@@ -160,7 +162,7 @@
                                 } 
                                 elseif (isset($_POST["sortctDESC"])) 
                                 {
-                                    $stmt7 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY creation_date DESC WHERE user_ID=1 ");
+                                    $stmt7 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY creation_date DESC WHERE user_ID=$userid ");
                                     mysqli_stmt_execute($stmt7);
                                     mysqli_stmt_bind_result($stmt7, $category, $creation, $completed, $ticketID);
                                     while (mysqli_stmt_fetch($stmt7)) 
@@ -178,7 +180,7 @@
                                 } 
                                 elseif (isset($_POST["sortstat"])) 
                                 {
-                                    $stmt8 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY completed_status WHERE user_ID=1 ");
+                                    $stmt8 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY completed_status WHERE user_ID=$userid ");
                                     mysqli_stmt_execute($stmt8);
                                     mysqli_stmt_bind_result($stmt8, $category, $creation, $completed, $ticketID);
                                     while (mysqli_stmt_fetch($stmt8)) 
@@ -196,7 +198,7 @@
                                 } 
                                 elseif (isset($_POST["sortstatDESC"])) 
                                 {
-                                    $stmt9 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY completed_status DESC WHERE user_ID=1 ");
+                                    $stmt9 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket ORDER BY completed_status DESC WHERE user_ID=$userid ");
                                     mysqli_stmt_execute($stmt9);
                                     mysqli_stmt_bind_result($stmt9, $category, $creation, $completed, $ticketID);
                                     while (mysqli_stmt_fetch($stmt9)) 
@@ -214,7 +216,7 @@
                                 } 
                                 else 
                                 {
-                                    $stmt10 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket WHERE user_ID=1 ");
+                                    $stmt10 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID FROM ticket WHERE user_ID=$userid ");
                                     mysqli_stmt_execute($stmt10);
                                     mysqli_stmt_bind_result($stmt10, $category, $creation, $completed, $ticketID);
                                     while (mysqli_stmt_fetch($stmt10)) 
