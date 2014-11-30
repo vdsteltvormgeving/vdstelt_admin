@@ -90,13 +90,21 @@
                 date_default_timezone_set('CET');
                 $today = date("F j, Y");
                 print($today);
+                $ticket_ID = 1;
+                $query4 = mysqli_prepare($link, "SELECT U.user_ID FROM User U JOIN Ticket T ON T.user_ID = U.user_ID WHERE t.ticket_ID=$ticket_ID");
+                mysqli_stmt_execute($query4);
+                mysqli_stmt_bind_result($query4, $CID);
                 ?>
             </p>
             <p>Uw reactie: <br>
                 <textarea name="Reactie"></textarea>
             </p>
-            <form method="POST" action="AdminTicketOverzicht.php">
-                <INPUT Type="submit" name="Terug" value="Terug">
+            <form method="POST" action="AdminKlantInzien.php">
+                <INPUT Type="submit" name="CID[<?php
+                while (mysqli_stmt_fetch($query4)) {
+                    print($CID);
+                }
+                ?>]" value="Terug" >
             </form>
             <input type="submit" name="edit" value="Ticket wijzigen">
             <input type="submit" name="delete" value="Ticket Verwijderen">

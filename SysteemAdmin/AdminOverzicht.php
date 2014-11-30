@@ -1,3 +1,4 @@
+<!-- Jeffrey Hamberg-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {

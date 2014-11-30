@@ -1,3 +1,4 @@
+<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel -->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -115,6 +116,9 @@ if ($_SESSION["login"] != 1) {
                     //mysqli_close($link);
                 }
                 ?>
+                <form class="knop_link" method="post" action="AdminTicketOverzicht.php">
+                    <input type="submit" name="back" value="Terug">
+                </form>
             </p>
         </div>
 

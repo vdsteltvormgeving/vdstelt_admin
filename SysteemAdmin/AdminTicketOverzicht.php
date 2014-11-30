@@ -1,3 +1,4 @@
+<!-- Joshua van Gelder, Jeffrey Hamberg-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -207,13 +208,12 @@ if ($_SESSION["login"] != 1) {
                         ?>
                     </table>
                     <br>
-                    <form class="knop_link" method="post" >
-                        <INPUT Type="button" VALUE="Terug" onClick="history.go(-1);
-                                return true;">
+                    <form class="knop_link" method="post" action="AdminOverzicht.php">
+                        <INPUT type="submit" name="terug" value="Terug" >
                     </form>
-                    <form class="knop_link" method="post" action="editticket.php" >
+                    <!--<form class="knop_link" method="post" action="editticket.php" > -->
 
-                    </form>
+                    <!--</form> -->
                     <form>
                         <input class="knop_link" type="submit" name="delete" value="Ticket Verwijderen">
                     </form>
