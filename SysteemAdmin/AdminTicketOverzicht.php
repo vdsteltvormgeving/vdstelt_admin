@@ -1,3 +1,4 @@
+<!-- Joshua van Gelder, Jeffrey Hamberg-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -208,11 +209,11 @@ if ($_SESSION["login"] != 1) {
                     </table>
                     <br>
                     <form class="knop_link" method="post" action="AdminOverzicht.php">
-                        <input type="submit" name="back" value="Terug">
+                        <INPUT type="submit" name="terug" value="Terug" >
                     </form>
-                    <form class="knop_link" method="post" action="editticket.php">
-                        <input type="submit" name="edit" value="Ticket Wijzigen">
-                    </form>
+                    <!--<form class="knop_link" method="post" action="editticket.php" > -->
+
+                    <!--</form> -->
                     <form>
                         <input class="knop_link" type="submit" name="delete" value="Ticket Verwijderen">
                     </form>

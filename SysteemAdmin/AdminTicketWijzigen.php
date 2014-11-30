@@ -1,3 +1,4 @@
+<!-- Joshua van Gelder, Jeffrey Hamberg, Daan-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
