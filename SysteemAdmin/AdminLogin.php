@@ -38,7 +38,6 @@
                             header("location: AdminOverzicht.php");
                             $_SESSION['username'] = $_POST['username'];
                             $_SESSION['password'] = $_POST['password'];
-                            ;
                             $_SESSION['login'] = 1;
                         } else {
                             $error = "Gebruikersnaam of Wachtwoord verkeerd.";
