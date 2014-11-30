@@ -38,6 +38,7 @@
                         print($_SESSION['username']);
                         if ($rows == 1) {
                             header("location: AdminOverzicht.php");
+                            $_SESSION["login"]=1;
                         } else {
                             $error = "Gebruikersnaam of Wachtwoord verkeerd.";
                             print($error);
