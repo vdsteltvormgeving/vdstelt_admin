@@ -28,7 +28,7 @@
                 $username=$_SESSION['username'];
                 $password=$_SESSION['password'];
                 include "link.php";
-                $loginQuery=mysqli_prepare($link, "SELECT user_ID FROM User WHERE username='$username'");
+                $loginQuery=mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
                 mysqli_stmt_execute($loginQuery); 
                 mysqli_stmt_bind_result($loginQuery, $Login);
                 while (mysqli_stmt_fetch($loginQuery))
@@ -40,9 +40,9 @@
                 $datetime = date("d-m-Y H:i:s");  //function to get date and time
                 
                 include "link.php";
-                $stat = mysqli_prepare($link, "SELECT C.company_name, C.adres, C.residence, C.iban_nr, C.kvk_nr, C.btw_nummer, C.first_name, C.last_name, C.email, C.customer_ID FROM customer C JOIN user U ON U.user_ID=C.customer_ID WHERE U.user_ID = $Login");
+                $stat = mysqli_prepare($link, "SELECT C.customer_id, C.company_name, C.street, C.house_number, c.postal_code,c.city, C.phone_number, C.fax_number, C.emailadress, C.btw_number FROM customer C JOIN Invoice I ON I.customer_id=C.customer_id JOIN User U ON U.user_id=I.user_id WHERE U.user_id = $Login");
                 mysqli_stmt_execute($stat);
-                mysqli_stmt_bind_result($stat, $comname, $adres, $Res, $IBAN, $KVK, $BTW, $Fname, $lname, $mail, $customerID);
+                mysqli_stmt_bind_result($stat, $customerID, $comnam, $street, $housenr, $postalcode, $city, $phonenr, $faxnr, $mail, $btwnr);
                 while(mysqli_stmt_fetch($stat))
                 {
                     
@@ -81,7 +81,7 @@
                     </select>
                     <?php
                     include "link.php";                    
-                    $stam = mysqli_prepare($link, "SELECT MAX(ticket_ID) FROM ticket");
+                    $stam = mysqli_prepare($link, "SELECT MAX(ticket_id) FROM ticket");
                     mysqli_stmt_execute($stam);
                     mysqli_stmt_bind_result($stam, $TicketIDcount);
                     mysqli_stmt_fetch($stam); //Get information out of the database
@@ -108,7 +108,7 @@
                     else 
                     {                        
                         echo "Uw ticket is verzonden.";                                                                        
-                        $insert = mysqli_prepare($link, "INSERT INTO ticket SET  ticket_ID=$TicketID, category='$category', creation_date='$creation_date', last_time_date='$creation_date', description='$description', user_ID=$Login, completed_status=0, archived_status=0");                                        
+                        $insert = mysqli_prepare($link, "INSERT INTO ticket SET  ticket_id=$TicketID, category='$category', creation_date='$creation_date', last_time_date='$creation_date', description='$description', user_id=$Login, completed_status=0, archived_status=0");
                         mysqli_stmt_execute($insert);
                         mysqli_close($link);
                         //default headers

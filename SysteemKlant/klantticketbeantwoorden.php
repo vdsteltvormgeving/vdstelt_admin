@@ -30,7 +30,7 @@
                 
                 include "link.php";
                 
-                $loginQuery=mysqli_prepare($link, "SELECT user_ID FROM User WHERE username='$username'");
+                $loginQuery=mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
                 mysqli_stmt_execute($loginQuery); 
                 mysqli_stmt_bind_result($loginQuery, $Login);
                 while (mysqli_stmt_fetch($loginQuery))
@@ -44,27 +44,26 @@
                 
                 include "link.php";
                 
-                $stat = mysqli_prepare($link, "SELECT C.company_name, C.adres, C.residence, C.iban_nr, C.kvk_nr, C.btw_nummer, C.first_name, C.last_name, C.email, C.customer_ID FROM customer C JOIN user U ON U.user_ID=C.customer_ID WHERE U.user_ID = $Login");
+                $stat = mysqli_prepare($link, "SELECT C.customer_id, C.company_name, C.street, C.house_number, c.postal_code,c.city, C.phone_number, C.fax_number, C.emailadress, C.btw_number FROM customer C JOIN Invoice I ON I.customer_id=C.customer_id JOIN User U ON U.user_id=I.user_id WHERE U.user_id = $Login");
                 mysqli_stmt_execute($stat);
-                mysqli_stmt_bind_result($stat, $comname, $adres, $Res, $IBAN, $KVK, $BTW, $Fname, $lname, $mail, $customerID);
+                mysqli_stmt_bind_result($stat, $customerid, $comnam, $street, $housenr, $postalcode, $city, $phonenr, $faxnr, $mail, $btwnr);
                 while(mysqli_stmt_fetch($stat))
                 {
                     
                 }
                 mysqli_close($link);
                 
-                //include "link.php";
-                //$highestticketid=mysqli_prepare($link, "SELECT MAX(ticket_ID) FROM Ticket");
-                //mysqli_stmt_execute($highestticketid);
-                //mysqli_stmt_bind_result($highestticketid, $ticketID);
-                //mysqli_stmt_fetch($highestticketid);
-                //mysqli_close($link);
+                include "link.php";
+                $name=mysqli_stmt_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");
+                mysqli_stmt_execute($name);
+                mysqli_stmt_bind_result($name, $fname, $lname);
+                mysqli_close($link);
                                
                 ?>
                 <form method="POST" action="klantticketaanmaken.php">
-                    <p> Naam Klant: <?php include"link.php"; echo $Fname . " " . $lname; ?> </p>
+                    <p> Naam Klant: <?php include"link.php"; echo $fname . " " . $lname; ?> </p>
                     <br>
-                    Klant ID: <?php echo $customerID; ?>
+                    Klant ID: <?php echo $customerid; ?>
                     <br><!-- dropdown menu -->         
                     <p> 
                         E-mail klant: <?php echo $mail; ?> 
