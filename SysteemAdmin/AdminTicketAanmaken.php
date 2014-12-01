@@ -1,3 +1,4 @@
+<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel -->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -84,8 +85,8 @@ if ($_SESSION["login"] != 1) {
                     </select>
                     <?php
                     include "link.php";
-                    $result = mysqli_query($link, "SELECT COUNT(ticket_ID) FROM ticket");
-                    $stam = mysqli_prepare($link, "SELECT COUNT(ticket_ID) FROM ticket");
+                    $result = mysqli_query($link, "SELECT COUNT(ticket_id) FROM Ticket");
+                    $stam = mysqli_prepare($link, "SELECT COUNT(ticket_id) FROM Ticket");
                     mysqli_stmt_execute($stam);
                     mysqli_stmt_bind_result($stam, $TicketIDcount);
                     mysqli_stmt_fetch($stam); //Get information out of the database
@@ -115,6 +116,9 @@ if ($_SESSION["login"] != 1) {
                     //mysqli_close($link);
                 }
                 ?>
+                <form class="knop_link" method="post" action="AdminTicketOverzicht.php">
+                    <input type="submit" name="back" value="Terug">
+                </form>
             </p>
         </div>
 

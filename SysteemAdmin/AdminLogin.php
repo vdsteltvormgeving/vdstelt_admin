@@ -1,6 +1,5 @@
-
+<!--Jeffrey Hamberg-->
 <html>
-    <--
     <head>
         <meta charset="UTF-8">
         <title>Bens Developement</title>
@@ -33,11 +32,13 @@
                         mysqli_stmt_bind_param($login1, 'ss', $username, $password);
                         mysqli_stmt_execute($login1);
                         $rows = mysqli_num_rows($result);
-                        $_SESSION['username'] = $_POST['username'];
-                        $_SESSION['password'] = $_POST['password'];
+
                         print($_SESSION['username']);
                         if ($rows == 1) {
                             header("location: AdminOverzicht.php");
+                            $_SESSION['username'] = $_POST['username'];
+                            $_SESSION['password'] = $_POST['password'];
+                            $_SESSION['login'] = 1;
                         } else {
                             $error = "Gebruikersnaam of Wachtwoord verkeerd.";
                             print($error);

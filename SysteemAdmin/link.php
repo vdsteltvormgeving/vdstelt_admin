@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost","root","usbw","bensdevelopment",3306);
+$link = mysqli_connect("localhost","root","usbw","bensdeve_cms2",3306);
         if($link)   
         {
             
