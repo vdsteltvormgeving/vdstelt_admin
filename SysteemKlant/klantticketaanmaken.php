@@ -58,18 +58,18 @@
                                
                 ?>
                 <form method="POST" action="klantticketaanmaken.php">
-                    <p> Naam Klant: <?php include"link.php"; print ($Fname . " " . $lname); ?> </p>
+                    <p> Naam Klant: <?php include"link.php"; echo $Fname . " " . $lname; ?> </p>
                     <br>
-                    Klant ID: <?php print ($customerID); ?>
+                    Klant ID: <?php echo $customerID; ?>
                     <br><!-- dropdown menu -->         
                     <p> 
-                        E-mail klant: <?php print ($mail); ?> 
+                        E-mail klant: <?php echo $mail; ?> 
                     </p>
                     <!--<form method="POST" action="">
                         <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
                     </form> -->                  
                     <p> 
-                        Datum: <?php print($datetime);
+                        Datum: <?php echo $datetime;
                         mysqli_close($link);
                         ?> 
                     </p>                    
@@ -87,7 +87,7 @@
                     mysqli_stmt_fetch($stam); //Get information out of the database
                     $TicketID = $TicketIDcount + 1; //Counting the number of tickets in the database and gives the ticket a uniek ID
                     ?>
-                    <p>TicketID: <?php print($TicketID); mysqli_close($link); ?></p>
+                    <p>TicketID: <?php echo $TicketID; mysqli_close($link); ?></p>
                     <textarea name="Beschrijving"></textarea><br>
                     <input type="submit" name="Verzenden" value="Verzenden">
                 </form>
@@ -103,11 +103,11 @@
                     $creation_date=$datetime;
                     if ($description == "" || $category == "") 
                     {
-                        print ("Er is geen categorie en/of beschrijving gegeven.");
+                        echo "Er is geen categorie en/of beschrijving gegeven.";
                     } 
                     else 
                     {                        
-                        print("Uw ticket is verzonden.");                                                                        
+                        echo "Uw ticket is verzonden.";                                                                        
                         $insert = mysqli_prepare($link, "INSERT INTO ticket SET  ticket_ID=$TicketID, category='$category', creation_date='$creation_date', last_time_date='$creation_date', description='$description', user_ID=$Login, completed_status=0, archived_status=0");                                        
                         mysqli_stmt_execute($insert);
                         mysqli_close($link);

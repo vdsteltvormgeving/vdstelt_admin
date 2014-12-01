@@ -33,7 +33,7 @@
                 mysqli_stmt_bind_result($loginQuery, $Login);
                 while (mysqli_stmt_fetch($loginQuery))
                 {
-                    print($Login);
+                    echo $Login;
                 }
                 mysqli_close($link);
                 date_default_timezone_set('CET');
@@ -51,30 +51,21 @@
                                
                 ?>
                 <form method="POST" action="klantticketaanmaken.php">
-                    <p> Naam Klant: <?php include"link.php"; print ($Fname . " " . $lname); ?> </p>
+                    <p> Naam Klant: <?php include"link.php"; echo $Fname . " " . $lname; ?> </p>
                     <br>
-                    Klant ID: <?php print ($customerID); ?>
+                    Klant ID: <?php echo $customerID; ?>
                     <br><!-- dropdown menu -->         
                     <p> 
-                        E-mail klant: <?php print ($mail); ?> 
+                        E-mail klant: <?php echo $mail; ?> 
                     </p>
                     <!--<form method="POST" action="">
                         <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
                     </form> -->                  
                     <p> 
-                        Datum: <?php print($datetime);
-                        mysqli_close($link);
+                        Datum: <?php echo $datetime;                        
                         ?> 
-                    </p>                    
-                    <?php
-                    include "link.php";                    
-                    $stam = mysqli_prepare($link, "SELECT MAX(ticket_ID) FROM ticket");
-                    mysqli_stmt_execute($stam);
-                    mysqli_stmt_bind_result($stam, $TicketIDcount);
-                    mysqli_stmt_fetch($stam); //Get information out of the database
-                    $TicketID = $TicketIDcount + 1; //Counting the number of tickets in the database and gives the ticket a uniek ID
-                    ?>
-                    <p>TicketID: <?php print($TicketID); mysqli_close($link); ?></p>
+                    </p>                                        
+                    <p>TicketID: <?php echo $TicketID['TicketID']; ?></p>
                     <p>Beschrijving:<?php
                         include "link.php";
                         $query=mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_ID=$Login");
@@ -82,7 +73,7 @@
                         mysqli_stmt_bind_result($query, $description);
                         mysqli_stmt_fetch($query);                    
                         $descriptions=$description;
-                        print($descriptions);                                        
+                        echo $descriptions;                                        
                         mysqli_close($link);                        
                         ?>                        
                     </p>                    
