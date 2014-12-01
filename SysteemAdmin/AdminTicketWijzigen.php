@@ -49,9 +49,13 @@ if ($_SESSION["login"] != 1) {
 
                 <p>
                 <h1>Ticket wijzigen</h1>
-                <?php include "link.php" ?>
+                <?php include "link.php";
+                    $customerIDarray = $_POST["CID"];
+                    foreach ($customerIDarray as $customer => $troep) {
+                        $customerID = $customer;
+                    }?>
                 <p>Klant: <?php
-                    $query1 = mysqli_prepare($link, "SELECT username FROM User WHERE user_ID=1");
+                    $query1 = mysqli_prepare($link, "SELECT username FROM User WHERE user_id=$customerID");
                     mysqli_stmt_execute($query1);
                     mysqli_stmt_bind_result($query1, $Username);
                     while (mysqli_stmt_fetch($query1)) {
@@ -69,7 +73,7 @@ if ($_SESSION["login"] != 1) {
                     </SELECT>
                 </form></p>
             <p>Beschrijving:  <?php
-                $query2 = mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_ID = 1");
+                $query2 = mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_ID = $customerID");
                 mysqli_execute($query2);
                 mysqli_stmt_bind_result($query2, $Text);
                 While (mysqli_stmt_fetch($query2)) {
@@ -88,7 +92,7 @@ if ($_SESSION["login"] != 1) {
                 </SELECT></p>      <?php ?>
 
                 <p>Ticket geschreven op: <?php
-                    $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket WHERE user_ID=1");
+                    $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket WHERE user_ID=$customerID");
                     mysqli_execute($query3);
                     mysqli_stmt_bind_result($query3, $creation_date);
                     while (mysqli_stmt_fetch($query3)) {

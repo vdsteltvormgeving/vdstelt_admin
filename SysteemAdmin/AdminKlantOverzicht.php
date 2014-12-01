@@ -52,7 +52,7 @@ if ($_SESSION["login"] != 1) {
 
 
 
-                    $stat = mysqli_prepare($link, "SELECT Company_name, Email, Customer_id FROM customer ORDER BY Customer_id");
+                    $stat = mysqli_prepare($link, "SELECT company_name, emailadress, customer_id FROM Customer ORDER BY customer_id");
                     mysqli_stmt_execute($stat);
                     mysqli_stmt_bind_result($stat, $comname, $mail, $CID);
                     print("<table><tr><th>Bedrijfs naam</th><th>E-mail</th><th></th></tr>");
