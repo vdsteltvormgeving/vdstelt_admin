@@ -51,7 +51,7 @@
                                
                 ?>
                 <form method="POST" action="klantticketaanmaken.php">
-                    <p> Naam Klant: <?php include"link.php"; echo $Fname . " " . $lname; ?> </p>
+                    <p> Naam Klant: <?php include"link.php"; echo $fname . " " . $lname; ?> </p>
                     <br>
                     Klant ID: <?php echo $customerid; ?>
                     <br><!-- dropdown menu -->         

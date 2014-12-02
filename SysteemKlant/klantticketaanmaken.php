@@ -49,22 +49,22 @@
                 }
                 mysqli_close($link);
                 
-                //include "link.php";
-                //$highestticketid=mysqli_prepare($link, "SELECT MAX(ticket_ID) FROM Ticket");
-                //mysqli_stmt_execute($highestticketid);
-                //mysqli_stmt_bind_result($highestticketid, $ticketID);
-                //mysqli_stmt_fetch($highestticketid);
-                //mysqli_close($link);
+                echo $username;
+                include "link.php";
+                $names = mysqli_stmt_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='admin@bensdevelopment.nl'");
+                mysqli_stmt_execute($names);
+                mysqli_stmt_bind_param($names, $fname, $lname);
+                while(mysqli_stmt_fetch($names))
+                {
+                    $fname; 
+                    $lname;
+                }
                                
                 ?>
                 <form method="POST" action="klantticketaanmaken.php">
-                    <p> Naam Klant: <?php include"link.php"; echo $Fname . " " . $lname; ?> </p>
-                    <br>
-                    Klant ID: <?php echo $customerID; ?>
-                    <br><!-- dropdown menu -->         
-                    <p> 
-                        E-mail klant: <?php echo $mail; ?> 
-                    </p>
+                    <p> Naam: <?php echo $fname . " " . $lname; ?> </p>
+                    <br>                    
+                    <br><!-- dropdown menu -->                             
                     <!--<form method="POST" action="">
                         <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
                     </form> -->                  
@@ -75,19 +75,10 @@
                     </p>                    
                     <select id="Categorie" name="Categorie">
                         <option value="">Selecteer Categorie</option>
-                        <option value="a">Webapplication</option>
-                        <option value="b">Internetsite</option>
-                        <option value="c">Hosting</option>
-                    </select>
-                    <?php
-                    include "link.php";                    
-                    $stam = mysqli_prepare($link, "SELECT MAX(ticket_id) FROM ticket");
-                    mysqli_stmt_execute($stam);
-                    mysqli_stmt_bind_result($stam, $TicketIDcount);
-                    mysqli_stmt_fetch($stam); //Get information out of the database
-                    $TicketID = $TicketIDcount + 1; //Counting the number of tickets in the database and gives the ticket a uniek ID
-                    ?>
-                    <p>TicketID: <?php echo $TicketID; mysqli_close($link); ?></p>
+                        <option value="Webapplication">Webapplication</option>
+                        <option value="Internetsite">Internetsite</option>
+                        <option value="Hosting">Hosting</option>
+                    </select>                    
                     <textarea name="Beschrijving"></textarea><br>
                     <input type="submit" name="Verzenden" value="Verzenden">
                 </form>
