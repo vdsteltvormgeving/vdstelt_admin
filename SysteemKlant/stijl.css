@@ -330,6 +330,7 @@ ul li:hover ul {
     font-size: 14px;
     padding:8px;
     background-color: red;
+    border: white solid 4px;
     border-radius: 4px;
     max-width: 400px;
     margin:40px auto;
