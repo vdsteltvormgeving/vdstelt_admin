@@ -88,9 +88,9 @@ input[type="submit"]:active{
     position: relative;
 }
 input[type="submit"]:focus {outline:0;}
-input[type="text"]{
+input[type="text"], input[type="password"]{
     padding:12px;
-    min-width: 400px;
+    min-width: 370px;
     top:2px;
     position: relative;
     text-align: left;
@@ -321,6 +321,21 @@ ul li:hover ul {
 .login a {
     float:right;
     display: inline-block;
+    text-decoration: none;
+    color: rgb(247,141,35);
+}
+.foutmelding{
+    text-align: center;
+    color:white;
+    font-size: 14px;
+    padding:8px;
+    background-color: red;
+    border-radius: 4px;
+    max-width: 400px;
+    margin:40px auto;
+    -webkit-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    -moz-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
 }
 .table_hdr{
     margin-bottom: 0px;

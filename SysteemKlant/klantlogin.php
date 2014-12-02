@@ -43,7 +43,7 @@
                     $login = $_POST["login"];                    
                     if (empty($username) || empty($password) || empty($username) && empty($password)) 
                     {
-                        $error = "Gebruikersnaam of Wachtwoord verkeerd.";
+                        $error = '<p class="foutmelding">Uw Gebruikersnaam en/of Wachtwoord is niet correct.</p>';
                         echo $error;                    
                     }                        
                     else 
