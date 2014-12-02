@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<!-- Joshua van Gelder, Jeffrey Hamberg, Daan Hagemans, Sander van der Stelt -->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -31,7 +33,7 @@
                         <a href="#">wachtwoord vergeten</a>
                     </form>
                 </div>
-                <?php
+                <?php                
                 session_start(); //start sessie
                 include "link.php"; //Database connectie
                 if (isset($_POST["login"])) 
@@ -42,7 +44,7 @@
                     if (empty($username) || empty($password) || empty($username) && empty($password)) 
                     {
                         $error = "Gebruikersnaam of Wachtwoord verkeerd.";
-                        print($error);                    
+                        echo $error;                    
                     }                        
                     else 
                     {
@@ -50,8 +52,8 @@
                         { 
                             $username = $_POST["username"];
                             $password = $_POST["password"];
-                            $result=  mysqli_query($link, "SELECT username, password FROM User WHERE username='$username' AND password='$password'");
-                            $login1 = mysqli_prepare($link, "SELECT username, password FROM User WHERE username='$username' AND password='$password'");
+                            $result=  mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
+                            $login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
                             mysqli_stmt_execute($login1);
                             $rows = mysqli_num_rows($result);
                             if($rows==1)
@@ -59,12 +61,18 @@
                                 $_SESSION['username']=$_POST['username'];
                                 $_SESSION['password']=$_POST['password'];
                                 $_SESSION['logged_in']=1;
+                                mysqli_close($link);
+                                include "link.php";
+                                date_default_timezone_set('CET');
+                                $datetime = date("d-m-Y H:i:s");  //function to get date and time
+                                $updatelogin=mysqli_stmt_prepare($link, "UPDATE User SET status='Online', laatste_inlog='$datetime' WHERE mail='$username'");
+                                mysqli_stmt_execute($updatelogin);
                                 header("location: klantoverzicht.php");
                             }
                             else
                             {
                                 $error = "Gebruikersnaam of Wachtwoord verkeerd.";
-                                print($error);
+                                echo $error;
                             }
                         }
                     }                        

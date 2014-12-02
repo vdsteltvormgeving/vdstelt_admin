@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Joshua van Gelder, Sander van der Stelt -->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -24,7 +25,10 @@
                     </form>
                     <form method="POST" action="klantticketoverzicht.php">
                         <input type="submit" name="ticketinzien" value="Tickets inzien">
-                    </form> 
+                    </form>                     
+                    <form>
+                        <input type="submit" name="factuuroverzicht" value="Factuur Overzicht">
+                    </form>
                     <form>
                         <input type="submit" name="loguit" value="Uitloggen">
                     </form>

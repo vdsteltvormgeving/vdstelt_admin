@@ -47,7 +47,7 @@
                 foreach ($TicketIDarray as $Ticket => $notused) {
                     $ticket_ID = $Ticket;
                 }
-                $query1 = mysqli_prepare($link, "SELECT username FROM User U JOIN Reaction R ON R.user_ID = U.user_ID WHERE r.ticket_ID='$ticket_ID'");
+                $query1 = mysqli_prepare($link, "SELECT username FROM User U JOIN Reaction R ON R.user_id = U.user_id WHERE r.ticket_id='$ticket_ID'");
                 mysqli_stmt_execute($query1);
                 mysqli_stmt_bind_result($query1, $flname);
                 while (mysqli_stmt_fetch($query1)) {
@@ -57,7 +57,7 @@
             </p>
             <p>
                 Beschrijving: <?php
-                $query2 = mysqli_prepare($link, "SELECT description FROM Ticket T JOIN User U ON T.user_ID = U.user_ID WHERE T.ticket_ID='$ticket_ID'");
+                $query2 = mysqli_prepare($link, "SELECT description FROM Ticket T JOIN User U ON T.user_id = U.user_id WHERE T.ticket_id='$ticket_ID'");
                 mysqli_stmt_execute($query2);
                 mysqli_stmt_bind_result($query2, $text);
                 while (mysqli_stmt_fetch($query2)) {
@@ -77,7 +77,7 @@
             <p>
                 Ticket geschreven op:
                 <?php
-                $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket T JOIN User U ON U.user_ID=T.user_ID WHERE t.ticket_ID='$ticket_ID'");
+                $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket T JOIN User U ON U.user_id=T.user_id WHERE t.ticket_id='$ticket_ID'");
                 mysqli_execute($query3);
                 mysqli_stmt_bind_result($query3, $cd);
                 while (mysqli_stmt_fetch($query3)) {
@@ -91,7 +91,7 @@
                 $today = date("F j, Y");
                 print($today);
                 $ticket_ID = 1;
-                $query4 = mysqli_prepare($link, "SELECT U.user_ID FROM User U JOIN Ticket T ON T.user_ID = U.user_ID WHERE t.ticket_ID=$ticket_ID");
+                $query4 = mysqli_prepare($link, "SELECT U.user_id FROM User U JOIN Ticket T ON T.user_id = U.user_id WHERE t.ticket_id=$ticket_ID");
                 mysqli_stmt_execute($query4);
                 mysqli_stmt_bind_result($query4, $CID);
                 ?>

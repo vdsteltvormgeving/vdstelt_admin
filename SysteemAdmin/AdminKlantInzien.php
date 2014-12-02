@@ -118,7 +118,7 @@ if ($_SESSION["login"] != 1) {
                 include "link.php";
                 $i = 0;
                 if (isset($_POST["sortcat"])) { // Elke if en elseif die hier volgen zijn verschillende clausules voor omhoog en omlaag gesorteerde categorien.
-                    $stmt4 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID, C.company_name FROM Ticket T JOIN User U ON T.user_ID = U.user_ID JOIN Customer C On U.user_ID=C.customer_ID ORDER BY category WHERE U.user_ID =$customerID ");
+                    $stmt4 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_id, C.company_name FROM Ticket T JOIN User U ON T.user_id=U.user_id JOIN Customer_User Q ON Q.user_id=U.user_id JOIN Customer C ON Q.customer_id=C.customer_id  ORDER BY category WHERE U.user_id =$customerID ");
                     mysqli_stmt_execute($stmt4);
                     mysqli_stmt_bind_result($stmt4, $category, $creation, $completed, $ticket_ID, $company_name);
                     while (mysqli_stmt_fetch($stmt4)) {
@@ -130,7 +130,7 @@ if ($_SESSION["login"] != 1) {
                         print("<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=TicketKlantInzien.php><input type='submit' name='ticket_ID[$ticket_ID]' value='Bekijken'></form></td></tr>");
                     }
                 } elseif (isset($_POST["sortcatDESC"])) {
-                    $stmt5 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID, C.company_name FROM Ticket T JOIN User U ON T.user_ID = U.user_ID JOIN Customer C On U.user_ID=C.customer_ID ORDER BY category DESC WHERE U.user_ID=$customerID");
+                    $stmt5 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_id, C.company_name FROM Ticket T JOIN User U ON T.user_id=U.user_id JOIN Customer_User Q ON Q.user_id=U.user_id JOIN Customer C ON Q.customer_id=C.customer_id ORDER BY category DESC WHERE U.user_id=$customerID");
                     mysqli_stmt_execute($stmt5);
                     mysqli_stmt_bind_result($stmt5, $category, $creation, $completed, $ticket_ID, $company_name);
                     while (mysqli_stmt_fetch($stmt5)) {
@@ -142,7 +142,7 @@ if ($_SESSION["login"] != 1) {
                         print("<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=TicketKlantInzien.php><input type='submit' name='ticket_ID[$ticket_ID]' value='Bekijken'></form></td></tr>");
                     }
                 } elseif (isset($_POST["sortct"])) {
-                    $stmt6 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID, C.company_name FROM Ticket T JOIN User U ON T.user_ID = U.user_ID JOIN Customer C On U.user_ID=C.customer_ID ORDER BY creation_date WHERE U.user_ID=$customerID ");
+                    $stmt6 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_id, C.company_name FROM Ticket T JOIN User U ON T.user_id=U.user_id JOIN Customer_User Q ON Q.user_id=U.user_id JOIN Customer C ON Q.customer_id=C.customer_id ORDER BY creation_date WHERE U.user_id=$customerID ");
                     mysqli_stmt_execute($stmt6);
                     mysqli_stmt_bind_result($stmt6, $category, $creation, $completed, $ticket_ID, $company_name);
                     while (mysqli_stmt_fetch($stmt6)) {
@@ -154,7 +154,7 @@ if ($_SESSION["login"] != 1) {
                         print("<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=TicketKlantInzien.php><input type='submit' name='ticket_ID[$ticket_ID]' value='Bekijken'></form></td></tr>");
                     }
                 } elseif (isset($_POST["sortctDESC"])) {
-                    $stmt7 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID, C.company_name FROM Ticket T JOIN User U ON T.user_ID = U.user_ID JOIN Customer C On U.user_ID=C.customer_ID ORDER BY creation_date DESC WHERE U.user_ID=$customerID");
+                    $stmt7 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_id, C.company_name FROM Ticket T JOIN User U ON T.user_id=U.user_id JOIN Customer_User Q ON Q.user_id=U.user_id JOIN Customer C ON Q.customer_id=C.customer_id ORDER BY creation_date DESC WHERE U.user_id=$customerID");
                     mysqli_stmt_execute($stmt7);
                     mysqli_stmt_bind_result($stmt7, $category, $creation, $completed, $ticket_ID, $company_name);
                     while (mysqli_stmt_fetch($stmt7)) {
@@ -166,7 +166,7 @@ if ($_SESSION["login"] != 1) {
                         print("<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=TicketKlantInzien.php><input type='submit' name='ticket_ID[$ticket_ID]' value='Bekijken'></form></td></tr>");
                     }
                 } elseif (isset($_POST["sortcomp"])) {
-                    $stmt8 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID, C.company_name FROM Ticket T JOIN User U ON T.user_ID = U.user_ID JOIN Customer C On U.user_ID=C.customer_ID ORDER BY company_name WHERE U.user_ID=$customerID ");
+                    $stmt8 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_id, C.company_name FROM Ticket T JOIN User U ON T.user_id=U.user_id JOIN Customer_User Q ON Q.user_id=U.user_id JOIN Customer C ON Q.customer_id=C.customer_id ORDER BY company_name WHERE U.user_id=$customerID ");
                     mysqli_stmt_execute($stmt8);
                     mysqli_stmt_bind_result($stmt8, $category, $creation, $completed, $ticket_ID, $company_name);
                     while (mysqli_stmt_fetch($stmt8)) {
@@ -178,7 +178,7 @@ if ($_SESSION["login"] != 1) {
                         print("<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=TicketKlantInzien.php><input type='submit' name='ticket_ID[$ticket_ID]' value='Bekijken'></form></td></tr>");
                     }
                 } elseif (isset($_POST["sortcompDESC"])) {
-                    $stmt9 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID, C.company_name FROM Ticket T JOIN User U ON T.user_ID = U.user_ID JOIN Customer C On U.user_ID=C.customer_ID ORDER BY company_name DESC WHERE U.user_ID=$customerID");
+                    $stmt9 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_id, C.company_name FROM Ticket T JOIN User U ON T.user_id=U.user_id JOIN Customer_User Q ON Q.user_id=U.user_id JOIN Customer C ON Q.customer_id=C.customer_id ORDER BY company_name DESC WHERE U.user_id=$customerID");
                     mysqli_stmt_execute($stmt9);
                     mysqli_stmt_bind_result($stmt9, $category, $creation, $completed, $ticket_ID, $company_name);
                     while (mysqli_stmt_fetch($stmt9)) {
@@ -190,7 +190,7 @@ if ($_SESSION["login"] != 1) {
                         print("<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=TicketKlantInzien.php><input type='submit' name='ticket_ID[$ticket_ID]' value='Bekijken'></form></td></tr>");
                     }
                 } elseif (isset($_POST["sortstat"])) {
-                    $stmt8 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID, C.company_name FROM Ticket T JOIN User U ON T.user_ID = U.user_ID JOIN Customer C On U.user_ID=C.customer_ID ORDER BY completed_status WHERE U.user_ID=$customerID ");
+                    $stmt8 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_id, C.company_name FROM Ticket T JOIN User U ON T.user_id=U.user_id JOIN Customer_User Q ON Q.user_id=U.user_id JOIN Customer C ON Q.customer_id=C.customer_id ORDER BY completed_status WHERE U.user_id=$customerID ");
                     mysqli_stmt_execute($stmt8);
                     mysqli_stmt_bind_result($stmt8, $category, $creation, $completed, $ticket_ID, $company_name);
                     while (mysqli_stmt_fetch($stmt8)) {
@@ -202,7 +202,7 @@ if ($_SESSION["login"] != 1) {
                         print("<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=TicketKlantInzien.php><input type='submit' name='ticket_ID[$ticket_ID]' value='Bekijken'></form></td></tr>");
                     }
                 } elseif (isset($_POST["sortstatDESC"])) {
-                    $stmt9 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID, C.company_name FROM Ticket T JOIN User U ON T.user_ID = U.user_ID JOIN Customer C On U.user_ID=C.customer_ID ORDER BY completed_status DESC WHERE U.user_ID=$customerID");
+                    $stmt9 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_id, C.company_name FROM Ticket T JOIN User U ON T.user_id=U.user_id JOIN Customer_User Q ON Q.user_id=U.user_id JOIN Customer C ON Q.customer_id=C.customer_idORDER BY completed_status DESC WHERE U.user_id=$customerID");
                     mysqli_stmt_execute($stmt9);
                     mysqli_stmt_bind_result($stmt9, $category, $creation, $completed, $ticket_ID, $company_name);
                     while (mysqli_stmt_fetch($stmt9)) {
@@ -214,7 +214,7 @@ if ($_SESSION["login"] != 1) {
                         print("<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><form><input type='checkbox'</form></td><td><form><input type='checkbox'></form></td><td><form method='POST' action=TicketKlantInzien.php><input type='submit' name='ticket_ID[$ticket_ID]' value='Bekijken'></form></td></tr>");
                     }
                 } else {
-                    $stmt10 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_ID, C.company_name FROM Ticket T JOIN User U ON T.user_ID = U.user_ID JOIN Customer C On U.user_ID=C.customer_ID WHERE U.user_ID=$customerID");
+                    $stmt10 = mysqli_prepare($link, " SELECT category, creation_date, completed_status, ticket_id, C.company_name FROM Ticket T JOIN User U ON T.user_id=U.user_id JOIN Customer_User Q ON Q.user_id=U.user_id JOIN Customer C ON Q.customer_id=C.customer_id WHERE U.user_id=$customerID");
                     mysqli_stmt_execute($stmt10);
                     mysqli_stmt_bind_result($stmt10, $category, $creation, $completed, $ticket_ID, $company_name);
                     while (mysqli_stmt_fetch($stmt10)) {
