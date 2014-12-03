@@ -63,9 +63,7 @@
                                 $_SESSION['logged_in']=1;
                                 mysqli_close($link);
                                 include "link.php";
-                                date_default_timezone_set('CET');
-                                $datetime = date("Y-d-m H:i:s");  //function to get date and time
-                                $updatelogin=mysqli_prepare($link, "UPDATE User SET status='Online', creation_date=$datetime WHERE mail='$username'");
+                                $updatelogin=mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
                                 mysqli_stmt_execute($updatelogin);
                                 header("location: klantoverzicht.php");
                             }
