@@ -14,7 +14,7 @@
                 </div>
                 <div id="menu">
                     <?php                                        
-                    include 'menu.php';
+                    include 'menubackend.php';
                     include 'link.php';
                     session_start();                    
                     ?>
@@ -45,6 +45,9 @@
                     }
                     ?>
                 </div>                        
+            <footer>
+                <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>
+            </footer>
         </div>
     </body>
 </html>

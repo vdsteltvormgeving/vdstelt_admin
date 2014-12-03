@@ -15,7 +15,7 @@
                 <!--BEGIN MENU-->
                 <div id="menu">
                     <?php
-                    include 'menu.php';                    
+                    include 'menubackend.php';                  
                     ?>
                 </div>
                 <!--EINDE MENU-->

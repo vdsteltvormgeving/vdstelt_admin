@@ -14,7 +14,7 @@
                 </div>
                 <div id="menu">
                     <?php
-                    include 'menu.php';                    
+                    include 'menu.php';
                     ?>
                 </div>
             </header>
@@ -32,6 +32,7 @@
                         <br><br>
                         <a href="#">wachtwoord vergeten</a>
                     </form>
+                </div>     
                 </div>
                 <?php                
                 session_start(); //start sessie
@@ -74,9 +75,8 @@
                             }
                         }
                     }                        
-                }                
+                }
                 ?>
-            </div>
             <footer>
                 <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>
             </footer>
