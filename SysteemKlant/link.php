@@ -1,5 +1,5 @@
 <?php
-//$link = mysql_connect("bensdevelopment.nl","bensdeve_project","6IjuyLDT","bensdeve_cmsbackup");
+//$link = mysql_connect("bensdevelopment.nl","bensdeve_project","6IjuyLDT","bensdeve_cmsbackup"); dit is een verouderde functie
 $link = mysqli_connect("localhost","root","usbw","bensdevelopment",3306);
         if($link)   
             {
