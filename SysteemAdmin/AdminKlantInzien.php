@@ -78,36 +78,36 @@ if ($_SESSION["login"] != 1) {
                             <?php
                             // Met de volgende rijen code wordt bepaald welke sorteerknop we willen hebben. Of we een DESC of een ASC knop hebben.
                             if (isset($_POST["sortcomp"])) {
-                                print ("<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortcompDESC' value='Klant'></form>");
+                                print ("<form class='table_hdr' method='POST' action='AdminKlantInzien.php'><input type='submit' name='sortcompDESC' value='Klant'></form>");
                             } else {
-                                print ("<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortcomp' value='Klant'></form>");
+                                print ("<form class='table_hdr' method='POST' action='AdminKlantInzien.php'><input type='submit' name='sortcomp' value='Klant'></form>");
                             }
                             ?>
                         </th>
                         <th>
                             <?php
                             if (isset($_POST["sortcat"])) {
-                                print ("<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortcatDESC' value='Categorie'></form>");
+                                print ("<form class='table_hdr' method='POST' action='AdminKlantInzien.php'><input type='submit' name='sortcatDESC' value='Categorie'></form>");
                             } else {
-                                print ("<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortcat' value='Categorie'></form>");
+                                print ("<form class='table_hdr' method='POST' action='AdminKlantInzien.php'><input type='submit' name='sortcat' value='Categorie'></form>");
                             }
                             ?>
                         </th>
                         <th>
                             <?php
                             if (isset($_POST["sortct"])) {
-                                print("<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortctDESC' value='Aanmaak Datum'></form>");
+                                print("<form class='table_hdr' method='POST' action='AdminKlantInzien.php'><input type='submit' name='sortctDESC' value='Aanmaak Datum'></form>");
                             } else {
-                                print("<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortct' value='Aanmaak Datum'></form>");
+                                print("<form class='table_hdr' method='POST' action='AdminKlantInzien.php'><input type='submit' name='sortct' value='Aanmaak Datum'></form>");
                             }
                             ?>
                         </th>
                         <th>
                             <?php
                             if (isset($_POST["sortstat"])) {
-                                print("<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortstatDESC' value='Status'></form>");
+                                print("<form class='table_hdr' method='POST' action='AdminKlantInzien.php'><input type='submit' name='sortstatDESC' value='Status'></form>");
                             } else {
-                                print("<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortstat' value='Status'></form>");
+                                print("<form class='table_hdr' method='POST' action='AdminKlantInzien.php'><input type='submit' name='sortstat' value='Status'></form>");
                             }
                             ?>
                         </th>
