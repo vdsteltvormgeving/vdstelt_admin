@@ -56,11 +56,11 @@ if ($_SESSION["login"] != 1) {
                     }
                     print("<label>Klant ID:</label><label>00" . $customerID . "</label>");
                     if ($customerID != "") {
-                        $stat = mysqli_prepare($link, "SELECT first_name, last_name, email, company_name, adres, residence, iban_nr, kvk_nr, btw_nummer FROM customer WHERE customer_ID = $customerID ");
+                        $stat = mysqli_prepare($link, "SELECT company_name, street, house_number, postal_code, city, phone_number, fax_number, emailadress, kvk_number, btw_number FROM customer WHERE customer_id = $customerID ");
                         mysqli_stmt_execute($stat);
-                        mysqli_stmt_bind_result($stat, $fname, $lname, $email, $comname, $adres, $Res, $IBAN, $KVK, $btw);
+                        mysqli_stmt_bind_result($stat, $comname, $street, $house, $postal, $city, $phone, $fax, $email, $kvk, $btw);
                         while (mysqli_stmt_fetch($stat)) {
-                            print("<br><label>Bedrijfsnaam:</label><label>$comname</label><br><label>Adres:</label><label>$adres</label><br><label>Email:</label><label>$email</label><br><label>Woonplaats:</label><label>$Res</label><br><label>IBAN nummer:</label><label>$IBAN</label><br><label>KVK nummer:</label><label>$KVK</label><br><label>BTW nummer:</label><label>$btw</label><br>");
+                            print("<br><label>Bedrijfsnaam:</label><label>$comname</label><br><label>Adres:</label><label>" . $street . $house . "</label><br><label>Email:</label><label>$email</label><br><label>Woonplaats:</label><label>$city</label><br><label>Phone:</label><label>$phone</label<br><label>FAX nummer:</label><label>$fax</label><br><label>KVK nummer:</label><label>$kvk</label><br><label>BTW nummer:</label><label>$btw</label><br>");
                         }
                     } else {
                         print ("customer ID is niet geselecteerd");
