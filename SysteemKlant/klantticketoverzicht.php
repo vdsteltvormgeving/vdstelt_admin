@@ -246,10 +246,10 @@
                 <!-- EINDE NIEUW GEPLAATSTE CODE -->
             </div>
             <!--EINDE CONTENT-->
+                    </div>
             <footer>
-                <p class="copyright">Copyright Â© 2014 <b>Bens Development</b>, All Right Reserved.</p>
+                <?php include 'footer.php';?>
             </footer>
-        </div>
     </body>
 </html>
 
