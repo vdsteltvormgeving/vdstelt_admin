@@ -311,5 +311,13 @@ input[type="submit"], input[type="button"]:active {
     color: #000;
     border-color: #444;
 }
+input[type="text"], input[type="password"]{
+    padding:12px;
+    min-width: 370px;
+    top:2px;
+    position: relative;
+    text-align: left;
+    margin:10px 0px;
+}
 
 
