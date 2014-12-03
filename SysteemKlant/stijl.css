@@ -81,6 +81,7 @@ input[type="submit"]{
     color:white;
     bottom:10px;
     display: inline-block;
+    margin-top: 10px;
 }
 input[type="submit"]:active{
     border-bottom:4px rgb(250,88,27) solid;
