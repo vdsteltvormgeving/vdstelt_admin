@@ -14,8 +14,47 @@
                 </div>
                 <div id="menu">
                     <?php
-                    include 'menu.php';                    
-                    ?>
+                session_start(); //start sessie
+                include "link.php"; //Database connectie
+                if (isset($_POST["login"])) {
+                    $username = $_POST["username"];
+                    $password = $_POST["password"];
+                    $login = $_POST["login"];
+                    if (empty($username) || empty($password) || empty($username) && empty($password)) {
+                        $error = "<p class='foutmelding'>Uw Gebruikersnaam en/of Wachtwoord is niet correct.</p>";
+                        echo $error;
+                    } else {
+                        if (isset($login)) {
+                            $username = $_POST["username"];
+                            $password = $_POST["password"];
+                            $result = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
+                            $login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
+                            mysqli_stmt_execute($login1);
+                            $rows = mysqli_num_rows($result);
+                            if ($rows == 1) {
+                                $_SESSION['username'] = $_POST['username'];
+                                $_SESSION['password'] = $_POST['password'];
+                                $_SESSION['logged_in'] = 1;
+                                mysqli_close($link);
+                                include "link.php";
+                                date_default_timezone_set('CET');
+                                $datetime = date("d-m-Y H:i:s");  //function to get date and time
+                                $updatelogin = mysqli_stmt_prepare($link, "UPDATE User SET status='Online', laatste_inlog='$datetime' WHERE mail='$username'");
+                                mysqli_stmt_execute($updatelogin);
+                                header("location: klantoverzicht.php");
+                            } else {
+                                $error = "<p class='foutmelding'>Uw Gebruikersnaam en/of Wachtwoord is niet correct.</p>";
+                                echo $error;
+                            }
+                        }
+                    }
+                }
+                if (!(isset($_SESSION['username']) && $_SESSION['password'] == '')) {
+                    include 'menu.php';
+                } else {
+                    include 'menubackend.php';
+                }
+                ?>
                 </div>
             </header>
             <div id="content">
@@ -32,52 +71,7 @@
                         <br><br>
                         <a href="#">wachtwoord vergeten</a>
                     </form>
-                </div>
-                <?php                
-                session_start(); //start sessie
-                include "link.php"; //Database connectie
-                if (isset($_POST["login"])) 
-                {
-                    $username = $_POST["username"];
-                    $password = $_POST["password"];
-                    $login = $_POST["login"];                    
-                    if (empty($username) || empty($password) || empty($username) && empty($password)) 
-                    {
-                        $error = "<p class='foutmelding'>Uw Gebruikersnaam en/of Wachtwoord is niet correct.</p>";
-                        echo $error;                    
-                    }                        
-                    else 
-                    {
-                        if(isset($login)) 
-                        { 
-                            $username = $_POST["username"];
-                            $password = $_POST["password"];
-                            $result=  mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
-                            $login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
-                            mysqli_stmt_execute($login1);
-                            $rows = mysqli_num_rows($result);
-                            if($rows==1)
-                            {
-                                $_SESSION['username']=$_POST['username'];
-                                $_SESSION['password']=$_POST['password'];
-                                $_SESSION['logged_in']=1;
-                                mysqli_close($link);
-                                include "link.php";
-                                date_default_timezone_set('CET');
-                                $datetime = date("d-m-Y H:i:s");  //function to get date and time
-                                $updatelogin=mysqli_stmt_prepare($link, "UPDATE User SET status='Online', laatste_inlog='$datetime' WHERE mail='$username'");
-                                mysqli_stmt_execute($updatelogin);
-                                header("location: klantoverzicht.php");
-                            }
-                            else
-                            {
-                                $error = "<p class='foutmelding'>Uw Gebruikersnaam en/of Wachtwoord is niet correct.</p>";
-                                echo $error;
-                            }
-                        }
-                    }                        
-                }                                                        
-                ?>
+                </div>     
             </div>
             <footer>
                 <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>

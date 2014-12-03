@@ -12,10 +12,8 @@
                 <img src="img/logo-bens.png" alt=""/>
             </div>
             <?php
-            include 'link.php';
-            ?>
-            <?php
             session_start(); //start sessie
+            include 'link.php';
             if (isset($_POST["login"])) {
                 $username = $_POST["username"];
                 $password = $_POST["password"];
