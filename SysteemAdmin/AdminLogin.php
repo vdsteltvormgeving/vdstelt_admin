@@ -27,12 +27,11 @@
                     if (isset($login)) {
                         $username = $_POST["username"];
                         $password = $_POST["password"];
+                        $result = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
                         $login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
-                        mysqli_stmt_bind_param($login1, 'ss', $username, $password);
                         mysqli_stmt_execute($login1);
-                        $rows = mysqli_num_rows($result);
 
-                        print($_SESSION['username']);
+                        $rows = mysqli_num_rows($result);
                         if ($rows == 1) {
                             header("location: AdminOverzicht.php");
                             $_SESSION['username'] = $_POST['username'];
