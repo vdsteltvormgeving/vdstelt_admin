@@ -9,6 +9,6 @@
                         </ul>
                         </li>
                         <li class="rij"><a href="#">Facturen</a>
-                        <li class="rij"><a href="#">Uitloggen/a>
+                        <li class="rij"><a href="#">Uitloggen</a>
                     </ul>';
 ?>
