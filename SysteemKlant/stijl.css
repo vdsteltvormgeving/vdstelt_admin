@@ -325,6 +325,20 @@ ul li:hover ul {
     text-decoration: none;
     color: rgb(247,141,35);
 }
+.succesmelding{
+    text-align: center;
+    color:white;
+    font-size: 14px;
+    padding:8px;
+    background-color: limegreen;
+    border: white solid 4px;
+    border-radius: 4px;
+    max-width: 400px;
+    margin:40px auto;
+    -webkit-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    -moz-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+}
 .foutmelding{
     text-align: center;
     color:white;

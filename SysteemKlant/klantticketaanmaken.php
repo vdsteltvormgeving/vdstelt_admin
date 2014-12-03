@@ -96,7 +96,7 @@
                     $creation_date=$datetime;
                     if ($description == "" || $category == "") 
                     {
-                        echo "Er is geen categorie en/of beschrijving gegeven.";
+                        echo "<p class='foutmelding'>Er is geen categorie en/of beschrijving gegeven.</p>";
                     } 
                     else 
                     {                            
@@ -105,7 +105,7 @@
                         $insert = mysqli_prepare($link, "INSERT INTO ticket SET category='$category', creation_date=NOW(), last_time_date='$creation_date', description='$description', user_id=$login, completed_status=0, archived_status=0");
                         mysqli_stmt_execute($insert);
                         mysqli_close($link);
-                        echo "Uw ticket is verzonden.";
+                        echo "<p class='succesmelding'>Uw ticket is verzonden.</p>";
                         
                         /*Deze code werkt niet op de local server.
                         //default headers
