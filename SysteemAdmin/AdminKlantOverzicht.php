@@ -57,7 +57,7 @@ if ($_SESSION["login"] != 1) {
                     mysqli_stmt_bind_result($stat, $comname, $mail, $CID);
                     print("<table><tr><th>Bedrijfs naam</th><th>E-mail</th><th></th></tr>");
                     while (mysqli_stmt_fetch($stat)) {
-                        print("<tr>" . "<td>" . $comname . "</td>" . "<td>" . $mail . "</td>" . "<td>" . "<form method='POST' action='AdminKlantInzien.php' >" . "<input type='submit' name='CID[$CID]' value='Bekijken'>" . "</form>" . "</td>" . "</tr>");
+                        print("<form method='POST' action='AdminKlantInzien.php' ><tr><td>$comname</td><td>$mail</td><td><input type='hidden' name=CID[$CID] ><input type='submit' name='submit' value='Bekijken'></form></td></tr>");
                     } // Door de name te veranderen naar CID[$CID] kan je hem aanvragen op andere pagina's
                     print ("</table>");
                     ?>
