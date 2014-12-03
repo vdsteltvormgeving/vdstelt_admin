@@ -102,7 +102,7 @@
                     {                            
                         mysqli_close($link);                        
                         include"link.php";
-                        $insert = mysqli_prepare($link, "INSERT INTO ticket SET category='$category', creation_date='$creation_date', last_time_date='$creation_date', description='$description', user_id=$login, completed_status=0, archived_status=0");
+                        $insert = mysqli_prepare($link, "INSERT INTO ticket SET category='$category', creation_date=NOW(), last_time_date='$creation_date', description='$description', user_id=$login, completed_status=0, archived_status=0");
                         mysqli_stmt_execute($insert);
                         mysqli_close($link);
                         echo "Uw ticket is verzonden.";

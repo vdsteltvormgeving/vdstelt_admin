@@ -33,11 +33,9 @@
                 mysqli_stmt_bind_result($loginQuery, $Login);
                 while (mysqli_stmt_fetch($loginQuery))
                 {
-                    echo $Login;
+                    $Login;
                 }
-                mysqli_close($link);
-                date_default_timezone_set('CET');
-                $datetime = date("F j, Y");  //function to get date and time
+                mysqli_close($link);                
                 
                 include "link.php";
                 $stat = mysqli_prepare($link, "SELECT C.customer_id, C.company_name, C.street, C.house_number, c.postal_code,c.city, C.phone_number, C.fax_number, C.emailadress, C.btw_number FROM customer C JOIN Invoice I ON I.customer_id=C.customer_id JOIN User U ON U.user_id=I.user_id WHERE U.user_id = $Login");
@@ -48,27 +46,29 @@
                     
                 }
                 mysqli_close($link);                                
-                               
+                $ticketidarray=$_POST["TicketID"];
+                foreach($ticketidarray as $ticket => $notused)
+                {
+                    $ticketid=$ticket;
+                }
                 ?>
                 <form method="POST" action="klantticketaanmaken.php">
-                    <p> Naam Klant: <?php include"link.php"; echo $fname . " " . $lname; ?> </p>
-                    <br>
-                    Klant ID: <?php echo $customerid; ?>
-                    <br><!-- dropdown menu -->         
-                    <p> 
-                        E-mail klant: <?php echo $mail; ?> 
-                    </p>
-                    <!--<form method="POST" action="">
-                        <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
-                    </form> -->                  
-                    <p> 
-                        Datum: <?php echo $datetime;                        
-                        ?> 
-                    </p>                                        
-                    <p>TicketID: <?php echo $TicketID['TicketID']; ?></p>
-                    <p>Beschrijving:<?php
+                    <p> Naam: <?php   include"link.php";                     
+                        $stmt1 = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'"); 
+                        mysqli_stmt_execute($stmt1);
+                        mysqli_stmt_bind_result($stmt1, $fname, $lname);
+                        while (mysqli_stmt_fetch($stmt1)) 
+                        {
+                            echo "$fname $lname";
+                        }
+                        ?>
+                        <br>
+                        E-mail: <?php echo $username; ?> 
+                    </p>                                                                                                
+                    <p>Beschrijving:<br>
+                        <?php
                         include "link.php";
-                        $query=mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_id=$Login");
+                        $query=mysqli_prepare($link, "SELECT description FROM Ticket WHERE ticket_id=$ticketid");
                         mysqli_stmt_execute($query);
                         mysqli_stmt_bind_result($query, $description);
                         while(mysqli_stmt_fetch($query))
