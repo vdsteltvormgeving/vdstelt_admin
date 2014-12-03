@@ -1,6 +1,6 @@
 <?php
 
-echo '
+    echo'
                     <ul><li class="rij"><a href="klantoverzicht.php">User</a></li>
                         <li class="rij"><a href="klantticketoverzicht.php">Tickets</a>
                         <ul>
@@ -10,5 +10,5 @@ echo '
                         </li>
                         <li class="rij"><a href="#">Facturen</a>
                         <li class="rij"><a href="#">Uitloggen/a>
-                    </ul>'
+                    </ul>';
 ?>

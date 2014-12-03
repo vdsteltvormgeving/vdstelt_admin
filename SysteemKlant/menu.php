@@ -1,5 +1,5 @@
 <?php
-echo '
+    echo'
                     <ul><li class="rij"><a href="index.php">Home</a></li>
                         <li class="rij"><a href="#">Diensten</a></li>
                         <li class="rij"><a href="#">Producten</a>
@@ -13,5 +13,5 @@ echo '
                         <li class="rij"><a href="#">Domeinnaam</a></li>
                         <li class="rij"><a href="#">Contact</a></li>
                         <li class="rij"><a href="klantlogin.php">Login</a></li>
-                    </ul>'
+                    </ul>';
 ?>

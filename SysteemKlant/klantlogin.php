@@ -13,7 +13,28 @@
                     <img src="afbeeldingen/logo-bens.png" alt="Bens Development"/>
                 </div>
                 <div id="menu">
-               <?php                
+                    <?php
+                    include 'menu.php';
+                    ?>
+                </div>
+            </header>
+            <div id="content">
+                <h1>login</h1>                
+                <div class="login">                        
+                    <form action="klantlogin.php" method="POST">
+                        <label>Gebruikersnaam:</label><br>
+                        <input type="text" name="username">
+                        <br>
+                        <label>Wachtwoord:</label><br>
+                        <input type="password" name="password">
+                        <br>
+                        <input type="submit" name="login" value="login">
+                        <br><br>
+                        <a href="#">wachtwoord vergeten</a>
+                    </form>
+                </div>     
+                </div>
+                <?php                
                 session_start(); //start sessie
                 include "link.php"; //Database connectie
                 if (isset($_POST["login"])) 
@@ -55,30 +76,7 @@
                         }
                     }                        
                 }
-                if (!(isset($_SESSION['username']) && $_SESSION['password'] == '')) {
-                    include 'menu.php';
-                } else {
-                    include 'menubackend.php';
-                }
-                ?> 
-                </div>
-            </header>
-            <div id="content">
-                <h1>login</h1>                
-                <div class="login">                        
-                    <form action="klantlogin.php" method="POST">
-                        <label>Gebruikersnaam:</label><br>
-                        <input type="text" name="username">
-                        <br>
-                        <label>Wachtwoord:</label><br>
-                        <input type="password" name="password">
-                        <br>
-                        <input type="submit" name="login" value="login">
-                        <br><br>
-                        <a href="#">wachtwoord vergeten</a>
-                    </form>
-                </div>     
-                </div>
+                ?>
             </div>
             <footer>
                 <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>
