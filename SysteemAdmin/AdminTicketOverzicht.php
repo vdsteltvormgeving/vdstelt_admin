@@ -53,7 +53,7 @@ if ($_SESSION["login"] != 1) {
                     <p>Tickets:<br></p>
                     <table>
                         <tr>
-                            <th
+                            <th>
                             <?php
                             // Met de volgende rijen code wordt bepaald welke sorteerknop we willen hebben. Of we een DESC of een ASC knop hebben.
                             if (isset($_POST["sortcomp"])) {

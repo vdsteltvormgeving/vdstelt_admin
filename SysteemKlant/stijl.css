@@ -81,6 +81,7 @@ input[type="submit"]{
     color:white;
     bottom:10px;
     display: inline-block;
+    margin-top: 10px;
 }
 input[type="submit"]:active{
     border-bottom:4px rgb(250,88,27) solid;
@@ -323,6 +324,20 @@ ul li:hover ul {
     display: inline-block;
     text-decoration: none;
     color: rgb(247,141,35);
+}
+.succesmelding{
+    text-align: center;
+    color:white;
+    font-size: 14px;
+    padding:8px;
+    background-color: limegreen;
+    border: white solid 4px;
+    border-radius: 4px;
+    max-width: 400px;
+    margin:40px auto;
+    -webkit-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    -moz-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
 }
 .foutmelding{
     text-align: center;

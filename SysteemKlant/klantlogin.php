@@ -14,7 +14,7 @@
                 </div>
                 <div id="menu">
                     <?php
-                    include 'menu.php';                    
+                    include 'menu.php';
                     ?>
                 </div>
             </header>
@@ -32,6 +32,7 @@
                         <br><br>
                         <a href="#">wachtwoord vergeten</a>
                     </form>
+                </div>     
                 </div>
                 <?php                
                 session_start(); //start sessie
@@ -63,9 +64,7 @@
                                 $_SESSION['logged_in']=1;
                                 mysqli_close($link);
                                 include "link.php";
-                                date_default_timezone_set('CET');
-                                $datetime = date("d-m-Y H:i:s");  //function to get date and time
-                                $updatelogin=mysqli_stmt_prepare($link, "UPDATE User SET status='Online', laatste_inlog='$datetime' WHERE mail='$username'");
+                                $updatelogin=mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
                                 mysqli_stmt_execute($updatelogin);
                                 header("location: klantoverzicht.php");
                             }
@@ -76,9 +75,8 @@
                             }
                         }
                     }                        
-                }                                                        
+                }
                 ?>
-            </div>
             <footer>
                 <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>
             </footer>
