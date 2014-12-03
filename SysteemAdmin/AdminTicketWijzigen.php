@@ -49,11 +49,13 @@ if ($_SESSION["login"] != 1) {
 
                 <p>
                 <h1>Ticket wijzigen</h1>
-                <?php include "link.php";
-                    $customerIDarray = $_POST["CID"];
-                    foreach ($customerIDarray as $customer => $troep) {
-                        $customerID = $customer;
-                    }?>
+                <?php
+                include "link.php";
+                $customerIDarray = $_POST["CID"];
+                foreach ($customerIDarray as $customer => $troep) {
+                    $customerID = $customer;
+                }
+                ?>
                 <p>Klant: <?php
                     $query1 = mysqli_prepare($link, "SELECT username FROM User WHERE user_id=$customerID");
                     mysqli_stmt_execute($query1);
@@ -68,8 +70,6 @@ if ($_SESSION["login"] != 1) {
                         <option value="Category1">Category1</option>
                         <option value="Category2">Category2</option>
                         <option value="Category3">Category3</option>
-                        <option value="Category4">Category4</option>
-                        <option value="Category5">Category5</option>
                     </SELECT>
                 </form></p>
             <p>Beschrijving:  <?php
@@ -81,15 +81,15 @@ if ($_SESSION["login"] != 1) {
                 }
                 ?> </p>
 
-            <p> Categorie wijzigen:  <form METHOD="post" ACTION ="Ticketwijzigingen">
-                <SELECT NAME="Categorie wijzigen">
-                    <option value="Select Category">Categorie</option>
-                    <option value="Category1">Category1</option>
-                    <option value="Category2">Category2</option>
-                    <option value="Category3">Category3</option>
-                    <option value="Category4">Category4</option>
-                    <option value="Category5">Category5</option>
-                </SELECT></p>      <?php ?>
+            <p> Categorie wijzigen:  <form METHOD="post" ACTION ="AdminTicketWijzigen.php">
+                <SELECT NAME="categorie_wijzigen">
+                    <option value="Select Category">Select</option>
+                    <option value="website">Category1</option>
+                    <option value="cms">CMS</option>
+                    <option value="hosting">Hosting</option>
+                </SELECT>
+
+                </p>
 
                 <p>Ticket geschreven op: <?php
                     $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket WHERE user_ID=$customerID");
@@ -106,43 +106,26 @@ if ($_SESSION["login"] != 1) {
                     print($today);
                     ?>      </p>
                 <p>Uw reactie: <textarea>  </textarea> </p>
+                <input type="submit" name="sumbit changes" value="Wijzigingen doorvoeren">
+            </form>
+            <form method="POST" action="">
+                <input type="submit" name="back" value="Terug" >
+            </form>
+            <form method="POST" action="">
+                <input type="submit" name = "Close ticket" value="Ticket sluiten">
+            </form>
+            <form method="POST" action="">
 
-                <form method="POST" action="">
-                    <input type="submit" name="back" value="Terug" >
-                    <?php
-                    include "link.php";
-                    /*
-                      de code voor de submitknop: 'terug' komt hier te staan:
-                     */
-                    ?>
-                </form>
-                <form method="POST" action="">
-                    <input type="submit" name = "Close ticket" value="Ticket sluiten">
-                    <?php
-                    include "link.php";
-                    /*
-                      de code voor de submitknop: 'Ticket sluiten' komt hier te staan:
-                     */
-                    ?>
-                </form>
-                <form method="POST" action="">
-                    <input type="submit" name="sumbit changes" value="Wijzigingen doorvoeren">
-                    <?php
-                    include "link.php";
-                    /*
-                      de code voor de submitknop: 'Wijzigingen doorvoeren' komt hier te staan:
-                     */
-                    ?>
-                </form>
-                </p>
-        </div>
+            </form>
+        </p>
+    </div>
 
-        <div class='push'></div>
-        <div id='footer'>
-            <div id='footerleft'>Admin Systeem</div>
+    <div class='push'></div>
+    <div id='footer'>
+        <div id='footerleft'>Admin Systeem</div>
 
-            <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-        </div>
+        <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+    </div>
     </body>
     </html>
 
