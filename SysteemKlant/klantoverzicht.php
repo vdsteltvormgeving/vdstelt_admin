@@ -13,12 +13,13 @@
                     <img src="afbeeldingen/logo-bens.png" alt="Bens Development"/>
                 </div>
                 <div id="menu">
-                    <?php
-                    session_start();
+                    <?php                                        
                     include 'menu.php';
-                    include 'link.php';                    
+                    include 'link.php';
+                    session_start();                    
                     ?>
                 </div>
+            </header>
                 <div id="content">
                     <form method="POST" action="klantticketaanmaken.php">
                         <input type="submit" name="ticketmaken" value="Ticket aanmaken">
@@ -29,12 +30,21 @@
                     <form>
                         <input type="submit" name="factuuroverzicht" value="Factuur Overzicht">
                     </form>
-                    <form>
+                    <form method="POST" action="klantoverzicht.php">
                         <input type="submit" name="loguit" value="Uitloggen">
                     </form>
-                    <?php //print($_SESSION['username']."<br>".$_SESSION['password']) ?>
-                </div>
-            </header>            
+                    <?php
+                    if(isset($_POST["loguit"]))
+                    {
+                        $username=$_SESSION['username'];
+                        $password=$_SESSION['password'];                        
+                        $loguit=mysqli_prepare($link, "UPDATE User SET status='Offline' WHERE mail='$username'");
+                        mysqli_stmt_execute($loguit);                        
+                        session_destroy();
+                        header("location: klantlogin.php");
+                    }
+                    ?>
+                </div>                        
         </div>
     </body>
 </html>
