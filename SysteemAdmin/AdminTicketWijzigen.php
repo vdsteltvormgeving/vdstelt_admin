@@ -73,7 +73,7 @@ if ($_SESSION["login"] != 1) {
                     </SELECT>
                 </form></p>
             <p>Beschrijving:  <?php
-                $query2 = mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_ID = $customerID");
+                $query2 = mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_id = $customerID");
                 mysqli_execute($query2);
                 mysqli_stmt_bind_result($query2, $Text);
                 While (mysqli_stmt_fetch($query2)) {
@@ -92,7 +92,7 @@ if ($_SESSION["login"] != 1) {
                 </p>
 
                 <p>Ticket geschreven op: <?php
-                    $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket WHERE user_ID=$customerID");
+                    $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket WHERE user_id=$customerID");
                     mysqli_execute($query3);
                     mysqli_stmt_bind_result($query3, $creation_date);
                     while (mysqli_stmt_fetch($query3)) {
