@@ -44,8 +44,8 @@
                             $validCharNumber = strlen($validCharacters);
                             $result = "";
                             for ($i = 0; $i < $length; $i++) {
-                                $index = mt_rand(0, $validCharNumber - 1);
-                                $result .= $validCharacters[$index];
+                                $index = rand(0, $validCharNumber -1);
+                                $result = $validCharacters[$index];
                             }
                             return $result;
                         }
@@ -53,7 +53,7 @@
                         $random_password = makepassword(10);
 //echo $password_final = md5($random_password);
 //echo "update set pass ='$random_password' where email = '$email'"; exit;
-                        $final_result = mysqli_query($link, "UPDATE user SET password ='$random_password' WHERE email = '$email' ");
+                        $final_result = mysqli_query($link, "UPDATE user SET password ='$random_password' WHERE mail = '$email' ");
                         if ($final_result) {
                             echo "<p class='succesmelding'>Uw wachtwoord is:" . $random_password . "</p>";
                         }
