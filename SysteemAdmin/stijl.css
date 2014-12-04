@@ -276,7 +276,16 @@ a:visited{
     padding-top: 40px;
     text-align: center;
 }
-
+.adminsysteem{
+    display:inline-block; 
+    float:right; 
+    margin-right:20px; 
+    font-weight:bold; 
+    font-size:16px; 
+    color:white; 
+    line-height:20px; 
+    opacity:0.5;
+}
 input[type="submit"], input[type="button"]{
     color: #000;
     font: bold 14px Helvetica, Arial, sans-serif;
