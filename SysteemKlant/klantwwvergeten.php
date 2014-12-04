@@ -21,56 +21,51 @@
             <div id="content">
                 <h1>Wachtwoord vergeten</h1>
                 <form action="klantwwvergeten.php" method="POST">
-                        <label>E-mail:</label><br>
-                        <input type="text" name="email">
-                        <br>
-                        <input type="submit" name="wwaanvragen" value="wachtwoord aanvragen">
+                    <label>E-mail:</label><br>
+                    <input type="text" name="email">
+                    <br>
+                    <input type="submit" name="wwaanvragen" value="wachtwoord aanvragen">
                 </form>
-<?php
+                <?php
 // Sander van der Stelt
 
-include "link.php";
+                include "link.php";
 
-if(isset($_POST['wwaanvragen']))
-{
-$email = $_POST['email']; //gert@msn.nl
-$check1 = mysqli_query($link, "SELECT * FROM user WHERE mail = '$email' ");
-/*$check2 = mysqli_prepare($link, "SELECT * FROM user WHERE email = '$email' ");
-mysqli_stmt_execute($check2);*/
-$vind = mysqli_num_rows($check1);
-if($vind)
-{
-function makepassword($length)
-{
-$validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789";
-$validCharNumber = strlen($validCharacters);
-$resultaat ="";
-for ($i = 0; $i < $length; $i++) 
-{
-$index = mt_rand(0, $validCharNumber - 1);
-$resultaat .= $validCharacters[$index];
-}
-return $resultaat;
-}
-$random_password = makepassword(10);
+                if (isset($_POST['wwaanvragen'])) {
+                    $email = $_POST['email']; //Hier komt de waarde die ingevuld is door bezoeker
+                    $check1 = mysqli_query($link, "SELECT * FROM user WHERE mail = '$email' "); //Hier kijkt 
+                    /* $check2 = mysqli_prepare($link, "SELECT * FROM user WHERE email = '$email' ");
+                      mysqli_stmt_execute($check2); */
+                    $vind = mysqli_num_rows($check1);
+                    if ($vind) {
+                        echo '<br> '.$email . ' ,Hier moet hij nu de functie ingaan.';
+                        function makepassword($length) {
+                            $validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789";
+                            $validCharNumber = strlen($validCharacters);
+                            $result = "";
+                            for ($i = 0; $i < $length; $i++) {
+                                $index = mt_rand(0, $validCharNumber - 1);
+                                $result .= $validCharacters[$index];
+                            }
+                            return $result;
+                        }
+
+                        $random_password = makepassword(10);
 //echo $password_final = md5($random_password);
 //echo "update set pass ='$random_password' where email = '$email'"; exit;
-$final_resultaat = mysqli_query("UPDATE user SET password ='$random_password' WHERE email = '$email' ");
-if($final_resultaat)
-{
-echo "<p class='succesmelding'>Uw wachtwoord is:".$random_password."</p>";
-}
-}
-else
-{
-echo  "<p class='foutmelding'>Uw e-mail is niet bekend.</p>";
-}
-}
-?>
+                        $final_result = mysqli_query($link, "UPDATE user SET password ='$random_password' WHERE email = '$email' ");
+                        if ($final_result) {
+                            echo "<p class='succesmelding'>Uw wachtwoord is:" . $random_password . "</p>";
+                        }
+                    } else {
+                        echo "<p class='foutmelding'>Uw e-mail is niet bekend.</p>";
+                    }
+                }
+                ?>
             </div>
-                     </div>
-            <footer>
-                <?php include 'footer.php';?>
-            </footer>
+        </div>
+        <footer>
+                <?php include 'footer.php'; ?>
+        </footer>
     </body>
 </html>
