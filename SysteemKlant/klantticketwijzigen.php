@@ -25,8 +25,16 @@
                 <h1>Ticket wijzigen</h1>
                 <?php
                 session_start();
+                
                 $username=$_SESSION['username'];
                 $password=$_SESSION['password'];
+                
+                $ticketidarray=$_POST["ticketid"];
+                foreach($ticketidarray as $ticket => $notused)
+                {
+                    $ticketid=$ticket;
+                }
+                
                 include "link.php";
                 $loginQuery=mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
                 mysqli_stmt_execute($loginQuery); 
@@ -39,15 +47,9 @@
                 
                 date_default_timezone_set('CET');
                 $datetime = date("Y-m-d H:i:s");  //function to get date and time
-                
-                $ticketidarray=$_POST["ticketid"];
-                foreach($ticketidarray as $ticket => $notused)
-                {
-                    $ticketid=$ticket;
-                }
-                
+                                
                 include "link.php";
-                $GetDescription=mysqli_prepare($link, "SELECT description, category FROM Ticket WHERE ticket_id=$ticket");
+                $GetDescription=mysqli_prepare($link, "SELECT description, category FROM Ticket WHERE ticket_id=$ticketid");
                 mysqli_stmt_execute($GetDescription);
                 mysqli_stmt_bind_result($GetDescription, $description, $category);
                 while(mysqli_stmt_fetch($GetDescription))
@@ -95,24 +97,23 @@
                 </form>
                         
                 <!-- text field and button to send text field and cancel button to go back -->            
-                <?php
-                include"link.php";                
+                <?php                                
                 if (isset($_POST["verzenden"])) 
                 {
                     $description = $_POST["beschrijving"];
                     $category = $_POST["categorie"];
                     $creation_date=$datetime;
-                    if ($description == "" || $category == "") 
+                    if ($description == "") 
                     {
                         echo "<p class='foutmelding'>Er is geen categorie en/of beschrijving gegeven.</p>";
                     } 
                     else 
-                    {                            
-                        mysqli_close($link);                        
+                    {                                                
                         include"link.php";
-                        $insert = mysqli_prepare($link, "UPDATE ticket SET category='$category', last_time_date=NOW(), description='$description', completed_status=0, archived_status=0 WHERE ticket_id=$ticketid");
+                        $insert = mysqli_prepare($link, "UPDATE ticket SET last_time_date=NOW(), description='$description' WHERE ticket_id=$ticketid");
                         mysqli_stmt_execute($insert);
                         mysqli_close($link);
+                        
                         echo "<p class='succesmelding'>Uw ticket is verzonden.</p>";
                         
                         /*Deze code werkt niet op de local server.
