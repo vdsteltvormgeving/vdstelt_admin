@@ -24,11 +24,12 @@
                 </div>
             </div>
             <div id="content">
+                <!-- Dit staat in een comment omdat het nu niet werkt!
                 <div id="domein">
                     <h1>Domein check</h1>
                     <p><input type="text" value="www.uwdomeinnaam.nl" name="domein">
                         <input type="submit" value="check"></p>
-                </div>
+                </div> -->
                 <?php
                 ?>
                 <h1>Paketten</h1>
