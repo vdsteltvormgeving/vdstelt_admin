@@ -23,10 +23,10 @@
                 ?>
             </div>
             <!--EINDE CONTENT-->
+                    </div>
             <footer>
                 <?php include 'footer.php';?>
             </footer>
-        </div>
     </body>
 </html>
 

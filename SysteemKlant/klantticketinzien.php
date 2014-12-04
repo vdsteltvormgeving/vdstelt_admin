@@ -1,4 +1,6 @@
-<html>
+<!DOCTYPE html>
+<!-- Joshua van Gelder, Jeffrey Hamberg, Sander van der Stelt -->
+<html>    
     <head>
         <meta charset="UTF-8">
         <title>Bens Developement</title>
@@ -13,7 +15,7 @@
                 <!--BEGIN MENU-->
                 <div id="menu">
                     <?php
-                    include 'menu.php';
+                    include 'menubackend.php';
                     ?>
                 </div>
                 <!--EINDE MENU-->
@@ -21,77 +23,72 @@
             <!--BEGIN CONTENT-->
             <div id="content">
                 <h1>Ticket inzien</h1>
-                <?php include "link.php" ?>
-                <p>
-                    Klant: <?php
-                    $TicketIDarray = $_POST["TicketID"];
-                    foreach ($TicketIDarray as $Ticket => $notused) 
-                    {
-                        $TicketID = $Ticket;
-                    }
-                    $query1 = mysqli_prepare($link, "SELECT C.first_name, C.last_name FROM Customer C JOIN User U ON T.user_ID = U.user_ID JOIN Ticket T ON U.user_ID=T.customer_ID WHERE T.ticket_ID=$ticketID");
-                    mysqli_stmt_execute($query1);
-                    mysqli_stmt_bind_result($query1, $fname, $lname);
-                    while (mysqli_stmt_fetch($query1)) 
-                    {
-                        print("$fname $lname");                        
-                    }
-                    ?>
-                </p>
-                <p>
-                    Beschrijving: <?php
-                    $query2 = mysqli_prepare($link, "SELECT description FROM Ticket WHERE ticket_ID=$TicketID");
-                    mysqli_stmt_execute($query2);
-                    mysqli_stmt_bind_result($query2, $text);
-                    while (mysqli_stmt_fetch($query2)) 
-                    {
-                        print($text);
-                    }
-                    ?>
-                </p>
-                <p> Categorie: </p>
-                <form method="post" action ="Category">
-                    <select name="Categorie">
-                        <option value="">Categorie</option>
-                        <option value="Webapplication">Webapplication</option>
-                        <option value="Internetsite">Internetsite</option>
-                        <option value="Hosting">Hosting</option>
-                    </select>
+                <?php
+                session_start();
+                $username=$_SESSION['username'];
+                $password=$_SESSION['password'];
+                include "link.php";
+                $loginQuery=mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
+                mysqli_stmt_execute($loginQuery); 
+                mysqli_stmt_bind_result($loginQuery, $Login);
+                while (mysqli_stmt_fetch($loginQuery))
+                {
+                    $Login;
+                }
+                mysqli_close($link);                
+                
+                include "link.php";
+                $stat = mysqli_prepare($link, "SELECT C.customer_id, C.company_name, C.street, C.house_number, c.postal_code,c.city, C.phone_number, C.fax_number, C.emailadress, C.btw_number FROM customer C JOIN Invoice I ON I.customer_id=C.customer_id JOIN User U ON U.user_id=I.user_id WHERE U.user_id = $Login");
+                mysqli_stmt_execute($stat);
+                mysqli_stmt_bind_result($stat, $customerid, $comnam, $street, $housenr, $postalcode, $city, $phonenr, $faxnr, $mail, $btwnr);
+                while(mysqli_stmt_fetch($stat))
+                {
+                    
+                }
+                mysqli_close($link);                                
+                $ticketidarray=$_POST["TicketID"];
+                foreach($ticketidarray as $ticket => $notused)
+                {
+                    $ticketid=$ticket;
+                }
+                ?>
+                <form method="POST" action="klantticketaanmaken.php">
+                    <p> Naam: <?php   include"link.php";                     
+                        $stmt1 = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'"); 
+                        mysqli_stmt_execute($stmt1);
+                        mysqli_stmt_bind_result($stmt1, $fname, $lname);
+                        while (mysqli_stmt_fetch($stmt1)) 
+                        {
+                            echo "$fname $lname";
+                        }
+                        ?>
+                        <br>
+                        E-mail: <?php echo $username; ?> 
+                    </p>                                                                                                
+                    <p>Beschrijving:<br>
+                        <?php
+                        include "link.php";
+                        $query=mysqli_prepare($link, "SELECT description FROM Ticket WHERE ticket_id=$ticketid");
+                        mysqli_stmt_execute($query);
+                        mysqli_stmt_bind_result($query, $description);
+                        while(mysqli_stmt_fetch($query))
+                        {
+                            $descriptions=$description;
+                            echo $descriptions;                                           
+                        }                        
+                        mysqli_close($link);                        
+                        ?>                        
+                    </p>                    
                 </form>
-                <p>
-                    Ticket geschreven op:
-                    <?php
-                    $query3 = mysqli_prepare($link, "SELECT creation_date FROM ticket WHERE ticket_ID=$TicketID");
-                    mysqli_execute($query3);
-                    mysqli_stmt_bind_result($query3, $cd);
-                    while (mysqli_stmt_fetch($query3)) 
-                    {
-                        print ($cd);
-                    }
-                    ?>
-                </p>
-                <p>Datum:
-                    <?php
-                    date_default_timezone_set('CET');
-                    $today = date("F j, Y");
-                    print($today);
-                    ?>
-                </p>
-                <p>Uw reactie: <br>
-                    <textarea name="Reactie"></textarea>
-                </p>
-                <form method="POST" action="AdminTicketSelecteren.php">
-                    <input type="submit" value="Terug">
-                </form>
-                <input type="submit" name="edit" value="Ticket wijzigen">
-                <input type="submit" name="delete" value="Ticket Verwijderen">
-                <input type="submit" value="Beantwoorden">
+                <form method="POST" action="klantticketoverzicht.php">
+                    <input type="submit" name="Back" value="Terug">
+                </form><!-- text field and button to send text field and cancel button to go back -->                            
             </div>
             <!--EINDE CONTENT-->
+                    </div>
             <footer>
-                <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>
+                <?php include 'footer.php';?>
             </footer>
-        </div>
     </body>
 </html>
 

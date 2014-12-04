@@ -81,6 +81,7 @@ input[type="submit"]{
     color:white;
     bottom:10px;
     display: inline-block;
+    margin-top: 10px;
 }
 input[type="submit"]:active{
     border-bottom:4px rgb(250,88,27) solid;
@@ -88,9 +89,9 @@ input[type="submit"]:active{
     position: relative;
 }
 input[type="submit"]:focus {outline:0;}
-input[type="text"]{
+input[type="text"], input[type="password"]{
     padding:12px;
-    min-width: 400px;
+    min-width: 370px;
     top:2px;
     position: relative;
     text-align: left;
@@ -128,6 +129,7 @@ ul {
     margin: 0;
     padding: 0 0 50px 0;
     list-style: none;
+    z-index: 10;
     /* -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);*/
@@ -321,6 +323,36 @@ ul li:hover ul {
 .login a {
     float:right;
     display: inline-block;
+    text-decoration: none;
+    color: rgb(247,141,35);
+}
+.succesmelding{
+    text-align: center;
+    color:white;
+    font-size: 14px;
+    padding:8px;
+    background-color: limegreen;
+    border: white solid 4px;
+    border-radius: 4px;
+    max-width: 400px;
+    margin:40px auto;
+    -webkit-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    -moz-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+}
+.foutmelding{
+    text-align: center;
+    color:white;
+    font-size: 14px;
+    padding:8px;
+    background-color: red;
+    border: white solid 4px;
+    border-radius: 4px;
+    max-width: 400px;
+    margin:40px auto;
+    -webkit-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    -moz-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
 }
 .table_hdr{
     margin-bottom: 0px;

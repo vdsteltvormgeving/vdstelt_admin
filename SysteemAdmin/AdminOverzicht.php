@@ -1,39 +1,44 @@
-
-<html>
+<!-- Jeffrey Hamberg-->
+<?php
+session_start();
+if ($_SESSION["login"] != 1) {
+    echo 'YOU DONT BELONG HERE';
+    session_unset();
+    session_destroy();
+} else {
+    ?>
     <head>
         <meta charset="UTF-8">
-        <title>Bens Developement</title>
+        <title>Admin Systeem</title>
         <link href="stijl.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div id="container">
-            <header>
-                <div id="logo">
-                    <img src="afbeeldingen/logo-bens.png" alt="Bens Development"/>
-                </div>
-                <!--BEGIN MENU-->
-                <div id="menu">
-                    <?php
-                    include 'menu.php';
-                    ?>
-                </div>
-                <!--EINDE MENU-->
-            </header>
-            <!--BEGIN CONTENT-->
-            <div id="content">
-                <form method="POST" action="AdminKlantOverzicht.php">
-                    <input type="submit" name="Klanten Overzicht" value="Klanten Overzicht">
-                </form>
-                <form method="POST" action="AdminTicketOverzicht.php">
-                    <input type="submit" name="Ticket Overzicht" value="Ticket Overzicht">
-                </form>
+        <div id='bovenbalk'>
+            <div id='logo'>
+                <img src="img/logo-bens.png" alt=""/>
             </div>
-            <!--EINDE CONTENT-->
-            <footer>
-                <p class="copyright">Copyright © 2014 <b>Bens Development</b>, All Right Reserved.</p>
-            </footer>
-        </div>
+                <?php                                        
+                    include 'menu.php';                
+                ?>
+
+        <div id='content'>
+
+            <p>
+            <form method="POST" action="AdminKlantOverzicht.php">
+                <input type="submit" name="Klanten Overzicht" value="Klanten Overzicht">
+            </form>
+            <form method="POST" action="AdminTicketOverzicht.php">
+                <input type="submit" name="Ticket Overzicht" value="Ticket Overzicht">
+            </form>
+        </p>
+    </div>
+
+    <div class='push'></div>
+    <div id='footer'>
+        <div id='footerleft'>Admin Systeem</div>
+
+        <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+    </div>
     </body>
-</html>
-
-
+    </html>
+<?php } ?>
