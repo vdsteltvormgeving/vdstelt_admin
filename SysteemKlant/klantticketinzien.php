@@ -46,7 +46,7 @@
                     
                 }
                 mysqli_close($link);                                
-                $ticketidarray=$_POST["TicketID"];
+                $ticketidarray=$_POST["ticketid"];
                 foreach($ticketidarray as $ticket => $notused)
                 {
                     $ticketid=$ticket;
