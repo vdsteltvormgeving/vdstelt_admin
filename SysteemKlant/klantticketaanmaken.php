@@ -24,7 +24,7 @@
             <div id="content">
                 <h1>Ticket aanmaken</h1>
                 <?php
-                session_start();
+                session_start();                                                              
                 $username=$_SESSION['username'];
                 $password=$_SESSION['password'];
                 include "link.php";
@@ -121,7 +121,7 @@
                         $message="Beste, <br><br> er is een niewe ticket aangemaakt met category:$category";
                         mail($to,$subject,$message,$headers);*/
                     }                                        
-                }
+                }                
                 ?>
             </div>
             <!--EINDE CONTENT-->

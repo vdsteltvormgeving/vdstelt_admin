@@ -33,37 +33,37 @@
                         <a href="klantwwvergeten.php">wachtwoord vergeten</a>
                     </form>
                 </div>     
-                <?php                
+                <?php
                 session_start(); //start sessie
                 include "link.php"; //Database connectie
-                if (isset($_POST["login"])) 
+                if (isset($_POST["login"]))
                 {
                     $username = $_POST["username"];
                     $password = $_POST["password"];
-                    $login = $_POST["login"];                    
-                    if (empty($username) || empty($password) || empty($username) && empty($password)) 
+                    $login    = $_POST["login"];
+                    if (empty($username) || empty($password) || empty($username) && empty($password))
                     {
                         $error = "<p class='foutmelding'>Uw Gebruikersnaam en/of Wachtwoord is niet correct.</p>";
-                        echo $error;                    
-                    }                        
-                    else 
+                        echo $error;
+                    }
+                    else
                     {
-                        if(isset($login)) 
-                        { 
+                        if (isset($login))
+                        {
                             $username = $_POST["username"];
                             $password = $_POST["password"];
-                            $result=  mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
-                            $login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
-                            mysqli_stmt_execute($login1);
-                            $rows = mysqli_num_rows($result);
-                            if($rows==1)
+                            //$login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
+                            //mysqli_stmt_execute($login1);
+                            $result   = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
+                            $rows     = mysqli_num_rows($result);
+                            if ($rows == 1)
                             {
-                                $_SESSION['username']=$_POST['username'];
-                                $_SESSION['password']=$_POST['password'];
-                                $_SESSION['logged_in']=1;
+                                $_SESSION['username'] = $_POST['username'];
+                                $_SESSION['password'] = $_POST['password'];
+                                $_SESSION['login']    = 1;
                                 mysqli_close($link);
                                 include "link.php";
-                                $updatelogin=mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
+                                $updatelogin          = mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
                                 mysqli_stmt_execute($updatelogin);
                                 header("location: klantoverzicht.php");
                             }
@@ -73,14 +73,14 @@
                                 echo $error;
                             }
                         }
-                    }                        
+                    }
                 }
                 ?>
             </div>
-                     </div>
-            <footer>
-                <?php include 'footer.php';?>
-            </footer>
+        </div>
+        <footer>
+            <?php include 'footer.php'; ?>
+        </footer>
     </body>
 </html>
 

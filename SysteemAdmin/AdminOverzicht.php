@@ -17,28 +17,28 @@ if ($_SESSION["login"] != 1) {
             <div id='logo'>
                 <img src="img/logo-bens.png" alt=""/>
             </div>
-                <?php                                        
-                    include 'menu.php';                
-                ?>
+            <?php
+            include 'menu.php';
+            ?>
 
-        <div id='content'>
+            <div id='content'>
 
-            <p>
-            <form method="POST" action="AdminKlantOverzicht.php">
-                <input type="submit" name="Klanten Overzicht" value="Klanten Overzicht">
-            </form>
-            <form method="POST" action="AdminTicketOverzicht.php">
-                <input type="submit" name="Ticket Overzicht" value="Ticket Overzicht">
-            </form>
-        </p>
-    </div>
+                <p>
+                <form method="POST" action="AdminKlantOverzicht.php">
+                    <input type="submit" name="Klanten Overzicht" value="Klanten Overzicht">
+                </form>
+                <form method="POST" action="AdminTicketOverzicht.php">
+                    <input type="submit" name="Ticket Overzicht" value="Ticket Overzicht">
+                </form>
+                </p>
+            </div>
 
-    <div class='push'></div>
-    <div id='footer'>
-        <div id='footerleft'>Admin Systeem</div>
+            <div class='push'></div>
+            <div id='footer'>
+                <div id='footerleft'>Admin Systeem</div>
 
-        <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-    </div>
+                <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+            </div>
     </body>
     </html>
 <?php } ?>
