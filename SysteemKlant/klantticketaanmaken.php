@@ -64,8 +64,8 @@
                     Naam: <?php echo $fname . " " . $lname; ?> 
                 </p>                                                            
                 <form action="Upload.php" method="post" enctype="multipart/form-data">
-                 Selecteer een foto om te uploaden:
-                 <input type="file" name="fileToUpload" id="fileToUpload">
+                    Selecteer een foto om te uploaden:<br><br>
+                 <input type="file" name="fileToUpload" id="fileToUpload"><br>
                 <input type="submit" value="Foto uploaden" name="submit">
                 </form>                  
                 <p> 
