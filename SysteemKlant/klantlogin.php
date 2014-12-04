@@ -30,7 +30,7 @@
                         <br>
                         <input type="submit" name="login" value="login">
                         <br><br>
-                        <a href="#">wachtwoord vergeten</a>
+                        <a href="klantwwvergeten.php">wachtwoord vergeten</a>
                     </form>
                 </div>     
                 <?php                
