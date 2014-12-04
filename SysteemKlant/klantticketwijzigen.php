@@ -90,7 +90,7 @@
                     </p>                    
                     <textarea name="beschrijving"><?php echo "$description" ?></textarea>
                     <br>
-                    <input type="submit" name="verzenden" value="Verzenden">                                       
+                    <input type="submit" name="verzenden" value="Verzenden">                    
                 </form>
                 <form method="POST" action="klantoverzicht.php">
                     <input type="submit" name="annuleren" value="Annuleren"> 
@@ -109,7 +109,7 @@
                     } 
                     else 
                     {                                                
-                        include"link.php";
+                        include"link.php";                        
                         $insert = mysqli_prepare($link, "UPDATE ticket SET last_time_date=NOW(), description='$description' WHERE ticket_id=$ticketid");
                         mysqli_stmt_execute($insert);
                         mysqli_close($link);
