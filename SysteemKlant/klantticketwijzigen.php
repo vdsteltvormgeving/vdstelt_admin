@@ -28,47 +28,67 @@
                 
                 $username=$_SESSION['username'];
                 $password=$_SESSION['password'];
-                
-                $ticketidarray=$_POST["ticketid"];
-                foreach($ticketidarray as $ticket => $notused)
+                if(isset($_POST["verzenden"]))
                 {
-                    $ticketid=$ticket;
+                    $tidarray=$_POST['tid'];
+                        foreach($tidarray as $t => $notused)
+                        {
+                            $ticketid=$t;
+                        }
+                        echo $ticketid;
                 }
-                
-                include "link.php";
-                $loginQuery=mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
-                mysqli_stmt_execute($loginQuery); 
-                mysqli_stmt_bind_result($loginQuery, $userid);
-                while (mysqli_stmt_fetch($loginQuery))
+                else
                 {
-                    $userid;
-                }
-                mysqli_close($link);
+                  $ticketidarray=$_POST["ticketid"];
+                    foreach($ticketidarray as $ticket => $notused)
+                    {
+                        $ticketid=$ticket;
+                    }
+                  
+                }                    
+                    include "link.php";
+                    $loginQuery=mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
+                    mysqli_stmt_execute($loginQuery); 
+                    mysqli_stmt_bind_result($loginQuery, $userid);
+                    while (mysqli_stmt_fetch($loginQuery))
+                    {
+                        $userid;
+                    }
+                    mysqli_close($link);
                 
-                date_default_timezone_set('CET');
-                $datetime = date("Y-m-d H:i:s");  //function to get date and time
+                    date_default_timezone_set('CET');
+                    $datetime = date("Y-m-d H:i:s");  //function to get date and time
                                 
-                include "link.php";
-                $GetDescription=mysqli_prepare($link, "SELECT description, category FROM Ticket WHERE ticket_id=$ticketid");
-                mysqli_stmt_execute($GetDescription);
-                mysqli_stmt_bind_result($GetDescription, $description, $category);
-                while(mysqli_stmt_fetch($GetDescription))
-                {
-                    $description;
-                    $category;
-                }
-                mysqli_close($link);                
+                    include "link.php";
+                    $GetDescription=mysqli_prepare($link, "SELECT description, category FROM Ticket WHERE ticket_id=$ticketid");
+                    mysqli_stmt_execute($GetDescription);
+                    mysqli_stmt_bind_result($GetDescription, $description, $category);
+                    while(mysqli_stmt_fetch($GetDescription))
+                    {
+                        $description;
+                        $category;
+                    }
+                    mysqli_close($link);
                 
-                include "link.php";
-                $names = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");                
-                mysqli_stmt_execute($names);
-                mysqli_stmt_bind_result($names, $fname, $lname);
-                while(mysqli_stmt_fetch($names))
-                {
-                    $fname; 
-                    $lname;
-                }
+                    include "link.php";
+                    $id=mysqli_prepare($link, "SELECT ticket_id FROM Ticket WHERE ticket_id=$ticketid");
+                    mysqli_stmt_execute($id);
+                    mysqli_stmt_bind_result($id, $tid);
+                    while(mysqli_stmt_fetch($id))
+                    {
+                        $tid;
+                    }
+                    mysqli_close($link);
                 
+                    include "link.php";
+                    $names = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");                
+                    mysqli_stmt_execute($names);
+                    mysqli_stmt_bind_result($names, $fname, $lname);
+                    while(mysqli_stmt_fetch($names))
+                    {
+                        $fname; 
+                        $lname;
+                    }                
                 ?>                
                 <p> 
                     Naam: <?php echo $fname . " " . $lname; ?> 
@@ -90,6 +110,7 @@
                     </p>                    
                     <textarea name="beschrijving"><?php echo "$description" ?></textarea>
                     <br>
+                    <input type="hidden" <?php echo 'name="tid['.$tid.']"' ?>>
                     <input type="submit" name="verzenden" value="Verzenden">                    
                 </form>
                 <form method="POST" action="klantoverzicht.php">
@@ -115,6 +136,7 @@
                         mysqli_close($link);
                         
                         echo "<p class='succesmelding'>Uw ticket is verzonden.</p>";
+                        header("location: klantticketinzien.php");
                         
                         /*Deze code werkt niet op de local server.
                         //default headers
