@@ -28,7 +28,7 @@ echo ("
                 <a href='AdminTicketOverzicht.php'>Tickets overzicht</a>
             </div>
             <div id='module'>
-                <a href='#'>Facturen</a>
+                <a href='#'>Facturen overzicht</a>
             </div>
             </div>");
 ?>
