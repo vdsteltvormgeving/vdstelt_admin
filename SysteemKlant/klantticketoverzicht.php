@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Joshua van Gelder, Jeffrey Hamberg, Sander van der Stelt -->
+<!-- Joshua van Gelder, Jeffrey Hamberg, Sander van der Stelt, Bart Holsappel -->
 <html>
     <head>
         <meta charset="UTF-8">
