@@ -113,11 +113,11 @@
                                     {
                                         if ($completed == 1) 
                                         {
-                                            $completed = "Open";
+                                            $completed = "Gesloten";
                                         } 
                                         else 
                                         {
-                                            $completed = "Gesloten";
+                                            $completed = "Open";
                                         }
                                         echo "<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form method='POST' action='klantticketwijzigen.php'><input type='submit' name='ticketid[$ticketid]' value='Wijzigen'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='ticketid[$ticketid]' value='Bekijken'></form></td></tr>";
                                     }
@@ -131,11 +131,11 @@
                                     {
                                         if ($completed == 1) 
                                         {
-                                            $completed = "Open";
+                                            $completed = "Gesloten";
                                         } 
                                         else 
                                         {
-                                            $completed = "Gesloten";
+                                            $completed = "Open";
                                         }
                                         echo "<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form method='POST' action='klantticketwijzigen.php'><input type='submit' name='ticketid[$ticketid]' value='Wijzigen'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='ticketid[$ticketid]' value='Bekijken'></form></td></tr>";
                                     }
@@ -149,11 +149,11 @@
                                     {
                                         if ($completed == 1) 
                                         {
-                                            $completed = "Open";
+                                            $completed = "Gesloten";
                                         } 
                                         else 
                                         {
-                                            $completed = "Gesloten";
+                                            $completed = "Open";
                                         }
                                         echo "<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form method='POST' action='klantticketwijzigen.php'><input type='submit' name='ticketid[$ticketid]' value='Wijzigen'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='ticketid[$ticketid]' value='Bekijken'></form></td></tr>";
                                     }
@@ -167,11 +167,11 @@
                                     {
                                         if ($completed == 1) 
                                         {
-                                            $completed = "Open";
+                                            $completed = "Gesloten";
                                         } 
                                         else 
                                         {
-                                            $completed = "Gesloten";
+                                            $completed = "Open";
                                         }
                                         echo "<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form method='POST' action='klantticketwijzigen.php'><input type='submit' name='ticketid[$ticketid]' value='Wijzigen'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='ticketid[$ticketid]' value='Bekijken'></form></td></tr>";
                                     }
@@ -185,11 +185,11 @@
                                     {
                                         if ($completed == 1) 
                                         {
-                                            $completed = "Open";
+                                            $completed = "Gesloten";
                                         } 
                                         else 
                                         {
-                                            $completed = "Gesloten";
+                                            $completed = "Open";
                                         }
                                         echo "<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form method='POST' action='klantticketwijzigen.php'><input type='submit' name='ticketid[$ticketid]' value='Wijzigen'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='ticketid[$ticketid]' value='Bekijken'></form></td></tr>";
                                     }
@@ -203,11 +203,11 @@
                                     {
                                         if ($completed == 1) 
                                         {
-                                            $completed = "Open";
+                                            $completed = "Gesloten";
                                         } 
                                         else 
                                         {
-                                            $completed = "Gesloten";
+                                            $completed = "Open";
                                         }
                                         echo "<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form method='POST' action='klantticketwijzigen.php'><input type='submit' name='ticketid[$ticketid]' value='Wijzigen'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name='ticketid[$ticketid]' value='Bekijken'></form></td></tr>";
                                     }
@@ -221,11 +221,11 @@
                                     {
                                         if ($completed == 1) 
                                         {
-                                            $completed = "Open";
+                                            $completed = "Gesloten";
                                         } 
                                         else 
                                         {
-                                            $completed = "Gesloten";
+                                            $completed = "Open";
                                         }
                                         echo "<tr><td>$category</td><td>$creation</td><td>$completed</td><td><form method='POST' action='klantticketwijzigen.php'><input type='submit' name='ticketid[$ticketid]' value='Wijzigen'></form></td><td><form method='POST' action=klantticketinzien.php><input type='submit' name=ticketid[$ticketid] value='Bekijken'></form></td></tr>";
                                     }
