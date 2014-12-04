@@ -63,9 +63,11 @@
                 <p> 
                     Naam: <?php echo $fname . " " . $lname; ?> 
                 </p>                                                            
-                <!--<form method="POST" action="">
-                    <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
-                </form> -->                  
+                <form action="Upload.php" method="post" enctype="multipart/form-data">
+                 Selecteer een foto om te uploaden:
+                 <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Foto uploaden" name="submit">
+                </form>                  
                 <p> 
                     Datum: <?php echo $datetime; mysqli_close($link); ?> 
                 </p>                
