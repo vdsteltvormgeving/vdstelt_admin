@@ -3,7 +3,7 @@
 session_start();
 if ($_SESSION["login"] != 1)
 {
-    echo 'YOU DONT BELONG HERE';
+    echo 'U moet ingelogd zijn om deze pagina te bekijken.';
     session_unset();
     session_destroy();
 }
