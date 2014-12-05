@@ -24,7 +24,7 @@
             <div id="content">
                 <h1>Ticket aanmaken</h1>
                 <?php
-                session_start();
+                session_start();                                                              
                 $username=$_SESSION['username'];
                 $password=$_SESSION['password'];
                 include "link.php";
@@ -63,9 +63,11 @@
                 <p> 
                     Naam: <?php echo $fname . " " . $lname; ?> 
                 </p>                                                            
-                <!--<form method="POST" action="">
-                    <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
-                </form> -->                  
+                <form action="Upload.php" method="post" enctype="multipart/form-data">
+                    Selecteer een foto om te uploaden:<br><br>
+                 <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                <input type="submit" value="Foto uploaden" name="submit">
+                </form>                  
                 <p> 
                     Datum: <?php echo $datetime; mysqli_close($link); ?> 
                 </p>                
@@ -119,7 +121,7 @@
                         $message="Beste, <br><br> er is een niewe ticket aangemaakt met category:$category";
                         mail($to,$subject,$message,$headers);*/
                     }                                        
-                }
+                }                
                 ?>
             </div>
             <!--EINDE CONTENT-->
