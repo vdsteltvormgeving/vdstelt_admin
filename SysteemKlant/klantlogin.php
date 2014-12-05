@@ -40,7 +40,7 @@
                 {
                     $username = $_POST["username"];
                     $password = $_POST["password"];
-                    $login    = $_POST["login"];
+                    $login = $_POST["login"];
                     if (empty($username) || empty($password) || empty($username) && empty($password))
                     {
                         $error = "<p class='foutmelding'>Uw Gebruikersnaam en/of Wachtwoord is niet correct.</p>";
@@ -54,16 +54,16 @@
                             $password = $_POST["password"];
                             //$login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
                             //mysqli_stmt_execute($login1);
-                            $result   = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
-                            $rows     = mysqli_num_rows($result);
+                            $result = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
+                            $rows = mysqli_num_rows($result);
                             if ($rows == 1)
                             {
                                 $_SESSION['username'] = $_POST['username'];
                                 $_SESSION['password'] = $_POST['password'];
-                                $_SESSION['login']    = 1;
+                                $_SESSION['login'] = 1;
                                 mysqli_close($link);
                                 include "link.php";
-                                $updatelogin          = mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
+                                $updatelogin = mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
                                 mysqli_stmt_execute($updatelogin);
                                 header("location: klantoverzicht.php");
                             }

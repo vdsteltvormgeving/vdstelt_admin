@@ -13,12 +13,13 @@ echo ("<div id='gebruiker'>
                     </li>
                 </ul>
             </div>");
-if (isset($_POST["loguit"])) {
+if (isset($_POST["loguit"]))
+{
     $username = $_SESSION['username'];
     $password = $_SESSION['password'];
     $loguit = mysqli_prepare($link, "UPDATE User SET status='Offline' WHERE mail='$username'");
-    mysqli_stmt_execute($loguit);
-    session_destroy();
+    mysqli_stmt_execute($loguit);   
+    session_abort();
     header("location: klantlogin.php");
 }
 echo ("
