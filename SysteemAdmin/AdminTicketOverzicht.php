@@ -202,7 +202,8 @@ if ($_SESSION["login"] != 1) {
                 </div>
 
                 <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
-                <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">                        
+                <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
+                <input type="submit" name="Beantwoorden" Value="Beantwoorden" formaction="AdminTicketBeantwoorden">
 
                 <br><br><br>
                 <!--
