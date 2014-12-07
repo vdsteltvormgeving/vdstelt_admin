@@ -32,6 +32,7 @@ else
                     <?php
                     if (isset($_POST["submit"]))
                     {
+                        $ticket_id=$_POST["ticketid"];
                         include "link.php";
                         $description   = $_POST["beschrijving"];
                         $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=1");                        
@@ -91,7 +92,7 @@ else
                     </form>
                     <form method="POST" action='AdminTicketOverzicht.php'>
                         <input type='submit' name='terug' value='terug'>
-                        <input type='hidden' name='' value=''>
+                        <input type='hidden' name="" value="">
                     </form>
                 </div>
             </div>
