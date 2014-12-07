@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<!--Joshua van Gelder, Jeffrey Hamberg-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1)
@@ -9,8 +11,7 @@ if ($_SESSION["login"] != 1)
 else
 {
     ?>
-    <html>
-        <!--Joshua van Gelder, Jeffrey Hamberg-->
+    <html>       
         <head>
             <meta charset="UTF-8">
             <title>Admin Systeem</title>
@@ -54,9 +55,12 @@ else
                         echo "</label><br><label>Customer ID:$CID</label><br><label>Description:<br> $desc  $creation</label><br><label>Reactions:<br>$text   $time";
                     }
                     ?>
-                    <form action='AdminTicketOverzicht.php'>
+                    <form method="POST" action='AdminTicketOverzicht.php'>
                         <input type='submit' name='terug' value='terug'>
                         <input type='hidden' name='' value=''>
+                    </form>
+                    <form>
+                        
                     </form>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel -->
 <html>
     <head>

@@ -1,4 +1,5 @@
-<!-- Jeffrey Hamberg-->
+<!DOCTYPE html>
+<!-- Jeffrey Hamberg, Joshua van Gelder-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1)

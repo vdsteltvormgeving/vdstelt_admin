@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Joshua van Gelder, Jeffrey Hamberg-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1)
@@ -32,8 +33,7 @@ else
         }
     }
     ?>
-    <html>
-        <!-- Joshua van Gelder, Jeffrey Hamberg-->
+    <html>       
         <head>
             <meta charset="UTF-8">
             <title>Admin Systeem</title>
