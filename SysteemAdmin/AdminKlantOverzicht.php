@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel -->
+<?php session_start(); //start sessie ?>
 <html>
     <head>
         <meta charset="UTF-8">

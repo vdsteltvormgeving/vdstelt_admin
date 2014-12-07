@@ -56,7 +56,7 @@ else
                     }
                     $stmt2 = mysqli_prepare($link, "SELECT time, text, U.mail FROM reaction R JOIN User U ON U.user_id = R.user_ID WHERE R.ticket_id = $ticket_id ORDER BY time ASC ");
                     mysqli_stmt_bind_result($stmt2, $time, $text, $mail);
-                    myslqli_stmt_execute($stmt2);
+                    mysqli_stmt_execute($stmt2);
                     while (mysqli_stmt_fetch($stmt2)){
                         echo"<label>Reaction:</label><label>$text</label><label>$time</label><label>$mail</label>";
                     }        
@@ -65,8 +65,8 @@ else
                         <input type='submit' name='terug' value='terug'>
                         <input type='submit' name='Wijzigen' formaction='AdminTicketWijzigen.php'>
                     </form>
-                    <form>
-                        
+                    <form method="POST" action="AdminTicketBeantwoorden.php">
+                        <input type="submit" name="antwoord" value="ticketbeantwoorden">
                     </form>
                 </div>
             </div>

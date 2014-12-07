@@ -13,8 +13,7 @@
                 <img src="img/logo-bens.png" alt=""/>
             </div>
             <div id='gebruiker'></div><div id='menu'><p class="adminsysteem">Bens Administratie Systeem</p></div>
-            <?php
-            session_start(); //start sessie
+            <?php            
             include 'link.php';
             if (isset($_POST["login"]))
             {

@@ -11,33 +11,34 @@ if ($_SESSION["login"] != 1)
 else
 {
     ?>
-    <head>
-        <meta charset="UTF-8">
-        <title>Admin Systeem</title>
-        <link href="stijl.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div id='bovenbalk'>
-            <div id='logo'>
-                <img src="img/logo-bens.png" alt=""/>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Admin Systeem</title>
+            <link href="stijl.css" rel="stylesheet" type="text/css">
+        </head>
+        <body>
+            <div id='bovenbalk'>
+                <div id='logo'>
+                    <img src="img/logo-bens.png" alt=""/>
+                </div>
+                <?php
+                include 'menu.php';
+                ?>
             </div>
-            <?php
-            include 'menu.php';
-            ?>
-        </div>
-        <div id='content'>                
-            <form method="POST" action="AdminKlantOverzicht.php">
-                <input type="submit" name="Klanten Overzicht" value="Klanten Overzicht">
-            </form>
-            <form method="POST" action="AdminTicketOverzicht.php">
-                <input type="submit" name="Ticket Overzicht" value="Ticket Overzicht">
-            </form>                
-        </div>
-        <div class='push'></div>
-        <div id='footer'>
-            <div id='footerleft'>Admin Systeem</div>
-            <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-        </div>
-    </body>       
+            <div id='content'>                
+                <form method="POST" action="AdminKlantOverzicht.php">
+                    <input type="submit" name="Klanten Overzicht" value="Klanten Overzicht">
+                </form>
+                <form method="POST" action="AdminTicketOverzicht.php">
+                    <input type="submit" name="Ticket Overzicht" value="Ticket Overzicht">
+                </form>                
+            </div>
+            <div class='push'></div>
+            <div id='footer'>
+                <div id='footerleft'>Admin Systeem</div>
+                <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+            </div>
+        </body>       
     </html>
 <?php } ?>
