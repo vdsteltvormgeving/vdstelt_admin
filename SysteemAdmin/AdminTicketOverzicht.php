@@ -110,7 +110,7 @@ else
                         include "link.php";
                         if (isset($_POST["sortcat"]))
                         { // Elke if en elseif die hier volgen zijn verschillende clausules voor omhoog en omlaag gesorteerde categorien.
-                            $stmt4 = mysqli_prepare($link, "SELECT C.company_name, category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 0 ORDER BY category");
+                            $stmt4 = mysqli_prepare($link, "SELECT C.company_name, category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id ORDER BY category");
                             mysqli_stmt_execute($stmt4);
                             mysqli_stmt_bind_result($stmt4, $company_name, $category, $creation, $completed, $ticket_ID);
                             while (mysqli_stmt_fetch($stmt4))
@@ -128,7 +128,7 @@ else
                         }
                         elseif (isset($_POST["sortcatDESC"]))
                         {
-                            $stmt5 = mysqli_prepare($link, "SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 0 ORDER BY category DESC");
+                            $stmt5 = mysqli_prepare($link, "SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id ORDER BY category DESC");
                             mysqli_stmt_execute($stmt5);
                             mysqli_stmt_bind_result($stmt5, $company_name, $category, $creation, $completed, $ticket_ID);
                             while (mysqli_stmt_fetch($stmt5))
@@ -146,7 +146,7 @@ else
                         }
                         elseif (isset($_POST["sortct"]))
                         {
-                            $stmt6 = mysqli_prepare($link, " SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 0 ORDER BY creation_date ");
+                            $stmt6 = mysqli_prepare($link, " SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id ORDER BY creation_date ");
                             mysqli_stmt_execute($stmt6);
                             mysqli_stmt_bind_result($stmt6, $company_name, $category, $creation, $completed, $ticket_ID);
                             while (mysqli_stmt_fetch($stmt6))
@@ -164,7 +164,7 @@ else
                         }
                         elseif (isset($_POST["sortctDESC"]))
                         {
-                            $stmt7 = mysqli_prepare($link, "SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 0 ORDER BY creation_date DESC ");
+                            $stmt7 = mysqli_prepare($link, "SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id ORDER BY creation_date DESC ");
                             mysqli_stmt_execute($stmt7);
                             mysqli_stmt_bind_result($stmt7, $company_name, $category, $creation, $completed, $ticket_ID);
                             while (mysqli_stmt_fetch($stmt7))
@@ -182,7 +182,7 @@ else
                         }
                         elseif (isset($_POST["sortcomp"]))
                         {
-                            $stmt8 = mysqli_prepare($link, " SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 0 ORDER BY company_name ");
+                            $stmt8 = mysqli_prepare($link, " SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id ORDER BY company_name ");
                             mysqli_stmt_execute($stmt8);
                             mysqli_stmt_bind_result($stmt8, $company_name, $category, $creation, $completed, $ticket_ID);
                             while (mysqli_stmt_fetch($stmt8))
@@ -200,7 +200,7 @@ else
                         }
                         elseif (isset($_POST["sortcompDESC"]))
                         {
-                            $stmt9 = mysqli_prepare($link, " SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 0 ORDER BY company_name DESC ");
+                            $stmt9 = mysqli_prepare($link, " SELECT C.company_name ,category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id ORDER BY company_name DESC ");
                             mysqli_stmt_execute($stmt9);
                             mysqli_stmt_bind_result($stmt9, $company_name, $category, $creation, $completed, $ticket_ID);
                             while (mysqli_stmt_fetch($stmt9))
@@ -218,7 +218,7 @@ else
                         }
                         elseif (isset($_POST["sortstat"]))
                         {
-                            $stmt8 = mysqli_prepare($link, "SELECT C.company_name, category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 0 ORDER BY completed_status ");
+                            $stmt8 = mysqli_prepare($link, "SELECT C.company_name, category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id ORDER BY completed_status ");
                             mysqli_stmt_execute($stmt8);
                             mysqli_stmt_bind_result($stmt8, $company_name, $category, $creation, $completed, $ticket_ID);
                             while (mysqli_stmt_fetch($stmt8))
@@ -236,7 +236,7 @@ else
                         }
                         elseif (isset($_POST["sortstatDESC"]))
                         {
-                            $stmt9 = mysqli_prepare($link, "SELECT C.company_name, category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 0 ORDER BY completed_status DESC");
+                            $stmt9 = mysqli_prepare($link, "SELECT C.company_name, category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id ORDER BY completed_status DESC");
                             mysqli_stmt_execute($stmt9);
                             mysqli_stmt_bind_result($stmt9, $company_name, $category, $creation, $completed, $ticket_ID);
                             while (mysqli_stmt_fetch($stmt9))
@@ -254,7 +254,7 @@ else
                         }
                         else
                         {
-                            $stmt10 = mysqli_prepare($link, "SELECT C.company_name, category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 0");
+                            $stmt10 = mysqli_prepare($link, "SELECT C.company_name, category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id");
                             mysqli_stmt_execute($stmt10);
                             mysqli_stmt_bind_result($stmt10, $company_name, $category, $creation, $completed, $ticket_ID);
                             while (mysqli_stmt_fetch($stmt10))
@@ -278,10 +278,11 @@ else
                 <input type="submit" name="Wijzigen" Value="Wijzigen" formaction="AdminTicketWijzigen.php">                        
 
                 <br><br><br>
+                <!--
                 <h1>Gesloten Tickets:<br></h1>
                 <table>
                     <tr><th>Klant</th><th>Catagorie</th><th>Aanmaak datum</th><th>Status</th><th></th><th>Bekijken</th></tr>
-                    <?php
+                    <?php/*
                     include "link.php";
                     $stmt11 = mysqli_prepare($link, "SELECT C.company_name, category, creation_date, completed_status, ticket_id FROM Ticket T JOIN Customer C ON T.customer_id = C.customer_id WHERE T.archived_status = 1");
                     mysqli_stmt_execute($stmt11);
@@ -297,12 +298,12 @@ else
                             $completed = "Open";
                         }
                         echo "<form method='POST' action='AdminTicketSelecteren'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='Open[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
-                    }
+                    }*/
                     ?>
                     <input type ="submit" name="Openen" Value="Openen" formaction="">
                     <input type="submit" name="Wijzigen" Value="Wijzigen" formaction="AdminTicketWijzigen.php">                        
                 </table>
-            </form>            
+            </form>          -->  
             <div id='footer'>
                 <div id='footerleft'>Admin Systeem</div>
                 <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
