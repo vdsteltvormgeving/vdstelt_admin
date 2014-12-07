@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel -->
 <?php
 session_start();
