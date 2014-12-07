@@ -19,7 +19,7 @@
             {
                 $username = $_POST["username"];
                 $password = $_POST["password"];
-                $login = $_POST["login"];
+                $login    = $_POST["login"];
                 if (empty($username) || empty($password) || empty($username) && empty($password))
                 {
                     $error = "Gebruikersnaam of Wachtwoord verkeerd.";
@@ -31,26 +31,35 @@
                     {
                         $username = $_POST["username"];
                         $password = $_POST["password"];
-                        //$login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
-                        //mysqli_stmt_execute($login1);
-                        $result = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");                        
-                        $rows = mysqli_num_rows($result);
-                        mysqli_close($link);
-                        
-                        if ($rows == 1)
+                        if ($username != 'admin@bensdevelopment.nl')
                         {
-                            include "link.php";
-                            $_SESSION['username'] = $_POST['username'];
-                            $_SESSION['password'] = $_POST['password'];
-                            $_SESSION['login'] = 1;
-                            $updatelogin = mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
-                            mysqli_stmt_execute($updatelogin);                            
-                            header("location: AdminOverzicht.php");
-                        }                        
+                            echo "Gebruikersnaam of Wachtwoord verkeerd.";
+                        }
                         else
                         {
-                            $error = "Gebruikersnaam of Wachtwoord verkeerd.";
-                            print($error);
+                            $username = $_POST["username"];
+                            $password = $_POST["password"];
+                            //$login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
+                            //mysqli_stmt_execute($login1);
+                            $result   = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
+                            $rows     = mysqli_num_rows($result);
+                            mysqli_close($link);
+
+                            if ($rows == 1)
+                            {
+                                include "link.php";
+                                $_SESSION['username'] = $_POST['username'];
+                                $_SESSION['password'] = $_POST['password'];
+                                $_SESSION['login']    = 1;
+                                $updatelogin          = mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
+                                mysqli_stmt_execute($updatelogin);
+                                header("location: AdminOverzicht.php");
+                            }
+                            else
+                            {
+                                $error = "Gebruikersnaam of Wachtwoord verkeerd.";
+                                print($error);
+                            }
                         }
                     }
                 }
