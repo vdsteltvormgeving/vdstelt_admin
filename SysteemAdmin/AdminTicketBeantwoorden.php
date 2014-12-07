@@ -32,21 +32,17 @@ else
                     <?php
                     if (isset($_POST["submit"]))
                     {
+                        include "link.php";
                         $description   = $_POST["beschrijving"];
-                        $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET text='$description', time=NOW(), user_id=$login");
-                        mysqli_stmt_bind_result($reactionquery, $reaction, $time, $userid);
+                        $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=1");                        
                         mysqli_stmt_execute($reactionquery);
                         while (mysqli_stmt_fetch($reactionquery))
                         {
-                            $reaction;
-                            $time;
-                            $userid;
+                            
                         }
                     }
                     else
                     {
-
-
                         foreach ($_POST["close/wijzig"] AS $ticketid => $notused)
                         {
                             include "link.php";
@@ -86,12 +82,11 @@ else
                         }
                     }
                     ?>
-                    <form method="POST" action="AdmintTicketBeantwoorden.php">
+                    <br>
+                    <form method="POST" action="AdminTicketBeantwoorden.php">
                         Uw antwoord:<br>
                         <textarea name="beschrijving">                        
-                        </textarea>                                                
-                    </form>
-                    <form method="POST" action="Adminticketbeantwoorden.php">
+                        </textarea>                                                                                        
                         <input type="submit" name="submit" value="Beantwoorden">
                     </form>
                     <form method="POST" action='AdminTicketOverzicht.php'>
