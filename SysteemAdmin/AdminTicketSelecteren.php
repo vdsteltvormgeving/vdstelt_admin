@@ -48,6 +48,10 @@ if ($_SESSION["login"] != 1) {
                             echo "</label><br><label>Customer ID:$CID</label><br><label>Description:<br> $desc  $creation</label><br><label>Reactions:<br>$Text   $TIME";
                         }
                         ?>
+                        <form action='AdminTicketOverzicht.php'>
+                            <input type='submit' name='terug' value='terug'>
+                            <input type='hidden' name='' value=''>
+                        </form>
                     </div>
 
                     <div class='push'></div>

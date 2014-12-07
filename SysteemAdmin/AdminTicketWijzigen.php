@@ -18,92 +18,92 @@ if ($_SESSION["login"] != 1) {
                 <div id='logo'>
                     <img src="img/logo-bens.png" alt=""/>
                 </div>
-                <?php                                        
-                    include 'menu.php';                
-                ?>
-
-            <div id='content'>
-
-                <p>
-                <h1>Ticket wijzigen</h1>
                 <?php
-                include "link.php";
-                $customerIDarray = $_POST["CID"];
-                foreach ($customerIDarray as $customer => $troep) {
-                    $customerID = $customer;
-                }
+                include 'menu.php';
                 ?>
-                <p>Klant: <?php
-                    $query1 = mysqli_prepare($link, "SELECT username FROM User WHERE user_id=$customerID");
-                    mysqli_stmt_execute($query1);
-                    mysqli_stmt_bind_result($query1, $Username);
-                    while (mysqli_stmt_fetch($query1)) {
-                        print($Username);
-                    }
-                    ?> </p>
-                <p>Categorie: <form METHOD="post" ACTION ="Category">
-                    <SELECT NAME="Categorie">
-                        <option value="Select Category">Select categorie</option>
-                        <option value="Category1">Category1</option>
-                        <option value="Category2">Category2</option>
-                        <option value="Category3">Category3</option>
-                    </SELECT>
-                </form></p>
-            <p>Beschrijving:  <?php
-                $query2 = mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_id = $customerID");
-                mysqli_execute($query2);
-                mysqli_stmt_bind_result($query2, $Text);
-                While (mysqli_stmt_fetch($query2)) {
-                    print($Text);
-                }
-                ?> </p>
 
-            <p> Categorie wijzigen:  <form METHOD="post" ACTION ="AdminTicketWijzigen.php">
-                <SELECT NAME="categorie_wijzigen">
-                    <option value="Select Category">Select</option>
-                    <option value="website">Category1</option>
-                    <option value="cms">CMS</option>
-                    <option value="hosting">Hosting</option>
-                </SELECT>
+                <div id='content'>
 
-                </p>
-
-                <p>Ticket geschreven op: <?php
-                    $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket WHERE user_id=$customerID");
-                    mysqli_execute($query3);
-                    mysqli_stmt_bind_result($query3, $creation_date);
-                    while (mysqli_stmt_fetch($query3)) {
-                        print($creation_date);
+                    <p>
+                    <h1>Ticket wijzigen</h1>
+                    <?php
+                    include "link.php";
+                    $UserIDarray = $_POST["user_id"];
+                    foreach ($cUserIDarray as $user => $troep) {
+                        $userID = $user;
                     }
                     ?>
-                </p>
-                <p>Datum: <?php
-                    date_default_timezone_set('CET');
-                    $today = date("F j, Y");
-                    print($today);
-                    ?>      </p>
-                <p>Uw reactie: <textarea>  </textarea> </p>
-                <input type="submit" name="sumbit changes" value="Wijzigingen doorvoeren">
-            </form>
-            <form method="POST" action="">
-                <input type="submit" name="back" value="Terug" >
-            </form>
-            <form method="POST" action="">
-                <input type="submit" name = "Close ticket" value="Ticket sluiten">
-            </form>
-            <form method="POST" action="">
+                    <p>Klant: <?php
+                        $query1 = mysqli_prepare($link, "SELECT username FROM User WHERE user_id=$customerID");
+                        mysqli_stmt_execute($query1);
+                        mysqli_stmt_bind_result($query1, $Username);
+                        while (mysqli_stmt_fetch($query1)) {
+                            print($Username);
+                        }
+                        ?> </p>
+                    <p>Categorie: <form METHOD="post" ACTION ="Category">
+                        <SELECT NAME="Categorie">
+                            <option value="Select Category">Select categorie</option>
+                            <option value="Category1">Category1</option>
+                            <option value="Category2">Category2</option>
+                            <option value="Category3">Category3</option>
+                        </SELECT>
+                    </form></p>
+                    <p>Beschrijving:  <?php
+                        $query2 = mysqli_prepare($link, "SELECT description FROM Ticket WHERE user_id = $customerID");
+                        mysqli_execute($query2);
+                        mysqli_stmt_bind_result($query2, $Text);
+                        While (mysqli_stmt_fetch($query2)) {
+                            print($Text);
+                        }
+                        ?> </p>
 
-            </form>
-        </p>
-    </div>
+                    <p> Categorie wijzigen:  <form METHOD="post" ACTION ="AdminTicketWijzigen.php">
+                        <SELECT NAME="categorie_wijzigen">
+                            <option value="Select Category">Select</option>
+                            <option value="website">Category1</option>
+                            <option value="cms">CMS</option>
+                            <option value="hosting">Hosting</option>
+                        </SELECT>
 
-    <div class='push'></div>
-    <div id='footer'>
-        <div id='footerleft'>Admin Systeem</div>
+                        </p>
 
-        <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-    </div>
-    </body>
+                        <p>Ticket geschreven op: <?php
+                            $query3 = mysqli_prepare($link, "SELECT creation_date FROM Ticket WHERE user_id=$customerID");
+                            mysqli_execute($query3);
+                            mysqli_stmt_bind_result($query3, $creation_date);
+                            while (mysqli_stmt_fetch($query3)) {
+                                print($creation_date);
+                            }
+                            ?>
+                        </p>
+                        <p>Datum: <?php
+                            date_default_timezone_set('CET');
+                            $today = date("F j, Y");
+                            print($today);
+                            ?>      </p>
+                        <p>Uw reactie: <textarea>  </textarea> </p>
+                        <input type="submit" name="sumbit changes" value="Wijzigingen doorvoeren">
+                    </form>
+                    <form method="POST" action="">
+                        <input type="submit" name="back" value="Terug" >
+                    </form>
+                    <form method="POST" action="">
+                        <input type="submit" name = "Close ticket" value="Ticket sluiten">
+                    </form>
+                    <form method="POST" action="">
+
+                    </form>
+                    </p>
+                </div>
+
+                <div class='push'></div>
+                <div id='footer'>
+                    <div id='footerleft'>Admin Systeem</div>
+
+                    <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+                </div>
+        </body>
     </html>
 
 <?php } ?>
