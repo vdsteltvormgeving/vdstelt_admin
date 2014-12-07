@@ -40,7 +40,7 @@ else
             <link href="stijl.css" rel="stylesheet" type="text/css"/>
         </head>
         <body>
-            <form method="POST">
+            <form method="POST" action="AdminTicketSelecteren.php">
                 <div id='bovenbalk'>
                     <div id='logo'>
                         <img src="img/logo-bens.png" alt="">
@@ -123,7 +123,7 @@ else
                                 {
                                     $completed = "Open";
                                 }
-                                echo "<form method='POST' action='AdminTicketSelecteren.php'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
+                                echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
                             }
                         }
                         elseif (isset($_POST["sortcatDESC"]))
@@ -141,7 +141,7 @@ else
                                 {
                                     $completed = "Open";
                                 }
-                                echo "<form method='POST' action='AdminTicketSelecteren.php'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
+                                echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
                             }
                         }
                         elseif (isset($_POST["sortct"]))
@@ -159,7 +159,7 @@ else
                                 {
                                     $completed = "Open";
                                 }
-                                echo "<form method='POST' action='AdminTicketSelecteren.php'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
+                                echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
                             }
                         }
                         elseif (isset($_POST["sortctDESC"]))
@@ -177,7 +177,7 @@ else
                                 {
                                     $completed = "Open";
                                 }
-                                echo "<form method='POST' action='AdminTicketSelecteren.php'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
+                                echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
                             }
                         }
                         elseif (isset($_POST["sortcomp"]))
@@ -195,7 +195,7 @@ else
                                 {
                                     $completed = "Open";
                                 }
-                                echo "<form method='POST' action='AdminTicketSelecteren.php'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
+                                echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
                             }
                         }
                         elseif (isset($_POST["sortcompDESC"]))
@@ -213,7 +213,7 @@ else
                                 {
                                     $completed = "Open";
                                 }
-                                echo "<form method='POST' action='AdminTicketSelecteren.php'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
+                                echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
                             }
                         }
                         elseif (isset($_POST["sortstat"]))
@@ -231,7 +231,7 @@ else
                                 {
                                     $completed = "Open";
                                 }
-                                echo "<form method='POST' action='AdminTicketSelecteren.php'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
+                                echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
                             }
                         }
                         elseif (isset($_POST["sortstatDESC"]))
@@ -249,7 +249,7 @@ else
                                 {
                                     $completed = "Open";
                                 }
-                                echo "<form method='POST' action='AdminTicketSelecteren.php'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
+                                echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
                             }
                         }
                         else
@@ -267,7 +267,7 @@ else
                                 {
                                     $completed = "Open";
                                 }
-                                echo "<form method='POST' action='AdminTicketSelecteren.php'><tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
+                                echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td></tr>";
                             }
                         }
                         ?>
