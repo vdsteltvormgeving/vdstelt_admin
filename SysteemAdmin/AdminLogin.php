@@ -46,7 +46,7 @@
                             $updatelogin = mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
                             mysqli_stmt_execute($updatelogin);                            
                             header("location: AdminOverzicht.php");
-                        }
+                        }                        
                         else
                         {
                             $error = "Gebruikersnaam of Wachtwoord verkeerd.";
