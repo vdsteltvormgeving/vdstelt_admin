@@ -38,8 +38,8 @@ else
                         $ticket_id = $ticketid;
                     }
                     //De if loop is hieronder nodig om te true/false status van de ticket om te zetten naar text.
-                    $stmt1 = mysqli_prepare($link, "SELECT C.company_name, T.category, T.description, T.completed_status, C.customer_id, T.creation_date, R.text, R.time FROM customer C JOIN ticket T ON C.customer_id = T.customer_id JOIN Reaction R ON R.ticket_id = T.ticket_id WHERE T.ticket_id=$ticket_id ");
-                    mysqli_stmt_bind_result($stmt1, $compname, $cat, $desc, $completed, $CID, $creation, $text, $time);
+                    $stmt1 = mysqli_prepare($link, "SELECT C.company_name, T.category, T.description, T.completed_status, C.customer_id, T.creation_date FROM customer C JOIN ticket T ON C.customer_id = T.customer_id WHERE T.ticket_id=$ticket_id ");
+                    mysqli_stmt_bind_result($stmt1, $compname, $cat, $desc, $completed, $CID, $creation);
                     mysqli_stmt_execute($stmt1);
                     while (mysqli_stmt_fetch($stmt1))
                     {
@@ -52,12 +52,18 @@ else
                         {
                             echo "Open";
                         }
-                        echo "</label><br><label>Customer ID:$CID</label><br><label>Description:<br> $desc  $creation</label><br><label>Reactions:<br>$text   $time";
+                        echo "</label><br><label>Customer ID:$CID</label><br><label>Description:$desc</label><label>$creation</label>";
                     }
+                    $stmt2 = mysqli_prepare($link, "SELECT time, text, U.mail FROM reaction R JOIN User U ON U.user_id = R.user_ID WHERE R.ticket_id = $ticket_id ORDER BY time ASC ");
+                    mysqli_stmt_bind_result($stmt2, $time, $text, $mail);
+                    myslqli_stmt_execute($stmt2);
+                    while (mysqli_stmt_fetch($stmt2)){
+                        echo"<label>Reaction:</label><label>$text</label><label>$time</label><label>$mail</label>";
+                    }        
                     ?>
                     <form method="POST" action='AdminTicketOverzicht.php'>
                         <input type='submit' name='terug' value='terug'>
-                        <input type='hidden' name='' value=''>
+                        <input type='submit' name='Wijzigen' formaction='AdminTicketWijzigen.php'>
                     </form>
                     <form>
                         
