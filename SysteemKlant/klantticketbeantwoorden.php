@@ -26,26 +26,39 @@
                 <?php
                 if (isset($_POST["submit"]))
                 {
-                    $ticket_id = $_POST["ticketid"];
-                    include "link.php";
-                    $description = $_POST["beschrijving"];
-                    $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=1");
-                    mysqli_stmt_execute($reactionquery);
-                    while (mysqli_stmt_fetch($reactionquery))
+                    $ticketidarray=$_POST["ticketid"];
+                    foreach ($ticketidarray as $ticketid => $notused)
                     {
-                        
+                        $ticket_id = $ticketid;
                     }
-                    //header("klantticketoverzicht.php");
+                    $username = $_SESSION['username'];
+                    $password = $_SESSION['password'];
+                    
+                    include "link.php"; // Met deze query wordt de naam en userid van de ingelogde klant opgehaald.
+                    $userinfo = mysqli_prepare($link, "SELECT user_id, first_name, last_name FROM User WHERE mail='$username'");
+                    mysqli_stmt_execute($userinfo);
+                    mysqli_stmt_bind_result($userinfo, $login, $fname, $lname);
+                    while (mysqli_stmt_fetch($userinfo))
+                    {
+                        $login;
+                        $fname;
+                        $lname;
+                    }
+                    mysqli_close($link);
+                    
+                    include "link.php"; //Met deze query wordt de nieuwe reactie in de tabel gezet.
+                    $description = $_POST["beschrijving"];
+                    $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=$login");
+                    mysqli_stmt_execute($reactionquery);
+                    mysqli_stmt_fetch($reactionquery);
+                    header("klantticketbeantwoorden.php");
                 }
                 else
                 {
-                    foreach ($_POST["close/wijzig"] AS $ticketid => $notused)
-                    {
-                        include "link.php";
-                        $ticket_id = $ticketid;
-                        $change = mysqli_prepare($link, "UPDATE ticket SET archived_status = 1 WHERE ticket_id = $ticket_id ");
-                        mysqli_execute($change);
-                        mysqli_close($link);
+                    $ticketidarray=$_POST["ticketid"];
+                    foreach ($ticketidarray AS $ticketid => $notused)
+                    {                        
+                        $ticket_id = $ticketid;                        
                     }
                     $username = $_SESSION['username'];
                     $password = $_SESSION['password'];
@@ -74,8 +87,15 @@
                         {
                             echo "Open";
                         }
-                        echo "</label><br><label>Klant ID:$CID</label><br><label>Description:<br>$desc</label><label>$creation</label><br><label>Reactions:<br>$text</label><label>$time</label>";
+                        echo "</label><br><label>Klant ID:$CID</label><br><label>Description:<br>$desc</label><label>$creation</label>";
                     }
+                   $stmt2 = mysqli_prepare($link, "SELECT R.text, R.time FROM ");
+                    mysqli_stmt_bind_result($stmt2, $compname, $cat, $desc, $completed, $CID, $creation, $text, $time);
+                    mysqli_stmt_execute($stmt2);
+                    while (mysqli_stmt_fetch($stmt2))
+                    {                                                
+                        echo "<br><label>Reactions:<br>$text</label><label>$time</label>";
+                    } 
                 }
                 ?>
                 <br>

@@ -34,7 +34,7 @@
                     <input type="submit" name="loguit" value="Uitloggen">
                 </form>
                 <?php
-                if (isset($_POST["loguit"]))
+                if (isset($_POST["loguit"])) // Met deze if loop wordt een gebruiker als offline gezet als hij uitlogt
                 {
                     $username = $_SESSION['username'];
                     $password = $_SESSION['password'];
