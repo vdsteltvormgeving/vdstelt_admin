@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--Jeffrey Hamberg, Joshua van Gelder-->
-session_start();
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -40,7 +40,7 @@ session_start();
 
                             if ($rows == 1) {
                                 include "link.php";
-
+                                session_start();
                                 $_SESSION['username'] = $_POST['username'];
                                 $_SESSION['password'] = $_POST['password'];
                                 $_SESSION['login'] = 1;
