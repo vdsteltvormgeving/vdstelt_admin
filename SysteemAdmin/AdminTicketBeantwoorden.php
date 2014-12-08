@@ -93,7 +93,7 @@ else
                     </form>
                     <form method="POST" action='AdminTicketOverzicht.php'>
                         <input type='submit' name='terug' value='terug'>
-                        <input type='hidden' name="" value="">
+                        <input type="hidden" name="ticketid['<?php echo "$ticketid"; ?>']">
                     </form>
                 </div>
             </div>
