@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Joshua van Gelder, Sander van der Stelt -->
+<!-- Joshua van Gelder, Sander van der Stelt, Bart Holsappel -->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -27,7 +27,7 @@
                 <form method="POST" action="klantticketoverzicht.php">
                     <input type="submit" name="ticketinzien" value="Tickets inzien">
                 </form>                     
-                <form>
+                <form method="POST" action="klantfactuuroverzicht.php">
                     <input type="submit" name="factuuroverzicht" value="Factuur Overzicht">
                 </form>
                 <form method="POST" action="klantoverzicht.php">
