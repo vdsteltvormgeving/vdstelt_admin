@@ -32,10 +32,15 @@
                 if (isset($_POST['wwaanvragen']))
                 {
                     $email = $_POST['email']; //Hier komt de waarde die ingevuld is door bezoeker
-                    $check1 = mysqli_query($link, "SELECT * FROM user WHERE mail = '$email' "); //Hier kijkt 
-                    /* $check2 = mysqli_prepare($link, "SELECT * FROM user WHERE email = '$email' ");
-                      mysqli_stmt_execute($check2); */
-                    $vind = mysqli_num_rows($check1);
+                    
+                    $stmt = mysqli_prepare($link, "SELECT mail FROM user WHERE mail = ? ");
+                    
+                    mysqli_stmt_bind_param($stmt, "s", $email); 
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_bind_result($stmt, $email);
+                    mysqli_stmt_store_result($stmt);
+                    
+                    $vind = mysqli_stmt_num_rows($stmt);
                     if ($vind)
                     {
                         function makepassword($length)
