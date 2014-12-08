@@ -25,37 +25,53 @@ if ($_SESSION["login"] != 1) {
             </div>
             <div id='content'>
                 <?php
+                // Hieronder wordt gechecked welke POST moet gebruikt worden
                 include 'link.php';
-                foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
-                    $ticket_id = $ticketid;
+                if (isset($_POST["wijzigen"])) {
+                    foreach ($_POST["ticket_id"] AS $ticketid => $notused) {
+                        $ticket_id = $ticketid;
+                    }
+                } else {
+                    foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
+                        $ticket_id = $ticketid;
+                    }
                 }
-                $stmt1 = mysqli_prepare($link, "SELECT customer_id, creation_date, last_change_date, send_date, user_id, C.company_name, U.mail, category, desctription FROM ticket T JOIN customer C On c.customer_id = T.customer_id JOIN User U ON U.user_id = T.user_id WHERE ticket_id=$ticket_id ");
+                $stmt1 = mysqli_prepare($link, "SELECT T.customer_id, creation_date, last_time_date, send_date, T.user_id, C.company_name, U.mail, category, description FROM ticket T JOIN customer C On c.customer_id = T.customer_id JOIN User U ON U.user_id = T.user_id WHERE ticket_id=$ticket_id ");
                 mysqli_stmt_bind_result($stmt1, $CID, $creation, $lastchanged, $send, $userid, $mail, $compname, $category, $desc);
                 mysqli_execute($stmt1);
-                echo"
+                while (mysqli_stmt_fetch($stmt1)) {
+                    echo"
                 <form action='' method='POST'>
-                    <input type='text value='$CID' name='Customer_ID'><br>
-                    Klant:$compname <br>
-                    <input type='text' value='$creation' name='Creation Date'><br>
-                    <input type='text' value='$lastchanged' name='Last Changed Date'><br>
-                    <input type='text' value='$send' name='Send Date to Hosting'><br>
-                    <input type='text' value='$userid' name='User ID'><br>
+                    Customer ID: <input type='text' value='$CID' name='Customer_ID'><br>
+                    Klant: $compname <br>
+                    Aanmaak Datum: $creation <br>
+                    Laatst Gewijzigd: $lastchanged <br>
+                    Verzonden Hosting: $send <br>
+                    User ID: <input type='text' value='$userid' name='User ID'><br>
                     Mail:$mail<br>
-                    <input type='text' value='$category' name='Category'><br>
-                    <textarea cols='4' name='Description'>$desc</textarea><br>";
-
-                echo"
-
-                    <textarea cols='4' name='Reaction'></textarea>";
+                    Categorie: <input type='text' value='$category' name='Category'><br>
+                    Omschrijving:<br> <textarea rows='4' cols='40' name='Description'>$desc</textarea><br>"
+                    . "<input type='hidden' name='ticket_id[$ticket_id]'";
+                }
+                $stmt2 = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticket_id");
+                mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
+                mysqli_execute($stmt2);
+                echo 'Reactions:<br>';
+                while (mysqli_stmt_fetch($stmt2)) {
+                    echo"
+                <textarea rows='4' cols='40' name='Reaction'>$text @ $time --$mail</textarea><br>";
+                }
                 ?>
-            </form>
-            <div class='push'></div>
-            <div id='footer'>
-                <div id='footerleft'>Admin Systeem</div>
+                <input type="submit" name="wijzigen" value="wijzigen">
 
-                <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-            </div>
-    </body>
+                </form>
+                <div class='push'></div>
+                <div id='footer'>
+                    <div id='footerleft'>Admin Systeem</div>
+
+                    <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+                </div>
+        </body>
     </html>
 
 <?php } ?>
