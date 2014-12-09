@@ -112,7 +112,7 @@ a:visited{
 #content label{
     margin-right: 10px;
     display: inline-block;
-    min-width: 100px;
+    min-width: 150px;
     height: 30px;
     text-align: left;
 }
@@ -150,8 +150,9 @@ a:visited{
     background-color: #d1d3d4;
     height: 30px;
     width: 100%;
-    bottom: 0;
-    float: none;
+    position: fixed;
+    bottom:0px;
+    float: bottom;
 }
 
 #footerleft{
@@ -336,7 +337,6 @@ input[type="submit"], input[type="button"]:active {
 }
 input[type="text"], input[type="password"]{
     padding:12px;
-    min-width: 370px;
     top:2px;
     position: relative;
     text-align: left;

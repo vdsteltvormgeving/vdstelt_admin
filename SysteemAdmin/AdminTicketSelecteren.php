@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--Joshua van Gelder, Jeffrey Hamberg-->
+<!--Joshua van Gelder, Jeffrey Hamberg, , Sander van der Stelt-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -44,13 +44,13 @@ if ($_SESSION["login"] != 1) {
         } else {
             echo "Open";
         }
-        echo "</label><br><label>Customer ID: </label><label>$CID</label><br><label><br><b>Description: </b></label><br><label>$creation</label><br><label>$desc</label><br>";
+        echo "</label><br><label>Customer ID: </label><label>$CID</label><br><label><b>Description: </b></label><br><label>$creation</label><br><label>$desc</label><br>";
     }
     $stmt2 = mysqli_prepare($link, "SELECT time, text, U.mail FROM reaction R JOIN User U ON U.user_id = R.user_ID WHERE R.ticket_id = $ticket_id ORDER BY time ASC ");
     mysqli_stmt_bind_result($stmt2, $time, $text, $mail);
     mysqli_stmt_execute($stmt2);
     while (mysqli_stmt_fetch($stmt2)) {
-        echo"<label><br><b>Reaction:</b></label><br><label>$mail</label><br><label>$time</label><br><label>$text</label><br>";
+        echo"<label><b>Reaction:</b></label><br><label>$mail</label><br><label>$time</label><br><label>$text</label><br>";
     }
     ?>
                     <form method="POST" action='AdminTicketOverzicht.php'>
