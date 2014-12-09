@@ -116,6 +116,13 @@ a:visited{
     height: 30px;
     text-align: left;
 }
+
+#content textArea {
+    min-width:400px;
+    min-height: 250px;
+    padding: 20px;
+}
+
 .rowcolors  tr:nth-child(even) {background: #FFF}
 .rowcolors  td:hover {background: #faa61a;}
 .rowcolors  tr:nth-child(odd) {background: #d1d3d4}
