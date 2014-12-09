@@ -89,10 +89,11 @@
                     else
                     {
                         echo "<p class='foutmelding'>Uw e-mail is niet bekend.</p>"; //Deze melding komt als er geen e-mail adres wordt ingevuld en/of die niet overeenkomt met de database gegevens.
+                        mysqli_stmt_free_result($stmt); // resultset opschonen
+                        mysqli_stmt_close($stmt); // statement opruimen
+                        mysqli_close($link); // verbinding verbreken 
                     }
                 }
-                
-
                 ?>
             </div>
         </div>
