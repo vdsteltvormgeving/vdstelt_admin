@@ -49,7 +49,7 @@ html>
                                  $naam = $first_name;
                              }
                               
-        $to .= $emailadres;
+        $to = $emailadres;
         $subject = "Wachtwoord opvragen";
         $message = '
 <html>
