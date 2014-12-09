@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Sander van der Stelt -->
+<!-- Sander van der Stelt, Léyon Courtz-->
 <html>
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,6 @@
         <div id='gebruiker'></div><div id='menu'><p class="adminsysteem">Bens Administratie Systeem</p></div>
     </div>
     <div id='content'>
-        <!-- Léyon Courtz -->
         <h1>Wachtwoord vergeten</h1>
         <form action="" method="post">
             E-mailadres: <input type="text" name="E-mailadres" ><br>
