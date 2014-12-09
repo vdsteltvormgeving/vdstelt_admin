@@ -320,6 +320,7 @@ input[type="submit"], input[type="button"]:active {
     color: #000;
     border-color: #444;
     margin-top: 10px;
+    margin-left:10px;
 }
 input[type="text"], input[type="password"]{
     padding:12px;
@@ -328,6 +329,9 @@ input[type="text"], input[type="password"]{
     position: relative;
     text-align: left;
     margin:10px 0px;
+}
+#content form{
+    margin:auto;
 }
 
 
