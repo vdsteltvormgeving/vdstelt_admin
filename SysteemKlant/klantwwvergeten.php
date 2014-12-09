@@ -63,7 +63,7 @@
                              }
                             echo "<p class='succesmelding'>" . "Beste<b> " .$naam. " </b>uw wachtwoord is gewijzigd, <br>bekijk uw e-mail.<br>" . $random_password . "</p>"; //LET OP: $random_password moet er later uit worden gehaald.
                             /*
-                             * Dit is het het mail bericht wat naar de bezoeker wordt gestuurd.
+                             * Dit is het mail bericht wat naar de bezoeker wordt gestuurd (local kan niet).
                              * 
                             $to .= $email;
                             $subject = 'Uw nieuwe wachtwoord';
