@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Sander van der Stelt -->
+<!-- Sander van der Stelt; Gelieve het commentaar door te lezen! -->
 <html>
     <head>
         <meta charset="UTF-8">
