@@ -38,7 +38,7 @@
                 }
                 mysqli_close($link);
                 ?> <!-- Dit maakt connectie met de database en zorgt voor de start van de inlogsessie -->
-                <div id="ticket">
+                <div id="factuur">
                     <p>Naam: <?php
                         include"link.php";
                         $stmt1 = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");
@@ -58,13 +58,30 @@
                      $stat = mysqli_prepare($link, "SELECT invoice_number, date, payment_completed FROM invoice WHERE user_id = $user");
                 mysqli_stmt_execute($stat);
                 mysqli_stmt_bind_result($stat, $CID, $date, $pc);
-                print("<table><tr><th>Factuur nummer</th><th>Datum</th><th>Status</th></tr>");
+                echo "<table><tr><th>Factuur nummer</th><th>Datum</th><th>Status</th></tr>";
                 while (mysqli_stmt_fetch($stat))
                 {
-                    print("<form method='POST' action='klantfactuurinzien.php' ><tr><td>$CID</td><td>$date</td><td>$pc</td><td><input type='hidden' name=CID[$CID] ><input type='submit' name='submit' value='Bekijken'></form></td></tr>");
+                    if($pc=0){
+                     $ps = "Niet betaald";   
+                    }else {
+                        $ps = "Betaald";
+                    }
+                    echo "<form method='POST' action='klantfactuurinzien.php' ><tr><td>$CID</td><td>$date</td><td>$ps</td><td><input type='hidden' name=CID[$CID] ><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
                 } // Door de name te veranderen naar CID[$CID] kan je hem aanvragen op andere pagina's
                 print ("</table>");
                 ?>
                     </p>
+                    <form class="knop_link" method="post" action="KlantOverzicht.php">
+                <input type="submit" name="back" value="Terug">
+            </form>
+                    <br>
+        </div>
+
+        <div class='push'></div>
+        <div id='footer'>
+            <div id='footerleft'>Klant systeem</div>
+
+            <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+        </div>
     </body>
 </html>
