@@ -46,6 +46,7 @@
                     </p>                    
                     <p>
                         Bedrijfsnaam: <?php
+                        include "link.php";
                         $stmt2 = mysqli_prepare($link, "SELECT C.company_name FROM Customer C JOIN Invoice I ON I.customer_id=C.customer_id JOIN User U ON U.user_id=I.user_id WHERE U.mail='$username' ");
                         mysqli_stmt_execute($stmt2);
                         mysqli_stmt_bind_result($stmt2, $name);
