@@ -92,10 +92,10 @@ a:visited{
 }
 
 #content{
-    margin-left: 20px;
-    margin-right: 20px;
+    padding: 20px;
+    margin:auto;
     float: none;
-    width: auto;
+    width: 1000px;
     height: 100%;
     overflow: auto;
     clear: both;
@@ -109,7 +109,13 @@ a:visited{
 #content table a{
     text-decoration: none;
 }
-
+#content label{
+    margin-right: 10px;
+    display: inline-block;
+    min-width: 100px;
+    height: 30px;
+    text-align: left;
+}
 .rowcolors  tr:nth-child(even) {background: #FFF}
 .rowcolors  td:hover {background: #faa61a;}
 .rowcolors  tr:nth-child(odd) {background: #d1d3d4}
@@ -139,7 +145,6 @@ a:visited{
     width: 100%;
     bottom: 0;
     float: none;
-    position: fixed;
 }
 
 #footerleft{
