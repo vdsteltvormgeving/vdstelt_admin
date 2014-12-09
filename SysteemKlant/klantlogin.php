@@ -36,24 +36,22 @@
                 <?php
                 session_start(); //start sessie
                 include "link.php"; //Database connectie
-                if (isset($_POST["login"]))
+                if (isset($_POST["login"])) //Hier wordt gecontroleerd of de login knop ingedrukt is.
                 {
                     $username = $_POST["username"];
                     $password = $_POST["password"];
                     $login = $_POST["login"];
-                    if (empty($username) || empty($password) || empty($username) && empty($password))
+                    if (empty($username) || empty($password) || empty($username) && empty($password))// Deze if loop controleerd of alle velden zijn ingevuld
                     {
                         $error = "<p class='foutmelding'>Uw Gebruikersnaam en/of Wachtwoord is niet correct.</p>";
                         echo $error;
                     }
                     else
                     {
-                        if (isset($login))
+                        if (isset($login))//met de volgend if loop wordt bepaald of er goed is ingelogd.
                         {
                             $username = $_POST["username"];
-                            $password = $_POST["password"];
-                            //$login1 = mysqli_prepare($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
-                            //mysqli_stmt_execute($login1);
+                            $password = $_POST["password"];                            
                             $result = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
                             $rows = mysqli_num_rows($result);
                             if ($rows == 1)
@@ -62,7 +60,7 @@
                                 $_SESSION['password'] = $_POST['password'];
                                 $_SESSION['login'] = 1;
                                 mysqli_close($link);
-                                include "link.php";
+                                include "link.php";//Deze query zet de status van de gebruiker op online.
                                 $updatelogin = mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
                                 mysqli_stmt_execute($updatelogin);
                                 header("location: klantoverzicht.php");

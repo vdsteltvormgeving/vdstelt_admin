@@ -1,4 +1,5 @@
-<!DOCTYPE html><?php session_start(); ?>
+<!DOCTYPE html>
+<?php session_start(); ?>
 <!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
 <html>    
     <head>
@@ -26,30 +27,43 @@
                 <?php
                 if (isset($_POST["submit"]))
                 {
-                    $ticket_id = $_POST["ticketid"];
-                    include "link.php";
-                    $description = $_POST["beschrijving"];
-                    $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=1");
-                    mysqli_stmt_execute($reactionquery);
-                    while (mysqli_stmt_fetch($reactionquery))
+                    $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
+                    foreach ($ticketidarray as $ticketid => $notused)
                     {
-                        
-                    }
-                    //header("klantticketoverzicht.php");
-                }
-                else
-                {
-                    foreach ($_POST["close/wijzig"] AS $ticketid => $notused)
-                    {
-                        include "link.php";
                         $ticket_id = $ticketid;
-                        $change = mysqli_prepare($link, "UPDATE ticket SET archived_status = 1 WHERE ticket_id = $ticket_id ");
-                        mysqli_execute($change);
-                        mysqli_close($link);
                     }
                     $username = $_SESSION['username'];
                     $password = $_SESSION['password'];
-                    include "link.php";
+
+                    include "link.php"; // Met deze query wordt de naam en userid van de ingelogde klant opgehaald.
+                    $userinfo = mysqli_prepare($link, "SELECT user_id, first_name, last_name FROM User WHERE mail='$username'");
+                    mysqli_stmt_execute($userinfo);
+                    mysqli_stmt_bind_result($userinfo, $login, $fname, $lname);
+                    while (mysqli_stmt_fetch($userinfo))
+                    {
+                        $login;
+                        $fname;
+                        $lname;
+                    }
+                    mysqli_close($link);
+
+                    include "link.php"; //Met deze query wordt de nieuwe reactie in de tabel gezet.
+                    $description = $_POST["beschrijving"];
+                    $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=$login");
+                    mysqli_stmt_execute($reactionquery);
+                    mysqli_stmt_fetch($reactionquery);
+                    header("klantticketbeantwoorden.php");
+                }
+                else
+                {
+                    $ticketidarray = $_POST["ticketid"];//Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
+                    foreach ($ticketidarray AS $ticketid => $notused)
+                    {
+                        $ticket_id = $ticketid;
+                    }
+                    $username = $_SESSION['username'];
+                    $password = $_SESSION['password'];
+                    include "link.php"; //Deze query bepaalt de userid van de ingelogde klant.
                     $loginQuery = mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
                     mysqli_stmt_execute($loginQuery);
                     mysqli_stmt_bind_result($loginQuery, $login);
@@ -60,8 +74,8 @@
                     mysqli_close($link);
                     include "link.php";
                     //De if loop is hieronder nodig om te true/false status van de ticket om te zetten naar text.
-                    $stmt1 = mysqli_prepare($link, "SELECT C.company_name, T.category, T.description, T.completed_status, C.customer_id, T.creation_date, R.text, R.time FROM customer C JOIN ticket T ON C.customer_id = T.customer_id JOIN Reaction R ON R.ticket_id = T.ticket_id WHERE T.ticket_id=$ticket_id ORDER BY R.time ASC");
-                    mysqli_stmt_bind_result($stmt1, $compname, $cat, $desc, $completed, $CID, $creation, $text, $time);
+                    $stmt1 = mysqli_prepare($link, "SELECT C.company_name, T.category, T.description, T.completed_status, C.customer_id, T.creation_date FROM customer C JOIN ticket T ON C.customer_id = T.customer_id WHERE T.ticket_id=1");
+                    mysqli_stmt_bind_result($stmt1, $compname, $cat, $desc, $completed, $CID, $creation);
                     mysqli_stmt_execute($stmt1);
                     while (mysqli_stmt_fetch($stmt1))
                     {
@@ -74,15 +88,25 @@
                         {
                             echo "Open";
                         }
-                        echo "</label><br><label>Klant ID:$CID</label><br><label>Description:<br>$desc</label><label>$creation</label><br><label>Reactions:<br>$text</label><label>$time</label>";
+                        echo "</label><br><label>Klant ID:$CID</label><br><label>Description:<br>$desc</label> <label>$creation</label>";
+                    }
+                    $stmt2 = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticket_id");
+                    mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
+                    mysqli_stmt_execute($stmt2);
+                    echo "<br><label>Reactions:</label>";
+                    while (mysqli_stmt_fetch($stmt2))
+                    {
+                        echo "<br><label><br>$text</label> <label>$time</label>";
                     }
                 }
                 ?>
                 <br>
+                <br>
                 <form method="POST" action="klantticketbeantwoorden.php">
                     Uw antwoord:<br>
                     <textarea name="beschrijving">                        
-                    </textarea>                                                                                        
+                    </textarea>
+                    <br>
                     <input type="submit" name="submit" value="Beantwoorden">
                     <input type="hidden" name="ticketid['<?php echo "$ticketid"; ?>']">
                 </form>

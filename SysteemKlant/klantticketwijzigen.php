@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
 <html>    
     <head>
@@ -23,9 +24,7 @@
             <!--BEGIN CONTENT-->
             <div id="content">
                 <h1>Ticket wijzigen</h1>
-                <?php
-                session_start();
-
+                <?php                
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
                 if (isset($_POST["verzenden"]))
@@ -46,62 +45,46 @@
                     }
                 }
                 include "link.php";
-                $loginQuery = mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
+                $loginQuery = mysqli_prepare($link, "SELECT user_id, first_name, last_name FROM User WHERE mail='$username'");
                 mysqli_stmt_execute($loginQuery);
-                mysqli_stmt_bind_result($loginQuery, $userid);
+                mysqli_stmt_bind_result($loginQuery, $userid, $fname, $lname);
                 while (mysqli_stmt_fetch($loginQuery))
                 {
                     $userid;
+                    $fname;
+                    $lname;
                 }
                 mysqli_close($link);
 
-                date_default_timezone_set('CET');
-                $datetime = date("Y-m-d H:i:s");  //function to get date and time
-
                 include "link.php";
-                $GetDescription = mysqli_prepare($link, "SELECT description, category FROM Ticket WHERE ticket_id=$ticketid");
+                $GetDescription = mysqli_prepare($link, "SELECT ticket_id, description, category FROM Ticket WHERE ticket_id=$ticketid");
                 mysqli_stmt_execute($GetDescription);
-                mysqli_stmt_bind_result($GetDescription, $description, $category);
+                mysqli_stmt_bind_result($GetDescription, $tid, $description, $category);
                 while (mysqli_stmt_fetch($GetDescription))
                 {
+                    $tid;
                     $description;
                     $category;
                 }
                 mysqli_close($link);
 
-                include "link.php";
-                $id = mysqli_prepare($link, "SELECT ticket_id FROM Ticket WHERE ticket_id=$ticketid");
-                mysqli_stmt_execute($id);
-                mysqli_stmt_bind_result($id, $tid);
-                while (mysqli_stmt_fetch($id))
-                {
-                    $tid;
-                }
-                mysqli_close($link);
-
-                include "link.php";
-                $names = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");
-                mysqli_stmt_execute($names);
-                mysqli_stmt_bind_result($names, $fname, $lname);
-                while (mysqli_stmt_fetch($names))
-                {
-                    $fname;
-                    $lname;
-                }
+                date_default_timezone_set('CET');
+                $datetime = date("Y-m-d H:i:s");  //function to get date and time                
                 ?>                
                 <p> 
-                    Naam: <?php echo $fname . " " . $lname; ?> 
+                    Naam: <?php echo "$fname $lname"; ?> 
                 </p>                                                            
                 <!--<form method="POST" action="">
                     <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
                 </form> -->                  
                 <p> 
-                    Datum: <?php echo $datetime; mysqli_close($link); ?> 
+                    Datum: <?php echo $datetime;
+                mysqli_close($link); ?> 
                 </p>                
                 <form method="POST" action="klantticketwijzigen.php">
                     <p>
                         <select id="Categorie" name="categorie">
-                            <option value=""><?php echo $category; ?></option>
+                            <option value=""></option>
                             <option value="website">Website</option>
                             <option value="cms">CMS</option>
                             <option value="hosting">Hosting</option>
@@ -118,19 +101,19 @@
 
                 <!-- text field and button to send text field and cancel button to go back -->            
                 <?php
-                if (isset($_POST["verzenden"]))
+                if (isset($_POST["verzenden"]))//Met deze if loop wordt de ticket geupdate. Ook wordt er gekeken of de huidige categorie en text veld wel volledig zijn meegegeven.
                 {
-                    $description   = $_POST["beschrijving"];
-                    $category      = $_POST["categorie"];
+                    $description = $_POST["beschrijving"];
+                    $category = $_POST["categorie"];
                     $creation_date = $datetime;
-                    if ($description == "")
+                    if ($description == "" || $category == "")
                     {
                         echo "<p class='foutmelding'>Er is geen categorie en/of beschrijving gegeven.</p>";
                     }
                     else
                     {
                         include"link.php";
-                        $insert = mysqli_prepare($link, "UPDATE ticket SET last_time_date=NOW(), description='$description' WHERE ticket_id=$ticketid");
+                        $insert = mysqli_prepare($link, "UPDATE ticket SET last_time_date=NOW(), description='$description', category='$category' WHERE ticket_id=$ticketid");
                         mysqli_stmt_execute($insert);
                         mysqli_close($link);
 
@@ -155,7 +138,7 @@
             <!--EINDE CONTENT-->
         </div>
         <footer>
-            <?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
         </footer>
     </body>
 </html>
