@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sander van der Stelt -->
-html>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Bens Developement</title>
@@ -20,7 +20,6 @@ html>
         <form action="" method="post">
             E-mailadres: <input type="text" name="E-mailadres" ><br>
             <input type="submit" name="send" value="Verzenden"><br>
-            
         </form> 
 
 
