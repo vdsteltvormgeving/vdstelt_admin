@@ -78,8 +78,7 @@
                     <input type="submit" name="BestandUploaden" value="Bestand Uploaden">
                 </form> -->                  
                 <p> 
-                    Datum: <?php echo $datetime;
-                mysqli_close($link); ?> 
+                    Datum: <?php echo $datetime; ?>                
                 </p>                
                 <form method="POST" action="klantticketwijzigen.php">
                     <p>
