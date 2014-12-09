@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <!-- Joshua van Gelder, Sander van der Stelt -->
 <html>
     <head>
@@ -15,8 +16,7 @@
                 <div id="menu">
                     <?php
                     include 'menubackend.php';
-                    include 'link.php';
-                    session_start();
+                    include 'link.php';                    
                     ?>
                 </div>
             </header>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
 <html>    
     <head>
@@ -23,8 +24,7 @@
             <!--BEGIN CONTENT-->
             <div id="content">
                 <h1>Ticket aanmaken</h1>
-                <?php
-                session_start();                                                              
+                <?php                                                                              
                 $username=$_SESSION['username'];
                 $password=$_SESSION['password'];
                 include "link.php"; // Met deze query wordt de naam en userid van de ingelogde klant opgehaald.

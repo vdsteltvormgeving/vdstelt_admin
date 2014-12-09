@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <!-- Joshua van Gelder, Jeffrey Hamberg, Sander van der Stelt -->
 <html>
     <head>
@@ -25,8 +26,7 @@
                 <h1>Ticket Overzicht</h1>
                 <!-- NIEUW GEPLAATSTE CODE-->
                 <?php
-                include "link.php";
-                session_start();
+                include "link.php";                
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
                 $userid   = mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
