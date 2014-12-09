@@ -101,7 +101,7 @@
 
                 <!-- text field and button to send text field and cancel button to go back -->            
                 <?php
-                if (isset($_POST["verzenden"]))
+                if (isset($_POST["verzenden"]))//Met deze if loop wordt de ticket geupdate. Ook wordt er gekeken of de huidige categorie en text veld wel volledig zijn meegegeven.
                 {
                     $description = $_POST["beschrijving"];
                     $category = $_POST["categorie"];

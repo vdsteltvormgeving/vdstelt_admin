@@ -26,29 +26,23 @@
                 <h1>Ticket Overzicht</h1>
                 <!-- NIEUW GEPLAATSTE CODE-->
                 <?php
-                include "link.php";                
+                include "link.php";
                 $username = $_SESSION['username'];
-                $password = $_SESSION['password'];
-                $userid   = mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
+                $password = $_SESSION['password']; //Deze query haalt de user id en naam van de ingelogde klant uit de database.
+                $userid = mysqli_prepare($link, "SELECT user_id, first_name, last_name FROM User WHERE mail='$username'");
                 mysqli_stmt_execute($userid);
-                mysqli_stmt_bind_result($userid, $user);
+                mysqli_stmt_bind_result($userid, $user, $fname, $lname);
                 while (mysqli_stmt_fetch($userid))
                 {
                     $user;
+                    $fname;
+                    $lname;
                 }
                 mysqli_close($link);
-                ?> <!-- Dit maakt connectie met de database en zorgt voor de start van de inlogsessie -->
+                ?>
                 <div id="ticket">
-                    <p>Naam: <?php
-                        include"link.php";
-                        $stmt1 = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");
-                        mysqli_stmt_execute($stmt1);
-                        mysqli_stmt_bind_result($stmt1, $fname, $lname);
-                        while (mysqli_stmt_fetch($stmt1))
-                        {
-                            echo "$fname $lname";
-                        }
-                        ?>
+                    <p>Naam: <?php echo "$fname $lname";
+                ?>
                     </p>                    
                     <p>
                         Bedrijfsnaam: <?php
@@ -57,7 +51,7 @@
                         mysqli_stmt_bind_result($stmt2, $name);
                         while (mysqli_stmt_fetch($stmt2))
                         {
-                            print ($name);
+                            echo $name;
                         }
                         mysqli_close($link);
                         ?>
@@ -241,13 +235,12 @@
                         <input type="submit" name="back" value="Terug">
                     </form>                                        
                 </div>
-<?php ?>
                 <!-- EINDE NIEUW GEPLAATSTE CODE -->
             </div>
             <!--EINDE CONTENT-->
         </div>
         <footer>
-<?php include 'footer.php'; ?>
+            <?php include 'footer.php'; ?>
         </footer>
     </body>
 </html>

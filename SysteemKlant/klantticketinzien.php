@@ -40,7 +40,7 @@
                 }
                 mysqli_close($link);              
 
-                $ticketidarray = $_POST["ticketid"];
+                $ticketidarray = $_POST["ticketid"];//Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
                 foreach ($ticketidarray as $ticket => $notused)
                 {
                     $ticketid = $ticket;
@@ -74,7 +74,7 @@
                         }
                         $stmt2 = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticketid");
                         mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
-                        mysqli_stmt_execute($stmt2);
+                        mysqli_stmt_execute($stmt2); // Deze query wordt gebruikt om alle reacties uit de reaction tabel te halen.
                         echo "<br><br><label>Reactions:</label>";
                         while (mysqli_stmt_fetch($stmt2))
                         {

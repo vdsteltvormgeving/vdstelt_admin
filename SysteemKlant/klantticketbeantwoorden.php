@@ -27,7 +27,7 @@
                 <?php
                 if (isset($_POST["submit"]))
                 {
-                    $ticketidarray = $_POST["ticketid"];
+                    $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
                     foreach ($ticketidarray as $ticketid => $notused)
                     {
                         $ticket_id = $ticketid;
@@ -56,14 +56,14 @@
                 }
                 else
                 {
-                    $ticketidarray = $_POST["ticketid"];
+                    $ticketidarray = $_POST["ticketid"];//Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
                     foreach ($ticketidarray AS $ticketid => $notused)
                     {
                         $ticket_id = $ticketid;
                     }
                     $username = $_SESSION['username'];
                     $password = $_SESSION['password'];
-                    include "link.php";
+                    include "link.php"; //Deze query bepaalt de userid van de ingelogde klant.
                     $loginQuery = mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
                     mysqli_stmt_execute($loginQuery);
                     mysqli_stmt_bind_result($loginQuery, $login);

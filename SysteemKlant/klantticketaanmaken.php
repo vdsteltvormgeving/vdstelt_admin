@@ -74,7 +74,7 @@
                 <!-- text field and button to send text field and cancel button to go back -->            
                 <?php
                 include"link.php";                
-                if (isset($_POST["verzenden"])) 
+                if (isset($_POST["verzenden"])) //Deze if loop doet de insert in de tabel ticket. Ook wordt er gekeken of er wel een beschrijving en categorie mee wordt gegeven
                 {
                     $description = $_POST["beschrijving"];
                     $category = $_POST["categorie"];
