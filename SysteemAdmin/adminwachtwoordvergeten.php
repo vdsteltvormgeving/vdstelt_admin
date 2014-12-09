@@ -73,6 +73,9 @@ $headers .= 'From: Bensdevolopment <bensdevolopment@hotmail.com>' . "\r\n";
                 print("E-mailadres moet worden ingevuld!"); // Hier wordt een foutmelding gegeven als het e-mailadres leeg is.
             } else {
                 echo "<p>Uw e-mail is niet bekend.</p>";
+                mysqli_stmt_free_result($stmt11); // resultset opschonen
+                mysqli_stmt_close($stmt11); // statement opruimen
+                mysqli_close($link); // verbinding verbreken 
             }
         }
 
@@ -84,10 +87,10 @@ $headers .= 'From: Bensdevolopment <bensdevolopment@hotmail.com>' . "\r\n";
 
         
         ?>
-    </div>
     <form action="AdminLogin.php" method="post">
         <input type="submit" name="back" value="Terug">  
     </form>
+    </div>
     <div class='push'></div>
     <div id='footer'>
         <div id='footerleft'>Admin Systeem</div>
