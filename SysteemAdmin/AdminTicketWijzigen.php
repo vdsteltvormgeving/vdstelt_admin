@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Joshua van Gelder, Jeffrey Hamberg, Daan Hagemans-->
+<!-- Joshua van Gelder, Jeffrey Hamberg, Daan Hagemans, Sander van der Stelt-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -49,26 +49,21 @@ if ($_SESSION["login"] != 1) {
                 while (mysqli_stmt_fetch($stmt1)) {
                     echo"
                 <form action='' method='POST'>
-                    Customer ID: <input type='text' value='$CID' name='Customer_ID'><br>
-                    Klant: $compname <br>
-                    Aanmaak Datum: $creation <br>
-                    Laatst Gewijzigd: $lastchanged <br>
-                    Verzonden Hosting: $send <br>
-                    User ID: <input type='text' value='$userid' name='User_ID'><br>
-                    Mail:$mail<br>
-                    Categorie:<select id=''Categorie' name='categorie'>
-                            <option value=''><?php echo $category; ?></option>
-                            <option value='website'>Website</option>
-                            <option value='cms'>CMS</option>
-                            <option value='hosting'>Hosting</option>
-                        </select> <br>
-                    Omschrijving:<br> <textarea rows='4' cols='40' name='Description'>$desc</textarea><br>"
-                    . "<input type='hidden' name='ticket_id[$ticket_id]'>";
+                    <label>Customer ID: </label><label><input type='text' value='$CID' name='Customer_ID'></label><br><br>
+                    <label>Klant: </label><label>$compname</label><br>
+                    <label>Aanmaak Datum: </label><label>$creation</label><br>
+                    <label>Laatst Gewijzigd: </label><label>$lastchanged</label><br>
+                    <label>Verzonden Hosting: </label><label>$send</label><br>
+                    <label>User ID: </label><label><input type='text' value='$userid' name='User ID'></label><br><br>
+                    <label>Mail: </label><label>$mail</label><br>
+                    <label>Categorie: </label><input type='text' value='$category' name='Category'><br>
+                    <label>Omschrijving: </label><br><textarea rows='4' cols='40' name='Description'>$desc</textarea><br>"
+                    . "<input type='hidden' name='ticket_id[$ticket_id]'</label>";
                 }
                 $stmt2 = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticket_id");
                 mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
                 mysqli_execute($stmt2);
-                echo 'Reactions:<br>';
+                echo '<label>Reactions:</label><br>';
                 while (mysqli_stmt_fetch($stmt2)) {
                     echo"
                 $text @ $time --$mail <br>";
@@ -78,6 +73,7 @@ if ($_SESSION["login"] != 1) {
                 <input type="submit" name="Terug" value="Terug" formaction="AdminTicketOverzicht.php">
 
                 </form>
+            </div>
                 <div class='push'></div>
                 <div id='footer'>
                     <div id='footerleft'>Admin Systeem</div>

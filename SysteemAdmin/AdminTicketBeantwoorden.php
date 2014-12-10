@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--Joshua van Gelder, Jeffrey Hamberg-->
+<!--Joshua van Gelder, Jeffrey Hamberg, , Sander van der Stelt-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -61,21 +61,20 @@ if ($_SESSION["login"] != 1) {
         mysqli_stmt_bind_result($stmt1, $compname, $cat, $desc, $completed, $CID, $creation, $text, $time);
         mysqli_stmt_execute($stmt1);
         while (mysqli_stmt_fetch($stmt1)) {
-            echo "<label>Ticket ID: $ticket_id</label><br><label>Klant ID:$compname</label><br><label>Category: $cat</label><br><label>Status:";
+            echo "<label>Ticket ID: </label><label>$ticket_id</label><br><label>Klant ID: </label><label>$compname</label><br><label>Category: </label><label>$cat</label><br><label>Status: </label><label>";
             if ($completed == 1) {
                 echo "Gesloten";
             } else {
                 echo "Open";
             }
-            echo "</label><br><label>Klant ID:$CID</label><br><label>Description:<br>$desc</label><label>$creation</label><br><label>Reactions:<br>$text</label><label>$time</label>";
+            echo "</label><br><label>Klant ID:</label><label>$CID</label><br><label><b>Description:</b></label><br><label>$creation</label><br><label>$desc</label><br><label><b>Reactions:</b></label><br><label>$time</label><br><label>$text</label>";
         }
     }
     ?>
                     <br>
                     <form method="POST" action="AdminTicketBeantwoorden.php">
                         Uw antwoord:<br>
-                        <textarea name="beschrijving">
-                        </textarea>
+                        <textarea name="beschrijving"></textarea><br>
                         <input type="submit" name="submit" value="Beantwoorden">
                     </form>
                     <form method="POST" action='AdminTicketOverzicht.php'>

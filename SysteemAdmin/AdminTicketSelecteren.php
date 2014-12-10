@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--Joshua van Gelder, Jeffrey Hamberg-->
+<!--Joshua van Gelder, Jeffrey Hamberg, , Sander van der Stelt-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -38,19 +38,19 @@ if ($_SESSION["login"] != 1) {
     mysqli_stmt_bind_result($stmt1, $compname, $cat, $desc, $completed, $CID, $creation);
     mysqli_stmt_execute($stmt1);
     while (mysqli_stmt_fetch($stmt1)) {
-        echo "<label>Ticket ID: $ticket_id</label><br><label>Klant ID:$compname</label><br><label>Category: $cat</label><br><label>Status:";
+        echo "<label>Ticket ID: </label><label>$ticket_id</label><br><label>Klant ID: </label><label>$compname</label><br><label>Category: </label><label>$cat</label><br><label>Status: </label><label>";
         if ($completed == 1) {
             echo "Gesloten";
         } else {
             echo "Open";
         }
-        echo "</label><br><label>Customer ID:$CID</label><br><label>Description:$desc</label><label>$creation</label><br>";
+        echo "</label><br><label>Customer ID: </label><label>$CID</label><br><label><b>Description: </b></label><br><label>$creation</label><br><label>$desc</label><br>";
     }
     $stmt2 = mysqli_prepare($link, "SELECT time, text, U.mail FROM reaction R JOIN User U ON U.user_id = R.user_ID WHERE R.ticket_id = $ticket_id ORDER BY time ASC ");
     mysqli_stmt_bind_result($stmt2, $time, $text, $mail);
     mysqli_stmt_execute($stmt2);
     while (mysqli_stmt_fetch($stmt2)) {
-        echo"<label>Reaction:</label><label>$text</label><label>$time</label><label>$mail</label><br>";
+        echo"<label><b>Reaction:</b></label><br><label>$mail</label><br><label>$time</label><br><label>$text</label><br>";
     }
     ?>
                     <form method="POST" action='AdminTicketOverzicht.php'>

@@ -69,7 +69,7 @@
                     <br>
                     <input type="submit" name="login" value="login">
                     <br><br>
-                    <a href="#">wachtwoord vergeten</a>
+                    <a href="adminwachtwoordvergeten.php">Wachtwoord vergeten?</a>
                 </form>
             </div>
         </div>
