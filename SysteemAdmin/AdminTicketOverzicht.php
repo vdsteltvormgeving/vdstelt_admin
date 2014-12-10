@@ -41,6 +41,7 @@ if ($_SESSION["login"] != 1) {
                     include 'menu.php';
                     ?>
                 </div>
+                <div id='content'>
                 <div id="ticket">
                     <h1>Open tickets:</h1>
                     <br>
@@ -212,7 +213,7 @@ if ($_SESSION["login"] != 1) {
                         ?>
                     </table>
                 </div>
-
+                    
                 <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
                 <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
 
@@ -243,6 +244,7 @@ if ($_SESSION["login"] != 1) {
                     <input type="submit" name="Wijzigen" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
                 </table> -->
             </form>
+        </div>
             <div id='footer'>
                 <div id='footerleft'>Admin Systeem</div>
                 <div id='footerright'>&copy;Bens Development 2013 - 2014</div>

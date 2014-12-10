@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Sander van der Stelt; Gelieve het commentaar door te lezen! -->
+<!-- Sander van der Stelt; Gelieve het commentaar door te lezen!, Léyon Courtz -->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -30,7 +30,6 @@
                 if (isset($_POST['wwaanvragen']))
                 {
                     $email = $_POST['email']; //Hier komt de waarde die ingevuld is door bezoeker
-
                     
                     $stmt = mysqli_prepare($link, "SELECT first_name,mail FROM user WHERE mail = ?"); //Sql beveiligd tegen injecties.
                     
@@ -65,7 +64,7 @@
                             /*
                              * Dit is het mail bericht wat naar de bezoeker wordt gestuurd (local kan niet).
                              * 
-                            $to .= $email;
+                            $to = $email;
                             $subject = 'Uw nieuwe wachtwoord';
                             $message = '
                             <html>
