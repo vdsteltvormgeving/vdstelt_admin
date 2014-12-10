@@ -31,13 +31,20 @@ if ($_SESSION["login"] != 1) {
                     foreach ($_POST["ticket_id"] AS $ticketid => $notused) {
                         $ticket_id = $ticketid;
                     }
+                    $description = $_POST["Description"];
+                    $userid = $_POST["User_ID"];
+                    $category = $_POST["categorie"];
+                    $CID = $_POST["Customer_ID"];
+                    ;
+                    $description = $category = $insert = mysqli_prepare($link, "UPDATE ticket SET last_time_date=NOW(), description='$description', user_id=$userid, category='$category', customer_id=$CID WHERE ticket_id=$ticket_id");
+                    mysqli_stmt_execute($insert);
                 } else {
                     foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
                         $ticket_id = $ticketid;
                     }
                 }
                 $stmt1 = mysqli_prepare($link, "SELECT T.customer_id, creation_date, last_time_date, send_date, T.user_id, C.company_name, U.mail, category, description FROM ticket T JOIN customer C On c.customer_id = T.customer_id JOIN User U ON U.user_id = T.user_id WHERE ticket_id=$ticket_id ");
-                mysqli_stmt_bind_result($stmt1, $CID, $creation, $lastchanged, $send, $userid, $mail, $compname, $category, $desc);
+                mysqli_stmt_bind_result($stmt1, $CID, $creation, $lastchanged, $send, $userid, $compname, $mail, $category, $desc);
                 mysqli_execute($stmt1);
                 while (mysqli_stmt_fetch($stmt1)) {
                     echo"
@@ -47,11 +54,16 @@ if ($_SESSION["login"] != 1) {
                     Aanmaak Datum: $creation <br>
                     Laatst Gewijzigd: $lastchanged <br>
                     Verzonden Hosting: $send <br>
-                    User ID: <input type='text' value='$userid' name='User ID'><br>
+                    User ID: <input type='text' value='$userid' name='User_ID'><br>
                     Mail:$mail<br>
-                    Categorie: <input type='text' value='$category' name='Category'><br>
+                    Categorie:<select id=''Categorie' name='categorie'>
+                            <option value=''><?php echo $category; ?></option>
+                            <option value='website'>Website</option>
+                            <option value='cms'>CMS</option>
+                            <option value='hosting'>Hosting</option>
+                        </select> <br>
                     Omschrijving:<br> <textarea rows='4' cols='40' name='Description'>$desc</textarea><br>"
-                    . "<input type='hidden' name='ticket_id[$ticket_id]'";
+                    . "<input type='hidden' name='ticket_id[$ticket_id]'>";
                 }
                 $stmt2 = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticket_id");
                 mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
@@ -59,10 +71,11 @@ if ($_SESSION["login"] != 1) {
                 echo 'Reactions:<br>';
                 while (mysqli_stmt_fetch($stmt2)) {
                     echo"
-                <textarea rows='4' cols='40' name='Reaction'>$text @ $time --$mail</textarea><br>";
+                $text @ $time --$mail <br>";
                 }
                 ?>
                 <input type="submit" name="wijzigen" value="wijzigen">
+                <input type="submit" name="Terug" value="Terug" formaction="AdminTicketOverzicht.php">
 
                 </form>
                 <div class='push'></div>
