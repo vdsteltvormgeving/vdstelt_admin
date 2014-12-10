@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php session_start(); ?>
-<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
+<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt, Léyon Courtz -->
 <html>    
     <head>
         <meta charset="UTF-8">
