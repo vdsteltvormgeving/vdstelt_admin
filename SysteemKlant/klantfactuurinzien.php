@@ -51,7 +51,7 @@
                     include "link.php";
                     $stat1 = mysqli_prepare($link, "SELECT street, house_number, city, kvk_number, btw_number FROM Customer WHERE customer_id = $user");
                 mysqli_stmt_execute($stat1);
-                mysqli_stmt_bind_result($stat1, $street, $city, $housen, $kvk, $btw);
+                mysqli_stmt_bind_result($stat1, $street, $housen, $city, $kvk, $btw);
                 while (mysqli_stmt_fetch($stat1)){
                     echo "$street $housen <br>";
                     echo "Woonplaats: $city";
