@@ -43,7 +43,7 @@
                 $datetime = date("Y-m-d H:i:s");  //Met deze functie wordt de datum bepaald.
                 ?>                
                 <p> 
-                    Naam: <?php echo "$fname $lname"; ?> 
+                    Naam: <?php echo "$fname $lname $login"; ?> 
                 </p>
                 <!-- Bij deze form kan een bestand worden geupload om mee te geven met de ticket -->
                 <form action="Upload.php" method="POST" enctype="multipart/form-data">
@@ -55,7 +55,7 @@
                     Datum: <?php echo $datetime; ?> 
                 </p>                
                 <form method="POST" action="klantticketaanmaken.php">
-                    <p>
+                    <p>                        
                         <select id="Categorie" name="categorie">
                             <option value="">Selecteer Categorie</option>
                             <option value="website">Website</option>
@@ -66,7 +66,7 @@
                             <?php
                             echo "<option value=''>Selecteer uw bedrijf</option>";
                             include "link.php";
-                            $customer_id = mysqli_prepare($link, "SELECT C.company_name C.customer_id FROM Customer C JOIN User U ON C.customer_id=U.user_id WHERE U.user_id=$login");
+                            $customer_id = mysqli_prepare($link, "SELECT C.company_name, C.customer_id FROM Customer C JOIN User U ON C.customer_id=U.user_id WHERE U.user_id=$login");
                             mysqli_stmt_execute($customer_id);
                             mysqli_stmt_bind_result($customer_id, $companyname, $customerid);
                             while (mysqli_stmt_fetch($customer_id))
@@ -80,7 +80,7 @@
                     <textarea name="beschrijving"></textarea>
                     <br>
                     <input type="submit" name="verzenden" value="Verzenden">
-                   <input type="hidden" name="customerid" value="<?php echo $customerid; ?>">
+                    <input type="hidden" name="customerid" value="<?php echo $customerid; ?>">
                 </form>
                 <form method="POST" action="klantoverzicht.php">
                     <input type="submit" name="annuleren" value="Annuleren"> 
