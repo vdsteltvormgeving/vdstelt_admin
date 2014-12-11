@@ -43,7 +43,7 @@
                 $datetime = date("Y-m-d H:i:s");  //Met deze functie wordt de datum bepaald.
                 ?>                
                 <p> 
-                    Naam: <?php echo "$fname $lname $login"; ?> 
+                    Naam: <?php echo "$fname $lname"; ?> 
                 </p>
                 <!-- Bij deze form kan een bestand worden geupload om mee te geven met de ticket -->
                 <form action="Upload.php" method="POST" enctype="multipart/form-data">
@@ -65,7 +65,7 @@
                         <select name="customerid">
                             <?php
                             echo "<option value=''>Selecteer uw bedrijf</option>";
-                            include "link.php";
+                            include "link.php"; // Deze query haald de verschillende bedrijven opgehaald die de ingelogde user heeft.
                             $customer_id = mysqli_prepare($link, "SELECT C.company_name, C.customer_id FROM Customer C JOIN User U ON C.customer_id=U.user_id WHERE U.user_id=$login");
                             mysqli_stmt_execute($customer_id);
                             mysqli_stmt_bind_result($customer_id, $companyname, $customerid);
@@ -80,7 +80,7 @@
                     <textarea name="beschrijving"></textarea>
                     <br>
                     <input type="submit" name="verzenden" value="Verzenden">
-                    <input type="hidden" name="customerid" value="<?php echo $customerid; ?>">
+                    <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet  ?>">
                 </form>
                 <form method="POST" action="klantoverzicht.php">
                     <input type="submit" name="annuleren" value="Annuleren"> 
@@ -95,7 +95,7 @@
                     $category = $_POST["categorie"];
                     $customer = $_POST["customerid"];
                     $creation_date = $datetime;
-                    if ($description == "" || $category == "")
+                    if ($description == "" || $category == "" || $customer == "")
                     {
                         echo "<p class='foutmelding'>Er is geen categorie en/of beschrijving gegeven.</p>";
                     }
