@@ -83,7 +83,7 @@
                 <form method="POST" action="klantticketwijzigen.php">
                     <p>
                         <select id="Categorie" name="categorie">
-                            <option value=""></option>
+                            <option value="<?php echo "$category" ?>"><?php echo "$category" ?></option>
                             <option value="website">Website</option>
                             <option value="cms">CMS</option>
                             <option value="hosting">Hosting</option>

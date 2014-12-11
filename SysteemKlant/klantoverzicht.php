@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php session_start(); ?>
-<!-- Joshua van Gelder, Sander van der Stelt, Bart Holsappel -->
+<!-- Joshua van Gelder, Sander van der Stelt -->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -27,7 +27,7 @@
                 <form method="POST" action="klantticketoverzicht.php">
                     <input type="submit" name="ticketinzien" value="Tickets inzien">
                 </form>                     
-                <form method="POST" action="klantfactuuroverzicht.php">
+                <form>
                     <input type="submit" name="factuuroverzicht" value="Factuur Overzicht">
                 </form>
                 <form method="POST" action="klantoverzicht.php">
