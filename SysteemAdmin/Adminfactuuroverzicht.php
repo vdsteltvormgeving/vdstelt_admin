@@ -42,6 +42,36 @@ else
                                 ?>
                             </th>
                             <th>
+                                <th>
+                                <?php
+                                if (isset($_POST["sortcat"])) {
+                                    echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortcatDESC' value='Categorie'></form>";
+                                } else {
+                                    echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortcat' value='Categorie'></form>";
+                                }
+                                ?>
+                            </th>
+                            <th>
+                                <?php
+                                if (isset($_POST["sortct"])) {
+                                    echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortctDESC' value='Aanmaak Datum'></form>";
+                                } else {
+                                    echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortct' value='Aanmaak Datum'></form>";
+                                }
+                                ?>
+                            </th>
+                            <th>
+                                <?php
+                                if (isset($_POST["sortstat"])) {
+                                    echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortstatDESC' value='Status'></form>";
+                                } else {
+                                    echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortstat' value='Status'></form>";
+                                }
+                                ?>
+                            </th>
+                            <th></th>
+                            <th>Bekijken</th>
+                        </tr>
     </div>
             <div class='push'></div>
             <div id='footer'>
