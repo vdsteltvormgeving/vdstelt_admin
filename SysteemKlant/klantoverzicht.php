@@ -27,8 +27,8 @@
                 <form method="POST" action="klantticketoverzicht.php">
                     <input type="submit" name="ticketinzien" value="Tickets inzien">
                 </form>                     
-                <form>
-                    <input type="submit" name="factuuroverzicht" value="Factuur Overzicht">
+                <form method="POST" action="klantfactuuroverzicht.php">
+                    <input type="submit" name="klantfactuuroverzicht" value="Factuur Overzicht">
                 </form>
                 <form method="POST" action="klantoverzicht.php">
                     <input type="submit" name="loguit" value="Uitloggen">
