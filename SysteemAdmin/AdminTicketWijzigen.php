@@ -56,7 +56,12 @@ if ($_SESSION["login"] != 1) {
                     <label>Verzonden Hosting: </label><label>$send</label><br>
                     <label>User ID: </label><label><input type='text' value='$userid' name='User ID'></label><br><br>
                     <label>Mail: </label><label>$mail</label><br>
-                    <label>Categorie: </label><input type='text' value='$category' name='Category'><br>
+                    <label>Categorie: </label><select id=''Categorie' name='categorie'>
+                            <option value='$category'>$category</option>
+                            <option value='website'>Website</option>
+                            <option value='cms'>CMS</option>
+                            <option value='hosting'>Hosting</option>
+                        </select> <br>
                     <label>Omschrijving: </label><br><textarea rows='4' cols='40' name='Description'>$desc</textarea><br>"
                     . "<input type='hidden' name='ticket_id[$ticket_id]'</label>";
                 }
@@ -74,12 +79,12 @@ if ($_SESSION["login"] != 1) {
 
                 </form>
             </div>
-                <div class='push'></div>
-                <div id='footer'>
-                    <div id='footerleft'>Admin Systeem</div>
+            <div class='push'></div>
+            <div id='footer'>
+                <div id='footerleft'>Admin Systeem</div>
 
-                    <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-                </div>
+                <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
+            </div>
         </body>
     </html>
 
