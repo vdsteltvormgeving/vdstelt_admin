@@ -4,7 +4,7 @@
     <html>
         <head>
             <meta charset="UTF-8">
-            <title>Admin Systeem</title>
+            <title>Klant Systeem</title>
             <link href="stijl.css" rel="stylesheet" type="text/css"/>
         </head>
         <body>
@@ -62,15 +62,24 @@
                 
                 <p>Factuur:
                 <?php
+                $total = 0;
                 include"link.php";
-                $stmt2 = mysqli_prepare($link, "SELECT * FROM line WHERE invoice_number = $invoiceID");
+                $stmt2 = mysqli_prepare($link, "SELECT line_id, invoice_number, description, description2, amount, price, btw FROM line WHERE invoice_number = $invoiceID");
                 mysqli_stmt_execute($stmt2);
                 mysqli_stmt_bind_result($stmt2, $lineID, $IN, $D1, $D2, $amount, $price, $BTW);
                 echo "<table><th>Beschrijving</th><th>Aantal</th><th>prijs</th>";
                 while (mysqli_stmt_fetch($stmt2)){
+                   $total = $total + ($amount * $price); 
                    echo "<tr><td>$D1</td><td>$amount</td><td>$price</td></tr>" ;
                    
                 }
+                $BTWsub = ($BTW/100)+1;
+                $totalincbtw = $total * $BTWsub;
+                $BTWtotal = $totalincbtw - $total;
+                
+                echo "<tr><td>Totaal</td><td>€ $total</td></tr>";
+                echo "<tr><td>BTW $BTW %</td><td>€ $BTWtotal</td></tr>";
+                echo "<tr><td>Totaal inc. btw</td><td>$totalincbtw</td></tr>";
                 echo "</table>";
                 ?>
                 </p>
