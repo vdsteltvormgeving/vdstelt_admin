@@ -46,7 +46,7 @@
                     </p>                    
                     <p>
                         Bedrijfsnaam: <?php
-                        include "link.php";
+                        include "link.php"; // Met deze query wordt de company naam van de ingelogde klant opgehaald.
                         $stmt2 = mysqli_prepare($link, "SELECT C.company_name FROM Customer C JOIN Invoice I ON I.customer_id=C.customer_id JOIN User U ON U.user_id=I.user_id WHERE U.mail='$username' ");
                         mysqli_stmt_execute($stmt2);
                         mysqli_stmt_bind_result($stmt2, $name);
@@ -110,7 +110,7 @@
                             mysqli_stmt_bind_result($stmt4, $category, $creation, $completed, $ticketid);
                             while (mysqli_stmt_fetch($stmt4))
                             {
-                                if ($completed == 1)
+                                if ($completed == 1) //Deze if en else zijn nodig om de completed status om te zetten in woorden.
                                 {
                                     $completed = "Gesloten";
                                 }
