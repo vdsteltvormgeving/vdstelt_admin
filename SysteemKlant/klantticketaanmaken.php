@@ -64,14 +64,14 @@
                         </select>
                         <select name="customerid">
                             <?php
-                            echo "<option value=''>Selecteer uw ID</option>";
+                            echo "<option value=''>Selecteer uw bedrijf</option>";
                             include "link.php";
-                            $customer_id = mysqli_prepare($link, "SELECT DISTINCT customer_id FROM Ticket WHERE user_id=$login");
+                            $customer_id = mysqli_prepare($link, "SELECT C.company_name C.customer_id FROM Customer C JOIN User U ON C.customer_id=U.user_id WHERE U.user_id=$login");
                             mysqli_stmt_execute($customer_id);
-                            mysqli_stmt_bind_result($customer_id, $customerid);
+                            mysqli_stmt_bind_result($customer_id, $companyname, $customerid);
                             while (mysqli_stmt_fetch($customer_id))
                             {
-                                echo "<option value='$customerid'>$customerid</option>";
+                                echo "<option value='$companyname'>$companyname</option>";
                             }
                             mysqli_close($link);
                             ?>
@@ -79,7 +79,8 @@
                     </p>                    
                     <textarea name="beschrijving"></textarea>
                     <br>
-                    <input type="submit" name="verzenden" value="Verzenden">                                       
+                    <input type="submit" name="verzenden" value="Verzenden">
+                   <input type="hidden" name="customerid" value="<?php echo $customerid; ?>">
                 </form>
                 <form method="POST" action="klantoverzicht.php">
                     <input type="submit" name="annuleren" value="Annuleren"> 
