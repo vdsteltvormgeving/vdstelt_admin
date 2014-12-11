@@ -35,28 +35,48 @@
                 <div id="factuur">
                     <p>Naam: <?php
                         include"link.php";
-                        $stmt1 = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");
-                        mysqli_stmt_execute($stmt1);
-                        mysqli_stmt_bind_result($stmt1, $fname, $lname);
-                        while (mysqli_stmt_fetch($stmt1))
+                        $stmt = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt, $fname, $lname);
+                        while (mysqli_stmt_fetch($stmt))
                         {
                             echo "$fname $lname <br>";
-                            //echo "$user";
                         }
+                        
                         mysqli_close($link);
                         ?>
                     </p>
+                    
+                    <p>Adres: <?php
+                    include "link.php";
+                    $stat1 = mysqli_prepare($link, "SELECT street, house_number, city, kvk_number, btw_number FROM Customer WHERE customer_id = $user");
+                mysqli_stmt_execute($stat1);
+                mysqli_stmt_bind_result($stat1, $street, $city, $housen, $kvk, $btw);
+                while (mysqli_stmt_fetch($stat1)){
+                    echo "$street $housen <br>";
+                    echo "Woonplaats: $city";
+                    
+                }
+                        
+                        mysqli_close($link);
+                    ?>
                 <p><?php
                     include "link.php";
+                    $stat2 = mysqli_prepare($link, "SELECT date FROM invoice WHERE user_id = $user");
+                mysqli_stmt_execute($stat2);
+                mysqli_stmt_bind_result($stat2, $date);
+                while (mysqli_stmt_fetch($stat2)){
+                    
+                }
+                mysqli_close($link);
                     $factuurarray = $_POST["CID"];
                     foreach ($factuurarray as $invoice => $notused)
                     {
                         $invoiceID = $invoice;
                     }
-                    echo "<label>Factuur nummer:</label><label>" . $invoiceID . "</label>";
-                    echo "$date";
-
-                    mysqli_close($link);
+                    echo "<label>Factuur nummer:</label><label>$invoiceID</label>";
+                    echo "<br>";
+                    echo "<label>Datum:</label><label> $date</label>";
                     ?>
                 </p>
                 
@@ -64,11 +84,11 @@
                 <?php
                 $total = 0;
                 include"link.php";
-                $stmt2 = mysqli_prepare($link, "SELECT line_id, invoice_number, description, description2, amount, price, btw FROM line WHERE invoice_number = $invoiceID");
-                mysqli_stmt_execute($stmt2);
-                mysqli_stmt_bind_result($stmt2, $lineID, $IN, $D1, $D2, $amount, $price, $BTW);
+                $stmt3 = mysqli_prepare($link, "SELECT line_id, invoice_number, description, description2, amount, price, btw FROM line WHERE invoice_number = $invoiceID");
+                mysqli_stmt_execute($stmt3);
+                mysqli_stmt_bind_result($stmt3, $lineID, $IN, $D1, $D2, $amount, $price, $BTW);
                 echo "<table><th>Beschrijving</th><th>Aantal</th><th>prijs</th>";
-                while (mysqli_stmt_fetch($stmt2)){
+                while (mysqli_stmt_fetch($stmt3)){
                    $total = $total + ($amount * $price); 
                    echo "<tr><td>$D1</td><td>$amount</td><td>$price</td></tr>" ;
                    
@@ -83,6 +103,12 @@
                 echo "</table>";
                 ?>
                 </p>
+                <p> Iban:<?php
+                    echo " <br>";
+                    echo "KvK nummer: $kvk<br>";
+                    echo "Btw nummer: $btw<br>";
+                    ?>
+                    
                 <form class="knop_link" method="post" action="Klantfactuurverzicht.php">
                 <input type="submit" name="back" value="Terug">
             </form>
