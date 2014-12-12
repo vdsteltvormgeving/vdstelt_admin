@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Van der Stelt Vormgeving - Administratie systeem</title>
     </head>
     <body>
         <?php
