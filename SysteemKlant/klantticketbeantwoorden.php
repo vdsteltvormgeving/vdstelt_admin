@@ -56,7 +56,7 @@
                 }
                 else
                 {
-                    $ticketidarray = $_POST["ticketid"];//Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
+                    $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
                     foreach ($ticketidarray AS $ticketid => $notused)
                     {
                         $ticket_id = $ticketid;
@@ -102,17 +102,34 @@
                 ?>
                 <br>
                 <br>
-                <form method="POST" action="klantticketbeantwoorden.php">
-                    Uw antwoord:<br>
-                    <textarea name="beschrijving"></textarea>
-                    <br>
-                    <input type="submit" name="submit" value="Beantwoorden">
-                    <input type="hidden" name="ticketid['<?php echo "$ticketid"; ?>']">
-                </form>
+                <?php
+                include "link.php";
+                $openorclosed = mysqli_prepare($link, "SELECT completed_status FROM Ticket WHERE ticket_id=$ticket_id");
+                mysqli_stmt_bind_result($openorclosed, $status);
+                mysqli_stmt_execute($openorclosed);
+                mysqli_stmt_fetch($openorclosed);
+                if ($status == 0)
+                {
+                    ?>
+                    <form method="POST" action="klantticketbeantwoorden.php">
+                        Uw antwoord:<br>
+
+                        <textarea name="beschrijving"></textarea>
+                        <br>
+                        <input type="submit" name="submit" value="Beantwoorden">
+                        <input type="hidden" name="ticketid['<?php echo "$ticketid"; ?>']">
+                    </form>
+                    <?php
+                }
+                else
+                {
+                    echo "Deze ticket is gesloten en u kan er niet meer op reageren. <br>Als dit niet zo hoort te zijn neem dan contact op met de administrator.";
+                }
+                ?>
                 <form method="POST" action='klantticketoverzicht.php'>
-                    <input type='submit' name='terug' value='terug'>
-                    <input type='hidden' name="" value="">
+                    <input type='submit' name='terug' value='terug'>                    
                 </form>
+
             </div>
             <!--EINDE CONTENT-->
         </div>
