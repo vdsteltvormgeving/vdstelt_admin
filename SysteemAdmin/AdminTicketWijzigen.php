@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Joshua van Gelder, Jeffrey Hamberg, Daan Hagemans-->
+<!-- Joshua van Gelder, Jeffrey Hamberg, Daan Hagemans, Sander van der Stelt, Léyon Courtz-->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -38,49 +38,67 @@ if ($_SESSION["login"] != 1) {
             </div>
             <div id='content'>
                 <?php
+                // Hieronder wordt gechecked welke POST moet gebruikt worden
                 include 'link.php';
-                foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
-                    $ticket_id = $ticketid;
+                if (isset($_POST["wijzigen"])) {
+                    foreach ($_POST["ticket_id"] AS $ticketid => $notused) {
+                        $ticket_id = $ticketid;
+                    }
+                    $description = $_POST["Description"];
+                    $userid = $_POST["User_ID"];
+                    $category = $_POST["categorie"];
+                    $CID = $_POST["Customer_ID"];
+                    ;
+                    $description = $category = $insert = mysqli_prepare($link, "UPDATE ticket SET last_time_date=NOW(), description='$description', user_id=$userid, category='$category', customer_id=$CID WHERE ticket_id=$ticket_id");
+                    mysqli_stmt_execute($insert);
+                } else {
+                    foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
+                        $ticket_id = $ticketid;
+                    }
                 }
-                $stmt1 = mysqli_prepare($link, "SELECT customer_id, creation_date, last_change_date, send_date, user_id, category C.company_name, U.mail, description FROM ticket T JOIN customer C On c.customer_id = T.customer_id JOIN User U ON U.user_id = T.user_id WHERE ticket_id=$ticket_id ");
-                mysqli_stmt_bind_result($stmt1, $CID, $creation, $lastchange, $send, $userid, $comp, $mail, $category, $desc);
-                mysqli_stmt_execute($stmt1);
+                $stmt1 = mysqli_prepare($link, "SELECT T.customer_id, creation_date, last_time_date, send_date, T.user_id, C.company_name, U.mail, category, description FROM ticket T JOIN customer C On c.customer_id = T.customer_id JOIN User U ON U.user_id = T.user_id WHERE ticket_id=$ticket_id ");
+                mysqli_stmt_bind_result($stmt1, $CID, $creation, $lastchanged, $send, $userid, $compname, $mail, $category, $desc);
+                mysqli_execute($stmt1);
                 while (mysqli_stmt_fetch($stmt1)) {
-
-                    echo "
+                    echo"
                 <form action='' method='POST'>
-                    <input type='text' value='$CID' name='Customer_ID'>
-                    Klant: $comp
-                    <input type='text' value='$creation' name='Creation Date'> 
-                    <input type='text' value='$lastchange' name='Last Changed Date'> 
-                    <input type='text' value='$send' name='Send Date to Hosting'> 
-                    <input type='text' value='$userid' name='User ID'> 
-                    Mail: $mail
-                    <select id='Categorie' name='categorie'>
-                            <option value='$category'><?php echo $category; ?></option>
+                    <label>Customer ID: </label><label><input type='text' value='$CID' name='Customer_ID'></label><br><br>
+                    <label>Klant: </label><label>$compname</label><br>
+                    <label>Aanmaak Datum: </label><label>$creation</label><br>
+                    <label>Laatst Gewijzigd: </label><label>$lastchanged</label><br>
+                    <label>Verzonden Hosting: </label><label>$send</label><br>
+                    <label>User ID: </label><label><input type='text' value='$userid' name='User ID'></label><br><br>
+                    <label>Mail: </label><label>$mail</label><br>
+                    <label>Categorie: </label><select id=''Categorie' name='categorie'>
+                            <option value='$category'>$category</option>
                             <option value='website'>Website</option>
                             <option value='cms'>CMS</option>
                             <option value='hosting'>Hosting</option>
-                        </select>
-                    <textarea cols='4' name='Description'>$desc</textarea>";
-                } $stmt2 = mysqli_prepare($link, "SELECT TIME, TEXT, U.mail reaction_id FROM reaction R JOIN User U ON U.user_id = R.user_ID JOIN Ticket T ON T.ticket_id = R.ticket_id WHERE R.ticket_id = $ticket_id");
-                mysqli_stmt_bind_result($stmt1, $time, $text, $mail, $reaction_id);
-                mysqli_stmt_execute($stmt1);
-                while (mysqli_stmt_fetch($stmt1)) {
-
+                        </select> <br>
+                    <label>Omschrijving: </label><br><textarea rows='4' cols='40' name='Description'>$desc</textarea><br>"
+                    . "<input type='hidden' name='ticket_id[$ticket_id]'</label>";
+                }
+                $stmt2 = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticket_id");
+                mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
+                mysqli_execute($stmt2);
+                echo '<label>Reactions:</label><br>';
+                while (mysqli_stmt_fetch($stmt2)) {
                     echo"
-                    <textarea cols='4' name='Reaction[$reaction_id]'>$mail: $text  -$time</textarea>
-                    <input type='submit' name='wijzigen' value='wijzigen' formaction=''>";
+                $text @ $time --$mail <br>";
                 }
                 ?>
-            </form>
+                <input type="submit" name="wijzigen" value="wijzigen">
+                <input type="submit" name="Terug" value="Terug" formaction="AdminTicketOverzicht.php">
+
+                </form>
+            </div>
             <div class='push'></div>
             <div id='footer'>
                 <div id='footerleft'>Admin Systeem</div>
 
                 <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
             </div>
-    </body>
+        </body>
     </html>
 
 <?php } ?>

@@ -18,8 +18,7 @@
         </div>
 
         <div id='content'>
-            <p><?php
-                session_start();
+            <p><?php                
                 include "link.php";
                 $username = $_SESSION["username"];
                 $password = $_SESSION["password"];
