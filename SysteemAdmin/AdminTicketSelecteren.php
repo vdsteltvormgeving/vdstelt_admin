@@ -54,7 +54,7 @@ if ($_SESSION["login"] != 1) {
                     }
                     ?>
                     <form method="POST" action=''>
-                        <input type='submit' name='terug' value='terug'>
+                        <input type='submit' name='terug' value='terug' formaction="AdminTicketOverzicht.php">
                         <input type='submit' name='Wijzigen' formaction='AdminTicketWijzigen.php'>
                     </form>
                     <form method="POST" action="AdminTicketBeantwoorden.php">
