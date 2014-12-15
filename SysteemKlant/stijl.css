@@ -1,3 +1,5 @@
+/*  Klantsysteem stylesheet 
+    Sander van der Stelt*/
 body{
     margin:0px;
     padding:0px;
@@ -441,5 +443,4 @@ label{
     display: inline-block;
 }
 .factuur{
-
 }

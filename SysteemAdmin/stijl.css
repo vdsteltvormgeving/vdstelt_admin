@@ -1,3 +1,5 @@
+/*  Adminsysteem stylesheet 
+    Sander van der Stelt*/
 body{
     margin: 0px;
     height: 100%;
@@ -344,6 +346,19 @@ input[type="text"], input[type="password"]{
 }
 #content form{
     margin:auto;
+}
+.table_admin{
+    margin-left:0px !important;
+    margin-right:0px !important;
+    border:1px solid black;
+    border-radius:4px;
+}
+.table_reactie{
+    margin:0px;
+}
+.datum{
+    font-size: 11px;
+    color:black;
 }
 
 
