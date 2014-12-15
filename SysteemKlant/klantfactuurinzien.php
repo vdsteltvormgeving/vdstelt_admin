@@ -117,7 +117,7 @@
                     echo '<p class="succesmelding">Deze factuur is voldaan.</p>';
                 }?>
                     
-                <form class="knop_link" method="post" action="Klantfactuurverzicht.php">
+                <form class="knop_link" method="post" action="klantfactuuroverzicht.php">
                 <input type="submit" name="back" value="Terug">
             </form>
                     <br>
