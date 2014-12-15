@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <!--Bart Holsappel -->
-
-    <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>Klant Systeem</title>
-            <link href="stijl.css" rel="stylesheet" type="text/css"/>
-        </head>
-        <body>
-            <div id='bovenbalk'>
-                <div id='logo'>
-                    <img src="img/logo-bens.png" alt=""/>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Bens Developement</title>
+        <link href="stijl.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <div id="logo">
+                    <img src="afbeeldingen/logo-bens.png" alt="Bens Development"/>
                 </div>
-                <?php
-                include 'menu.php';
-                ?>
-            </div>
-            <div id='content'>
+                <!--BEGIN MENU-->
+                <div id="menu">
+                    <?php
+                    include 'menubackend.php';
+                    ?>
+                </div>
+                <!--EINDE MENU-->
+            </header>
+            <!--BEGIN CONTENT-->
+            <div id="content">
                 <?php
                 include "link.php";
                 session_start();
@@ -103,25 +108,16 @@
                 echo "</table>";
                 ?>
                 </p>
-                <p> Iban:<?php
-                    echo " <br>";
-                    echo "KvK nummer: $kvk<br>";
-                    echo "Btw nummer: $btw<br>";
-                    ?>
+                <p> IBAN: NL 83 RABO 0344 4625 36 <br>
                     
                 <form class="knop_link" method="post" action="Klantfactuurverzicht.php">
                 <input type="submit" name="back" value="Terug">
             </form>
                     <br>
         </div>
-
-        <div class='push'></div>
-        <div id='footer'>
-            <div id='footerleft'>Klant systeem</div>
-
-            <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-        </div>
-                
-            </div>
+        </div></div>
+        <footer>
+        <?php include 'footer.php'; ?>
+        </footer>
     </body>
 </html>
