@@ -206,7 +206,7 @@ if ($_SESSION["login"] != 1) {
                 <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
                 <input type="hidden" name="ticketid[<?php echo $ticketid; ?>]">
 
-                <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
+                
                 <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
                 <input type="submit" name="Openen" Value="Open">
 
