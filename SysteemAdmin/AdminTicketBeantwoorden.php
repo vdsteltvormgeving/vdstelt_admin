@@ -100,7 +100,7 @@ if ($_SESSION["login"] != 1) {
                             mysqli_stmt_execute($reactions); // Deze query wordt gebruikt om alle reacties uit de reaction tabel te halen.
                             echo "<br><br><label>Reactie:</label>";
                             while (mysqli_stmt_fetch($reactions)) {
-                                echo "<br><label><br>$text</label> <label>$time</label>";
+                                echo "<br><table class='table_admin'><td class='table_reactie'><span class='datum'>$time</span><br>$text</td></table>";
                             }
                             ?>
                             <br>
