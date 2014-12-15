@@ -220,8 +220,7 @@ if ($_SESSION["login"] != 1) {
                             }
                         }
                         ?>
-                </table>
-            </div>
+                </table><br>
             <input type="hidden" name="KlantInzien" value="KlantInzien">
             <input type="submit" name="Sluiten" Value="Sluiten" formaction="">
             <?php echo "<input type='hidden' name='CID[$customerID]'>" ?>
@@ -230,8 +229,9 @@ if ($_SESSION["login"] != 1) {
             <input type="submit" name="Open" value="Open" formaction="">
         </form>
     </div>
-    <div class='push'></div>
-
+    <?php 
+    include 'footeradmin.php';
+    ?>
     </body>
     </html>
 <?php }
