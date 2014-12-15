@@ -79,7 +79,7 @@
                     mysqli_stmt_execute($stmt1);
                     while (mysqli_stmt_fetch($stmt1))
                     {
-                        echo "<label>Ticket ID: $ticket_id</label><br><label>Klant ID:$compname</label><br><label>Category: $cat</label><br><label>Status:";
+                        echo "<label>Ticket ID:</label> $ticket_id<br><label>Klant ID:</label> $compname<br><label>Category:</label> $cat<br><label>Status:</label> ";
                         if ($completed == 1)
                         {
                             echo "Gesloten";
@@ -88,15 +88,15 @@
                         {
                             echo "Open";
                         }
-                        echo "</label><br><label>Klant ID:$CID</label><br><label>Description:<br>$desc</label> <label>$creation</label>";
+                        echo "<br><br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
                     }
                     $stmt2 = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticket_id");
                     mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
                     mysqli_stmt_execute($stmt2);
-                    echo "<br><label>Reactions:</label>";
+                    echo "<br><label>Reactie:</label>";
                     while (mysqli_stmt_fetch($stmt2))
                     {
-                        echo "<br><label><br>$text</label> <label>$time</label>";
+                        echo "<br><table><td class='table_reactie'><span class='datum'>$time</span><br>$text</table>";
                     }
                 }
                 ?>
