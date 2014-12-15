@@ -43,7 +43,7 @@ if ($_SESSION["login"] != 1) {
             </div>
             <div id='content'>
                 <div id="ticket">
-                    <h1>tickets:</h1>
+                    <h1>Tickets</h1>
                     <br>
                     <table>
                         <tr>
@@ -199,6 +199,8 @@ if ($_SESSION["login"] != 1) {
                                     echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[$ticket_ID]' Value='Beantwoorden' formaction='AdminTicketBeantwoorden.php'></td></tr>";
                                 }
                             }
+                            
+                            
                             ?>
                     </table>
                 </div>
@@ -208,7 +210,7 @@ if ($_SESSION["login"] != 1) {
 
                 
                 <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
-                <input type="submit" name="Openen" Value="Open">
+                <input type="submit" name="Openen" Value="Open" action="<?php $stmt21 = mysqli_prepare($link, "Update Ticket SET completed_status == 0") ?>">
 
                 <br><br><br>
                 <!--
