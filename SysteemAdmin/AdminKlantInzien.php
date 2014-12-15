@@ -230,7 +230,7 @@ if ($_SESSION["login"] != 1) {
         </form>
     </div>
     <?php 
-    include 'footeradmin.php';
+        include 'footeradmin.php';
     ?>
     </body>
     </html>
