@@ -45,7 +45,7 @@
                         mysqli_stmt_bind_result($stmt, $fname, $lname);
                         while (mysqli_stmt_fetch($stmt))
                         {
-                            echo "<label>Naam:</label>$fname $lname <br>";
+                            echo "<label>Naam:</label>$fname $lname";
                         }
                         
                         mysqli_close($link);
@@ -54,11 +54,12 @@
                     
                     <p><?php
                     include "link.php";
-                    $stat1 = mysqli_prepare($link, "SELECT street, house_number, city, kvk_number, btw_number FROM Customer WHERE customer_id = $user");
+                    $stat1 = mysqli_prepare($link, "SELECT company_name, street, house_number, city, kvk_number, btw_number FROM Customer WHERE customer_id = $user");
                 mysqli_stmt_execute($stat1);
-                mysqli_stmt_bind_result($stat1, $street, $housen, $city, $kvk, $btw);
+                mysqli_stmt_bind_result($stat1, $company_name, $street, $housen, $city, $kvk, $btw);
                 while (mysqli_stmt_fetch($stat1)){
-                    echo "<label>Adres:</label>$street $housen <br>";
+                    echo "<label>Bedrijfsnaam:</label>$company_name<br>";
+                    echo "<label>Adres:</label>$street $housen<br>";
                     echo "<label>Woonplaats:</label>$city";
                     
                 }
@@ -112,7 +113,8 @@
                 <p>IBAN: NL 83 RABO 0344 4625 36</p>
                 <?php if($payment_completed == ''){
                     echo '<p>Deze factuur dient binnen 14 dagen op bovenstaande rekeningnummer t.n.v. D. van Beek<br> 
-                    o.v.v. factuurnummer en datum overgemaakt te zijn.</p>';
+                    o.v.v. factuurnummer en datum overgemaakt te zijn.</p>
+                    <p class="foutmelding">Deze factuur is nog niet voldaan.</p>';
                 } else {
                     echo '<p class="succesmelding">Deze factuur is voldaan.</p>';
                 }?>
