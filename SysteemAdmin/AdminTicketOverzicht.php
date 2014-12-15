@@ -43,7 +43,7 @@ if ($_SESSION["login"] != 1) {
             </div>
             <div id='content'>
                 <div id="ticket">
-                    <h1>tickets:</h1>
+                    <h1>Tickets</h1>
                     <br>
                     <table>
                         <tr>
