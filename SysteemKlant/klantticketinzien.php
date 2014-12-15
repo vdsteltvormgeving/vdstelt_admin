@@ -69,7 +69,7 @@
                             {
                                 echo "Open";
                             }
-                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'>$creation<br>$desc</td></table>";
+                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>Datum: $creation</span><br>$desc</td></table>";
                         }
                         mysqli_close($link);
                         include "link.php";
@@ -79,7 +79,7 @@
                         echo "<br><label>Reactie:</label>";
                         while (mysqli_stmt_fetch($reactions))
                         {
-                            echo "<br><table><td class='table_reactie'>$time <br> $text</td></table>";
+                            echo "<br><table><td class='table_reactie'><span class='datum'>Datum: $time </span><br> $text</td></table>";
                         }
                         ?>                                               
                                        
