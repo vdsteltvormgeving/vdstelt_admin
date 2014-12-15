@@ -114,8 +114,8 @@
                         include"link.php";
                         $insert = mysqli_prepare($link, "UPDATE ticket SET last_time_date=NOW(), description='$description', category='$category' WHERE ticket_id=$ticketid");
                         mysqli_stmt_execute($insert);
-                        mysqli_close($link);
-                        header("location: klantticketoverzicht.php");                       
+                        header("location: klantticketoverzicht.php");
+                        mysqli_close($link);                                               
                     }
                 }
                 ?>
