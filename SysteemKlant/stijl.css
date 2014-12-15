@@ -38,6 +38,24 @@ h1{
     padding: 20px 60px;
     display: inline-block;
 }
+#content table{
+    padding:10px;
+    display:inline-block;
+    border:1px solid lightgray;
+    border-collapse: collapse;
+    border-radius:6px;
+    margin-bottom:20px;
+}
+#content tr,td{
+    padding:8px;
+    text-align: center;
+    min-width: 100px;
+}
+#content th{
+    padding:8px;
+    border-bottom:1px solid lightgray;
+    color:gray;
+}
 #container{
     width: 1120px;
     margin: auto;
@@ -358,6 +376,9 @@ ul li:hover ul {
     margin-bottom: 0px;
     float: left;
 }
+.table_reactie{
+    text-align: left !important;
+}
 #ticket table{
     border:1px solid rgba(0,0,0, .06);
     padding:20px;
@@ -408,4 +429,13 @@ textArea{
 }
 select{
     padding: 10px 10px 10px 0px;   
+}
+label{
+    min-width: 125px;
+    margin-right: 10px;
+    padding: 4px;
+    display: inline-block;
+}
+.factuur{
+
 }
