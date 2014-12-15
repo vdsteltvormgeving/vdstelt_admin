@@ -16,11 +16,48 @@
                 <div id="menu">
                     <?php
                     include 'menubackend.php';
-                    include 'link.php';                    
+                    include 'link.php';
                     ?>
                 </div>
             </header>
             <div id="content">
+                <?php
+                $username = $_SESSION['username'];
+                $password = $_SESSION['password'];
+                $userinfo = mysqli_prepare($link, "SELECT user_id, first_name, last_name FROM User WHERE mail='$username'");
+                mysqli_stmt_execute($userinfo);
+                mysqli_stmt_bind_result($userinfo, $login, $fname, $lname);
+                while (mysqli_stmt_fetch($userinfo))
+                {
+                    $login;
+                    $fname;
+                    $lname;
+                }
+                mysqli_close($link);
+                include "link.php";
+                $ammount = mysqli_prepare($link, "SELECT COUNT(ticket_id) FROM Ticket WHERE user_id=$login AND completed_status=0");
+                mysqli_stmt_execute($ammount);
+                mysqli_stmt_bind_result($ammount, $count);
+                mysqli_stmt_fetch($ammount);
+                mysqli_close($link);
+                ?>
+                <p>U heeft <?php echo $count; ?> open tickets</p>
+                <table>                    
+                    <tr>
+                        <th>Categorie</th>
+                        <th>Aanmaak Datum</th>
+                    </tr>                    
+                    <?php
+                    include "link.php";
+                    $tickets = mysqli_prepare($link, " SELECT category, creation_date, ticket_id FROM Ticket WHERE user_id=$login AND completed_status=0 ORDER BY creation_date DESC");
+                    mysqli_stmt_execute($tickets);
+                    mysqli_stmt_bind_result($tickets, $category, $creation, $ticketid);
+                    while (mysqli_stmt_fetch($tickets))
+                    {
+                        echo "<tr><td>$category</td><td>$creation</td></tr>";
+                    }
+                    ?>
+                </table>
                 <form method="POST" action="klantticketaanmaken.php">
                     <input type="submit" name="ticketmaken" value="Ticket aanmaken">
                 </form>
@@ -38,7 +75,7 @@
                 {
                     $username = $_SESSION['username'];
                     $password = $_SESSION['password'];
-                    $loguit   = mysqli_prepare($link, "UPDATE User SET status='Offline' WHERE mail='$username'");
+                    $loguit = mysqli_prepare($link, "UPDATE User SET status='Offline' WHERE mail='$username'");
                     mysqli_stmt_execute($loguit);
                     session_destroy();
                     header("location: klantlogin.php");

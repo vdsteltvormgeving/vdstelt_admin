@@ -46,15 +46,13 @@
                     Naam: <?php echo "$fname $lname"; ?> 
                 </p>
                 <!-- Bij deze form kan een bestand worden geupload om mee te geven met de ticket -->
-                <form action="Upload.php" method="POST" enctype="multipart/form-data">
-                    Selecteer een bestand om te uploaden:<br><br>
-                    <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                    <input type="submit" value="upload" name="submit">
-                </form>                  
-                <p> 
-                    Datum: <?php echo $datetime; ?> 
-                </p>                
                 <form method="POST" action="klantticketaanmaken.php">
+                    Selecteer een bestand om te uploaden:<br><br>
+                    <input type="file" name="fileToUpload" id="fileToUpload">                                    
+                    <br>
+                    <p> 
+                        Datum: <?php echo $datetime; ?> 
+                    </p>                                
                     <p>                        
                         <select id="Categorie" name="categorie">
                             <option value="">Selecteer Categorie</option>
@@ -80,7 +78,7 @@
                     <textarea name="beschrijving"></textarea>
                     <br>
                     <input type="submit" name="verzenden" value="Verzenden">
-                    <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet  ?>">
+                    <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet   ?>">
                 </form>
                 <form method="POST" action="klantoverzicht.php">
                     <input type="submit" name="annuleren" value="Annuleren"> 
