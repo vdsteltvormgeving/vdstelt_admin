@@ -47,12 +47,11 @@
                 }
                 ?>
                 <form method="POST" action="klantticketaanmaken.php">
-                    <p> Naam: <?php echo "$fname $lname";
+                    <p> <label>Naam:</label> <?php echo "$fname $lname";
                         ?>
                         <br>
-                        E-mail: <?php echo $username; ?> 
+                        <label>E-mail:</label> <?php echo $username; ?> 
                     </p>                                                                                                
-                    <p><br>
                         <?php
                         include "link.php";
                         //De if loop is hieronder nodig om te true/false status van de ticket om te zetten naar text.
@@ -61,7 +60,7 @@
                         mysqli_stmt_execute($description);
                         while (mysqli_stmt_fetch($description))
                         {
-                            echo "<label>Category: $cat</label><br><label>Status:";
+                            echo "<label>Categorie:</label> $cat<br><label>Status:</label> ";
                             if ($completed == 1)
                             {
                                 echo "Gesloten";
@@ -70,20 +69,20 @@
                             {
                                 echo "Open";
                             }
-                            echo "</label><br><br><label>Description:<br><br>$desc</label> <label>$creation</label>";
+                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'>$creation<br>$desc</td></table>";
                         }
                         mysqli_close($link);
                         include "link.php";
                         $reactions = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticketid");
                         mysqli_stmt_bind_result($reactions, $text, $time, $mail);
                         mysqli_stmt_execute($reactions); // Deze query wordt gebruikt om alle reacties uit de reaction tabel te halen.
-                        echo "<br><br><label>Reactions:</label>";
+                        echo "<br><label>Reactie:</label>";
                         while (mysqli_stmt_fetch($reactions))
                         {
-                            echo "<br><label><br>$text</label> <label>$time</label>";
+                            echo "<br><table><td class='table_reactie'>$time <br> $text</td></table>";
                         }
                         ?>                                               
-                    </p>                    
+                                       
                 </form>
                 <form method="POST" action="klantticketoverzicht.php">
                     <input type="submit" name="Back" value="Terug">
