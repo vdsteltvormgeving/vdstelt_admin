@@ -91,7 +91,7 @@ if ($_SESSION["login"] != 1) {
                                 } else {
                                     echo "Open";
                                 }
-                                echo "<br><br><label>Omschrijving:<br><br>$desc</label> <label>$creation</label>";
+                                echo "<br><br><label>Omschrijving:</label><br><table class='table_admin'><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
                             }
                             mysqli_close($link);
                             include "link.php";

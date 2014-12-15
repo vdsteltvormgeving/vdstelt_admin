@@ -1,3 +1,5 @@
+/*  Klantsysteem stylesheet 
+    Sander van der Stelt*/
 body{
     margin:0px;
     padding:0px;
@@ -376,4 +378,11 @@ textArea{
 }
 select{
     padding: 10px 10px 10px 0px;   
+}
+.table_admin{
+    margin-left:0px;
+    margin-right:0px;
+}
+.table_reactie{
+    margin:0px;
 }
