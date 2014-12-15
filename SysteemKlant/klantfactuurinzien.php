@@ -114,7 +114,7 @@
                     echo '<p>Deze factuur dient binnen 14 dagen op bovenstaande rekeningnummer t.n.v. D. van Beek<br> 
                     o.v.v. factuurnummer en datum overgemaakt te zijn.</p>';
                 } else {
-                    echo '<p>Deze factuur is al betaald.</p>';
+                    echo '<p class="succesmelding">Deze factuur is voldaan.</p>';
                 }?>
                     
                 <form class="knop_link" method="post" action="Klantfactuurverzicht.php">
