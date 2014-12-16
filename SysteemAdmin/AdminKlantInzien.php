@@ -201,9 +201,17 @@ if ($_SESSION["login"] != 1) {
                                 }
                                 echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[$ticket_ID]' Value='Beantwoorden' formaction='AdminTicketBeantwoorden.php'></td></tr>";
                             }
-                        } 
+                        } echo '</table>'; ?>
+            <br>
+            <input type="hidden" name="KlantInzien" value="KlantInzien">
+            <input type="submit" name="Sluiten" Value="Sluiten" formaction="">
+            <?php echo "<input type='hidden' name='CID[$customerID]'>" ?>
+            <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
+            <input type="submit" name="Terug" value='Terug' formaction="AdminKlantOverzicht.php">
+            <input type="submit" name="Open" value="Open" formaction="">
+            <?php
                         if (isset($_POST["Sluiten"])) {
-                            if (empty($_POST["close/wijzig"])){echo 'U heeft geen ticket geselecteerd!'; } 
+                            if (empty($_POST["close/wijzig"])){echo '<p class="foutmelding"> U heeft geen ticket geselecteerd.</p>'; } 
                             else {
                             foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
                                 include "link.php";
@@ -225,13 +233,6 @@ if ($_SESSION["login"] != 1) {
                             }}
                         }
                         ?>
-                </table><br>
-            <input type="hidden" name="KlantInzien" value="KlantInzien">
-            <input type="submit" name="Sluiten" Value="Sluiten" formaction="">
-            <?php echo "<input type='hidden' name='CID[$customerID]'>" ?>
-            <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
-            <input type="submit" name="Terug" value='Terug' formaction="AdminKlantOverzicht.php">
-            <input type="submit" name="Open" value="Open" formaction="">
         </form>
     </div>
     <?php 
