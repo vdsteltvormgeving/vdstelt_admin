@@ -203,11 +203,11 @@ if ($_SESSION["login"] != 1) {
                             }
                         } echo '</table>'; ?>
             <br>
-            <input type="hidden" name="KlantInzien" value="KlantInzien">
-            <input type="submit" name="Sluiten" Value="Sluiten" formaction="">
+            <input type="submit" name="Terug" value='Terug' formaction="AdminKlantOverzicht.php">
             <?php echo "<input type='hidden' name='CID[$customerID]'>" ?>
             <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
-            <input type="submit" name="Terug" value='Terug' formaction="AdminKlantOverzicht.php">
+            <input type="hidden" name="KlantInzien" value="KlantInzien">
+            <input type="submit" name="Sluiten" Value="Sluiten" formaction="">
             <input type="submit" name="Open" value="Open" formaction="">
             <?php
                         if (isset($_POST["Sluiten"])) { //Sander: 'Dit heb ik gewijzigd en verplaatst voor een fout melding'
@@ -219,8 +219,9 @@ if ($_SESSION["login"] != 1) {
                                 $change = mysqli_prepare($link, "UPDATE Ticket SET completed_status = 1 WHERE ticket_id = $ticket_id ");
                                 mysqli_execute($change);
                                 mysqli_close($link);
-                                echo '<p class="succesmelding">Status is gewijzigd</p>';
-                            }}
+                            }
+                            echo '<p class="succesmelding">Status is gewijzigd</p>';
+                            }
                         } 
                         if (isset($_POST["Openen"])) {
                             if (empty($_POST["Open"])){echo 'U heeft geen ticket geselecteerd!'; } 
