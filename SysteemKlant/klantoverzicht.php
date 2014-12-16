@@ -21,7 +21,7 @@
                 </div>
             </header>
             <div id="content">
-                <h1>Ticket Overzicht</h1>
+                <h1>Home</h1>
                 <?php
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
