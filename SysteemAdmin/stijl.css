@@ -196,16 +196,20 @@ a:visited{
 }
 
 #showname{
-    position: relative;
+    position: absolute;
     width: auto;
-    margin-top: -30px;
-    padding-left: 25px;
+    margin-top:5px;
+    left:25px;
+    padding:0px;
+    display:inline-block;
 }
 
 #pijltje{
     position: relative;
+    display:inline-block;
     float:right;
-    margin-top: -15px;
+    margin-top: -28px;
+    margin-right:4px;
 }
 
 #nav{
