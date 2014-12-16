@@ -107,7 +107,6 @@
                 echo "<label class='factuur'>Subtotaal</label>€ $total<br>";
                 echo "<label class='factuur'>BTW 21 %</label>€ $BTWtotal<br>";
                 echo "<label class='factuur'><strong>Totaal</strong></label>€ $totalincbtw";
-                echo $payment_completed;
                 ?>
                 </p>
                 <p>IBAN: NL 83 RABO 0344 4625 36</p>

@@ -1,3 +1,5 @@
+/*  Klantsysteem stylesheet 
+    Sander van der Stelt*/
 body{
     margin:0px;
     padding:0px;
@@ -379,6 +381,10 @@ ul li:hover ul {
 .table_reactie{
     text-align: left !important;
 }
+.datum{
+    font-size: 11px;
+    color:gray;
+}
 #ticket table{
     border:1px solid rgba(0,0,0, .06);
     padding:20px;
@@ -437,5 +443,4 @@ label{
     display: inline-block;
 }
 .factuur{
-
 }

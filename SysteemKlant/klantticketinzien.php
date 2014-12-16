@@ -38,9 +38,8 @@
                     $fname;
                     $lname;
                 }
-                mysqli_close($link);              
 
-                $ticketidarray = $_POST["ticketid"];//Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
+                $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
                 foreach ($ticketidarray as $ticket => $notused)
                 {
                     $ticketid = $ticket;
@@ -48,13 +47,19 @@
                 ?>
                 <form method="POST" action="klantticketaanmaken.php">
                     <p> <label>Naam:</label> <?php echo "$fname $lname";
-                        ?>
+                ?>
                         <br>
                         <label>E-mail:</label> <?php echo $username; ?> 
                     </p>                                                                                                
-                        <?php
+                    <?php
+                    $status = mysqli_prepare($link, "SELECT COUNT(reaction_id) FROM Reaction WHERE ticket_id=$ticketid");
+                    mysqli_stmt_bind_result($status, $count);
+                    mysqli_stmt_execute($status);
+                    mysqli_stmt_fetch($status);
+                    mysqli_close($link);
+                    if ($count == 0)
+                    {
                         include "link.php";
-                        //De if loop is hieronder nodig om te true/false status van de ticket om te zetten naar text.
                         $description = mysqli_prepare($link, "SELECT T.category, T.description, T.completed_status, T.creation_date FROM customer C JOIN ticket T ON C.customer_id = T.customer_id WHERE T.ticket_id=$ticketid");
                         mysqli_stmt_bind_result($description, $cat, $desc, $completed, $creation);
                         mysqli_stmt_execute($description);
@@ -69,7 +74,29 @@
                             {
                                 echo "Open";
                             }
-                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'>$creation<br>$desc</td></table>";
+                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
+                            mysqli_close($link);
+                        }
+                    }
+                    //De if loop is hieronder nodig om te true/false status van de ticket om te zetten naar text.                        
+                    else
+                    {
+                        include "link.php";
+                        $description = mysqli_prepare($link, "SELECT T.category, T.description, T.completed_status, T.creation_date FROM customer C JOIN ticket T ON C.customer_id = T.customer_id WHERE T.ticket_id=$ticketid");
+                        mysqli_stmt_bind_result($description, $cat, $desc, $completed, $creation);
+                        mysqli_stmt_execute($description);
+                        while (mysqli_stmt_fetch($description))
+                        {
+                            echo "<label>Categorie:</label> $cat<br><label>Status:</label> ";
+                            if ($completed == 1)
+                            {
+                                echo "Gesloten";
+                            }
+                            else
+                            {
+                                echo "Open";
+                            }
+                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
                         }
                         mysqli_close($link);
                         include "link.php";
@@ -79,10 +106,11 @@
                         echo "<br><label>Reactie:</label>";
                         while (mysqli_stmt_fetch($reactions))
                         {
-                            echo "<br><table><td class='table_reactie'>$time <br> $text</td></table>";
+                            echo "<br><table><td class='table_reactie'><span class='datum'>Datum: $time </span><br> $text</td></table>";
                         }
-                        ?>                                               
-                                       
+                    }
+                    ?>                                               
+
                 </form>
                 <form method="POST" action="klantticketoverzicht.php">
                     <input type="submit" name="Back" value="Terug">
