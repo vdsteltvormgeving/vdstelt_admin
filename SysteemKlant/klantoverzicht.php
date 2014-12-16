@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Overzicht</title>
+        <title>Bens Development</title>
         <link rel="stylesheet" href="stijl.css" type="text/css"/>
     </head>    
     <body>        
@@ -21,7 +21,7 @@
                 </div>
             </header>
             <div id="content">
-                <h1>Home</h1>
+                <h1>Home</h1><br>
                 <?php
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];

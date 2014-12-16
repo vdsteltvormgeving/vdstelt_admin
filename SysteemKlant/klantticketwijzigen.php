@@ -23,7 +23,7 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                <h1>Ticket wijzigen</h1>
+                <h1>Ticket wijzigen</h1><br>
                 <?php
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
