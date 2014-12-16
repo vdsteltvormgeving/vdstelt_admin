@@ -46,7 +46,7 @@ if ($_SESSION["login"] != 1) {
                     mysqli_close($link);
                     ?>
                 </p>
-                <h1>tickets:</h1>
+                <h1>Tickets:</h1>
                 <br>
                 <table>
                     <tr>
