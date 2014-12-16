@@ -18,6 +18,8 @@
         </div>
 
         <div id='content'>
+            <h1>Klanten</h1>
+                <br>
             <p><?php                
                 include "link.php";
                 $username = $_SESSION["username"];
