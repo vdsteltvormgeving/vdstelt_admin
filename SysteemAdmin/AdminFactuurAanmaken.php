@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -41,17 +42,27 @@
                 <?php
                 include 'link.php';
                 date_default_timezone_set('Europe/Amsterdam');
-                echo 'datum: ' . date('Y-m-d H:i:s') . '<br>';
+                echo '<label>Datum: </label>' . date('Y-m-d H:i:s') . '<br>';
                 $stmt1 = mysqli_prepare($link, "SELECT company_name FROM Customer");
                 mysqli_execute($stmt1);
                 mysqli_stmt_bind_result($stmt1, $comp);
-                echo "<label>Categorie: </label><select id=''Categorie' name='categorie'>";
+                ?> <label>Categorie: </label><select id='Categorie' name='categorie'> <?php
                 while (mysqli_stmt_fetch($stmt1)) {
-                    echo" <option value='$comp]'>$comp</option>";
+                    echo" <label><option value='$comp'>$comp</option></label>";
                 }
-
-                echo ' </select></label> <br>';
                 ?>
+                </select></label> <br>
+                <label>Factuur nummer:</label> <input type="text" name="invoicenr"><br>
+                <table>
+                    <tr><th><label>Omschrijving:</label></th><th><label>Aantal:</label></th><th><label>Prijs:</label></th></tr>
+                    <tr><td><input type="text" name="description1"></td><td><input type="text" name="Count1"></td><td><input type="text" name="Price1"></td></tr>
+                    <tr><td><input type="text" name="description2"></td><td><input type="text" name="Count2"></td><td><input type="text" name="Price2"></td></tr>
+                    <tr><td><input type="text" name="description3"></td><td><input type="text" name="Count3"></td><td><input type="text" name="Price3"></td></tr>
+                    <tr><td><input type="text" name="description4"></td><td><input type="text" name="Count4"></td><td><input type="text" name="Price4"></td></tr>
+                    <tr><td><input type="text" name="description5"></td><td><input type="text" name="Count5"></td><td><input type="text" name="Price5"></td></tr>
+                </table>
+                <input type="submit" onclick="history.go(-1)" value="terug" name="terug">
+                <input type="submit" name="opslaan" value="opslaan" fromaction="">
             </form>
         </div>
 
@@ -62,4 +73,6 @@
             <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
         </div>
     </body>
+
 </html>
+

@@ -7,7 +7,7 @@ echo ("<div id='gebruiker'>
                             <li><a href='AdminOverzicht.php'>Home</a></li>
                             <li><a href='AdminKlantOverzicht.php'>Klanten</a></li>
                             <li><a href='AdminTicketOverzicht.php'>Tickets</a></li>
-                            <li><a href='#'>Facturen</a></li>
+                            <li><a href='AdminFactuuroverzicht.php'>Facturen</a></li>
                             <li id='uitloggen'><a href='Adminlogin.php?link=loguit'>Uitloggen</a></li>
                         </ul>
                     </li>
@@ -29,7 +29,7 @@ echo ("
                 <a href='AdminTicketOverzicht.php'>Tickets overzicht</a>
             </div>
             <div id='module'>
-                <a href='#'>Facturen overzicht</a>
+                <a href='AdminFactuuroverzicht.php'>Facturen overzicht</a>
             </div>
             </div>");
 ?>
