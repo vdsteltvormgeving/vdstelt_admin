@@ -240,10 +240,9 @@ if ($_SESSION["login"] != 1) {
                 </table> -->
                 </form>
             </div>
-            <div id='footer'>
-                <div id='footerleft'>Admin Systeem</div>
-                <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-            </div>
+            <?php 
+                include 'footeradmin.php';
+                ?>
         </body>
     </html>
     <?php
