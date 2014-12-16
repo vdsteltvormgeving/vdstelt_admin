@@ -205,11 +205,9 @@ if ($_SESSION["login"] != 1) {
                     </table>
                 </div>
                 <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
+                <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
                 <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
                 <input type="hidden" name="ticketid[<?php echo $ticketid; ?>]">
-
-                
-                <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
                 <input type="submit" name="Openen" Value="Open" action="<?php $stmt21 = mysqli_prepare($link, "Update Ticket SET completed_status == 0") ?>">
 
                 <br><br><br>
