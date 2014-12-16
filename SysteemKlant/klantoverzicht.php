@@ -41,13 +41,22 @@
                 mysqli_stmt_fetch($ticketammount);
                 mysqli_close($link);
                 include "link.php";
-                $factuurammount=mysqli_prepare($link, "SELECT COUNT(invoice_number) FROM Invoice WHERE user_id=$login AND payment_completed=0");
+                $factuurammount = mysqli_prepare($link, "SELECT COUNT(invoice_number) FROM Invoice WHERE user_id=$login AND payment_completed=0");
                 mysqli_stmt_execute($factuurammount);
-                mysqli_stmt_bind_result($factuurammount, $count2);                
+                mysqli_stmt_bind_result($factuurammount, $count2);
                 mysqli_stmt_fetch($factuurammount);
                 mysqli_close($link);
                 ?>
-                <p>U heeft <?php echo $count; ?> open tickets</p>
+                <p>U heeft <?php
+                    if ($count == 1)
+                    {
+                        echo $count . " open ticket";
+                    }
+                    else
+                    {
+                        echo $count . " open tickets";
+                    }
+                    ?></p>
                 <table>                    
                     <tr>
                         <th>Categorie</th>
@@ -64,7 +73,16 @@
                     }
                     ?>
                 </table>
-                <p>U heeft <?php echo $count2; ?> open facturen</p>
+                <p>U heeft <?php
+                    if ($count2 == 1)
+                    {
+                        echo $count2 . " open factuur";
+                    }
+                    else
+                    {
+                        echo"$count2 open facturen";
+                    }
+                    ?> </p>
                 <table>
                     <tr>
                         <th>Factuur nummer</th>
@@ -107,7 +125,7 @@
             </div>                        
         </div>
         <footer>
-            <?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
         </footer>
     </body>
 </html>
