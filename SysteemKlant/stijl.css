@@ -444,3 +444,15 @@ label{
 }
 .factuur{
 }
+.overzicht{
+    display: inline-block;
+    position: relative;
+    float:left;
+    height: 100%;
+    margin-right:20px;
+}
+.overzicht_btn{
+    width: auto; 
+    display:inline-block;
+    float:left;
+}
