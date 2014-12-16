@@ -6,7 +6,7 @@ echo ("<div id='gebruiker'>
                             <li><a href='AdminOverzicht.php'>Home</a></li>
                             <li><a href='AdminKlantOverzicht.php'>Klanten</a></li>
                             <li><a href='AdminTicketOverzicht.php'>Tickets</a></li>
-                            <li><a href='AdminFactuurOverzicht.php'>Facturen</a></li>
+                            <li><a href='AdminFactuuroverzicht.php'>Facturen</a></li>
                             <li id='uitloggen'><a href='Adminlogin.php?link=loguit'>Uitloggen</a></li>
                         </ul>
                     </li>
@@ -22,7 +22,6 @@ if (isset($_POST["loguit"]))
     header("location: klantlogin.php");
 }
 echo ("
-        </div>
         <div id='menu'>
             <div id='klant_menu'>
                 <a href='AdminKlantOverzicht.php'>Klantoverzicht</a>
