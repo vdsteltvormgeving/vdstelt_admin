@@ -205,10 +205,9 @@ a:visited{
 }
 
 #pijltje{
-    position: relative;
     display:inline-block;
     float:right;
-    margin-top: -28px;
+    margin-top: 9px;
     margin-right:4px;
 }
 
