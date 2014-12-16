@@ -219,6 +219,7 @@ if ($_SESSION["login"] != 1) {
                                 $change = mysqli_prepare($link, "UPDATE Ticket SET completed_status = 1 WHERE ticket_id = $ticket_id ");
                                 mysqli_execute($change);
                                 mysqli_close($link);
+                                echo '<p class="succesmelding">Status is gewijzigd</p>';
                             }}
                         } 
                         if (isset($_POST["Openen"])) {
