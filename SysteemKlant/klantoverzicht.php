@@ -34,11 +34,17 @@
                     $lname;
                 }
                 mysqli_close($link);
+                include "link.php"; //Met deze query wordt 
+                $ticketammount = mysqli_prepare($link, "SELECT COUNT(ticket_id) FROM Ticket WHERE user_id=$login AND completed_status=0");
+                mysqli_stmt_execute($ticketammount);
+                mysqli_stmt_bind_result($ticketammount, $count);
+                mysqli_stmt_fetch($ticketammount);
+                mysqli_close($link);
                 include "link.php";
-                $ammount = mysqli_prepare($link, "SELECT COUNT(ticket_id) FROM Ticket WHERE user_id=$login AND completed_status=0");
-                mysqli_stmt_execute($ammount);
-                mysqli_stmt_bind_result($ammount, $count);
-                mysqli_stmt_fetch($ammount);
+                $factuurammount=mysqli_prepare($link, "SELECT COUNT(invoice_number) FROM Invoice WHERE user_id=$login AND payment_completed=0");
+                mysqli_stmt_execute($factuurammount);
+                mysqli_stmt_bind_result($factuurammount, $count2);                
+                mysqli_stmt_fetch($factuurammount);
                 mysqli_close($link);
                 ?>
                 <p>U heeft <?php echo $count; ?> open tickets</p>
@@ -55,6 +61,23 @@
                     while (mysqli_stmt_fetch($tickets))
                     {
                         echo "<tr><td>$category</td><td>$creation</td></tr>";
+                    }
+                    ?>
+                </table>
+                <p>U heeft <?php echo $count2; ?> open facturen</p>
+                <table>
+                    <tr>
+                        <th>Factuur nummer</th>
+                        <th>Datum</th>
+                    </tr>
+                    <?php
+                    include "link.php";
+                    $facturen = mysqli_prepare($link, " SELECT invoice_number, date FROM Invoice WHERE user_id=$login AND payment_completed=0 ORDER BY date DESC");
+                    mysqli_stmt_execute($facturen);
+                    mysqli_stmt_bind_result($facturen, $number, $date);
+                    while (mysqli_stmt_fetch($facturen))
+                    {
+                        echo "<tr><td>$number</td><td>$date</td></tr>";
                     }
                     ?>
                 </table>
