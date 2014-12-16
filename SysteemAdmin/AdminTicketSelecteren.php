@@ -120,7 +120,7 @@ else
                     ?>
                     <form method="POST" action=''>
                         <input type='submit' name='terug' value='Terug' formaction="AdminTicketOverzicht.php">
-                        <input type='submit' name='Wijzigen' formaction='AdminTicketWijzigen.php'>
+                        <input type='submit' name='Wijzigen' value='Doorsturen' formaction='#'>
                     </form>
                     <form method="POST" action="AdminTicketBeantwoorden.php">
                         <input type="submit" name="antwoord" value="Ticket beantwoorden">
