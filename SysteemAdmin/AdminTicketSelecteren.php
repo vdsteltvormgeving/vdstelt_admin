@@ -115,15 +115,15 @@ else
                     mysqli_stmt_execute($stmt2);
                     while (mysqli_stmt_fetch($stmt2))
                     {
-                        echo"<label><b>Reaction:</b></label><br><label>$mail</label><br><label>$time</label><br><label>$text</label><br>";
+                        echo"<label><b>Reactie:</b></label><br><label>$mail</label><br><label>$time</label><br><label>$text</label><br>";
                     }*/
                     ?>
                     <form method="POST" action=''>
-                        <input type='submit' name='terug' value='terug' formaction="AdminTicketOverzicht.php">
+                        <input type='submit' name='terug' value='Terug' formaction="AdminTicketOverzicht.php">
                         <input type='submit' name='Wijzigen' formaction='AdminTicketWijzigen.php'>
                     </form>
                     <form method="POST" action="AdminTicketBeantwoorden.php">
-                        <input type="submit" name="antwoord" value="ticketbeantwoorden">
+                        <input type="submit" name="antwoord" value="Ticket beantwoorden">
                     </form>
                 </div>
             </div>

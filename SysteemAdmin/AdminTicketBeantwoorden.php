@@ -111,7 +111,7 @@ if ($_SESSION["login"] != 1) {
                             <input type="hidden" name="Beantwoorden[<?php echo $ticketid; ?>]">
                         </form>
                         <form method="POST" action='AdminTicketOverzicht.php'>
-                            <input type='submit' name='terug' value='terug'>
+                            <input type='submit' name='terug' value='Terug'>
                             <input type="hidden" name="ticketid[<?php echo $ticketid; ?>]">
                         </form>
                 </div>

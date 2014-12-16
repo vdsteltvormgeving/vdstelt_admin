@@ -197,6 +197,7 @@ else
                         
                     </table>
 <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
+<input type="submit" name="paid" value="Betaald" formaction="AdminFactuuroverzicht.php">
             <div class='push'></div>
             <div id='footer'>
                 <div id='footerleft'>Admin Systeem</div>

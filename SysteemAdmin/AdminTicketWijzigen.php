@@ -68,15 +68,15 @@ if ($_SESSION["login"] != 1) {
                 $stmt2 = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticket_id");
                 mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
                 mysqli_execute($stmt2);
-                echo '<label>Reactions:</label><br>';
+                echo '<label>Reactie:</label><br>';
                 while (mysqli_stmt_fetch($stmt2)) {
                     echo"
                 $text @ $time --$mail <br>";
                 }
                 ?>
-                <input type="submit" name="wijzigen" value="wijzigen">
+                
                 <input type="submit" name="Terug" value="Terug" formaction="AdminTicketOverzicht.php">
-
+<input type="submit" name="Wijzigen" value="Wijzigen">
                 </form>
             </div>
             <div class='push'></div>
