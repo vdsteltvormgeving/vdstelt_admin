@@ -84,7 +84,7 @@ else
                                     } else {
                                         $payment_completed = "Niet betaald";
                                     }
-                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[]' Value='Beantwoorden' formaction='#'></td></tr>" ; 
+                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td></tr>" ; 
                         }
                         }elseif (isset($_POST["sortfacDESC"])) {
                             $stmt13 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ORDER BY invoice_number DESC");
@@ -96,7 +96,7 @@ else
                                     } else {
                                         $payment_completed = "Niet betaald";
                                     }
-                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[]' Value='Beantwoorden' formaction='#'></td></tr>" ; 
+                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td></tr>" ; 
                         }
                             
                         }elseif (isset($_POST["sortkl"])) {
@@ -109,7 +109,7 @@ else
                                     } else {
                                         $payment_completed = "Niet betaald";
                                     }
-                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[]' Value='Beantwoorden' formaction='#'></td></tr>" ;
+                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td></tr>" ;
                                     
                         } 
                         } elseif (isset ($_POST["sortklDESC"])) {
@@ -122,7 +122,7 @@ else
                                     } else {
                                         $payment_completed = "Niet betaald";
                                     }
-                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[]' Value='Beantwoorden' formaction='#'></td></tr>" ;
+                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td></tr>" ;
                         }
                         }elseif (isset($_POST["sortanmd"])) {
                             $stmt16 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ORDER BY date");
@@ -134,7 +134,7 @@ else
                                     } else {
                                         $payment_completed = "Niet betaald";
                                     }
-                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[]' Value='Beantwoorden' formaction='#'></td></tr>" ;
+                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td></tr>" ;
                                     
                         } 
                         } elseif (isset($_POST["sortanmdDESC"])) {
@@ -147,7 +147,7 @@ else
                                     } else {
                                         $payment_completed = "Niet betaald";
                                     }
-                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[]' Value='Beantwoorden' formaction='#'></td></tr>" ;
+                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td></tr>" ;
                                     
                         } 
                         }elseif (isset($_POST["sortstat"])) {
@@ -160,7 +160,7 @@ else
                                     } else {
                                         $payment_completed = "Niet betaald";
                                     }
-                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[]' Value='Beantwoorden' formaction='#'></td></tr>" ;
+                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td></tr>" ;
                                     
                         } 
                         }elseif (isset($_POST["sortstatDESC"])) {
@@ -173,7 +173,7 @@ else
                                     } else {
                                         $payment_completed = "Niet betaald";
                                     }
-                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[]' Value='Beantwoorden' formaction='#'></td></tr>" ;
+                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td></tr>" ;
                                     
                         } 
                         } else{
@@ -186,7 +186,7 @@ else
                                     } else {
                                         $payment_completed = "Niet betaald";
                                     }
-                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[]' Value='Beantwoorden' formaction='#'></td></tr>" ;
+                                    echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='ticket_id[]' value='Bekijken'></td></tr>" ;
                                     
                             }
                         }
