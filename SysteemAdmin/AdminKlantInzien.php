@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel -->
+<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -210,7 +210,7 @@ if ($_SESSION["login"] != 1) {
             <input type="submit" name="Terug" value='Terug' formaction="AdminKlantOverzicht.php">
             <input type="submit" name="Open" value="Open" formaction="">
             <?php
-                        if (isset($_POST["Sluiten"])) {
+                        if (isset($_POST["Sluiten"])) { //Sander: 'Dit heb ik gewijzigd en verplaatst voor een fout melding'
                             if (empty($_POST["close/wijzig"])){echo '<p class="foutmelding"> U heeft geen ticket geselecteerd.</p>'; } 
                             else {
                             foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
