@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel -->
+<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -7,23 +7,6 @@ if ($_SESSION["login"] != 1) {
     session_unset();
     session_destroy();
 } else {
-    if (isset($_POST["Sluiten"])) {
-        foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
-            include "link.php";
-            $ticket_id = $ticketid;
-            $change = mysqli_prepare($link, "UPDATE Ticket SET completed_status = 1 WHERE ticket_id = $ticket_id ");
-            mysqli_execute($change);
-            mysqli_close($link);
-        }
-    } elseif (isset($_POST["Openen"])) {
-        foreach ($_POST["Open"] AS $ticketid => $notused) {
-            include "link.php";
-            $ticket_id = $ticketid;
-            $change = mysqli_prepare($link, "UPDATE ticket SET completed_status = 0 WHERE ticket_id = $ticket_id ");
-            mysqli_execute($change);
-            mysqli_close($link);
-        }
-    }
     ?>
 
     <html>
@@ -63,7 +46,7 @@ if ($_SESSION["login"] != 1) {
                     mysqli_close($link);
                     ?>
                 </p>
-                <h1>tickets:</h1>
+                <h1>Tickets:</h1>
                 <br>
                 <table>
                     <tr>
@@ -218,15 +201,40 @@ if ($_SESSION["login"] != 1) {
                                 }
                                 echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[$ticket_ID]' Value='Beantwoorden' formaction='AdminTicketBeantwoorden.php'></td></tr>";
                             }
-                        }
-                        ?>
-                </table><br>
-            <input type="hidden" name="KlantInzien" value="KlantInzien">
-            <input type="submit" name="Sluiten" Value="Sluiten" formaction="">
+                        } echo '</table>'; ?>
+            <br>
+            <input type="submit" name="Terug" value='Terug' formaction="AdminKlantOverzicht.php">
             <?php echo "<input type='hidden' name='CID[$customerID]'>" ?>
             <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
-            <input type="submit" name="Terug" value='Terug' formaction="AdminKlantOverzicht.php">
+            <input type="hidden" name="KlantInzien" value="KlantInzien">
+            <input type="submit" name="Sluiten" Value="Sluiten" formaction="">
             <input type="submit" name="Open" value="Open" formaction="">
+            <?php
+                        if (isset($_POST["Sluiten"])) { //Sander: 'Dit heb ik gewijzigd en verplaatst voor een fout melding'
+                            if (empty($_POST["close/wijzig"])){echo '<p class="foutmelding"> U heeft geen ticket geselecteerd.</p>'; } 
+                            else {
+                            foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
+                                include "link.php";
+                                $ticket_id = $ticketid;
+                                $change = mysqli_prepare($link, "UPDATE Ticket SET completed_status = 1 WHERE ticket_id = $ticket_id ");
+                                mysqli_execute($change);
+                                mysqli_close($link);
+                            }
+                            echo '<p class="succesmelding">Status is gewijzigd</p>';
+                            }
+                        } 
+                        if (isset($_POST["Openen"])) {
+                            if (empty($_POST["Open"])){echo 'U heeft geen ticket geselecteerd!'; } 
+                            else {
+                            foreach ($_POST["Open"] AS $ticketid => $notused) {
+                                include "link.php";
+                                $ticket_id = $ticketid;
+                                $change = mysqli_prepare($link, "UPDATE ticket SET completed_status = 0 WHERE ticket_id = $ticket_id ");
+                                mysqli_execute($change);
+                                mysqli_close($link);
+                            }}
+                        }
+                        ?>
         </form>
     </div>
     <?php 

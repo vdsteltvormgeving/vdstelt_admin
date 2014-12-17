@@ -22,7 +22,7 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                <h1>Factuur Overzicht</h1>
+                <h1>Factuur Overzicht</h1><br>
                 <!-- NIEUW GEPLAATSTE CODE-->
                 <?php
                 include "link.php";

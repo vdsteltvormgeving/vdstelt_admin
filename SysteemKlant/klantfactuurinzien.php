@@ -22,6 +22,7 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
+                <h1>Factuur inzien</h1><br>
                 <?php
                 include "link.php";
                 session_start();

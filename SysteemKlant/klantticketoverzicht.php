@@ -23,7 +23,7 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                <h1>Ticket Overzicht</h1>
+                <h1>Ticket Overzicht</h1><br>
                 <!-- NIEUW GEPLAATSTE CODE-->
                 <?php
                 include "link.php";

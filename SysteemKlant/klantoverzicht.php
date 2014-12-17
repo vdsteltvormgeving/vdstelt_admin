@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Overzicht</title>
+        <title>Bens Development</title>
         <link rel="stylesheet" href="stijl.css" type="text/css"/>
     </head>    
     <body>        
@@ -21,6 +21,7 @@
                 </div>
             </header>
             <div id="content">
+                <h1>Home</h1><br>
                 <?php
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
@@ -47,6 +48,7 @@
                 mysqli_stmt_fetch($factuurammount);
                 mysqli_close($link);
                 ?>
+                <div class='overzicht'>
                 <p>U heeft <?php
                     if ($count == 1)
                     {
@@ -72,7 +74,7 @@
                         echo "<tr><td>$category</td><td>$creation</td></tr>";
                     }
                     ?>
-                </table>
+                </table></div>
                 <p>U heeft <?php
                     if ($count2 == 1)
                     {
@@ -83,7 +85,8 @@
                         echo"$count2 open facturen";
                     }
                     ?> </p>
-                <table>
+                <div class='overzicht'>
+                <table class='overzicht'>
                     <tr>
                         <th>Factuur nummer</th>
                         <th>Datum</th>
@@ -98,7 +101,8 @@
                         echo "<tr><td>$number</td><td>$date</td></tr>";
                     }
                     ?>
-                </table>
+                </table></div>
+                <div class="overzicht_btn">
                 <form method="POST" action="klantticketaanmaken.php">
                     <input type="submit" name="ticketmaken" value="Ticket aanmaken">
                 </form>
@@ -108,10 +112,9 @@
                 <form method="POST" action="klantfactuuroverzicht.php">
                     <input type="submit" name="klantfactuuroverzicht" value="Factuur Overzicht">
                 </form>
-                <form method="POST" action="klantoverzicht.php">
-                    <input type="submit" name="loguit" value="Uitloggen">
-                </form>
-                <?php
+                <!-- <?php
+                echo '<form method="POST" action="klantoverzicht.php">
+                    <input type="submit" name="loguit" value="Uitloggen">';
                 if (isset($_POST["loguit"])) // Met deze if loop wordt een gebruiker als offline gezet als hij uitlogt
                 {
                     $username = $_SESSION['username'];
@@ -121,7 +124,9 @@
                     session_destroy();
                     header("location: klantlogin.php");
                 }
-                ?>
+                echo '</form>';
+                ?> -->
+                </div>
             </div>                        
         </div>
         <footer>

@@ -17,7 +17,7 @@
                 </div>
             </header>
             <div id="content">
-                <h1>Wachtwoord vergeten</h1>
+                <h1>Wachtwoord vergeten</h1><br>
                 <form action="klantwwvergeten.php" method="POST">
                     <label>E-mail:</label><br>
                     <input type="text" name="email">

@@ -23,7 +23,7 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                <h1>Ticket</h1>
+                <h1>Ticket beantwoorden</h1><br>
                 <?php
                 if (isset($_POST["submit"]))
                 {

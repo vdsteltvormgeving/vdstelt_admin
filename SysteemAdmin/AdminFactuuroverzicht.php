@@ -185,11 +185,10 @@ if ($_SESSION["login"] != 1) {
                 </table>
                 <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
                 <input type="submit" name="paid" value="Betaald" formaction="AdminFactuuroverzicht.php">
-                <div class='push'></div>
-                <div id='footer'>
-                    <div id='footerleft'>Admin Systeem</div>
-                    <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-                </div>
+            </div>
+                <?php 
+                include 'footeradmin.php';
+                ?>
         </body>       
     </html>
                     <?php } ?>
