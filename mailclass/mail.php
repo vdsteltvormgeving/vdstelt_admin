@@ -1,4 +1,5 @@
-<?php  
+<?php 
+//http://www.pfz.nl/scripts/136-webmeel-pop3smtp-mail-zonder-imap-v35/
 /*
  * Mail class
  * @author Ruud Verbij
