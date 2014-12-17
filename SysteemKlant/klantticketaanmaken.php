@@ -46,39 +46,39 @@
                     Naam: <?php echo "$fname $lname"; ?> 
                 </p>
                 <!-- Bij deze form kan een bestand worden geupload om mee te geven met de ticket -->
-                <form method="POST" action="klantticketaanmaken.php">
+                <!--<form method="POST" action="klantticketaanmaken.php">
                     Selecteer een bestand om te uploaden:<br><br>
-                    <input type="file" name="fileToUpload" id="fileToUpload">                                    
-                    <br>
-                    <p> 
-                        Datum: <?php echo $datetime; ?> 
-                    </p>                                
-                    <p>                        
-                        <select id="Categorie" name="categorie">
-                            <option value="">Selecteer Categorie</option>
-                            <option value="website">Website</option>
-                            <option value="cms">CMS</option>
-                            <option value="hosting">Hosting</option>
-                        </select>
-                        <select name="customerid">
-                            <?php
-                            echo "<option value=''>Selecteer uw bedrijf</option>";
-                            include "link.php"; // Deze query haald de verschillende bedrijven opgehaald die de ingelogde user heeft.
-                            $customer_id = mysqli_prepare($link, "SELECT C.company_name, C.customer_id FROM Customer C JOIN User U ON C.customer_id=U.user_id WHERE U.user_id=$login");
-                            mysqli_stmt_execute($customer_id);
-                            mysqli_stmt_bind_result($customer_id, $companyname, $customerid);
-                            while (mysqli_stmt_fetch($customer_id))
-                            {
-                                echo "<option value='$companyname'>$companyname</option>";
-                            }
-                            mysqli_close($link);
-                            ?>
-                        </select>
+                    <input type="file" name="fileToUpload" id="fileToUpload">-->                                                      
+                <p> 
+                    Datum: <?php echo $datetime; ?> 
+                </p>                                
+                <p>
+                <form action="klantticketaanmaken.php" method="post">
+                    <select id="Categorie" name="categorie">
+                        <option value="">Selecteer Categorie</option>
+                        <option value="website">Website</option>
+                        <option value="cms">CMS</option>
+                        <option value="hosting">Hosting</option>
+                    </select>
+                    <select name="customerid">
+                        <?php
+                        echo "<option value=''>Selecteer uw bedrijf</option>";
+                        include "link.php"; // Deze query haald de verschillende bedrijven opgehaald die de ingelogde user heeft.
+                        $customer_id = mysqli_prepare($link, "SELECT C.company_name, C.customer_id FROM Customer C JOIN Customer_User U ON C.customer_id=U.customer_id WHERE U.user_id=$login");
+                        mysqli_stmt_execute($customer_id);
+                        mysqli_stmt_bind_result($customer_id, $companyname, $customerid);
+                        while (mysqli_stmt_fetch($customer_id))
+                        {
+                            echo "<option value='$companyname'>$companyname</option>";
+                        }
+                        mysqli_close($link);
+                        ?>
+                    </select>
                     </p>                    
                     <textarea name="beschrijving"></textarea>
                     <br>
                     <input type="submit" name="verzenden" value="Verzenden">
-                    <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet   ?>">
+                    <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet    ?>">
                 </form>
                 <form method="POST" action="klantoverzicht.php">
                     <input type="submit" name="annuleren" value="Annuleren"> 

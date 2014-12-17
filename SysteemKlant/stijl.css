@@ -384,6 +384,7 @@ ul li:hover ul {
 .datum{
     font-size: 11px;
     color:gray;
+    border-bottom:1px solid lightgrey;
 }
 #ticket table{
     border:1px solid rgba(0,0,0, .06);
