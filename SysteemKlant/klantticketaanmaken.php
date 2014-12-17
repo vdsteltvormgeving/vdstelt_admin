@@ -48,7 +48,7 @@
                 <!-- Bij deze form kan een bestand worden geupload om mee te geven met de ticket -->
                 <!--<form method="POST" action="klantticketaanmaken.php">
                     Selecteer een bestand om te uploaden:<br><br>
-                    <input type="file" name="fileToUpload" id="fileToUpload">  -->                                                      
+                    <input type="file" name="fileToUpload" id="fileToUpload">-->                                                      
                     <p> 
                         Datum: <?php echo $datetime; ?> 
                     </p>                                
