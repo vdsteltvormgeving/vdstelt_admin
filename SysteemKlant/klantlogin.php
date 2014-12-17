@@ -38,23 +38,8 @@
                 include "link.php"; //Database connectie
                 if (isset($_POST["login"])) //Hier wordt gecontroleerd of de login knop ingedrukt is.
                 {
-                    // begin encryptie toepassing
-                    
-                    function sha512($password, $unique_salt)
-                    {
-                        return crypt($password, '$6$20$' . $unique_salt);
-                    }
-                    
-                    function unique_salt()
-                    {
-                        return substr(sha1(mt_rand()), 0, 22);
-                    }
-                    
-                    // einde encryptie toepassing
-                    
                     $username = $_POST["username"];
                     $password = $_POST["password"];
-                    $encrypted_password = sha512($password, unique_salt()); //Hiermee wordt het ingevoerde wachtwoord omgezet in een Hash
                     $login = $_POST["login"];
                     if (empty($username) || empty($password) || empty($username) && empty($password))// Deze if loop controleerd of alle velden zijn ingevuld
                     {
@@ -67,13 +52,12 @@
                         {
                             $username = $_POST["username"];
                             $password = $_POST["password"];
-                            $encrypted_password = sha512($password, unique_salt()); //Hiermee wordt het ingevoerde wachtwoord omgezet in een Hash
-                            $result = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$encrypted_password'");
+                            $result = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
                             $rows = mysqli_num_rows($result);
                             if ($rows == 1)
                             {
                                 $_SESSION['username'] = $_POST['username'];
-                                $_SESSION['password'] = $encrypted_password;
+                                $_SESSION['password'] = $_POST['password'];
                                 $_SESSION['login'] = 1;
                                 mysqli_close($link);
                                 include "link.php"; //Deze query zet de status van de gebruiker op online.
@@ -106,4 +90,3 @@
         </footer>
     </body>
 </html>
-

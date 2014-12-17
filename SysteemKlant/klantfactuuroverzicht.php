@@ -52,25 +52,29 @@
                     <p>
                         Bedrijfsnaam: <?php
                         include "link.php";
-                        $count = mysqli_prepare($link, "SELECT COUNT(C.company_name) FROM Customer C JOIN User U ON U.user_id=C.customer_id WHERE U.user_id=$user ");
+                        $count = mysqli_prepare($link, "SELECT COUNT(C.company_name) FROM Customer C JOIN Customer_User U ON U.user_id=C.customer_id WHERE U.user_id=$user");
                         mysqli_stmt_execute($count);
                         mysqli_stmt_bind_result($count, $ammount);
                         mysqli_stmt_fetch($count);
+                        mysqli_close($link);
                         if ($ammount == 1)
                         {
-                            mysqli_stmt_fetch($count);
                             echo "$name";
                         }
                         else
                         {
                             echo "<select name=company_name>";
-                            while(mysqli_stmt_fetch($count))
+                            include "link.php";
+                            $company_name = mysqli_prepare($link, "SELECT C.company_name FROM Customer C JOIN Customer_User U ON U.customer_id=C.customer_id WHERE U.user_id=$user");
+                            mysqli_stmt_execute($company_name);
+                            mysqli_stmt_bind_result($company_name, $companyname);
+                            while (mysqli_stmt_fetch($company_name))
                             {
-                                echo "<option value='$name'>$name</option>";
+                                echo "<option value=everything>Allemaal</option>";
+                                echo "<option value='$companyname'>$companyname</option>";
                             }
                             echo "</select>";
                         }
-                        mysqli_close($link);
                         ?>
                     <p>
                         <br>
