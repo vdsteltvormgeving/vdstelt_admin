@@ -51,7 +51,7 @@
                         if (isset($login))//met de volgend if loop wordt bepaald of er goed is ingelogd.
                         {
                             $username = $_POST["username"];
-                            $password = $_POST["password"];                            
+                            $password = $_POST["password"];
                             $result = mysqli_query($link, "SELECT mail, password FROM User WHERE mail='$username' AND password='$password'");
                             $rows = mysqli_num_rows($result);
                             if ($rows == 1)
@@ -60,7 +60,7 @@
                                 $_SESSION['password'] = $_POST['password'];
                                 $_SESSION['login'] = 1;
                                 mysqli_close($link);
-                                include "link.php";//Deze query zet de status van de gebruiker op online.
+                                include "link.php"; //Deze query zet de status van de gebruiker op online.
                                 $updatelogin = mysqli_prepare($link, "UPDATE User SET status='Online', laatste_inlog=NOW() WHERE mail='$username'");
                                 mysqli_stmt_execute($updatelogin);
                                 header("location: klantoverzicht.php");
@@ -72,6 +72,15 @@
                             }
                         }
                     }
+                }
+                if (isset($_GET["link"]))
+                {
+                    $username = $_SESSION['username'];
+                    $password = $_SESSION['password'];
+                    $loguit = mysqli_prepare($link, "UPDATE User SET status='Offline' WHERE mail='$username'");
+                    mysqli_stmt_execute($loguit);
+                    session_destroy();
+                    header("location: klantlogin.php");
                 }
                 ?>
             </div>

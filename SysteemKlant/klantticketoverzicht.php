@@ -39,23 +39,20 @@
                     $lname;
                 }
                 mysqli_close($link);
+                include "link.php"; // Met deze query wordt de company naam van de ingelogde klant opgehaald.
+                $stmt2 = mysqli_prepare($link, "SELECT C.company_name FROM Customer C JOIN User U ON U.user_id=C.customer_id WHERE U.user_id=$user ");
+                mysqli_stmt_execute($stmt2);
+                mysqli_stmt_bind_result($stmt2, $name);
+                mysqli_stmt_fetch($stmt2);
+                mysqli_close($link);
                 ?>
+
                 <div id="ticket">
-                    <p>Naam: <?php echo "$fname $lname";
-                ?>
+                    <p>
+                        Naam: <?php echo "$fname $lname"; ?>
                     </p>                    
                     <p>
-                        Bedrijfsnaam: <?php
-                        include "link.php"; // Met deze query wordt de company naam van de ingelogde klant opgehaald.
-                        $stmt2 = mysqli_prepare($link, "SELECT C.company_name FROM Customer C JOIN Invoice I ON I.customer_id=C.customer_id JOIN User U ON U.user_id=I.user_id WHERE U.mail='$username' ");
-                        mysqli_stmt_execute($stmt2);
-                        mysqli_stmt_bind_result($stmt2, $name);
-                        while (mysqli_stmt_fetch($stmt2))
-                        {
-                            echo $name;
-                        }
-                        mysqli_close($link);
-                        ?>
+                        Bedrijfsnaam: <?php echo "$name"; ?>
                     </p>                    
                     <br>                                       
                     <table>
@@ -213,7 +210,7 @@
                         }
                         else
                         {
-                            $stmt10 = mysqli_prepare($link, "SELECT category, creation_date, completed_status, ticket_id FROM Ticket WHERE user_id=$user");
+                            $stmt10 = mysqli_prepare($link, "SELECT category, creation_date, completed_status, ticket_id FROM Ticket WHERE user_id=$user ORDER BY completed_status");
                             mysqli_stmt_execute($stmt10);
                             mysqli_stmt_bind_result($stmt10, $category, $creation, $completed, $ticketid);
                             while (mysqli_stmt_fetch($stmt10))
