@@ -5,6 +5,8 @@
  * @author Ruud Verbij
  * @version 1.0
  * @usage at the bottom
+ * 
+ * http://www.phphulp.nl/php/script/overig/mail-class/953/mailclass/716/?size=expand
  */
 
 class mailer {
