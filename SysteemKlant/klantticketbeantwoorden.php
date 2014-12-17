@@ -51,8 +51,8 @@
                     $description = $_POST["beschrijving"];
                     $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=$login");
                     mysqli_stmt_execute($reactionquery);
-                    mysqli_stmt_fetch($reactionquery);
-                    header("klantticketbeantwoorden.php");
+                    header("location: klantticketoverzicht.php");
+                    mysqli_close($link);
                 }
                 else
                 {
@@ -129,7 +129,6 @@
                 <form method="POST" action='klantticketoverzicht.php'>
                     <input type='submit' name='terug' value='terug'>                    
                 </form>
-
             </div>
             <!--EINDE CONTENT-->
         </div>
