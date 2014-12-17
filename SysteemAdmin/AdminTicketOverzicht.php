@@ -11,7 +11,7 @@ if ($_SESSION["login"] != 1) {
         foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
             include "link.php";
             $ticket_id = $ticketid;
-            $change = mysqli_prepare($link, "UPDATE ticket SET archived_status = 1 WHERE ticket_id = $ticket_id ");
+            $change = mysqli_prepare($link, "UPDATE ticket SET completed_status = 1 WHERE ticket_id = $ticket_id ");
             mysqli_execute($change);
             mysqli_close($link);
         }
@@ -19,7 +19,7 @@ if ($_SESSION["login"] != 1) {
         foreach ($_POST["Open"] AS $ticketid => $notused) {
             include "link.php";
             $ticket_id = $ticketid;
-            $change = mysqli_prepare($link, "UPDATE ticket SET archived_status = 0 WHERE ticket_id = $ticket_id ");
+            $change = mysqli_prepare($link, "UPDATE ticket SET completed_status = 0 WHERE ticket_id = $ticket_id ");
             mysqli_execute($change);
             mysqli_close($link);
         }
@@ -43,7 +43,7 @@ if ($_SESSION["login"] != 1) {
             </div>
             <div id='content'>
                 <div id="ticket">
-                    <h1>tickets:</h1>
+                    <h1>Tickets</h1>
                     <br>
                     <table>
                         <tr>
@@ -199,15 +199,17 @@ if ($_SESSION["login"] != 1) {
                                     echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[$ticket_ID]' Value='Beantwoorden' formaction='AdminTicketBeantwoorden.php'></td></tr>";
                                 }
                             }
+                            
+                            
                             ?>
                     </table>
                 </div>
-                    <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">   
-                    <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
-
-                <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
+                <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
                 <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
-                
+                <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
+                <input type="hidden" name="ticketid[<?php echo $ticketid; ?>]">
+                <input type="submit" name="Openen" Value="Open" action="<?php $stmt21 = mysqli_prepare($link, "Update Ticket SET completed_status == 0") ?>">
+
                 <br><br><br>
                 <!--
                 <h1>Gesloten Tickets:<br></h1>
@@ -236,10 +238,9 @@ if ($_SESSION["login"] != 1) {
                 </table> -->
                 </form>
             </div>
-            <div id='footer'>
-                <div id='footerleft'>Admin Systeem</div>
-                <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-            </div>
+            <?php 
+                include 'footeradmin.php';
+                ?>
         </body>
     </html>
     <?php

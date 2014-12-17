@@ -23,7 +23,7 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                <h1>Ticket inzien</h1>
+                <h1>Ticket inzien</h1><br>
                 <?php
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
@@ -38,30 +38,34 @@
                     $fname;
                     $lname;
                 }
-                mysqli_close($link);              
 
-                $ticketidarray = $_POST["ticketid"];//Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
+                $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
                 foreach ($ticketidarray as $ticket => $notused)
                 {
                     $ticketid = $ticket;
                 }
                 ?>
                 <form method="POST" action="klantticketaanmaken.php">
-                    <p> Naam: <?php echo "$fname $lname";
-                        ?>
+                    <p> <label>Naam:</label> <?php echo "$fname $lname";
+                ?>
                         <br>
-                        E-mail: <?php echo $username; ?> 
+                        <label>E-mail:</label> <?php echo $username; ?> 
                     </p>                                                                                                
-                    <p><br>
-                        <?php
+                    <?php
+                    $status = mysqli_prepare($link, "SELECT COUNT(reaction_id) FROM Reaction WHERE ticket_id=$ticketid");
+                    mysqli_stmt_bind_result($status, $count);
+                    mysqli_stmt_execute($status);
+                    mysqli_stmt_fetch($status);
+                    mysqli_close($link);
+                    if ($count == 0)
+                    {
                         include "link.php";
-                        //De if loop is hieronder nodig om te true/false status van de ticket om te zetten naar text.
                         $description = mysqli_prepare($link, "SELECT T.category, T.description, T.completed_status, T.creation_date FROM customer C JOIN ticket T ON C.customer_id = T.customer_id WHERE T.ticket_id=$ticketid");
                         mysqli_stmt_bind_result($description, $cat, $desc, $completed, $creation);
                         mysqli_stmt_execute($description);
                         while (mysqli_stmt_fetch($description))
                         {
-                            echo "<label>Category: $cat</label><br><label>Status:";
+                            echo "<label>Categorie:</label> $cat<br><label>Status:</label> ";
                             if ($completed == 1)
                             {
                                 echo "Gesloten";
@@ -70,20 +74,43 @@
                             {
                                 echo "Open";
                             }
-                            echo "</label><br><br><label>Description:<br><br>$desc</label> <label>$creation</label>";
+                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
+                            mysqli_close($link);
+                        }
+                    }
+                    //De if loop is hieronder nodig om te true/false status van de ticket om te zetten naar text.                        
+                    else
+                    {
+                        include "link.php";
+                        $description = mysqli_prepare($link, "SELECT T.category, T.description, T.completed_status, T.creation_date FROM customer C JOIN ticket T ON C.customer_id = T.customer_id WHERE T.ticket_id=$ticketid");
+                        mysqli_stmt_bind_result($description, $cat, $desc, $completed, $creation);
+                        mysqli_stmt_execute($description);
+                        while (mysqli_stmt_fetch($description))
+                        {
+                            echo "<label>Categorie:</label> $cat<br><label>Status:</label> ";
+                            if ($completed == 1)
+                            {
+                                echo "Gesloten";
+                            }
+                            else
+                            {
+                                echo "Open";
+                            }
+                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
                         }
                         mysqli_close($link);
                         include "link.php";
                         $reactions = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticketid");
                         mysqli_stmt_bind_result($reactions, $text, $time, $mail);
                         mysqli_stmt_execute($reactions); // Deze query wordt gebruikt om alle reacties uit de reaction tabel te halen.
-                        echo "<br><br><label>Reactions:</label>";
+                        echo "<br><label>Reactie:</label>";
                         while (mysqli_stmt_fetch($reactions))
                         {
-                            echo "<br><label><br>$text</label> <label>$time</label>";
+                            echo "<br><table><td class='table_reactie'><span class='datum'>Datum: $time </span><br> $text</td></table>";
                         }
-                        ?>                                               
-                    </p>                    
+                    }
+                    ?>                                               
+
                 </form>
                 <form method="POST" action="klantticketoverzicht.php">
                     <input type="submit" name="Back" value="Terug">

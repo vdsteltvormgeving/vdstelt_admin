@@ -37,11 +37,9 @@ else
                     <input type="submit" name="Factuur Overzicht" value="Factuur Overzicht">
                 </form>         
             </div>
-            <div class='push'></div>
-            <div id='footer'>
-                <div id='footerleft'>Admin Systeem</div>
-                <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-            </div>
+            <?php 
+                include 'footeradmin.php';
+                ?>
         </body>       
     </html>
 <?php } ?>

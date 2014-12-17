@@ -1,3 +1,5 @@
+/*  Adminsysteem stylesheet 
+    Sander van der Stelt*/
 body{
     margin: 0px;
     height: 100%;
@@ -48,46 +50,72 @@ a:visited{
     /*background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#faa61a), to(#f58220));*/
     height: 50px;
 }
-
-#pagina{
-    width: 50%;
+#klant_menu{
+    width: 33.33%;
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     padding-top: 10px;
+    display:inline-block;
+    float: left;
 }
 
-#pagina a{
+#klant_menu a{
     padding: 10px;
     color: black;
     text-decoration: none;
 }
 
-#pagina a:hover{
+#klant_menu a:hover{
     color: #d1d3d4;
 }
 
-#pagina a:visited{
+#klant_menu a:visited{
     text-decoration: none;
 }
 
-#module{
-    margin-top: -30px;
-    float: right;
-    width: 50%;
+#factuur_menu{
+    width: 33.33%;
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
+    padding-top: 2px;
+    display:inline-block;
+    float: left;
 }
 
-#module a{
+#factuur_menu a{
+    padding: 10px;
     color: black;
     text-decoration: none;
 }
 
-#module a:hover{
+#factuur_menu a:hover{
     color: #d1d3d4;
 }
 
-#module a:visited{
+#factuur_menu a:visited{
+    text-decoration: none;
+}
+
+#ticket_menu{
+    width: 33.33%;
+    text-align: center;
+    font-size: 22px;
+    padding-top: 10px;
+    display:inline-block;
+    float: left;
+    
+}
+
+#ticket_menu a{
+    color: black;
+    text-decoration: none;
+}
+
+#ticket_menu a:hover{
+    color: #d1d3d4;
+}
+
+#ticket_menu a:visited{
     text-decoration: none;
 }
 
@@ -168,16 +196,19 @@ a:visited{
 }
 
 #showname{
-    position: relative;
+    position: absolute;
     width: auto;
-    margin-top: -30px;
-    padding-left: 25px;
+    margin-top:5px;
+    left:25px;
+    padding:0px;
+    display:inline-block;
 }
 
 #pijltje{
-    position: relative;
+    display:inline-block;
     float:right;
-    margin-top: -15px;
+    margin-top: 9px;
+    margin-right:4px;
 }
 
 #nav{
@@ -344,6 +375,47 @@ input[type="text"], input[type="password"]{
 }
 #content form{
     margin:auto;
+}
+.table_admin{
+    margin-left:0px !important;
+    margin-right:0px !important;
+    border:1px solid black;
+    border-radius:4px;
+}
+.table_reactie{
+    margin:0px;
+}
+.datum{
+    font-size: 11px;
+    color:black;
+}
+.succesmelding{
+    text-align: center;
+    color:white;
+    font-size: 14px;
+    padding:8px;
+    background-color: limegreen;
+    border: white solid 4px;
+    border-radius: 4px;
+    max-width: 400px;
+    margin:40px auto;
+    -webkit-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    -moz-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+}
+.foutmelding{
+    text-align: center;
+    color:white;
+    font-size: 14px;
+    padding:8px;
+    background-color: red;
+    border: white solid 4px;
+    border-radius: 4px;
+    max-width: 400px;
+    margin:40px auto;
+    -webkit-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    -moz-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
+    box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
 }
 
 

@@ -23,7 +23,7 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                <h1>Ticket</h1>
+                <h1>Ticket beantwoorden</h1><br>
                 <?php
                 if (isset($_POST["submit"]))
                 {
@@ -56,7 +56,7 @@
                 }
                 else
                 {
-                    $ticketidarray = $_POST["ticketid"];//Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
+                    $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
                     foreach ($ticketidarray AS $ticketid => $notused)
                     {
                         $ticket_id = $ticketid;
@@ -79,7 +79,7 @@
                     mysqli_stmt_execute($stmt1);
                     while (mysqli_stmt_fetch($stmt1))
                     {
-                        echo "<label>Ticket ID: $ticket_id</label><br><label>Klant ID:$compname</label><br><label>Category: $cat</label><br><label>Status:";
+                        echo "<label>Ticket ID:</label> $ticket_id<br><label>Klant ID:</label> $compname<br><label>Category:</label> $cat<br><label>Status:</label> ";
                         if ($completed == 1)
                         {
                             echo "Gesloten";
@@ -88,31 +88,48 @@
                         {
                             echo "Open";
                         }
-                        echo "</label><br><label>Klant ID:$CID</label><br><label>Description:<br>$desc</label> <label>$creation</label>";
+                        echo "<br><br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
                     }
                     $stmt2 = mysqli_prepare($link, "SELECT text, time, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticket_id");
                     mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
                     mysqli_stmt_execute($stmt2);
-                    echo "<br><label>Reactions:</label>";
+                    echo "<br><label>Reactie:</label>";
                     while (mysqli_stmt_fetch($stmt2))
                     {
-                        echo "<br><label><br>$text</label> <label>$time</label>";
+                        echo "<br><table><td class='table_reactie'><span class='datum'>$time</span><br>$text</table>";
                     }
                 }
                 ?>
                 <br>
                 <br>
-                <form method="POST" action="klantticketbeantwoorden.php">
-                    Uw antwoord:<br>
-                    <textarea name="beschrijving"></textarea>
-                    <br>
-                    <input type="submit" name="submit" value="Beantwoorden">
-                    <input type="hidden" name="ticketid['<?php echo "$ticketid"; ?>']">
-                </form>
+                <?php
+                include "link.php";
+                $openorclosed = mysqli_prepare($link, "SELECT completed_status FROM Ticket WHERE ticket_id=$ticket_id");
+                mysqli_stmt_bind_result($openorclosed, $status);
+                mysqli_stmt_execute($openorclosed);
+                mysqli_stmt_fetch($openorclosed);
+                if ($status == 0)
+                {
+                    ?>
+                    <form method="POST" action="klantticketbeantwoorden.php">
+                        Uw antwoord:<br>
+
+                        <textarea name="beschrijving"></textarea>
+                        <br>
+                        <input type="submit" name="submit" value="Beantwoorden">
+                        <input type="hidden" name="ticketid['<?php echo "$ticketid"; ?>']">
+                    </form>
+                    <?php
+                }
+                else
+                {
+                    echo "Deze ticket is gesloten en u kan er niet meer op reageren. <br>Als dit niet zo hoort te zijn neem dan contact op met de administrator.";
+                }
+                ?>
                 <form method="POST" action='klantticketoverzicht.php'>
-                    <input type='submit' name='terug' value='terug'>
-                    <input type='hidden' name="" value="">
+                    <input type='submit' name='terug' value='terug'>                    
                 </form>
+
             </div>
             <!--EINDE CONTENT-->
         </div>

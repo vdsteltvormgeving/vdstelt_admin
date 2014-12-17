@@ -18,6 +18,8 @@
         </div>
 
         <div id='content'>
+            <h1>Klanten</h1>
+                <br>
             <p><?php                
                 include "link.php";
                 $username = $_SESSION["username"];
@@ -37,12 +39,8 @@
                 <input type="submit" name="back" value="Terug">
             </form>
         </div>
-
-        <div class='push'></div>
-        <div id='footer'>
-            <div id='footerleft'>Admin Systeem</div>
-
-            <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-        </div>        
+        <?php 
+            include 'footeradmin.php';
+        ?>       
     </body>
 </html>

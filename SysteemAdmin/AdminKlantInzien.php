@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel -->
+<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
 <?php
 session_start();
 if ($_SESSION["login"] != 1) {
@@ -7,24 +7,6 @@ if ($_SESSION["login"] != 1) {
     session_unset();
     session_destroy();
 } else {
-    if (isset($_POST["Sluiten"])) {
-        foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
-            include "link.php";
-            $ticket_id = $ticketid;
-            $change = mysqli_prepare($link, "UPDATE ticket SET archived_status = 1 WHERE ticket_id = $ticket_id ");
-            mysqli_execute($change);
-            mysqli_close($link);
-        }
-    } elseif (isset($_POST["Openen"])) {
-        foreach ($_POST["Open"] AS $ticketid => $notused) {
-            include "link.php";
-            $ticket_id = $ticketid;
-            $change = mysqli_prepare($link, "UPDATE ticket SET archived_status = 0 WHERE ticket_id = $ticket_id ");
-            mysqli_execute($change);
-            mysqli_close($link);
-        }
-    }
-    ?>
     ?>
 
     <html>
@@ -64,7 +46,7 @@ if ($_SESSION["login"] != 1) {
                     mysqli_close($link);
                     ?>
                 </p>
-                <h1>tickets:</h1>
+                <h1>Tickets:</h1>
                 <br>
                 <table>
                     <tr>
@@ -72,36 +54,36 @@ if ($_SESSION["login"] != 1) {
                             <?php
                             // Met de volgende rijen code wordt bepaald welke sorteerknop we willen hebben. Of we een DESC of een ASC knop hebben.
                             if (isset($_POST["sortcomp"])) {
-                                echo "<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortcompDESC' value='Klant'></form>";
+                                echo "<form class='table_hdr' method='POST' action=''><input type='submit' name='sortcompDESC' value='Klant'><input type='hidden' name='CID[$customerID]'></form>";
                             } else {
-                                echo "<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortcomp' value='Klant'></form>";
+                                echo "<form class='table_hdr' method='POST' action=''><input type='submit' name='sortcomp' value='Klant'><input type='hidden' name='CID[$customerID]'></form>";
                             }
                             ?>
                         </th>
                         <th>
                             <?php
                             if (isset($_POST["sortcat"])) {
-                                echo "<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortcatDESC' value='Categorie'></form>";
+                                echo "<form class='table_hdr' method='POST' action=''><input type='submit' name='sortcatDESC' value='Categorie'><input type='hidden' name='CID[$customerID]'></form>";
                             } else {
-                                echo "<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortcat' value='Categorie'></form>";
+                                echo "<form class='table_hdr' method='POST' action=''><input type='submit' name='sortcat' value='Categorie'><input type='hidden' name='CID[$customerID]'></form>";
                             }
                             ?>
                         </th>
                         <th>
                             <?php
                             if (isset($_POST["sortct"])) {
-                                echo "<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortctDESC' value='Aanmaak Datum'></form>";
+                                echo "<form class='table_hdr' method='POST' action=''><input type='submit' name='sortctDESC' value='Aanmaak Datum'><input type='hidden' name='CID[$customerID]'></form>";
                             } else {
-                                echo "<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortct' value='Aanmaak Datum'></form>";
+                                echo "<form class='table_hdr' method='POST' action=''><input type='submit' name='sortct' value='Aanmaak Datum'><input type='hidden' name='CID[$customerID]'></form>";
                             }
                             ?>
                         </th>
                         <th>
                             <?php
                             if (isset($_POST["sortstat"])) {
-                                echo "<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortstatDESC' value='Status'></form>";
+                                echo "<form class='table_hdr' method='POST' action=''><input type='submit' name='sortstatDESC' value='Status'><input type='hidden' name='CID[$customerID]'></form>";
                             } else {
-                                echo "<form class='table_hdr' method='POST' action='AdminTicketOverzicht.php'><input type='submit' name='sortstat' value='Status'></form>";
+                                echo "<form class='table_hdr' method='POST' action=''><input type='submit' name='sortstat' value='Status'><input type='hidden' name='CID[$customerID]'></form>";
                             }
                             ?>
                         </th>
@@ -219,21 +201,45 @@ if ($_SESSION["login"] != 1) {
                                 }
                                 echo "<tr><td>$company_name</td><td>$category</td><td>$creation</td><td>$completed</td><td><input type='checkbox' name='close/wijzig[$ticket_ID]'></td><td><input type='submit' name='ticket_id[$ticket_ID]' value='Bekijken'></td><td><input type='submit' name='Beantwoorden[$ticket_ID]' Value='Beantwoorden' formaction='AdminTicketBeantwoorden.php'></td></tr>";
                             }
+                        } echo '</table>'; ?>
+            <br>
+            <input type="submit" name="Terug" value='Terug' formaction="AdminKlantOverzicht.php">
+            <?php echo "<input type='hidden' name='CID[$customerID]'>" ?>
+            <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
+            <input type="hidden" name="KlantInzien" value="KlantInzien">
+            <input type="submit" name="Sluiten" Value="Sluiten" formaction="">
+            <input type="submit" name="Open" value="Open" formaction="">
+            <?php
+                        if (isset($_POST["Sluiten"])) { //Sander: 'Dit heb ik gewijzigd en verplaatst voor een fout melding'
+                            if (empty($_POST["close/wijzig"])){echo '<p class="foutmelding"> U heeft geen ticket geselecteerd.</p>'; } 
+                            else {
+                            foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
+                                include "link.php";
+                                $ticket_id = $ticketid;
+                                $change = mysqli_prepare($link, "UPDATE Ticket SET completed_status = 1 WHERE ticket_id = $ticket_id ");
+                                mysqli_execute($change);
+                                mysqli_close($link);
+                            }
+                            echo '<p class="succesmelding">Status is gewijzigd</p>';
+                            }
+                        } 
+                        if (isset($_POST["Openen"])) {
+                            if (empty($_POST["Open"])){echo 'U heeft geen ticket geselecteerd!'; } 
+                            else {
+                            foreach ($_POST["Open"] AS $ticketid => $notused) {
+                                include "link.php";
+                                $ticket_id = $ticketid;
+                                $change = mysqli_prepare($link, "UPDATE ticket SET completed_status = 0 WHERE ticket_id = $ticket_id ");
+                                mysqli_execute($change);
+                                mysqli_close($link);
+                            }}
                         }
                         ?>
-                </table>
-            </div>
-            <input type="hidden" name="KlantInzien" value="KlantInzien">
-            <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
-            <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
-
-        </div>
-        <div class='push'></div>
-        <div id='footer'>
-            <div id='footerleft'>Admin Systeem</div>
-
-            <div id='footerright'>&copy;Bens Development 2013 - 2014</div>
-        </div>
+        </form>
+    </div>
+    <?php 
+        include 'footeradmin.php';
+    ?>
     </body>
     </html>
 <?php }

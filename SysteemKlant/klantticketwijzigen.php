@@ -23,7 +23,7 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                <h1>Ticket wijzigen</h1>
+                <h1>Ticket wijzigen</h1><br>
                 <?php
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
@@ -114,22 +114,8 @@
                         include"link.php";
                         $insert = mysqli_prepare($link, "UPDATE ticket SET last_time_date=NOW(), description='$description', category='$category' WHERE ticket_id=$ticketid");
                         mysqli_stmt_execute($insert);
-                        mysqli_close($link);
-
-                        echo "<p class='succesmelding'>Uw ticket is verzonden.</p>";
                         header("location: klantticketoverzicht.php");
-
-                        /* Deze code werkt niet op de local server.
-                          //default headers
-                          $headers = "MIME-Version: 1.0" . "\r\n";
-                          $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                          //more headers
-                          $headers .= 'From: <ticketsysteem@bensdevelopment.nl>' . "\r\n";
-                          $headers .= 'Cc: admin@bensdevelopment.nl' . "\r\n";
-                          $to="jpjvangelder@gmail.com";
-                          $subject="Niewe ticket aangemaakt";
-                          $message="Beste, <br><br> er is een niewe ticket aangemaakt met category:$category";
-                          mail($to,$subject,$message,$headers); */
+                        mysqli_close($link);                                               
                     }
                 }
                 ?>

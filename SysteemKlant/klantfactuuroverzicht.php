@@ -22,7 +22,7 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                <h1>Factuur Overzicht</h1>
+                <h1>Factuur Overzicht</h1><br>
                 <!-- NIEUW GEPLAATSTE CODE-->
                 <?php
                 include "link.php";
@@ -46,13 +46,25 @@
                         mysqli_stmt_bind_result($stmt1, $fname, $lname);
                         while (mysqli_stmt_fetch($stmt1))
                         {
-                            echo "$fname $lname <br>";
-                            //echo "$user";
+                            echo "$fname $lname";
                         }
                         mysqli_close($link);
                         ?>
                     </p>
-                        <br>
+                        <p><?php
+                    include "link.php";
+                    $stat1 = mysqli_prepare($link, "SELECT company_name, street, house_number, city, kvk_number, btw_number FROM Customer WHERE customer_id = $user");
+                mysqli_stmt_execute($stat1);
+                mysqli_stmt_bind_result($stat1, $company_name, $street, $housen, $city, $kvk, $btw);
+                while (mysqli_stmt_fetch($stat1)){
+                    echo "<label>Bedrijfsnaam:</label>$company_name<br>";
+                 
+                }
+                        
+                        mysqli_close($link);
+                    ?>
+                <p>
+                    <br>
                     <p>Facaturen: <?php
                     include"link.php";
                      $stat = mysqli_prepare($link, "SELECT invoice_number, date, payment_completed FROM invoice WHERE user_id = $user");
