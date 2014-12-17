@@ -39,17 +39,17 @@
                 ?> <!-- Dit maakt connectie met de database en zorgt voor de start van de inlogsessie -->
                 <div id="factuur">
                     <p><?php
-                include"link.php";
-                $stmt = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_bind_result($stmt, $fname, $lname);
-                while (mysqli_stmt_fetch($stmt))
-                {
-                    echo "<label>Naam:</label>$fname $lname";
-                }
+                        include"link.php";
+                        $stmt = mysqli_prepare($link, "SELECT first_name, last_name FROM User WHERE mail='$username'");
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt, $fname, $lname);
+                        while (mysqli_stmt_fetch($stmt))
+                        {
+                            echo "<label>Naam:</label>$fname $lname";
+                        }
 
-                mysqli_close($link);
-                ?>
+                        mysqli_close($link);
+                        ?>
                     </p>
 
                     <p><?php
@@ -65,7 +65,7 @@
                         }
 
                         mysqli_close($link);
-                ?>
+                        ?>
                     <p><?php
                         include "link.php";
                         $stat2 = mysqli_prepare($link, "SELECT date, payment_completed FROM invoice WHERE user_id = $user");
@@ -84,7 +84,7 @@
                         echo "<label>Factuurnummer:</label>$invoiceID";
                         echo "<br>";
                         echo "<label>Datum:</label>$date";
-                ?>
+                        ?>
                     </p>
 
                     <p>Factuur:
@@ -130,7 +130,7 @@
                         <input type="submit" name="back" value="Terug">
                     </form>
                     <?php
-                    if(isset($_POST["betaald"]))
+                    if (isset($_POST["betaald"]))
                     {
                         
                     }
@@ -139,7 +139,7 @@
                 </div>
             </div></div>
         <footer>
-<?php include 'footer.php'; ?>
+            <?php include 'footer.php'; ?>
         </footer>
     </body>
 </html>
