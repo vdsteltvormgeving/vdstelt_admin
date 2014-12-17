@@ -293,5 +293,7 @@ $mailer = new mailer();
 $mailer->openTotalEmail("blaat.txt");
 $mailer->saveTotalEmail("mailTest.txt");
 
-print_r('het werkt!');
+foreach($mail as $mailtje => $waarde){
+    echo($waarde);
+}
 ?>
