@@ -80,7 +80,7 @@ else
                             {
                                 echo "Open";
                             }
-                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
+                            echo "<br><br><label>Omschrijving:</label><br><table class='table_admin'><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
                         }
                         mysqli_close($link);
                         include "link.php";
@@ -90,7 +90,7 @@ else
                         echo "<br><label>Reactie:</label>";
                         while (mysqli_stmt_fetch($reactions))
                         {
-                            echo "<br><table><td class='table_reactie'><span class='datum'>Datum: $time </span><br> $text</td></table>";
+                            echo "<br><table class='table_admin'><td class='table_reactie'><span class='datum'>$time</span><br>$text</td></table>";
                         }
                     }
                     /*De if loop is hieronder nodig om te true/false status van de ticket om te zetten naar text.
@@ -118,7 +118,7 @@ else
                     {
                         echo"<label><b>Reactie:</b></label><br><label>$mail</label><br><label>$time</label><br><label>$text</label><br>";
                     }*/
-                    ?>
+                    ?><br>
                     <form method="POST" action=''>
                         <input type='submit' name='terug' value='Terug' formaction="AdminTicketOverzicht.php">
                         <input type='submit' name='Wijzigen' value='Doorsturen' formaction='#'>

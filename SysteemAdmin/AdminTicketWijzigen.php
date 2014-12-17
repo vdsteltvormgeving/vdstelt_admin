@@ -71,7 +71,8 @@ if ($_SESSION["login"] != 1) {
                 echo '<label>Reactie:</label><br>';
                 while (mysqli_stmt_fetch($stmt2)) {
                     echo"
-                $text @ $time --$mail <br>";
+                <br><table class='table_admin'><td class='table_reactie'><span class='datum'>Aan: $mail<br>$time</span><br>$text</td></table>        
+                <br>";
                 }
                 ?>
                 
