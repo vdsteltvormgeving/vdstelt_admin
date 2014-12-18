@@ -371,7 +371,14 @@ input[type="text"], input[type="password"], input[type="number"]{
     top:2px;
     position: relative;
     text-align: left;
-    margin:10px 0px;
+    margin:10px 0px;  
+}
+select{
+    padding:12px;
+    top:2px;
+    position: relative;
+    text-align: left;
+    margin:10px 0px;     
 }
 #content form{
     margin:auto;
