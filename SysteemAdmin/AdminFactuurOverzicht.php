@@ -68,7 +68,7 @@ if ($_SESSION["login"] != 1) {
 
                         <th>Bekijken</th>
                     </tr>
-                    <form method="POST" action="#">
+                    <form method="POST" action="AdminFactuurinzien.php">
     <?php
     include "link.php";
     if (isset($_POST["sortfac"])) {
