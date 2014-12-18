@@ -37,12 +37,12 @@
         </div>
 
         <div id='content'>
-            <form method="POST" action="">
+            <form method="POST" >
 
                 <?php
                 include 'link.php';
                 date_default_timezone_set('Europe/Amsterdam');
-                echo '<label>Datum: </label>' . date('Y-m-d H:i:s') . '<br>';
+                echo '<label>Datum: </label>' . date('Y-m-d') . '<br>';
                 $stmt1 = mysqli_prepare($link, "SELECT company_name FROM Customer");
                 mysqli_execute($stmt1);
                 mysqli_stmt_bind_result($stmt1, $comp);
@@ -126,22 +126,35 @@
                                        ?>"></td></tr>
                 </table>
                 <input type="submit" formaction="AdminOverzicht.php" value="terug" name="terug">
-                <input type="submit" name="submit" value="opslaan" fromaction="">
+                <input type="submit" name="submit" value="opslaan" onclick="this.form.submit">
             </form>
             <?php
             if (isset($_POST["submit"])) {
+
                 if ($_POST['invoicenr'] == "") {
                     echo 'Invoicenummer moet ingevult worden.';
                 } elseif ($_POST["description1"] == "" && $_POST["Price1"] == "" && $_POST["Count1"] == "") {
                     echo "Begin bij de eerste regel met invullen.";
                 } else {
                     $invoicenr = $_POST['invoicenr'];
-                }
-                for ($i = 1; $i <= 5; $i++) {
-                    if ($_POST['description' . $i] == "" && $_POST['Count' . $i] == "" && $_POST['Price' . $i] != "" || $_POST['Price' . $i] == "" && $_POST['Count' . $i] == "" && $_POST['description' . $i] != "" || $_POST['description' . $i] == "" && $_POST['Price' . $i] == "" && $_POST['Count' . $i] != "" || $_POST['description' . $i] == "" && $_POST['Count' . $i] != "" && $_POST['Price' . $i] != "" || $_POST['Count' . $i] == "" && $_POST['description' . $i] != "" && $_POST['Price' . $i] != "" || $_POST['Price' . $i] == "" && $_POST['Count' . $i] != "" && $_POST['description' . $i] != "") {
-                        echo 'factuur regel ' . $i . ' is niet goed ingevuld.';
+                    $test1 = 1;
+                    for ($i = 1; $i <= 5; $i++) {
+                        if ($_POST['description' . $i] == "" && $_POST['Count' . $i] == "" && $_POST['Price' . $i] != "" || $_POST['Price' . $i] == "" && $_POST['Count' . $i] == "" && $_POST['description' . $i] != "" || $_POST['description' . $i] == "" && $_POST['Price' . $i] == "" && $_POST['Count' . $i] != "" || $_POST['description' . $i] == "" && $_POST['Count' . $i] != "" && $_POST['Price' . $i] != "" || $_POST['Count' . $i] == "" && $_POST['description' . $i] != "" && $_POST['Price' . $i] != "" || $_POST['Price' . $i] == "" && $_POST['Count' . $i] != "" && $_POST['description' . $i] != "") {
+                            echo 'factuur regel ' . $i . ' is niet goed ingevuld.';
+                            goto end;
+                        } else {
+
+                        }
                     }
-                }
+                    echo "$test2";
+                    if ($test1 == 1 && $test2 != 1) {
+                        $compname = $_POST['bedrijfsnaam'];
+                        $stmt2 = mysqli_prepare($link, "SELECT customer_id FROM Customer WHERE company_name = ?");
+                        mysqli_stmt_bind_param($stmt2, 's ', $compname);
+                        $stmt3 = mysqli_prepare($link, "Insert into ");
+                    }
+                } end: echo "it works";
+                print ($error);
             }
             ?>
         </div>
