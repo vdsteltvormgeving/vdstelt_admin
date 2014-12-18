@@ -27,32 +27,39 @@
                 <?php
                 if (isset($_POST["submit"]))
                 {
-                    $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
-                    foreach ($ticketidarray as $ticketid => $notused)
+                    if ($description == "")
                     {
-                        $ticket_id = $ticketid;
+                        echo "<p class='foutmelding'>Er is geen beschrijving gegeven.</p>";
                     }
-                    $username = $_SESSION['username'];
-                    $password = $_SESSION['password'];
-
-                    include "link.php"; // Met deze query wordt de naam en userid van de ingelogde klant opgehaald.
-                    $userinfo = mysqli_prepare($link, "SELECT user_id, first_name, last_name FROM User WHERE mail='$username'");
-                    mysqli_stmt_execute($userinfo);
-                    mysqli_stmt_bind_result($userinfo, $login, $fname, $lname);
-                    while (mysqli_stmt_fetch($userinfo))
+                    else
                     {
-                        $login;
-                        $fname;
-                        $lname;
-                    }
-                    mysqli_close($link);
+                        $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
+                        foreach ($ticketidarray as $ticketid => $notused)
+                        {
+                            $ticket_id = $ticketid;
+                        }
+                        $username = $_SESSION['username'];
+                        $password = $_SESSION['password'];
 
-                    include "link.php"; //Met deze query wordt de nieuwe reactie in de tabel gezet.
-                    $description = $_POST["beschrijving"];
-                    $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=$login");
-                    mysqli_stmt_execute($reactionquery);
-                    mysqli_stmt_fetch($reactionquery);
-                    header("klantticketbeantwoorden.php");
+                        include "link.php"; // Met deze query wordt de naam en userid van de ingelogde klant opgehaald.
+                        $userinfo = mysqli_prepare($link, "SELECT user_id, first_name, last_name FROM User WHERE mail='$username'");
+                        mysqli_stmt_execute($userinfo);
+                        mysqli_stmt_bind_result($userinfo, $login, $fname, $lname);
+                        while (mysqli_stmt_fetch($userinfo))
+                        {
+                            $login;
+                            $fname;
+                            $lname;
+                        }
+                        mysqli_close($link);
+
+                        include "link.php"; //Met deze query wordt de nieuwe reactie in de tabel gezet.
+                        $description = $_POST["beschrijving"];
+                        $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=$login");
+                        mysqli_stmt_execute($reactionquery);
+                        mysqli_stmt_fetch($reactionquery);
+                        header("klantticketinzien.php");
+                    }
                 }
                 else
                 {
