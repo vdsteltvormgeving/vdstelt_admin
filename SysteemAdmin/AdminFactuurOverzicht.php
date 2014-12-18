@@ -177,14 +177,15 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
+            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr></form>";
         }
     }
     ?>
-
                 </table>
-                <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
-                <input type="submit" name="paid" value="Betaald" formaction="AdminFactuuroverzicht.php">
+                <form method="POST" action="AdminFactuuroverzicht.php">
+                <input type="submit" name="Terug" value="Terug" formaction="AdminOverzicht.php">
+                <input type="submit" name="betaald" value="Betaald" formaction="AdminFactuuroverzicht.php">
+                </form>
             </div>
                 <?php 
                 include 'footeradmin.php';
