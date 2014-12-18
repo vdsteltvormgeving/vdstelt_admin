@@ -7,6 +7,19 @@ if ($_SESSION["login"] != 1) {
     session_unset();
     session_destroy();
 } else {
+    include 'link.php';
+    if (isset($_POST["wijzigen"])) {
+        $query = mysqli_prepare($link, 'INSERT INTO ticket (customer_id, creation_date, last_time_date, send_date, user_id, description ) VALUES (?,?,?,?,?,?)');
+        mysqli_stmt_bind_param($query, 'isssis', $CID, $creation, $lastchange, $send, $user_id, $desc);
+        $CID=$_POST["Customer_ID"];
+        $creation=$_POST["Creation Date"];
+        $lastchange=$_POST["Last Changed Date"];
+        $send=$_POST["Send Date to Hosting"];
+        $user_id=$_POST["User ID"];
+        $desc=$_POST["Description"];
+    } else {
+        
+    }
     ?>
     <html>
         <head>
