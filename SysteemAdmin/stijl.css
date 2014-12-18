@@ -366,7 +366,7 @@ input[type="submit"], input[type="button"]:active {
     margin-top: 10px;
     margin-left:10px;
 }
-input[type="text"], input[type="password"]{
+input[type="text"], input[type="password"], input[type="number"]{
     padding:12px;
     top:2px;
     position: relative;
