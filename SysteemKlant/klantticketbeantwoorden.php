@@ -25,7 +25,9 @@
             <div id="content">
                 <h1>Ticket beantwoorden</h1><br>
                 <?php
-                if (isset($_POST["submit"])) {
+                if (isset($_POST["submit"]))
+                {
+
                     $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
                     foreach ($ticketidarray as $ticketid => $notused) {
                         $ticket_id = $ticketid;
@@ -49,8 +51,10 @@
                     $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=$login");
                     mysqli_stmt_execute($reactionquery);
                     mysqli_stmt_fetch($reactionquery);
-                    header("location: klantticketbeantwoorden.php");
-                } else {
+                    header("location: klantticketoverzicht.php");
+                }
+                else
+                {
                     $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
                     foreach ($ticketidarray AS $ticketid => $notused) {
                         $ticket_id = $ticketid;

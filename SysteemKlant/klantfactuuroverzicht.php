@@ -70,7 +70,6 @@
                             mysqli_stmt_bind_result($company_name, $companyname);
                             while (mysqli_stmt_fetch($company_name))
                             {
-                                echo "<option value=everything>Allemaal</option>";
                                 echo "<option value='$companyname'>$companyname</option>";
                             }
                             echo "</select>";
@@ -105,10 +104,9 @@
                     <br>
                 </div>
             </div>
-        </div>
-    </div>
-    <footer>
-        <?php include 'footer.php'; ?>
-    </footer>
-</body>
+        </div>   
+        <footer>
+            <?php include 'footer.php'; ?>
+        </footer>
+    </body>
 </html>
