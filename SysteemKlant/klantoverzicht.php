@@ -88,7 +88,7 @@
                 <div class='overzicht'>
                 <table class='overzicht'>
                     <tr>
-                        <th>Factuur nummer</th>
+                        <th>Factuurnummer</th>
                         <th>Datum</th>
                     </tr>
                     <?php

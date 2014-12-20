@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?><rss version="2.0"><channel><title>Email</title><language>nl</language><description>Saved email</description><item>
+	<sender>
+		<name>SANDER</name>
+		<address>sandervdstelt@msn.com</address>
+	</sender>
+	<subject>Dit is een test vanuit mail class</subject>
+	<headers>MIME-Version: 1.0, X-Priority: 3, X-MSMail-Priority: Normal, X-Mailer: PHP/5.4.17, From: SANDER &lt;sandervdstelt@msn.com&gt;, From: SANDER &lt;sandervdstelt@msn.com&gt;</headers>
+	<receiver>info@vdsteltvormgeving.nl</receiver>
+	<message>
+		
+		Test 1.0 || 17-12-2014
+	
+	</message>
+</item></channel></rss>

@@ -2,7 +2,7 @@
 <!-- Jeffrey Hamberg, Joshua van Gelder-->
 <?php
 session_start();
-if ($_SESSION["login"] != 1)
+if ($_SESSION['login'] != 1)
 {
     echo 'U moet ingelogd zijn om deze pagina te bekijken';
     session_unset();

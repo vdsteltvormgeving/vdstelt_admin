@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Bens Developement</title>
-        <link href="stijl.css" rel="stylesheet" type="text/css"/>
+        <link href="stijl.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div id="container">
@@ -23,7 +23,8 @@
             </header>
             <!--BEGIN CONTENT-->
             <div id="content">
-                <h1>Ticket aanmaken</h1><br>
+                <h1>Ticket aanmaken</h1>
+                <br>
                 <?php
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
@@ -51,8 +52,8 @@
                     <input type="file" name="fileToUpload" id="fileToUpload">-->                                                      
                 <p> 
                     Datum: <?php echo $datetime; ?> 
-                </p>                                
-                <p>
+                </p>
+                
                 <form action="klantticketaanmaken.php" method="post">
                     <select id="Categorie" name="categorie">
                         <option value="">Selecteer Categorie</option>
@@ -74,16 +75,18 @@
                         mysqli_close($link);
                         ?>
                     </select>
-                    </p>                    
+                    <br>
+                    <br>
                     <textarea name="beschrijving"></textarea>
                     <br>
                     <input type="submit" name="verzenden" value="Verzenden">
-                    <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet    ?>">
-                </form>
+                    <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet       ?>">
+                </form> 
+
                 <form method="POST" action="klantoverzicht.php">
                     <input type="submit" name="annuleren" value="Annuleren"> 
                 </form>
-
+                
                 <!-- text field and button to send text field and cancel button to go back -->            
                 <?php
                 include"link.php";

@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -38,38 +37,126 @@
         </div>
 
         <div id='content'>
-            <form method="POST">
+            <form method="POST" >
+
                 <?php
                 include 'link.php';
                 date_default_timezone_set('Europe/Amsterdam');
-                echo '<label>Datum: </label>' . date('Y-m-d H:i:s') . '<br>';
+                echo '<label>Datum: </label>' . date('Y-m-d') . '<br>';
                 $stmt1 = mysqli_prepare($link, "SELECT company_name FROM Customer");
                 mysqli_execute($stmt1);
                 mysqli_stmt_bind_result($stmt1, $comp);
-                ?> <label>Categorie: </label><select id='Categorie' name='categorie'> <?php
-                while (mysqli_stmt_fetch($stmt1)) {
-                    echo" <label><option value='$comp'>$comp</option></label>";
-                }
-                ?>
+                ?> <label>Bedrijfsnaam: </label><select id='Bedrijfsnaam' name='Bedrijfsnaam'> <?php
+                    while (mysqli_stmt_fetch($stmt1)) {
+                        echo"<option value='$comp'>$comp</option>";
+                    }
+                    ?>
                 </select></label> <br>
-                <label>Factuur nummer:</label> <input type="text" name="invoicenr"><br>
+                <label>Factuur nummer:</label> <input type="number" name="invoicenr" value="<?php
+                if (isset($_POST["submit"])) {
+                    echo $_POST["invoicenr"];
+                }
+                ?>"><br>
                 <table>
                     <tr><th><label>Omschrijving:</label></th><th><label>Aantal:</label></th><th><label>Prijs:</label></th></tr>
-                    <tr><td><input type="text" name="description1"></td><td><input type="text" name="Count1"></td><td><input type="text" name="Price1"></td></tr>
-                    <tr><td><input type="text" name="description2"></td><td><input type="text" name="Count2"></td><td><input type="text" name="Price2"></td></tr>
-                    <tr><td><input type="text" name="description3"></td><td><input type="text" name="Count3"></td><td><input type="text" name="Price3"></td></tr>
-                    <tr><td><input type="text" name="description4"></td><td><input type="text" name="Count4"></td><td><input type="text" name="Price4"></td></tr>
-                    <tr><td><input type="text" name="description5"></td><td><input type="text" name="Count5"></td><td><input type="text" name="Price5"></td></tr>
+                    <tr><td><input type="text" name="description1" value="<?php
+                            if (isset($_POST["submit"])) {
+                                echo $_POST["description1"];
+                            }
+                            ?>"></td><td><input type="number" name="Count1" value="<?php
+                                if (isset($_POST["submit"])) {
+                                    echo $_POST["Count1"];
+                                }
+                                ?>"></td><td><input type="number" name="Price1" value="<?php
+                                       if (isset($_POST["submit"])) {
+                                           echo $_POST["Price1"];
+                                       }
+                                       ?>"></td></tr>
+                    <tr><td><input type="text" name="description2" value="<?php
+                            if (isset($_POST["submit"])) {
+                                echo $_POST["description2"];
+                            }
+                            ?>"></td><td><input type="number" name="Count2" value="<?php
+                                if (isset($_POST["submit"])) {
+                                    echo $_POST["Count2"];
+                                }
+                                ?>"></td><td><input type="number" name="Price2" value="<?php
+                                       if (isset($_POST["submit"])) {
+                                           echo $_POST["Price2"];
+                                       }
+                                       ?>"></td></tr>
+                    <tr><td><input type="text" name="description3" value="<?php
+                            if (isset($_POST["submit"])) {
+                                echo $_POST["description3"];
+                            }
+                            ?>"></td><td><input type="number" name="Count3" value="<?php
+                                if (isset($_POST["submit"])) {
+                                    echo $_POST["Count3"];
+                                }
+                                ?>"></td><td><input type="number" name="Price3" value="<?php
+                                       if (isset($_POST["submit"])) {
+                                           echo $_POST["Price3"];
+                                       }
+                                       ?>"></td></tr>
+                    <tr><td><input type="text" name="description4" value="<?php
+                            if (isset($_POST["submit"])) {
+                                echo $_POST["description4"];
+                            }
+                            ?>"></td><td><input type="number" name="Count4" value="<?php
+                                if (isset($_POST["submit"])) {
+                                    echo $_POST["Count4"];
+                                }
+                                ?>"></td><td><input type="number" name="Price4" value="<?php
+                                       if (isset($_POST["submit"])) {
+                                           echo $_POST["Price4"];
+                                       }
+                                       ?>"></td></tr>
+                    <tr><td><input type="text" name="description5" value="<?php
+                            if (isset($_POST["submit"])) {
+                                echo $_POST["description5"];
+                            }
+                            ?>"></td><td><input type="number" name="Count5" value="<?php
+                                if (isset($_POST["submit"])) {
+                                    echo $_POST["Count5"];
+                                }
+                                ?>"></td><td><input type="number" name="Price5" value="<?php
+                                       if (isset($_POST["submit"])) {
+                                           echo $_POST["Price5"];
+                                       }
+                                       ?>"></td></tr>
                 </table>
-                <input type="submit" onclick="history.go(-1)" value="terug" name="terug">
-                <input type="submit" name="opslaan" value="opslaan" fromaction="">
+                <input type="submit" formaction="AdminOverzicht.php" value="terug" name="terug">
+                <input type="submit" name="submit" value="opslaan" onclick="this.form.submit">
             </form>
+            <?php
+            if (isset($_POST["submit"])) {
+
+                if ($_POST['invoicenr'] == "") {
+                    echo 'Invoicenummer moet ingevult worden.';
+                } elseif ($_POST["description1"] == "" && $_POST["Price1"] == "" && $_POST["Count1"] == "") {
+                    echo "Begin bij de eerste regel met invullen.";
+                } else {
+                    $invoicenr = $_POST['invoicenr'];
+                    $test1 = 1;
+                    for ($i = 1; $i <= 5; $i++) {
+                        if ($_POST['description' . $i] == "" && $_POST['Count' . $i] == "" && $_POST['Price' . $i] != "" || $_POST['Price' . $i] == "" && $_POST['Count' . $i] == "" && $_POST['description' . $i] != "" || $_POST['description' . $i] == "" && $_POST['Price' . $i] == "" && $_POST['Count' . $i] != "" || $_POST['description' . $i] == "" && $_POST['Count' . $i] != "" && $_POST['Price' . $i] != "" || $_POST['Count' . $i] == "" && $_POST['description' . $i] != "" && $_POST['Price' . $i] != "" || $_POST['Price' . $i] == "" && $_POST['Count' . $i] != "" && $_POST['description' . $i] != "") {
+                            echo 'factuur regel ' . $i . ' is niet goed ingevuld.';
+                            goto end;
+                        } else {
+
+                        }
+                    }
+                    echo "$test2";
+                    if ($test1 == 1 && $test2 != 1) {
+                        $compname = $_POST['bedrijfsnaam'];
+                        $stmt2 = mysqli_prepare($link, "SELECT customer_id FROM Customer WHERE company_name = ?");
+                        mysqli_stmt_bind_param($stmt2, 's ', $compname);
+                        $stmt3 = mysqli_prepare($link, "Insert into ");
+                    }
+                } end: echo "it works";
+                print ($error);
+            }
+            ?>
         </div>
-
-        <?php 
-                include 'footeradmin.php';
-                ?>
     </body>
-
 </html>
-

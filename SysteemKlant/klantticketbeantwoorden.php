@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php session_start(); ?>
 <!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
-<html>    
+<html>
     <head>
         <meta charset="UTF-8">
         <title>Bens Developement</title>
@@ -27,9 +27,9 @@
                 <?php
                 if (isset($_POST["submit"]))
                 {
+
                     $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
-                    foreach ($ticketidarray as $ticketid => $notused)
-                    {
+                    foreach ($ticketidarray as $ticketid => $notused) {
                         $ticket_id = $ticketid;
                     }
                     $username = $_SESSION['username'];
@@ -39,8 +39,7 @@
                     $userinfo = mysqli_prepare($link, "SELECT user_id, first_name, last_name FROM User WHERE mail='$username'");
                     mysqli_stmt_execute($userinfo);
                     mysqli_stmt_bind_result($userinfo, $login, $fname, $lname);
-                    while (mysqli_stmt_fetch($userinfo))
-                    {
+                    while (mysqli_stmt_fetch($userinfo)) {
                         $login;
                         $fname;
                         $lname;
@@ -51,14 +50,13 @@
                     $description = $_POST["beschrijving"];
                     $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=$login");
                     mysqli_stmt_execute($reactionquery);
-                    header("Location: klantticketbeantwoorden.php");
-                    mysqli_close($link);
+                    mysqli_stmt_fetch($reactionquery);
+                    header("location: klantticketoverzicht.php");
                 }
                 else
                 {
                     $ticketidarray = $_POST["ticketid"]; //Deze foreach is nodig om de ticketid uit de array te halen die wordt meegegeven vanaf de vorige pagina.
-                    foreach ($ticketidarray AS $ticketid => $notused)
-                    {
+                    foreach ($ticketidarray AS $ticketid => $notused) {
                         $ticket_id = $ticketid;
                     }
                     $username = $_SESSION['username'];
@@ -67,8 +65,7 @@
                     $loginQuery = mysqli_prepare($link, "SELECT user_id FROM User WHERE mail='$username'");
                     mysqli_stmt_execute($loginQuery);
                     mysqli_stmt_bind_result($loginQuery, $login);
-                    while (mysqli_stmt_fetch($loginQuery))
-                    {
+                    while (mysqli_stmt_fetch($loginQuery)) {
                         $login;
                     }
                     mysqli_close($link);
@@ -77,15 +74,11 @@
                     $stmt1 = mysqli_prepare($link, "SELECT C.company_name, T.category, T.description, T.completed_status, C.customer_id, T.creation_date FROM customer C JOIN ticket T ON C.customer_id = T.customer_id WHERE T.ticket_id=$ticket_id");
                     mysqli_stmt_bind_result($stmt1, $compname, $cat, $desc, $completed, $CID, $creation);
                     mysqli_stmt_execute($stmt1);
-                    while (mysqli_stmt_fetch($stmt1))
-                    {
+                    while (mysqli_stmt_fetch($stmt1)) {
                         echo "<label>Ticket ID:</label> $ticket_id<br><label>Klant ID:</label> $compname<br><label>Category:</label> $cat<br><label>Status:</label> ";
-                        if ($completed == 1)
-                        {
+                        if ($completed == 1) {
                             echo "Gesloten";
-                        }
-                        else
-                        {
+                        } else {
                             echo "Open";
                         }
                         echo "<br><br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
@@ -94,8 +87,7 @@
                     mysqli_stmt_bind_result($stmt2, $text, $time, $mail);
                     mysqli_stmt_execute($stmt2);
                     echo "<br><label>Reactie:</label>";
-                    while (mysqli_stmt_fetch($stmt2))
-                    {
+                    while (mysqli_stmt_fetch($stmt2)) {
                         echo "<br><table><td class='table_reactie'><span class='datum'>$time</span><br>$text</table>";
                     }
                 }
@@ -108,8 +100,7 @@
                 mysqli_stmt_bind_result($openorclosed, $status);
                 mysqli_stmt_execute($openorclosed);
                 mysqli_stmt_fetch($openorclosed);
-                if ($status == 0)
-                {
+                if ($status == 0) {
                     ?>
                     <form method="POST" action="klantticketbeantwoorden.php">
                         Uw antwoord:<br>
@@ -120,20 +111,19 @@
                         <input type="hidden" name="ticketid['<?php echo "$ticketid"; ?>']">
                     </form>
                     <?php
-                }
-                else
-                {
+                } else {
                     echo "Deze ticket is gesloten en u kan er niet meer op reageren. <br>Als dit niet zo hoort te zijn neem dan contact op met de administrator.";
                 }
                 ?>
                 <form method="POST" action='klantticketoverzicht.php'>
-                    <input type='submit' name='terug' value='terug'>                    
+                    <input type='submit' name='terug' value='terug'>
                 </form>
+
             </div>
             <!--EINDE CONTENT-->
         </div>
         <footer>
-            <?php include 'footer.php'; ?>
+                <?php include 'footer.php'; ?>
         </footer>
     </body>
 </html>
