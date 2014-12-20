@@ -47,14 +47,12 @@
                     Naam: <?php echo "$fname $lname"; ?> 
                 </p>
                 <!-- Bij deze form kan een bestand worden geupload om mee te geven met de ticket -->
-                <!--<form method="POST" action="klantticketaanmaken.php">
+                <form method="POST" action="klantticketaanmaken.php">
                     Selecteer een bestand om te uploaden:<br><br>
-                    <input type="file" name="fileToUpload" id="fileToUpload">-->                                                      
-                <p> 
-                    Datum: <?php echo $datetime; ?> 
-                </p>
-                
-                <form action="klantticketaanmaken.php" method="post">
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <p> 
+                        Datum: <?php echo $datetime; ?> 
+                    </p>
                     <select id="Categorie" name="categorie">
                         <option value="">Selecteer Categorie</option>
                         <option value="website">Website</option>
@@ -80,13 +78,13 @@
                     <textarea name="beschrijving"></textarea>
                     <br>
                     <input type="submit" name="verzenden" value="Verzenden">
-                    <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet       ?>">
+                    <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet        ?>">
                 </form> 
 
                 <form method="POST" action="klantoverzicht.php">
                     <input type="submit" name="annuleren" value="Annuleren"> 
                 </form>
-                
+
                 <!-- text field and button to send text field and cancel button to go back -->            
                 <?php
                 include"link.php";
@@ -107,7 +105,7 @@
                         mysqli_stmt_execute($insert);
                         mysqli_close($link);
                         echo "<p class='succesmelding'>Uw ticket is verzonden.</p>";
-
+                        
                         /* !Deze code werkt niet op de local server.!
                           //default headers
                           $headers = "MIME-Version: 1.0" . "\r\n";

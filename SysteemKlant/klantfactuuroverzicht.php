@@ -26,6 +26,10 @@
                 <h1>Factuur Overzicht</h1><br>
                 <!-- NIEUW GEPLAATSTE CODE-->
                 <?php
+                if(isset($_POST["betaald"]))
+                {
+                    //send email
+                }
                 include "link.php";
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password']; //Deze query haalt de user id en naam van de ingelogde klant uit de database.

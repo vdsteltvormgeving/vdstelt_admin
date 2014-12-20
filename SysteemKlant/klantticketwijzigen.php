@@ -91,6 +91,17 @@
                     </p>                    
                     <textarea name="beschrijving"><?php echo "$description" ?></textarea>
                     <br>
+                    <?php
+                    include "link.php";
+                    $reactions = mysqli_prepare($link, "SELECT text, U.mail FROM reaction R JOIN User U ON R.user_id = U.user_id WHERE R.ticket_id = $ticketid");
+                    mysqli_stmt_bind_result($reactions, $text, $mail);
+                    mysqli_stmt_execute($reactions); // Deze query wordt gebruikt om alle reacties uit de reaction tabel te halen.
+                    while (mysqli_stmt_fetch($reactions))
+                    {   
+                        echo "<textarea>$text</textarea><br>";
+                    }
+                    ?>
+                    <br>
                     <input type="hidden" <?php echo 'name="tid[' . $tid . ']"' ?>>                   
                     <input type="submit" name="verzenden" value="Verzenden">                    
                 </form>
@@ -115,7 +126,7 @@
                         $insert = mysqli_prepare($link, "UPDATE ticket SET last_time_date=NOW(), description='$description', category='$category' WHERE ticket_id=$ticketid");
                         mysqli_stmt_execute($insert);
                         header("location: klantticketoverzicht.php");
-                        mysqli_close($link);                                               
+                        mysqli_close($link);
                     }
                 }
                 ?>
