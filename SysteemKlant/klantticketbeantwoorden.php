@@ -51,7 +51,7 @@
                     $description = $_POST["beschrijving"];
                     $reactionquery = mysqli_prepare($link, "INSERT INTO Reaction SET ticket_id=$ticket_id, text='$description', time=NOW(), user_id=$login");
                     mysqli_stmt_execute($reactionquery);
-                    header("location: klantticketoverzicht.php");
+                    header("Location: klantticketbeantwoorden.php");
                     mysqli_close($link);
                 }
                 else

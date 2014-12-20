@@ -60,7 +60,6 @@
                         else
                         {
                             echo "<select name=company_name>";
-                            echo "<option value=everything id='everything' onclick='selectonclick()'>Allemaal</option>";
                             include "link.php";
                             $company_name = mysqli_prepare($link, "SELECT C.company_name FROM Customer C JOIN Customer_User U ON U.customer_id=C.customer_id WHERE U.user_id=$user");
                             mysqli_stmt_execute($company_name);
