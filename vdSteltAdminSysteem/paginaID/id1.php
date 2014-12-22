@@ -16,12 +16,9 @@
                 include('include/functies.php'); 
             ?>
             <div class="column_normal column_line side-shadow">
-                <h1>Home</h1>
-                <p></p>
+                <h1>Facturen</h1>
+                <p>U heeft <?php echo $count;  if($count > 1){echo ' openstaande facturen';}else{echo ' openstaand factuur';}?></p>
                 <table>
-                    <tr>
-                        <td>U heeft <?php echo $count;  if($count > 1){echo ' openstaande facturen';}else{echo ' openstaand factuur';}?></td>
-                    </tr>
                     <th>Factuur nummer:</th>
                     <th>Factuur titel:</th>
                         <?php
@@ -31,9 +28,15 @@
                             }
                         ?>
                 </table>
-                <a href="Klanten">Klanten overzicht</a><br>
-                <a href="Factuur">Facturen overzicht</a>
             </div>
+            <div class="column_small column_line side-shadow">
+                <h1>Menu</h1>
+                <table class="link">
+                    <tr><td><a href="Klanten">Klanten overzicht</a></td></tr>
+                    <tr><td><a href="Factuur">Facturen overzicht</a></td></tr>
+                </table>
+            </div>
+            <blockquote>"Nieuwe item"</blockquote>
 <?php 
     mysqli_stmt_free_result($stmt1); // resultset opschonen
     mysqli_stmt_close($stmt1); // statement opruimen

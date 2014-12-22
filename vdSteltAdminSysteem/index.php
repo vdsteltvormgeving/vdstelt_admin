@@ -17,7 +17,7 @@ and open the template in the editor.
     <body>
         <header>
             <h1>Administratie Systeem</h1>
-            <p>versie 1.0</p>
+            <p>versie 1.0, <strong>Van der Stelt Vormgeving</strong></p>
         </header>
         <div id="content">
             <!--
