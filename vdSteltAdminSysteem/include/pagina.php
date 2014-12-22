@@ -33,13 +33,13 @@ function Klant() {
 
 function Facturenoverzicht() {
     //Toont het Facturenoverzicht
-    include '';
+    include 'paginaID/id2.php';
     echo '<a href="Home">Terug naar home</a>';
 }
 
 function Factuur() {
-    //Toont het Facturenoverzicht
-    include '';
+    //Toont het geslecteerde factuur
+    include 'paginaID/id3.php';
     echo '<a href="Home">Terug naar home</a>';
 }
 
