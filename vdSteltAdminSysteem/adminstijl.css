@@ -83,7 +83,16 @@ header{
     width: 100%;
     border-bottom:1px solid rgba(0, 0, 0, 0.05);
 }
-
+#content table{
+    margin-bottom: 10px;
+}
+#content td,tr {
+    line-height:1.5em;
+    text-align: justify;
+    margin:0px 0px 10px 0px;
+    color: #fe5e00;
+    font-size:13px;
+}
 .column_line{
     border-bottom:4px solid #fe5e00;
 }
