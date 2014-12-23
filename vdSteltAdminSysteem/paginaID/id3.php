@@ -13,7 +13,7 @@
                             mysqli_stmt_bind_result($stmt3,$factuurid,$factuurnr,$factuurstatus,$factuurtitel,$omschrijving,$btw,$subtotaal,$totaal,$datum,$companyid,$companynaam,$straat,$huisnr,$postcode,$plaats,$iban);                        
                             mysqli_stmt_fetch($stmt3);
                             echo '<h1>'.$companynaam.'</h1>
-                                    <p>Hieronder staat alle facturen</p>';
+                                    <p>Bedrijfsgegevens</p>';
                                 //Bedrijfsgegevens
                                 echo '<p><label>BedrijfsID:</label>'.$companyid.'</p>';
                                 echo '<p><label>Bedrijfnaam:</label>'.$companynaam.'</p>';
@@ -25,7 +25,11 @@
                                 echo '<h1>Factuur: '.$factuurid.'</h1>';
                                 echo '<p><label>Factuurnummer:</label>'.$factuurnr.'</p>';
                                 echo '<p><label>Datum:</label>'.$datum.'</p>';
-                                echo '<p><label>Status:</label>'.$factuurstatus.'</p>';
+                                
+                                if ($factuurstatus == 'Open'){
+                                echo '<p><label>Status:</label><span class="statusrood"></span>'.$factuurstatus.'</p>';                               
+                                }else{echo '<p><label>Status:</label><span class="statusgroen"></span>'.$factuurstatus.'</p>';}
+                                
                                 echo '<p><label>Titel:</label>'.$factuurtitel.'</p>';
                                 echo '<p><label>Inleidende tekst:</label></p>'.'<p>'.$omschrijving.'</p>';
                                 echo '</div>';

@@ -10,7 +10,7 @@ body{
 }
 blockquote{
     display: inline-block;
-    width: 100%;
+    width: 90%;
     background-color: rgba(221, 221, 221, 0.2);
     border:1px solid rgba(221, 221, 221, 1);
     border-radius: 5px;
@@ -56,11 +56,11 @@ a{
 }
 .column_full td,th,tr{
     padding:20px 20px 20px 20px;
-    text-align: center;
+    text-align: left;
     font-size: 18px;
 }
 .column_full td:last-child{
-    min-width:70px;
+
 }
 .column_normal table{
     border-top:1px solid lightgrey;
@@ -68,11 +68,11 @@ a{
 }
 .column_normal td,th,tr{
     padding:20px 20px 20px 20px;
-    text-align: center;
+    text-align: left;
     font-size: 18px;
 }
 .column_normal td:last-child{
-    min-width:70px;
+
 }
 header h1{
     font-weight: normal;
@@ -99,7 +99,7 @@ header{
 #content{
     height: auto;
     min-height: 200px;
-    width: 920px;
+    width: 70%;//920px;
     padding:40px;
     margin:0px auto;
     background-color: white;
@@ -127,7 +127,7 @@ header{
 }
 #content td,tr {
     line-height:1.5em;
-    text-align: justify;
+    text-align: left;
     margin:0px 0px 10px 0px;
     color: #fe5e00;
     font-size:13px;
@@ -154,7 +154,7 @@ header{
     margin-bottom: 20px;
 }
 .column_full{
-    width: 100%;
+    width: 90%;
     padding:20px;
     display: inline-block;
     float: left;
@@ -228,4 +228,28 @@ input[type="button"]:active, input[type="submit"]:active{
     -webkit-box-shadow: 0px -0.5px 1px 1px rgba(0, 0, 0, 0.05) inset;
     -moz-box-shadow: 0px -0.5px 1px 1px rgba(0, 0, 0, 0.05) inset;
     box-shadow: 0px -0.5px 1px 1px rgba(0, 0, 0, 0.05) inset;
+}
+.statusgroen{
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-left:6px;
+    margin-right:6px;
+    background-color: greenyellow;
+    display: inline-block;
+    -webkit-box-shadow: 0px -0.5px 1px 1px greenyellow;
+    -moz-box-shadow: 0px -0.5px 1px 1px greenyellow;
+    box-shadow: 0px -0.5px 1px 1px greenyellow;
+}
+.statusrood{
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-left:6px;
+    margin-right:6px;
+    background-color: red;
+    display: inline-block;
+    -webkit-box-shadow: 0px 1px 1px 1px red;
+    -moz-box-shadow: 0px 1px 1px 1px red;
+    box-shadow: 0px 1px 1px 1px red;
 }

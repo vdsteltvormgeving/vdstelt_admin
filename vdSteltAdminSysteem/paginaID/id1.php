@@ -2,8 +2,8 @@
                 <h1>Welkom</h1>
                     <?php
                         date_default_timezone_set('Europe/Amsterdam');
-                        setlocale(LC_ALL,"nl_NL.UTF8");
-                    ?>
+                        //setlocale(LC_ALL,"nl_NL.UTF8");
+                    ?> 
                 <p style="color:lightgrey; font-size:10px;"><?php echo(strftime("%A %d %B %Y %X")); ?></p>
                 <p>Goedendag <b>Sander</b>, Hoe gaat het met u?</p>
                 <p>Dit adminstratie systeem staat weer voor uw klaar.</p>
@@ -28,14 +28,18 @@
                 <table>
                     <th>Bedrijfsnaam:</th>
                     <th>Factuurnummer:</th>
+                    <th></th>
                         <?php
                             //Factuur ID en Factuur titel
-                            $stmt1 = mysqli_prepare($link, "SELECT c.companynaam, f.factuurnr FROM company AS c JOIN factuur AS f WHERE f.factuurstatus = 'Open'");
+                            $stmt1 = mysqli_prepare($link, "SELECT c.companynaam, f.factuurnr, f.factuurstatus FROM company AS c JOIN factuur AS f WHERE f.factuurstatus = 'Open'");
                             mysqli_stmt_execute($stmt1);
-                            mysqli_stmt_bind_result($stmt1, $companynaam, $factuurnr);
+                            mysqli_stmt_bind_result($stmt1, $companynaam, $factuurnr, $factuurstatus);
                             while (mysqli_stmt_fetch($stmt1)){
                                 echo '<tr><td>'.$companynaam.'</td>';
-                                echo '<td>'.$factuurnr.'</td></tr>';
+                                echo '<td>'.$factuurnr.'</td>';
+                                if ($factuurstatus == 'Open'){
+                                echo '<td><span class="statusrood"></span></td></tr>';                               
+                                }else{echo '<td><span class="statusgroen"></span></td></tr>';}
                             }
                             mysqli_stmt_free_result($stmt1); // resultset opschonen
                             mysqli_stmt_close($stmt1); // statement opruimen
