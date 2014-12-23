@@ -21,7 +21,7 @@ function Home() {
 
 function Klantenoverzicht() {
     //Toont het Klantenoverzicht.
-    include '';
+    include ('paginaID/id4.php');
     echo '<a href="Home">Terug naar home</a>';
 }
 
@@ -33,13 +33,13 @@ function Klant() {
 
 function Facturenoverzicht() {
     //Toont het Facturenoverzicht
-    include 'paginaID/id2.php';
+    include ('paginaID/id2.php');
     echo '<a href="Home">Terug naar home</a>';
 }
 
 function Factuur() {
     //Toont het geslecteerde factuur
-    include 'paginaID/id3.php';
+    include ('paginaID/id3.php');
     echo '<a href="Home">Terug naar home</a>';
 }
 
