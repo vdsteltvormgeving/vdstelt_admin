@@ -30,7 +30,8 @@
                             mysqli_stmt_free_result($stmt2); // resultset opschonen
                             mysqli_stmt_close($stmt2); // statement opruimen                            
                         ?>
-                </table>
+                </table><br>
+                <submit onclick="goBack()">Terug</submit> 
             </div>
 <?php 
     mysqli_close($link); // verbinding verbreken  

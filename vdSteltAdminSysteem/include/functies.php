@@ -13,6 +13,11 @@ if ($link) {
     print("Kan helaas geen verbinding maken!");
     print(mysqli_connect_error());
 }
-
 ?>
+<script>
+function goBack() {
+    window.history.back()
+}
+</script>
+
   

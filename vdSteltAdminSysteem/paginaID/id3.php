@@ -8,22 +8,22 @@
                                 $factuurnr = $factuur;
                             }
                             if ($fnr != "") {
-                            $stmt3 = mysqli_prepare($link, "SELECT f.factuurID, f.factuurnr, f.factuurstatus, f.factuurtitel, f.omschrijving, f.btw, f.subtotaal, f.totaal, f.datum, c.companyID, c.companynaam, c.straatname, c.huis_nr, c.postcode, c.plaats, c.iban_nr FROM factuur AS f JOIN company AS C ON f.companyID = c.companyID WHERE f.factuurnr = $factuurnr");
+                            $stmt3 = mysqli_prepare($link, "SELECT f.factuurID, f.factuurnr, f.factuurstatus, f.factuurtitel, f.omschrijving, f.btw, f.subtotaal, f.totaal, f.datum, c.companyID, c.companynaam, c.alg_email ,c.straatname, c.huis_nr, c.postcode, c.plaats, c.iban_nr FROM factuur AS f JOIN company AS C ON f.companyID = c.companyID WHERE f.factuurnr = $factuurnr");
                             mysqli_stmt_execute($stmt3);
-                            mysqli_stmt_bind_result($stmt3,$factuurid,$factuurnr,$factuurstatus,$factuurtitel,$omschrijving,$btw,$subtotaal,$totaal,$datum,$companyid,$companynaam,$straat,$huisnr,$postcode,$plaats,$iban);                        
+                            mysqli_stmt_bind_result($stmt3,$factuurid,$factuurnr,$factuurstatus,$factuurtitel,$omschrijving,$btw,$subtotaal,$totaal,$datum,$companyid,$companynaam,$algemail,$straat,$huisnr,$postcode,$plaats,$iban);                        
                             mysqli_stmt_fetch($stmt3);
                             echo '<h1>'.$companynaam.'</h1>
                                     <p>Bedrijfsgegevens</p>';
                                 //Bedrijfsgegevens
                                 echo '<p><label>BedrijfsID:</label>'.$companyid.'</p>';
                                 echo '<p><label>Bedrijfnaam:</label>'.$companynaam.'</p>';
-                                echo '<p><label>Straat:</label>'.$straat.' '.$huisnr.'</p>';
-                                echo '<p><label>Postcode:</label>'.$postcode.' ,'.$plaats.'</p>';
-                                echo '<p><label>IBAN:</label>'.$iban.'</p><br></div>';
+                                echo '<p><label>Adres:</label>'.$straat.' '.$huisnr.'</p>';
+                                echo '<p><label></label>'.$postcode.' ,'.$plaats.'</p>';
+                                echo '<p><label>Vraag over factuur?</label>'.'<a href = mailto:'.$algemail.'?subject=Factuurnummer:%20'.$factuurnr.'><strong>E-mail versturen</strong></a></p></div>';
                                 //factuur gegevens
                                 echo '<div class="column_full column_line side-shadow">';
                                 echo '<h1>Factuur: '.$factuurid.'</h1>';
-                                echo '<p><label>Factuurnummer:</label>'.$factuurnr.'</p>';
+                                echo '<p><strong><label>Factuurnummer:</label>'.$factuurnr.'</strong></p>';
                                 echo '<p><label>Datum:</label>'.$datum.'</p>';
                                 
                                 if ($factuurstatus == 'Open'){
@@ -55,7 +55,8 @@
                                 echo '</table><br>';
                                 echo '<p><label>Subtotaal:</label>€ '.$subtotaal.'</p>';
                                 echo '<p><label>21% BTW:</label>€ '.$btw.'</p>';
-                                echo '<p><label><strong>Totaal:</strong></label>€ '.$totaal.'</p>';
+                                echo '<p><label><strong>Totaal:</strong></label>€ '.$totaal.'</p><br>';
+                                echo '<submit onclick="goBack()">Terug</submit> ';
                                 echo '</div>';
                                 } else {echo'<div class="column_normal column_line side-shadow">
                                 <h1>Not found</h1>
@@ -65,3 +66,4 @@
                                 mysqli_stmt_free_result($stmt4); // resultset opschonen
                                 mysqli_stmt_close($stmt4); // statement opruimen
                                 mysqli_close($link); // verbinding verbreken  ?>
+   

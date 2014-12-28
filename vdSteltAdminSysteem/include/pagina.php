@@ -7,6 +7,8 @@ function Content() {
         Klantenoverzicht();
     } elseif ($_GET['p'] == 'Klant') {
         Klant();
+    } elseif ($_GET['p'] == 'Klant toevoegen') {
+        Klanttoevoegen();
     } elseif ($_GET['p'] == 'Facturen') {
         Facturenoverzicht();
     } elseif ($_GET['p'] == 'Factuur') {
@@ -22,25 +24,26 @@ function Home() {
 function Klantenoverzicht() {
     //Toont het Klantenoverzicht.
     include ('paginaID/id4.php');
-    echo '<a href="Home">Terug naar home</a>';
 }
 
 function Klant() {
     //Toont klantgegevens.
-    include '';
-    echo '<a href="Home">Terug naar home</a>';
+    include ('paginaID/id5.php');
+}
+
+function Klanttoevoegen() {
+    //Toont klantgegevens.
+    include ('paginaID/id6.php');
 }
 
 function Facturenoverzicht() {
     //Toont het Facturenoverzicht
     include ('paginaID/id2.php');
-    echo '<a href="Home">Terug naar home</a>';
 }
 
 function Factuur() {
     //Toont het geslecteerde factuur
     include ('paginaID/id3.php');
-    echo '<a href="Home">Terug naar home</a>';
 }
 
 ?>

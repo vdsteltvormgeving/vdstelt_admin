@@ -25,7 +25,7 @@
                                 echo '<td>'.$btwnr.'</td>';
                                 echo '<td>'.$ibannr.'</td>';
                                 echo '<td>'.$bicnr.'</td>';
-                                echo '<td><form method="POST" action="Factuur"><input type="hidden" name=companyid["'.$companyid.'"] ><input type="submit" name="submit" value="Bekijken"></form></td>';
+                                echo '<td><form method="POST" action="Klant"><input type="hidden" name=companyid["'.$companyid.'"] ><input type="submit" name="submit" value="Bekijken"></form></td>';
                                 echo '</tr>';
                             }
                             mysqli_stmt_free_result($stmt5); // resultset opschonen
@@ -35,6 +35,7 @@
                 <form>
                     <input type="submit" name="submit" formaction="" value="Klant toevoegen">
                     <input type="submit" name="submit" formaction="" value="Klant verwijderen">
+                    <submit onclick="goBack()">Terug</submit>    
                 </form>
             </div>
 <?php 
