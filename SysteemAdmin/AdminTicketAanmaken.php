@@ -45,7 +45,7 @@ session_start();
                     Naam: <?php echo "$fname $lname"; ?> 
                 </p>
                 <!-- Bij deze form kan een bestand worden geupload om mee te geven met de ticket -->
-                <form method="POST" action="klantticketaanmaken.php">
+                <form method="POST" action="AdminTicketAanmaken.php">
                     Selecteer een bestand om te uploaden:<br><br>
                     <input type="file" name="fileToUpload" id="fileToUpload">
                     <p> 
@@ -61,9 +61,9 @@ session_start();
                         <?php
                         echo "<option value=''>Selecteer een bedrijf</option>";
                         include "link.php"; // Deze query haald de verschillende bedrijven opgehaald die de ingelogde user heeft.
-                        $customer_id = mysqli_prepare($link, "SELECT company_name FROM Customer");
+                        $customer_id = mysqli_prepare($link, "SELECT company_name, customer_id FROM Customer ");
                         mysqli_stmt_execute($customer_id);
-                        mysqli_stmt_bind_result($customer_id, $companyname);
+                        mysqli_stmt_bind_result($customer_id, $companyname, $customerid);
                         while (mysqli_stmt_fetch($customer_id))
                         {
                             echo "<option value='$companyname'>$companyname</option>";
