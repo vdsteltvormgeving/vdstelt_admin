@@ -59,7 +59,7 @@ else
                             {
                                 echo "Open";
                             }
-                            echo "<br><label>Omschrijving:</label><br><table><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
+                            echo "<br><label>Omschrijving:</label><br><table class='table_admin'><td class='table_reactie'><span class='datum'>$creation</span><br>$desc</td></table>";
                             mysqli_close($link);
                         }
                     }
