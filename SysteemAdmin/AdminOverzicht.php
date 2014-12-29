@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Jeffrey Hamberg, Joshua van Gelder-->
+<!-- Jeffrey Hamberg, Joshua van Gelder, Sander van der Stelt-->
 <?php
 session_start();
 if ($_SESSION['login'] != 1)
@@ -26,16 +26,13 @@ else
                 include 'menu.php';
                 ?>
             </div>
-            <div id='content'>                
-                <form method="POST" action="AdminKlantOverzicht.php">
-                    <input type="submit" name="Klanten Overzicht" value="Klanten Overzicht">
+            <div id='content'>
+                <form method="POST" action="AdminTicketAamaken.php">
+                    <input type="submit" name="Ticket aanmaken" value="Ticket aanmaken">
                 </form>
-                <form method="POST" action="AdminTicketOverzicht.php">
-                    <input type="submit" name="Ticket Overzicht" value="Ticket Overzicht">
-                </form> 
-                <form method="POST" action="Adminfactuuroverzicht.php">
-                    <input type="submit" name="Factuur Overzicht" value="Factuur Overzicht">
-                </form>         
+                <form method="POST" action="AdminFactuurAanmaken.php.php">
+                    <input type="submit" name="Factuur aanmaken" value="Factuur aanmaken">
+                </form>        
             </div>
             <?php 
                 include 'footeradmin.php';
