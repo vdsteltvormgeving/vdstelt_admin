@@ -119,7 +119,9 @@ session_start();
                 }
                 ?>
                 </div>
+                <form method="post">
                 <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
+                </form>
             </div>
             <?php 
                 include 'footeradmin.php';
