@@ -42,7 +42,7 @@ session_start();
                 $datetime = date("Y-m-d H:i:s");  //Met deze functie wordt de datum bepaald.
                 ?>                
                 <p> 
-                    Naam: <?php echo "$fname $lname"; ?> 
+                    Admin user: <?php echo "$fname $lname"; ?> 
                 </p>
                 <!-- Bij deze form kan een bestand worden geupload om mee te geven met de ticket -->
                 <form method="POST" action="AdminTicketAanmaken.php">
@@ -120,9 +120,6 @@ session_start();
                 ?>
                 </div>
                 <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
-                <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
-                <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
-                <input type="hidden" name="ticketid[<?php echo $ticketid; ?>]">
             </div>
             <?php 
                 include 'footeradmin.php';
