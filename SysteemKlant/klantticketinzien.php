@@ -112,10 +112,13 @@
                     ?>                                               
 
                 </form>
-                <form method="POST" action="klantticketoverzicht.php">
-                    <input type="submit" name="Back" value="Terug">
+                <form method="POST">
+                    <input type="submit" name="Back" value="Terug" onclick="goBack()">
                 </form><!-- text field and button to send text field and cancel button to go back -->                            
-            </div> 
+            </div>
+            <?php 
+            
+            ?>
             <!--EINDE CONTENT-->
         </div>
         <footer>
