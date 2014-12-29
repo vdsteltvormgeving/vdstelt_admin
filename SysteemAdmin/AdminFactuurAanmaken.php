@@ -124,10 +124,7 @@
                                            echo $_POST["Price5"];
                                        }
                                        ?>"></td></tr>
-                </table>
-                <input type="submit" formaction="AdminOverzicht.php" value="terug" name="terug">
-                <input type="submit" name="submit" value="opslaan" onclick="this.form.submit">
-            </form>
+
             <?php
             if (isset($_POST["submit"])) {
 
@@ -137,26 +134,31 @@
                     echo "Begin bij de eerste regel met invullen.";
                 } else {
                     $invoicenr = $_POST['invoicenr'];
-                    $test1 = 1;
-                    for ($i = 1; $i <= 5; $i++) {
+                    $test1 = 1;// test wordt aangemaakt om te checken of beide tests goed zijn uitgevuld. voornamelijk voor het testen van de code
+                    for ($i = 1; $i <= 5; $i++) { // for loop zodat alle regels van de if niet handmatig moeten worden geschreven
                         if ($_POST['description' . $i] == "" && $_POST['Count' . $i] == "" && $_POST['Price' . $i] != "" || $_POST['Price' . $i] == "" && $_POST['Count' . $i] == "" && $_POST['description' . $i] != "" || $_POST['description' . $i] == "" && $_POST['Price' . $i] == "" && $_POST['Count' . $i] != "" || $_POST['description' . $i] == "" && $_POST['Count' . $i] != "" && $_POST['Price' . $i] != "" || $_POST['Count' . $i] == "" && $_POST['description' . $i] != "" && $_POST['Price' . $i] != "" || $_POST['Price' . $i] == "" && $_POST['Count' . $i] != "" && $_POST['description' . $i] != "") {
-                            echo 'factuur regel ' . $i . ' is niet goed ingevuld.';
-                            goto end;
+                            echo 'factuur regel ' . $i . ' is niet goed ingevuld.<br>';
+                            $test2 = 0;
+                            break 1;
                         } else {
-
+                            $test2 = 1;
+                            
                         }
                     }
-                    echo "$test2";
-                    if ($test1 == 1 && $test2 != 1) {
-                        $compname = $_POST['bedrijfsnaam'];
+                    if ($test1 == 1 && $test2 == 1) {
+                        echo 'success';
+                        /*$compname = $_POST['bedrijfsnaam'];
                         $stmt2 = mysqli_prepare($link, "SELECT customer_id FROM Customer WHERE company_name = ?");
                         mysqli_stmt_bind_param($stmt2, 's ', $compname);
-                        $stmt3 = mysqli_prepare($link, "Insert into ");
+                        $stmt3 = mysqli_prepare($link, "Insert into "); */
                     }
-                } end: echo "it works";
-                print ($error);
+                }
             }
             ?>
+                                    </table>
+                <input type="submit" formaction="AdminOverzicht.php" value="terug" name="terug">
+                <input type="submit" name="submit" value="opslaan" onclick="this.form.submit">
+            </form>
         </div>
     </body>
 </html>
