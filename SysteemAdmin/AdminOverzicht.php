@@ -27,10 +27,10 @@ else
                 ?>
             </div>
             <div id='content'>
-                <form method="POST" action="AdminTicketAamaken.php">
+                <form method="POST" action="AdminTicketAanmaken.php">
                     <input type="submit" name="Ticket aanmaken" value="Ticket aanmaken">
                 </form>
-                <form method="POST" action="AdminFactuurAanmaken.php.php">
+                <form method="POST" action="AdminFactuurAanmaken.php">
                     <input type="submit" name="Factuur aanmaken" value="Factuur aanmaken">
                 </form>        
             </div>
