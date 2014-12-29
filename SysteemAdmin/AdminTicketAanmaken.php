@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Joshua van Gelder, Jeffrey Hamberg Sander van der Stelt-->
+<!-- Joshua van Gelder, Jeffrey Hamberg, Sander van der Stelt-->
 <?php
 session_start();
     ?>
