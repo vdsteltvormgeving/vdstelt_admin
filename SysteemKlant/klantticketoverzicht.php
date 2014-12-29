@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <title>Bens Developement</title>
         <link href="stijl.css" rel="stylesheet" type="text/css"/>
+        <script src="include/functionGoBack.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="container">
@@ -248,9 +249,10 @@
                         ?>
                     </table>
                     <br>
-                    <form class="knop_link" method="post" action="klantoverzicht.php">
+                    <!-- <form class="knop_link" method="post" action="klantoverzicht.php">
                         <input type="submit" name="back" value="Terug">
-                    </form>                                        
+                    </form>   -->
+                    <submit onclick="goBack()">Terug</submit>  
                 </div>
                 <!-- EINDE NIEUW GEPLAATSTE CODE -->
             </div>

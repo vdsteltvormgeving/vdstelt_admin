@@ -90,6 +90,27 @@ h1{
     margin-left:5px;
     float:left;
 }
+submit{
+    padding:12px 20px;
+    border-radius: 2px;
+    border:none;
+    background-color: rgb(247,141,35);
+    border-bottom:4px rgb(250,88,27) solid;
+    text-transform: uppercase;
+    font-weight: bold;
+    color:white;
+    bottom:10px;
+    display: inline-block;
+    margin-top: 10px;
+}
+submit:active{
+    border-bottom:4px rgb(250,88,27) solid;
+    bottom:-2px;
+    position: relative
+}
+submit:focus{
+    outline:0
+}
 input[type="submit"]{
     padding:12px 20px;
     border-radius: 2px;
