@@ -33,7 +33,7 @@
                     ?>
                 </table>
                 <form>
-                    <input type="submit" name="submit" formaction="" value="Klant toevoegen">
+                    <input type="submit" name="submit" formaction="Klant toevoegen" value="Klant toevoegen">
                     <input type="submit" name="submit" formaction="" value="Klant verwijderen">
                     <submit onclick="goBack()">Terug</submit>    
                 </form>

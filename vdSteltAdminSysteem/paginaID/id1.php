@@ -31,7 +31,7 @@
                     <th></th>
                         <?php
                             //Factuur ID en Factuur titel
-                            $stmt1 = mysqli_prepare($link, "SELECT c.companynaam, f.factuurnr, f.factuurstatus FROM company AS c JOIN factuur AS f WHERE f.factuurstatus = 'Open'");
+                            $stmt1 = mysqli_prepare($link, "SELECT c.companynaam, f.factuurnr, f.factuurstatus FROM company AS c JOIN factuur AS f ON c.companyID = f.companyID WHERE f.factuurstatus = 'Open'");
                             mysqli_stmt_execute($stmt1);
                             mysqli_stmt_bind_result($stmt1, $companynaam, $factuurnr, $factuurstatus);
                             while (mysqli_stmt_fetch($stmt1)){
