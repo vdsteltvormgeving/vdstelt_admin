@@ -32,6 +32,7 @@
                     foreach ($invoiceIDarray as $invoice => $notused) {
                         $invoiceID = $invoice;
                     }
+                    echo '<h1>Factuur nummer: '.$invoiceID.'</h1>';
                     if ($invoiceID != ""){
                     $stat = mysqli_prepare($link, "SELECT customer_id, company_name, street, house_number, city, kvk_number, btw_number FROM customer where customer_id IN (SELECT invoice_number FROM Invoice WHERE invoice_number = $invoiceID )");
                     mysqli_stmt_execute($stat);
