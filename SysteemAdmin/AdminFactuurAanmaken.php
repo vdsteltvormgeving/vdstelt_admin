@@ -6,36 +6,13 @@
     </head>
     <body>
         <div id='bovenbalk'>
-            <div id='logo'>
-                <img src="img/logo-bens.png" alt=""/>
+                <div id='logo'>
+                    <img src="img/logo-bens.png" alt=""/>
+                </div>
+                <?php
+                include 'menu.php';
+                ?>
             </div>
-            <div id='gebruiker'>
-                <ul id='nav'>
-                    <li><a href='#'> <img src='img/gebruiker.png' style='margin-top: -5px;'> <div id='showname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Admin</div> <img  src='img/pijltje.png' id='pijltje'></a>
-                        <ul>
-
-                            <li><a href='#'>Klanten</a></li>
-                            <li><a href='#'>Tickets</a></li>
-                            <li><a href='#'>Facturen</a></li>
-                            <li id='uitloggen'><a href='#'>Uitloggen</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div id='menu'>
-
-            <div id='pagina'>
-                <a href='#'>Tickets</a>
-            </div>
-
-            <div id='module'>
-                <a href='#'>Facturen</a>
-            </div>
-
-        </div>
-
         <div id='content'>
             <form method="POST" >
 
@@ -47,13 +24,13 @@
                 $stmt1 = mysqli_prepare($link, "SELECT company_name FROM Customer");
                 mysqli_execute($stmt1);
                 mysqli_stmt_bind_result($stmt1, $comp);
-                ?> <label>Bedrijfsnaam: </label><select id='Bedrijfsnaam' name='Bedrijfsnaam'> <?php
+                ?> <label>Bedrijfsnaam:</label><select id='Bedrijfsnaam' name='Bedrijfsnaam'> <?php
                     while (mysqli_stmt_fetch($stmt1)) {
                         echo"<option value='$comp'>$comp</option>";
                     }
                     ?>
                 </select></label> <br>
-                <label>Factuur nummer:</label> <input type="number" name="invoicenr" value="<?php
+                <label>Factuur nummer:</label><input type="number" name="invoicenr" value="<?php
                 if (isset($_POST["submit"])) {
                     echo $_POST["invoicenr"];
                 }
@@ -130,7 +107,7 @@
                     if (isset($_POST["submit"])) {
 
                         if ($_POST['invoicenr'] == "") {
-                            echo 'Invoicenummer moet ingevult worden.';
+                            echo 'Factuurnummer moet ingevult worden.';
                         } elseif ($_POST["description1"] == "" && $_POST["Price1"] == "" && $_POST["Count1"] == "") {
                             echo "Begin bij de eerste regel met invullen.";
                         } else {
