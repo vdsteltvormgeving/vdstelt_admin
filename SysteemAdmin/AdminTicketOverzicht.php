@@ -238,7 +238,12 @@ if ($_SESSION["login"] != 1) {
                 </table> -->
                 </form>
             </div>
-            <?php 
+            <?php
+                if (isset($_POST["Openen"]) || isset($_POST["Sluiten"])){
+                    if(empty($_POST["close/wijzig"])){
+                        echo'<p class="foutmelding"> U heeft geen ticket geselecteerd.</p>';
+                    }
+                }
                 include 'footeradmin.php';
                 ?>
         </body>

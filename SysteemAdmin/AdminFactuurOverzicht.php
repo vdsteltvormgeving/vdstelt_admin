@@ -206,7 +206,12 @@ if ($_SESSION["login"] != 1) {
                 <input type="submit" name="nietbetaald" value="Niet betaald" formaction="">
                 </form>
             </div>
-                <?php 
+                <?php
+                if (isset($_POST["nietbetaald"]) || isset($_POST["betaald"])){
+                    if(empty($_POST["close/wijzig"])){
+                        echo'<p class="foutmelding"> U heeft geen factuur geselecteerd.</p>';
+                    }
+                }
                 include 'footeradmin.php';
                 ?>
         </body>       

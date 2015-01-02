@@ -210,7 +210,7 @@ if ($_SESSION["login"] != 1) {
             <input type="submit" name="Sluiten" Value="Sluiten" formaction="">
             <input type="submit" name="Open" value="Open" formaction="">
             <?php
-                        if (isset($_POST["Sluiten"])) { //Sander: 'Dit heb ik gewijzigd en verplaatst voor een foutmelding'
+                        if (isset($_POST["Sluiten"]) || isset($_POST["Open"])) { //Sander: 'Dit heb ik gewijzigd en verplaatst voor een foutmelding'
                             if (empty($_POST["close/wijzig"])){echo '<p class="foutmelding"> U heeft geen ticket geselecteerd.</p>'; } 
                             else {
                             foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
