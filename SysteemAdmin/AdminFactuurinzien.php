@@ -85,9 +85,9 @@
                     	echo "<label class='factuur'><strong>Totaal</label>€ $totalincbtw </strong>"; 
 
                     	if ($payment_completed == "Niet betaald") {
-                        	echo '<p class="foutmelding">Deze factuur is nog niet voldaan.</p>';
+                        	echo '<p class="foutmelding">Deze factuur is nog niet betaald.</p>';
                     	} else {
-                        	echo '<p class="succesmelding">Deze factuur is voldaan.</p>';
+                        	echo '<p class="succesmelding">Deze factuur is betaald.</p>';
                     	}
                     	?>
                         </p>
