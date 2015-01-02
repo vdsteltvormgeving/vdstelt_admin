@@ -429,3 +429,23 @@ input[type="text"], input[type="password"]{
 .button{
     
 }
+#factuur table {
+    border:1px solid black;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right:0px !important;
+    margin-left:0px !important;
+    padding:8px;
+}
+#factuur td{
+    border-right:1px solid black;
+    padding:20px;
+}
+#factuur td:last-child{
+    border-right:0px solid black;
+    padding:20px;
+}
+#factuur th{
+    padding:0px 10px 10px 10px;
+    text-align: left;
+}
