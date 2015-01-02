@@ -7,6 +7,24 @@ if ($_SESSION["login"] != 1) {
     session_unset();
     session_destroy();
 } else {
+    if (isset($_POST["betaald"])&& isset($_POST["close/wijzig"])) {
+        foreach ($_POST["close/wijzig"] AS $invoicenumber => $notused) {
+            include "link.php";
+            $invoice_number = $invoicenumber;
+            $change = mysqli_prepare($link, "UPDATE invoice SET payment_completed = 1 WHERE invoice_number = $invoice_number ");
+            mysqli_execute($change);
+            mysqli_close($link);
+        }
+    } elseif (isset($_POST["nietbetaald"])&& isset($_POST["close/wijzig"])) {
+        foreach ($_POST["close/wijzig"] AS $invoicenumber => $notused) {
+            include "link.php";
+            $invoice_number = $invoicenumber;
+            $change = mysqli_prepare($link, "UPDATE invoice SET payment_completed = 0 WHERE invoice_number = $invoice_number");
+            mysqli_execute($change);
+            mysqli_close($link);
+        }
+    }
+    
     ?>
     <html>
         <head>
@@ -32,43 +50,43 @@ if ($_SESSION["login"] != 1) {
     <?php
     // Met de volgende rijen code wordt bepaald welke sorteerknop we willen hebben. Of we een DESC of een ASC knop hebben.
     if (isset($_POST["sortfac"])) {
-        echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortfacDESC' value='Factuurnummer'></form>";
+        echo "<form class='table_hdr' method='POST' action='AdminFactuurOverzicht.php'><input type='submit' name='sortfacDESC' value='Factuurnummer'></form>";
     } else {
-        echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortfac' value='Factuurnummer'></form>";
+        echo "<form class='table_hdr' method='POST' action='AdminFactuurOverzicht.php'><input type='submit' name='sortfac' value='Factuurnummer'></form>";
     }
     ?>
                         </th>
                         <th>
                             <?php
                             if (isset($_POST["sortkl"])) {
-                                echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortklDESC' value='Klant'></form>";
+                                echo "<form class='table_hdr' method='POST' action='AdminFactuurOverzicht.php'><input type='submit' name='sortklDESC' value='Klant'></form>";
                             } else {
-                                echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortkl' value='Klant'></form>";
+                                echo "<form class='table_hdr' method='POST' action='AdminFactuurOverzicht.php'><input type='submit' name='sortkl' value='Klant'></form>";
                             }
                             ?>
                         </th>
                         <th>
                             <?php
                             if (isset($_POST["sortanmd"])) {
-                                echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortanmdDESC' value='Aanmaak datum'></form>";
+                                echo "<form class='table_hdr' method='POST' action='AdminFactuurOverzicht.php'><input type='submit' name='sortanmdDESC' value='Aanmaak datum'></form>";
                             } else {
-                                echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortanmd' value='Aanmaak datum'></form>";
+                                echo "<form class='table_hdr' method='POST' action='AdminFactuurOverzicht.php'><input type='submit' name='sortanmd' value='Aanmaak datum'></form>";
                             }
                             ?>
                         </th>
                         <th>
                             <?php
                             if (isset($_POST["sortstat"])) {
-                                echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortstatDESC' value='Status'></form>";
+                                echo "<form class='table_hdr' method='POST' action='AdminFactuurOverzicht.php'><input type='submit' name='sortstatDESC' value='Status'></form>";
                             } else {
-                                echo "<form class='table_hdr' method='POST' action='Adminfactuuroverzicht.php'><input type='submit' name='sortstat' value='Status'></form>";
+                                echo "<form class='table_hdr' method='POST' action='AdminFactuurOverzicht.php'><input type='submit' name='sortstat' value='Status'></form>";
                             }
                             ?>
                         </th>
-
+                        <th></th>
                         <th>Bekijken</th>
                     </tr>
-                    <form method="POST" action="AdminFactuurinzien.php">
+                    <form method='POST' action='AdminFactuurOverzicht.php'>
     <?php
     include "link.php";
     if (isset($_POST["sortfac"])) {
@@ -81,7 +99,7 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
+            echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[$invoice_number]'></td><td><input type='submit' name='submit' name='invoice_number[$invoice_number]' value='Bekijken' formaction='AdminFactuurInzien.php'></td></tr>";
         }
     } elseif (isset($_POST["sortfacDESC"])) {
         $stmt13 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ORDER BY invoice_number DESC");
@@ -93,7 +111,7 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
+            echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[$invoice_number]'></td><td><input type='submit' name='submit' name='invoice_number[$invoice_number]' value='Bekijken' formaction='AdminFactuurInzien.php'></td></tr>";
         }
     } elseif (isset($_POST["sortkl"])) {
         $stmt14 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ORDER BY customer_id");
@@ -105,7 +123,7 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
+            echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[$invoice_number]'></td><td><input type='submit' name='submit' name='invoice_number[$invoice_number]' value='Bekijken' formaction='AdminFactuurInzien.php'></td></tr>";
         }
     } elseif (isset($_POST["sortklDESC"])) {
         $stmt15 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ORDER BY customer_id DESC");
@@ -117,7 +135,7 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
+            echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[$invoice_number]'></td><td><input type='submit' name='submit' name='invoice_number[$invoice_number]' value='Bekijken' formaction='AdminFactuurInzien.php'></td></tr>";
         }
     } elseif (isset($_POST["sortanmd"])) {
         $stmt16 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ORDER BY date");
@@ -129,7 +147,7 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
+            echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[$invoice_number]'></td><td><input type='submit' name='submit' name='invoice_number[$invoice_number]' value='Bekijken' formaction='AdminFactuurInzien.php'></td></tr>";
         }
     } elseif (isset($_POST["sortanmdDESC"])) {
         $stmt17 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ORDER BY date DESC");
@@ -141,7 +159,7 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
+            echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[$invoice_number]'></td><td><input type='submit' name='submit' name='invoice_number[$invoice_number]' value='Bekijken' formaction='AdminFactuurInzien.php'></td></tr>";
         }
     } elseif (isset($_POST["sortstat"])) {
         $stmt18 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ORDER BY payment_completed");
@@ -153,7 +171,7 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
+            echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[$invoice_number]'></td><td><input type='submit' name='submit' name='invoice_number[$invoice_number]' value='Bekijken' formaction='AdminFactuurInzien.php'></td></tr>";
         }
     } elseif (isset($_POST["sortstatDESC"])) {
         $stmt19 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ORDER BY payment_completed DESC");
@@ -165,7 +183,7 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr>";
+            echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[$invoice_number]'></td><td><input type='submit' name='submit' name='invoice_number[$invoice_number]' value='Bekijken' formaction='AdminFactuurInzien.php'></td></tr>";
         }
     } else {
         $stmt20 = mysqli_prepare($link, "SELECT invoice_number, customer_id , date , payment_completed FROM Invoice ");
@@ -177,14 +195,16 @@ if ($_SESSION["login"] != 1) {
             } else {
                 $payment_completed = "Niet betaald";
             }
-            echo "<form method='POST' action='Adminfactuurinzien.php' ><tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[]'></td><td><input type='submit' name='submit' value='Bekijken'></form></td></tr></form>";
+            echo "<tr><td>$invoice_number</td><td>$customer_id </td> <td> $date</td> <td> $payment_completed </td><td><input type='checkbox' name='close/wijzig[$invoice_number]'></td><td><input type='submit' name='submit' name='invoice_number[$invoice_number]' value='Bekijken' formaction='AdminFactuurInzien.php'></td></tr>";
         }
-    }
+    }    
+    
     ?>
                 </table>
-                <form method="POST" action="AdminFactuuroverzicht.php">
                 <input type="submit" name="Terug" value="Terug" formaction="AdminOverzicht.php">
-                <input type="submit" name="betaald" value="Betaald" formaction="AdminFactuuroverzicht.php">
+                <input type="submit" name="betaald" Value="Betaald" formaction="">
+                <input type="submit" name="nietbetaald" value="Niet betaald" formaction="">
+                
                 </form>
             </div>
                 <?php 
