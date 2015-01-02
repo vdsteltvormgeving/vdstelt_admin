@@ -7,7 +7,7 @@ if ($_SESSION["login"] != 1) {
     session_unset();
     session_destroy();
 } else {
-    if (isset($_POST["Sluiten"])) {
+    if (isset($_POST["Sluiten"])&& isset($_POST["close/wijzig"])) {
         foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
             include "link.php";
             $ticket_id = $ticketid;
@@ -15,7 +15,7 @@ if ($_SESSION["login"] != 1) {
             mysqli_execute($change);
             mysqli_close($link);
         }
-    } elseif (isset($_POST["Openen"])) {
+    } elseif (isset($_POST["Openen"])&& isset($_POST["close/wijzig"])) {
         foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
             include "link.php";
             $ticket_id = $ticketid;
