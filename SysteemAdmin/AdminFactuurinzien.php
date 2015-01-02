@@ -70,7 +70,7 @@
                     	$stmt3 = mysqli_prepare($link, "SELECT line_id, invoice_number, description, description2, amount, price, btw FROM line WHERE invoice_number = $invoiceID");
                     	mysqli_stmt_execute($stmt3);
                     	mysqli_stmt_bind_result($stmt3, $lineID, $IN, $D1, $D2, $amount, $price, $BTW);
-                    	echo "<table class='line'><th>Beschrijving</th><th>Aantal</th><th>Prijs</th>";
+                    	echo "<table><th>Beschrijving</th><th>Aantal</th><th>Prijs</th>";
                     	while (mysqli_stmt_fetch($stmt3)) {
                         	$total = $total + ($amount * $price);
                         	echo "<tr><td>$D1</td><td>$amount</td><td>€ $price</td></tr>";
@@ -81,10 +81,7 @@
                     	echo "</table><br>";
                     	echo "<label class='factuur'>Subtotaal</label>€ $total<br>";
                     	echo "<label class='factuur'>BTW 21 %</label>€ $BTWtotal<br>";
-                    	echo "<label class='factuur'><strong>Totaal</strong></label>€ $totalincbtw"; 
-                    	echo "
-                	</p>
-                	<p>IBAN: NL 83 RABO 0344 4625 36</p>";
+                    	echo "<label class='factuur'><strong>Totaal</label>€ $totalincbtw </strong>"; 
 
                     	if ($payment_completed == "Niet betaald") {
                         	echo '<p class="foutmelding">Deze factuur is nog niet voldaan.</p>';
@@ -92,6 +89,7 @@
                         	echo '<p class="succesmelding">Deze factuur is voldaan.</p>';
                     	}
                     	?>
+                        </p>
                         <form class="knop_link" method="post" action="AdminFactuuroverzicht.php">
                     	<input type="submit" name="back" value="Terug">
                     	<?php
