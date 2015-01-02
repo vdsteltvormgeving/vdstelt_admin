@@ -1,27 +1,22 @@
 <!DOCTYPE html>
-<!--Bart Holsappel en Daan Hagemans en Léyon Courtz -->
-<html>
-	<head>
-    	<meta charset="UTF-8">
-    	<title>Bens Developement</title>
-    	<link href="stijl.css" rel="stylesheet" type="text/css"/>
-	</head>
-	<body>
-    	<div id="container">
-        	<header>
-            	<div id="logo">
-                	<img src="afbeeldingen/logo-bens.png" alt="Bens Development"/>
-            	</div>
-            	<!--BEGIN MENU-->
-            	<div id="menu">
-                	<?php
-                	include 'menu.php';
-                	?>
-            	</div>
-            	<!--EINDE MENU-->
-        	</header>
-        	<!--BEGIN CONTENT-->
-        	<div id="content">
+<!--Bart Holsappel en Daan Hagemans en Léyon Courtz, Sander van der Stelt-->
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Admin Systeem</title>
+            <link href="stijl.css" rel="stylesheet" type="text/css"/>
+        </head>
+        <body>
+
+            <div id='bovenbalk'>
+                <div id='logo'>
+                    <img src="img/logo-bens.png" alt="">
+                </div>
+                <?php
+                include 'menu.php';
+                ?>
+            </div>
+            <div id='content'>
             	<?php
             	include "link.php";
             	session_start();
