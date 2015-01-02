@@ -204,7 +204,7 @@ if ($_SESSION["login"] != 1) {
                 <input type="submit" name="Terug" value="Terug" formaction="AdminOverzicht.php">
                 <input type="submit" name="betaald" Value="Betaald" formaction="">
                 <input type="submit" name="nietbetaald" value="Niet betaald" formaction="">
-                
+                <input type="hidden" name="invoicenumber[<?php echo $invoice_number; ?>]">
                 </form>
             </div>
                 <?php 
