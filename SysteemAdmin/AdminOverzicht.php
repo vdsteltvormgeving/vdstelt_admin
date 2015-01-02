@@ -41,7 +41,8 @@ else
                 mysqli_stmt_fetch($factuurammount);
                 mysqli_close($link);
                 ?>
-                <div class="table">
+                <div id="overzichtcontainer">    
+                <div id="overzicht">
                     <p>U heeft <?php
                         if ($count == 1)
                         {
@@ -53,18 +54,6 @@ else
                         }
                         ?>
                     </p>
-                    <p>U heeft <?php
-                        if ($count2 == 1)
-                        {
-                            echo $count2 . " open factuur";
-                        }
-                        else
-                        {
-                            echo"$count2 open facturen";
-                        }
-                        ?> 
-                    </p>
-                    <div>
                         <table>                    
                             <tr>
                                 <th>Categorie</th>
@@ -80,7 +69,19 @@ else
                                 echo "<tr><td>$category</td><td>$creation</td></tr>";
                             }
                             ?>
-                        </table>
+                        </table></div>
+                        <div id="overzicht">
+                        <p>U heeft <?php
+                            if ($count2 == 1)
+                            {
+                                echo $count2 . " open factuur";
+                            }
+                            else
+                            {
+                                echo"$count2 open facturen";
+                            }
+                            ?> 
+                        </p>
                         <table>
                             <tr>
                                 <th>Factuurnummer</th>
@@ -97,9 +98,8 @@ else
                             }
                             ?>
                         </table>
-                    </div>
-                    <br>
-                    <br>
+                        </div>
+                <div id="overzicht">
                     <form method="POST" action="AdminTicketAanmaken.php">
                         <input type="submit" name="Ticket aanmaken" value="Ticket aanmaken">
                     </form>
@@ -107,6 +107,8 @@ else
                         <input type="submit" name="Factuur aanmaken" value="Factuur aanmaken">
                     </form> 
                 </div>
+            </div>
+            </div>
                 <?php
                 include 'footeradmin.php';
                 ?>
