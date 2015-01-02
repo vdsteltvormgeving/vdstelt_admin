@@ -75,13 +75,11 @@ session_start();
                     <br>
                     <textarea name="beschrijving"></textarea>
                     <br>
+                    <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
                     <input type="submit" name="verzenden" value="Verzenden">
                     <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet        ?>">
                 </form> 
 
-                <form method="POST" action="klantoverzicht.php">
-                    <input type="submit" name="annuleren" value="Annuleren"> 
-                </form>
 
                 <!-- text field and button to send text field and cancel button to go back -->            
                 <?php
@@ -119,9 +117,6 @@ session_start();
                 }
                 ?>
                 </div>
-                <form method="post">
-                <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
-                </form>
             </div>
             <?php 
                 include 'footeradmin.php';
