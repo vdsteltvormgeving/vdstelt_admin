@@ -7,7 +7,7 @@ if ($_SESSION["login"] != 1) {
     session_unset();
     session_destroy();
 } else {
-    if (isset($_POST["Sluiten"])) {
+    if (isset($_POST["Sluiten"])&& isset($_POST["close/wijzig"])) {
         foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
             include "link.php";
             $ticket_id = $ticketid;
@@ -15,8 +15,8 @@ if ($_SESSION["login"] != 1) {
             mysqli_execute($change);
             mysqli_close($link);
         }
-    } elseif (isset($_POST["Openen"])) {
-        foreach ($_POST["Open"] AS $ticketid => $notused) {
+    } elseif (isset($_POST["Openen"])&& isset($_POST["close/wijzig"])) {
+        foreach ($_POST["close/wijzig"] AS $ticketid => $notused) {
             include "link.php";
             $ticket_id = $ticketid;
             $change = mysqli_prepare($link, "UPDATE ticket SET completed_status = 0 WHERE ticket_id = $ticket_id ");
@@ -207,8 +207,8 @@ if ($_SESSION["login"] != 1) {
                 <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
                 <input type="submit" name="WijzigenTO" Value="Wijzigen" formaction="AdminTicketWijzigen.php">
                 <input type ="submit" name="Sluiten" Value="Sluiten" formaction="">
-                <input type="hidden" name="ticketid[<?php echo $ticketid; ?>]">
-                <input type="submit" name="Openen" Value="Open" action="<?php $stmt21 = mysqli_prepare($link, "Update Ticket SET completed_status == 0") ?>">
+                <input type="submit" name="Openen" Value="Open" formaction="">
+                    <input type="hidden" name="ticketid[<?php echo $ticketid; ?>]">
 
                 <br><br><br>
                 <!--
@@ -238,7 +238,12 @@ if ($_SESSION["login"] != 1) {
                 </table> -->
                 </form>
             </div>
-            <?php 
+            <?php
+                if (isset($_POST["Openen"]) || isset($_POST["Sluiten"])){
+                    if(empty($_POST["close/wijzig"])){
+                        echo'<p class="foutmelding"> U heeft geen ticket geselecteerd.</p>';
+                    }
+                }
                 include 'footeradmin.php';
                 ?>
         </body>

@@ -123,7 +123,7 @@
                         echo '<p class="succesmelding">Deze factuur is voldaan.</p>';
                     }
                     ?>
-                    <form class="knop_link" method="POST" action="klantfactuurinzien">
+                    <form class="knop_link" method="POST" action="klantfactuuroverzicht.php">
                         <input type="submit" name="betaald" value="Ik heb betaald"> 
                     </form>
                     <form class="knop_link" method="post" action="klantfactuuroverzicht.php">

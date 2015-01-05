@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
-<!-- Joshua van Gelder, Jeffrey Hamberg, Bart Holsappel, Sander van der Stelt -->
-<html>    
-    <head>
-        <meta charset="UTF-8">
-        <title>Bens Developement</title>
-        <link href="stijl.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div id="container">
-            <header>
-                <div id="logo">
-                    <img src="afbeeldingen/logo-bens.png" alt="Bens Development"/>
+<!-- Joshua van Gelder, Jeffrey Hamberg, Sander van der Stelt-->
+<?php
+session_start();
+    ?>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Admin Systeem</title>
+            <link href="stijl.css" rel="stylesheet" type="text/css"/>
+        </head>
+        <body>
+
+            <div id='bovenbalk'>
+                <div id='logo'>
+                    <img src="img/logo-bens.png" alt="">
                 </div>
-                <!--BEGIN MENU-->
-                <div id="menu">
-                    <?php
-                    include 'menubackend.php';
-                    ?>
-                </div>
-                <!--EINDE MENU-->
-            </header>
-            <!--BEGIN CONTENT-->
-            <div id="content">
-                <h1>Ticket aanmaken</h1>
+                <?php
+                include 'menu.php';
+                ?>
+            </div>
+            <div id='content'>
+                <div id="ticket">
+                    <h1>Ticket aanmaken</h1>
                 <br>
                 <?php
                 $username = $_SESSION['username'];
@@ -44,10 +42,10 @@
                 $datetime = date("Y-m-d H:i:s");  //Met deze functie wordt de datum bepaald.
                 ?>                
                 <p> 
-                    Naam: <?php echo "$fname $lname"; ?> 
+                    Admin user: <?php echo "$fname $lname"; ?> 
                 </p>
                 <!-- Bij deze form kan een bestand worden geupload om mee te geven met de ticket -->
-                <form method="POST" action="klantticketaanmaken.php">
+                <form method="POST" action="AdminTicketAanmaken.php">
                     Selecteer een bestand om te uploaden:<br><br>
                     <input type="file" name="fileToUpload" id="fileToUpload">
                     <p> 
@@ -61,9 +59,9 @@
                     </select>
                     <select name="customerid">
                         <?php
-                        echo "<option value=''>Selecteer uw bedrijf</option>";
+                        echo "<option value=''>Selecteer een bedrijf</option>";
                         include "link.php"; // Deze query haald de verschillende bedrijven opgehaald die de ingelogde user heeft.
-                        $customer_id = mysqli_prepare($link, "SELECT C.company_name, C.customer_id FROM Customer C JOIN Customer_User U ON C.customer_id=U.customer_id WHERE U.user_id=$login");
+                        $customer_id = mysqli_prepare($link, "SELECT company_name, customer_id FROM Customer ");
                         mysqli_stmt_execute($customer_id);
                         mysqli_stmt_bind_result($customer_id, $companyname, $customerid);
                         while (mysqli_stmt_fetch($customer_id))
@@ -77,13 +75,11 @@
                     <br>
                     <textarea name="beschrijving"></textarea>
                     <br>
+                    <input type="submit" name="back" value="Terug" formaction="AdminOverzicht.php">
                     <input type="submit" name="verzenden" value="Verzenden">
                     <input type="hidden" name="customerid" value="<?php echo $customerid; //Dit is nodig om de customerid mee te geven zodat hij in de database kan worden gezet        ?>">
                 </form> 
 
-                <form method="POST" action="klantoverzicht.php">
-                    <input type="submit" name="annuleren" value="Annuleren"> 
-                </form>
 
                 <!-- text field and button to send text field and cancel button to go back -->            
                 <?php
@@ -120,12 +116,13 @@
                     }
                 }
                 ?>
+                </div>
             </div>
-            <!--EINDE CONTENT-->
-        </div>
-        <footer>
-            <?php include 'footer.php'; ?>
-        </footer>
-    </body>
-</html>
+            <?php 
+                include 'footeradmin.php';
+                ?>
+        </body>
+    </html>
+    <?php
 
+?>

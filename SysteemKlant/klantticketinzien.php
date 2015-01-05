@@ -118,6 +118,9 @@
                     <input type="submit" name="Back" value="Terug">
                 </form><!-- text field and button to send text field and cancel button to go back -->                            
             </div>
+            <?php 
+            
+            ?>
             <!--EINDE CONTENT-->
         </div>
         <footer>

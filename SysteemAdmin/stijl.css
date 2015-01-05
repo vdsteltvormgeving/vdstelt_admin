@@ -371,14 +371,14 @@ input[type="text"], input[type="password"], input[type="number"]{
     top:2px;
     position: relative;
     text-align: left;
-    margin:10px 0px;  
+    margin:10px 0px;
 }
 select{
     padding:12px;
     top:2px;
     position: relative;
     text-align: left;
-    margin:10px 0px;     
+    margin:10px 0px;   
 }
 #content form{
     margin:auto;
@@ -426,5 +426,59 @@ select{
     -moz-box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
     box-shadow: 0 4px 6px -1px rgba(155,155,155, 0.6);
 }
-
-
+.table{
+    display: inline-block;
+    position: relative;
+    float:left;
+    height: 100%;
+    margin-right:20px;
+}
+.button{
+    
+}
+#factuur table {
+    border:1px solid black;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right:0px !important;
+    margin-left:0px !important;
+    padding:8px;
+    border-collapse: collapse;
+}
+#factuur td{
+    border-right:1px solid black;
+    padding:10px;
+}
+#factuur td:last-child{
+    border-right:0px solid black;
+}
+#factuur th{
+    padding:10px;
+    border-bottom:1px solid black;
+    text-align: left;
+}
+#overzicht {
+    display:inline-block;
+    float:left;
+    padding:0px 20px 0px 20px;
+}
+#overzicht table{
+    border:1px solid black;
+    border-collapse: collapse;
+}
+#overzicht th{
+    padding:10px;
+    border-bottom:1px solid black;
+}
+#overzicht td{
+    border-right:1px solid black;
+    padding:10px;
+}
+#overzicht td:last-child{
+    border-right:0px solid black;
+}
+#overzichtcontainer {
+    margin-left:auto;
+    margin-right:auto;
+    width: 800px;
+}

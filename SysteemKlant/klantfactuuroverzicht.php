@@ -26,6 +26,10 @@
                 <h1>Factuur Overzicht</h1><br>
                 <!-- NIEUW GEPLAATSTE CODE-->
                 <?php
+                if(isset($_POST["betaald"]))
+                {
+                    //send email
+                }
                 include "link.php";
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password']; //Deze query haalt de user id en naam van de ingelogde klant uit de database.
@@ -70,7 +74,6 @@
                             mysqli_stmt_bind_result($company_name, $companyname);
                             while (mysqli_stmt_fetch($company_name))
                             {
-                                echo "<option value=everything>Allemaal</option>";
                                 echo "<option value='$companyname'>$companyname</option>";
                             }
                             echo "</select>";
@@ -105,10 +108,9 @@
                     <br>
                 </div>
             </div>
-        </div>
-    </div>
-    <footer>
-        <?php include 'footer.php'; ?>
-    </footer>
-</body>
+        </div>   
+        <footer>
+            <?php include 'footer.php'; ?>
+        </footer>
+    </body>
 </html>
