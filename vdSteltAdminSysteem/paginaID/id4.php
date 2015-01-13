@@ -3,9 +3,11 @@
             ?>
             <div class="column_normal column_line side-shadow">
                 <h1>Klantenoverzicht</h1>
+                <form>
+                    <input type="submit" name="submit" formaction="Klant aanmaken" value="Klant aanmaken">
+                </form>
                 <p></p>
                 <table>
-                    <th></th>
                     <th>Bedrijfsnaam:</th>
                     <th>E-mail:</th>
                     <th>KVK nummer:</th>
@@ -18,7 +20,8 @@
                             mysqli_stmt_bind_result($stmt5, $companyid,$companynaam,$straatname,$huisnr,$postcode,$plaats,$algemail,$website,$kvknr,$btwnr,$ibannr,$bicnr);                        
                             while (mysqli_stmt_fetch($stmt5)){
                                 echo '<tr>';
-                                echo '<td><input type="checkbox"></td>';
+                                //Select box*
+                                //echo '<td><input type="checkbox"></td>';
                                 echo '<td>'.$companynaam.'</td>';
                                 echo '<td>'.$algemail.'</td>';
                                 echo '<td>'.$kvknr.'</td>';
@@ -33,8 +36,8 @@
                     ?>
                 </table>
                 <form>
-                    <input type="submit" name="submit" formaction="Klant toevoegen" value="Klant toevoegen">
-                    <input type="submit" name="submit" formaction="" value="Klant verwijderen">
+                    <!-- Input correspondent select box
+                    <input type="submit" name="submit" formaction="" value="Klant verwijderen">-->
                     <submit onclick="goBack()">Terug</submit>    
                 </form>
             </div>
