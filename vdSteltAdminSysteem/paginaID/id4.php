@@ -4,7 +4,7 @@
             <div class="column_normal column_line side-shadow">
                 <h1>Klantenoverzicht</h1>
                 <form>
-                    <input type="submit" name="submit" formaction="Klant aanmaken" value="Klant aanmaken">
+                    <input type="submit" name="submit" formaction="Klant toevoegen" value="Klant aanmaken">
                 </form>
                 <p></p>
                 <table>

@@ -2,8 +2,9 @@
                 include('include/functies.php'); 
             ?>
             <div class="column_full column_line side-shadow">
-                <h1>Nieuwe klant toevoegen</h1>
+                <h1>Nieuwe klant aanmaken</h1>
                 <form method="POST" action="">
+                    <table>
                     <?php 
                     $stmt7 = ("SELECT companyID FROM company");
                     
@@ -13,8 +14,7 @@
                     }                        
                     mysqli_free_result($resultaat); // resultset opschonen
                     $nieuweID = $rowcount+1;
-                    
-                    echo '<table>';
+
                     echo '<tr><td><label>Bedijfsid:</label><input type="text" name=companyid["'.$nieuweID.'"] value="'.$nieuweID.'"DISABLED></td>';
                     ?>
                     <td><label>Bedrijfsnaam: </label><input type="text" name="bedrijfsnaam"></td></tr>
@@ -43,7 +43,9 @@
                         $btw_nr = $_POST["btw_nr"];
                         $iban_nr = $_POST["iban_nr"];
                         $bic_nr = $_POST["bic_nr"];
-                    if ($companyid == "" || $companynaam == "" || $straatname == "" || $huisnr == "" || $postcode == "" || $plaats == "" || $algemail == "" || $website == "" || $kvk_nr == "" || $btw_nr == "" || $iban_nr == "" || $bic_nr == ""){} else {    
+                    if ($companyid == "" || $companynaam == "" || $straatname == "" || $huisnr == "" || $postcode == "" || $plaats == "" || $algemail == "" || $website == "" || $kvk_nr == "" || $btw_nr == "" || $iban_nr == "" || $bic_nr == ""){
+                    //Als alles leeg is.
+                    } else {    
                         $stmt8 = mysqli_prepare($link,"INSERT INTO company (`companyID`,`companynaam`,`straatname`,`huis_nr`,`postcode`,`plaats`,`alg_email`,`website`,`kvk_nr`,`btw_nr`,`iban_nr`,`bic_nr`) VALUES ('".$companyid."','".$companynaam."','".$straatname."','".$huisnr."','".$postcode."','".$plaats."','".$algemail."','".$website."','".$kvk_nr."','".$btw_nr."','".$iban_nr."','".$bic_nr."')");
                         mysqli_stmt_execute($stmt8);
                         echo '<p>Klant is succesvol aangemaakt</p>';
@@ -51,7 +53,7 @@
                         mysqli_stmt_close($stmt8); // statement opruimen 
                     }}
                     ?>
-                    <input type="submit" name="submitklant" formaction="" value="Klant toevoegen">
+                    <input type="submit" name="submitklant" value="Klant toevoegen">
                     <submit onclick="goBack()">Terug</submit>                  
                 </form>
             </div>

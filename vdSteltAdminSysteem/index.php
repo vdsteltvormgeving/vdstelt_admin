@@ -20,11 +20,6 @@ and open the template in the editor.
             <p>versie 1.0, <strong>Van der Stelt Vormgeving</strong></p>
         </header>
         <div id="content">
-            <!--
-            <a href="Klanten">Klanten</a><br/>
-            <a href="Facturen">Facturen</a><br/> 
-            -->
-            <!--HIER KOMT DE INHOUD-->
             <?php Content(); ?>
         </div>
         <footer>

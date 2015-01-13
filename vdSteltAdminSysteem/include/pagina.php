@@ -13,6 +13,8 @@ function Content() {
         Facturenoverzicht();
     } elseif ($_GET['p'] == 'Factuur') {
         Factuur();
+    } elseif ($_GET['p'] == 'Factuur toevoegen') {
+        Factuurtoevoegen();
     }
 }
 
@@ -44,6 +46,11 @@ function Facturenoverzicht() {
 function Factuur() {
     //Toont het geslecteerde factuur
     include ('paginaID/id3.php');
+}
+
+function Factuurtoevoegen() {
+    //Toont het geslecteerde factuur
+    include ('paginaID/id7.php');
 }
 
 ?>
